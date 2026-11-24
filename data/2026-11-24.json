@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-11-24 13:14",
+  "updatedAt": "2026-11-24 13:18",
   "items": [
     {
       "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "Dart",
-      "인기도": "★ 30885",
+      "인기도": "★ 30889",
       "한글제목": "ccch1mneyyy/dsh-Go",
-      "핵심요약": "DeepSeek 기반 하니스(Harness)를 모바일에 탑재하여 스마트폰에서 로컬 구동 및 PC 원격 제어가 가능한 도구입니다.",
+      "핵심요약": "DeepSeek 기반 하네스를 모바일 기기에서 직접 실행하고 PC까지 원격 제어할 수 있는 도구입니다.",
       "원제목": "ccch1mneyyy/dsh-Go",
       "링크": "https://github.com/ccch1mneyyy/dsh-Go"
     },
@@ -17,9 +17,9 @@
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "TypeScript",
-      "인기도": "★ 24388",
+      "인기도": "★ 24389",
       "한글제목": "deepseek-ai/dsh-superagent-prototype",
-      "핵심요약": "더욱 자율적인 에이전트 시스템 구현을 목표로 하는 프로토타이핑 프로젝트입니다.",
+      "핵심요약": "더욱 자율적인 에이전트 시스템 구현을 목표로 하는 프로토타입 프로젝트입니다.",
       "원제목": "deepseek-ai/dsh-superagent-prototype",
       "링크": "https://github.com/deepseek-ai/dsh-superagent-prototype"
     },
@@ -28,9 +28,9 @@
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "JavaScript",
-      "인기도": "★ 20905",
+      "인기도": "★ 20906",
       "한글제목": "heydamir/unslop",
-      "핵심요약": "AI가 생성한 다소 어설픈 UI(바이브 코딩 결과물)를 세련된 디자인 인터페이스로 변환해 주는 클로드(Claude) 스킬입니다.",
+      "핵심요약": "AI가 생성한 다소 어색한 UI를 전문적으로 디자인된 인터페이스로 변환해 주는 클로드(Claude) 스킬입니다.",
       "원제목": "heydamir/unslop",
       "링크": "https://github.com/heydamir/unslop"
     },
@@ -41,7 +41,7 @@
       "구분": "Python",
       "인기도": "★ 12736",
       "한글제목": "JuneYaooo/rea-video",
-      "핵심요약": "실사 촬영, AI 생성, 코드 구현 등 모든 영상을 샷별로 역설계하여 복제 방법을 분석하고 VIDEO.md 형식으로 리포트를 제공합니다.",
+      "핵심요약": "모든 비디오를 샷 단위로 역설계하여 촬영, AI 생성, 코드 제작 여부를 분석하고 복제 방법을 VIDEO.md 형식으로 제공합니다.",
       "원제목": "JuneYaooo/rea-video",
       "링크": "https://github.com/JuneYaooo/rea-video"
     },
@@ -50,9 +50,9 @@
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "AI/Code",
-      "인기도": "★ 11425",
+      "인기도": "★ 11426",
       "한글제목": "janestreet/agent_skills",
-      "핵심요약": "인공지능 에이전트의 실무 수행 능력을 향상시키기 위한 전문 기술 및 기능 모음입니다.",
+      "핵심요약": "AI 에이전트의 역량 강화를 위한 기술 스킬셋 모음입니다.",
       "원제목": "janestreet/agent_skills",
       "링크": "https://github.com/janestreet/agent_skills"
     },
@@ -61,9 +61,20 @@
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
+      "인기도": "▲ 1",
+      "한글제목": "SAVIOR: 문서 이해 및 OCR을 위한 비전-언어 모델의 효율적 적응",
+      "핵심요약": "표준 문서 이해 벤치마크에서는 뛰어난 성능을 보이나 비정형 패턴에서 성능이 저하되는 OCR 파이프라인 및 비전-언어 모델의 적응력을 개선합니다.",
+      "원제목": "SAVIOR: Sample-efficient Adaptation of Vision-Language Models for OCR Representation",
+      "링크": "https://huggingface.co/papers/2611.27319"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "AI 트렌드",
+      "출처": "HuggingFace Papers",
+      "구분": "신개념/메커니즘",
       "인기도": "▲ 3",
-      "한글제목": "GameAnything: 영감을 플레이 가능한 게임 세계로 구현",
-      "핵심요약": "인간의 다양한 영감을 상호작용 가능한 인터랙티브 게임 세계로 변환하는 AI 기반 게임 개발 연구입니다.",
+      "한글제목": "GameAnything: 아이디어에서 플레이 가능한 게임 세계까지",
+      "핵심요약": "AI 기반 게임 개발을 통해 인간의 다양한 상상력과 영감을 인터랙티브한 플레이 가능한 게임 세상으로 변환합니다.",
       "원제목": "GameAnything: From Any Inspirations to Playable Game Worlds",
       "링크": "https://huggingface.co/papers/2611.29238"
     },
@@ -73,8 +84,8 @@
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
       "인기도": "▲ 10",
-      "한글제목": "로봇 조작의 파운데이션 모델로서 VLM 학습 엿보기",
-      "핵심요약": "GPT-6 Astra의 로봇 제어 일반화 능력을 재현하기 위한 오픈소스 기반 비전-언어 모델(VLM) 학습 접근법 'nanoAstra'를 소개합니다.",
+      "한글제목": "로봇 조작을 위한 파운데이션 모델로서의 VLM 학습 엿보기",
+      "핵심요약": "GPT-6 아스트라처럼 로봇 제어에서 강한 일반화 성능을 보이는 비전-언어 모델의 학습 접근법(nanoAstra)을 소개합니다.",
       "원제목": "A Glimpse of Training VLMs as Foundation Models for Robotic Manipulation",
       "링크": "https://huggingface.co/papers/2611.29338"
     },
@@ -84,8 +95,8 @@
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
       "인기도": "▲ 21",
-      "한글제목": "AutoPILOT: 실시간 게임 플레이를 위한 시각적 에이전트 하니스",
-      "핵심요약": "실시간으로 진행되는 비디오 게임 환경에서 멀티모달 파운데이션 모델이 직면하는 제어 공백을 극복하기 위한 시각적 하니스 시스템입니다.",
+      "한글제목": "AutoPILOT: 실시간 게임플레이를 위한 비주얼 에이전트 하네스",
+      "핵심요약": "멀티모달 파운데이션 모델이 실시간으로 구동되는 비디오 게임에서 겪는 한계를 극복하기 위해 시각 정보와 명령 전달 방식을 개선한 하네스입니다.",
       "원제목": "AutoPILOT: A Visual Agent Harness for Real-Time Gameplay",
       "링크": "https://huggingface.co/papers/2611.28202"
     },
@@ -95,21 +106,10 @@
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
       "인기도": "▲ 7",
-      "한글제목": "Self-WSP: 언어 모델은 가중치 공간 프로그래밍을 통해 스스로 발전할 수 있는가?",
-      "핵심요약": "최신 언어 모델이 신경망의 가중치를 코드처럼 직접 읽고 수정하여 소형 모델을 개선하는 '가중치 공간 프로그래밍(WSP)' 기법을 탐구합니다.",
+      "한글제목": "Self-WSP: 언어 모델은 가중치 공간 프로그래밍을 통해 스스로 개선될 수 있는가?",
+      "핵심요약": "최신 언어 모델이 신경망의 가중치를 코드처럼 읽고 수정하여 소형 모델을 스스로 개선하는 가중치 공간 프로그래밍(WSP) 기법을 탐구합니다.",
       "원제목": "Self-WSP: Can Language Models Improve Themselves Through Weight-Space Programming?",
       "링크": "https://huggingface.co/papers/2611.28833"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "AI 트렌드",
-      "출처": "HuggingFace Papers",
-      "구분": "신개념/메커니즘",
-      "인기도": "▲ 6",
-      "한글제목": "WeightCode: 가중치 공간 프로그래밍을 통한 신경망 새 기능 탑재",
-      "핵심요약": "실행 가능한 가중치 조작을 통해 명시적 태스크 지식을 신경망에 직접 주입하여 새로운 능력을 설치하는 방법을 다룹니다.",
-      "원제목": "WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming",
-      "링크": "https://huggingface.co/papers/2611.25476"
     },
     {
       "수집일": "2026-11-24",
@@ -118,7 +118,7 @@
       "구분": "gradio",
       "인기도": "♥ 670",
       "한글제목": "JCisHERE/wan2-2-i2v-v3",
-      "핵심요약": "이미지를 동영상으로 변환하는 성능이 강화된 Hugging Face 인기 AI 애플리케이션입니다.",
+      "핵심요약": "허깅페이스에서 인기를 끌고 있는 이미지 기반 비디오 생성 AI 앱입니다.",
       "원제목": "JCisHERE/wan2-2-i2v-v3",
       "링크": "https://huggingface.co/spaces/JCisHERE/wan2-2-i2v-v3"
     },
@@ -129,7 +129,7 @@
       "구분": "gradio",
       "인기도": "♥ 308",
       "한글제목": "MiniMaxAI/minimax-h3-image",
-      "핵심요약": "고품질 이미지 생성 및 처리를 지원하는 MiniMax의 최신 허깅페이스 스페이스 앱입니다.",
+      "핵심요약": "허깅페이스에서 인기를 끌고 있는 미니맥스 이미지 생성 AI 앱입니다.",
       "원제목": "MiniMaxAI/minimax-h3-image",
       "링크": "https://huggingface.co/spaces/MiniMaxAI/minimax-h3-image"
     },
@@ -140,7 +140,7 @@
       "구분": "docker",
       "인기도": "♥ 837",
       "한글제목": "huggingface/moe-blogpost",
-      "핵심요약": "혼합 전문가(MoE, Mixture of Experts) 모델의 구조와 최신 트렌드를 다룬 허깅페이스 기술 블로그 게시물입니다.",
+      "핵심요약": "전문가 혼합(MoE) 모델에 대한 허깅페이스의 공식 블로그 포스트 및 관련 앱입니다.",
       "원제목": "huggingface/moe-blogpost",
       "링크": "https://huggingface.co/spaces/huggingface/moe-blogpost"
     },
@@ -151,7 +151,7 @@
       "구분": "docker",
       "인기도": "♥ 537",
       "한글제목": "joelniklaus/harness-leaderboard",
-      "핵심요약": "다양한 AI 하니스 및 에이전트 성능을 비교·평가하는 리더보드 애플리케이션입니다.",
+      "핵심요약": "AI 에이전트 및 모델 하네스 성능을 비교 평가하는 리더보드 앱입니다.",
       "원제목": "joelniklaus/harness-leaderboard",
       "링크": "https://huggingface.co/spaces/joelniklaus/harness-leaderboard"
     },
@@ -162,7 +162,7 @@
       "구분": "gradio",
       "인기도": "♥ 142",
       "한글제목": "Lakonik/pi-H3",
-      "핵심요약": "허깅페이스에서 주목받고 있는 고성능 인공지능 관련 오픈소스 데모 앱입니다.",
+      "핵심요약": "허깅페이스에서 주목받고 있는 최신 AI 모델 및 인터페이스 앱입니다.",
       "원제목": "Lakonik/pi-H3",
       "링크": "https://huggingface.co/spaces/Lakonik/pi-H3"
     },
@@ -172,8 +172,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-18",
-      "한글제목": "Sidehand - 사용자가 타이핑하는 동안 창 뒤의 Windows 앱을 조작하는 AI 에이전트 MCP 서버",
-      "핵심요약": "사용자의 메인 작업(타이핑 등)을 방해하지 않고 백그라운드 창에서 윈도우 앱을 제어하는 MCP 서버 도구입니다.",
+      "한글제목": "Sidehand: 타이핑 중 창 뒤의 Windows 앱을 조작하는 MCP 서버",
+      "핵심요약": "사용자가 타이핑하는 동안 백그라운드에서 AI 에이전트가 윈도우 애플리케이션을 자율적으로 조작할 수 있게 해주는 MCP 서버입니다.",
       "원제목": "Show GN: Sidehand - 내가 타이핑하는 동안 창 뒤의 Windows 앱을 AI 에이전트가 조작하는 MCP 서버 - GeekNews",
       "링크": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBDaFJ3eF9qR0dyU0NkcTlJY1IyZEQ3WFdJQmd5VWNFejBXR3F1X2x1TnVQRVpGNFZYOVVmTzZZT3REejg5YUpOMzZPOA?oc=5"
     },
@@ -183,8 +183,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-22",
-      "한글제목": "AgentCore CLI로 AI 에이전트 개발부터 배포까지 – Kiro CLI, Claude Code 연동",
-      "핵심요약": "AWS 환경에서 클로드 코드 등과 연계하여 AI 에이전트의 개발부터 배포까지 효율적으로 수행하는 워크플로우를 안내합니다.",
+      "한글제목": "AgentCore CLI로 AI 에이전트 개발부터 배포까지",
+      "핵심요약": "Kiro CLI 및 Claude Code와 연동하여 AI 에이전트의 개발부터 배포까지 원활하게 수행할 수 있는 AWS 워크플로우를 소개합니다.",
       "원제목": "AgentCore CLI로 AI 에이전트 개발부터 배포까지 – Kiro CLI, Claude Code와 함께 쓰는 워크 플로우 - Amazon Web Services",
       "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA5dzJzem9NZEVydUdMNUQ4SGxxa1RubW1rM3dFczNsZmFBYjF5ZUMzbTNpN285LUxnR2htdDJhdUJYdXRISUkyVkg2QUd6NExFV2U4X2dXRFRmOFB4NVdrUWhmT1hDd1NOaTVB?oc=5"
     },
@@ -195,7 +195,7 @@
       "구분": "활용법/트렌드",
       "인기도": "2026-11-20",
       "한글제목": "[AI리더의 서가] 일하는 AI 에이전트 설계하는 사람",
-      "핵심요약": "단순 대화를 넘어 실제로 업무를 수행하는 AI 에이전트를 설계하고 구축하는 인물과 철학을 조명합니다.",
+      "핵심요약": "AI 에이전트를 직접 설계하고 활용하는 전문가들의 업무 혁신과 철학을 다룬 도서 소개입니다.",
       "원제목": "[AI리더의 서가] 일하는 AI 에이전트 설계하는 사람 - AI타임스",
       "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE40aU54Q0QxbHlVSnd1eDRWM2QxeW1PYnlIUWhNRG5uVnhxZVkzS1dGc1E2M1NTNFZSNlVodG01YUxVYUhoWGJOTW5ubDZna0podjZScnhQUzZiT2phbFNBcjRUaXM1ZkxIZHc?oc=5"
     },
@@ -205,8 +205,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-19",
-      "한글제목": "일본 특허청, AI 에이전트와 특허정보시스템 연계 추진… 2027년 구축 목표",
-      "핵심요약": "일본 특허청이 업무 효율화를 위해 AI 에이전트를 특허 정보 시스템과 통합하는 프로젝트를 2027년 완료 목표로 추진합니다.",
+      "한글제목": "일 특허청, AI 에이전트와 특허정보시스템 연계 추진",
+      "핵심요약": "일본 특허청이 업무 효율화를 위해 AI 에이전트를 특허정보시스템과 연동하여 2027년까지 구축하는 것을 목표로 추진합니다.",
       "원제목": "日 특허청, AI 에이전트와 특허정보시스템 연계 추진…2027년 구축 목표 - 전자신문",
       "링크": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB4OV9MdU5nMU1zVnZVRU1QdGlQeVF2c3hBR3JOQnFOZEpFUUs3X0hUdEtlaDdHSFBDUjV1N3JvazczV0pBM1ZwbWtTNlNSUQ?oc=5"
     },
@@ -216,8 +216,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-18",
-      "한글제목": "MS, ‘이그나이트 2026’서 위협 차단 에이전트 ‘퍼셉션’ 등 AI·보안 신기술 공개",
-      "핵심요약": "마이크로소프트가 연례 행사에서 실시간 위협 차단 기능을 갖춘 보안 에이전트 '퍼셉션' 등 차세대 AI·보안 기술을 선보였습니다.",
+      "한글제목": "MS, ‘이그나이트 2026’서 위협 차단 에이전트 ‘퍼셉션’ 등 공개",
+      "핵심요약": "마이크로소프트가 연례 행사에서 사이버 위협을 실시간 차단하는 에이전트 '퍼셉션'을 포함한 최신 AI 및 보안 기술을 발표했습니다.",
       "원제목": "MS, ‘이그나이트 2026’서 위협 차단 에이전트 ‘퍼셉션’ 등 AI·보안 신기술 공개 - 보안뉴스",
       "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9hOV9IOHBDemJyYWt3LUlUcmt0Z3lRRHhmeTh2bzVBVWI0WjVRVFpiRC1yRXFKRlRVXzlMOFdUanN0a3ZicUQtcDF5OHY5VE81NlJiamJNME5qbGp3bHpmR18xY0lCN0dUZFdn?oc=5"
     },
@@ -228,7 +228,7 @@
       "구분": "baodautu",
       "인기도": "2026-11-22",
       "한글제목": "베트남-프랑스-한국 컨소시엄, 남북 고속철도 핵심 컨설팅 패키지 수주",
-      "핵심요약": "베트남 남북 고속철도 프로젝트의 가장 핵심적인 타당성 조사 및 기술 자문 컨설팅 패키지를 베트남-프랑스-한국 연합 컨소시엄이 낙찰받았습니다.",
+      "핵심요약": "베트남·프랑스·한국 기업으로 구성된 연합 컨소시엄이 남북 고속철도 국가 프로젝트 중 가장 핵심적인 기술 자문 및 컨설팅 패키지를 수주했습니다.",
       "원제목": "Liên danh Việt - Pháp - Hàn trúng thầu gói thầu tư vấn quan trọng nhất đường sắt tốc độ cao Bắc - Nam",
       "링크": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObkF3OFh3c1lHNUk1ellFaVFTdUJUTjhreEdpYUEtWFpEVFhObENsbk9QUHJ0X20wTy1WeWdWWWpfY0VsekVFM1hGNXZrdXpSZkJTbWlUNkNNZ2MzR3M4UXV3MkFaOThSc09qOEZnSm1ZQ18yMW9JNzhrcTQ1T2NqN0s0TU1kWlIxNk9OWHBBUHg1X3c3NFlCNWtqR19jWENYeFRWelhfRklydHIyMnBrY1VBb2dhdVhlaHRBSFYwZmhUdGtUVUVyZmZHbUxUNjQ?oc=5"
     },
@@ -238,8 +238,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "Thời báo Tài chính Việt Nam",
       "인기도": "2026-11-24",
-      "한글제목": "깜로-라선 고속도로 확장 사업에서 겹치는 난관들",
-      "핵심요약": "베트남 중부 핵심 교통망인 깜로-라선 고속도로 확장 공사가 예산, 보상 및 지형적 문제로 여러 복합적인 난항을 겪고 있습니다.",
+      "한글제목": "캄로-라손 고속도로 확장 사업의 연이은 난항",
+      "핵심요약": "베트남 중부 주요 간선축인 캄로-라손 고속도로 확장 공사 현장에서 예산 집행, 부지 정지 및 시공 상의 복합적인 어려움이 가중되고 있습니다.",
       "원제목": "Khó khăn dồn dập tại dự án mở rộng cao tốc Cam Lộ - La Sơn",
       "링크": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQYzZYZ19QREpMby1SZk9LdF9BbDhiTWpBY1lrcGpjWGN4SUtIaHpCcjJ4VmluZi1ybkc3dVo0SURpcjJMMkpPZ3ZGRVlTNE0zU19WbW8xb2gxTmZaVU9XZXZGOFFzNE12aUhieTd1TnlmVkVQTjE2RzFGMFhYaThMMzJiUktaam1YcGZ0MXVvZTVkMDFiN3Fsc2pPaTV5aGg3Y3Z0TlB1SHREd0Fwcmc?oc=5"
     },
@@ -249,8 +249,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "Nhadautu.vn",
       "인기도": "2026-11-22",
-      "한글제목": "16조 2,000억 동 규모의 고속도로 3개 신규 프로젝트 투자 추진",
-      "핵심요약": "베트남 정부가 총 162조 톤(약 16조 2,000억 원 상당)의 예산을 투입하여 신규 고속도로 3개 노선 건설 투자를 추진합니다.",
+      "한글제목": "16조 2,000억 동 규모의 3개 고속도로 추가 투자 추진",
+      "핵심요약": "총 162조 ức 동(VND) 규모의 예산을 투입하여 신규 고속도로 3개 노선의 건설 투자를 본격적으로 추진합니다.",
       "원제목": "162.000 tỷ đồng đầu tư thẻm 3 dự án cao tốc",
       "링크": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPakZJYUdtNU9fYWJSQkx1RFdiSXE3Sm92VTNza3FLSkFaSWNTcWdDNDVOMkZKT1drS2ZqUWZGN20xU1U2N1MzRnFwVWtHU201QXhZS3o4SWkzd1NPTnBjeFdremZGa014SEtkZVVyaVJyUFZQQm5Gbk5EVzA2YkRyZw?oc=5"
     },
@@ -260,8 +260,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "baochinhphu.vn",
       "인기도": "2026-11-21",
-      "한글제목": "국회, 신규 고속도로 3개 프로젝트 투자 정책 승인",
-      "핵심요약": "베트남 국회가 국가 인프라 확충을 위해 총력을 기울이는 신규 고속도로 3개 노선의 투자 주도 정책을 공식 승인했습니다.",
+      "한글제목": "베트남 국회, 신규 고속도로 3개 사업 투자 정책 승인",
+      "핵심요약": "국가 인프라 확충과 지역 균형 발전을 위해 신규 고속도로 3개 노선 건설에 대한 투자 주관 및 기본 계획이 베트남 국회를 통과했습니다.",
       "원제목": "Quốc hội thông qua chủ trương đầu tư 3 dự án cao tốc mới",
       "링크": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPR0xqTEhHWGhob0taUE5jZ0tpVS1Rc1oweG1pN2FERDhpZzBPRDAzRl8wVDZsU3dudHZqSmR0TU5NcUtVVG9qOGFTRkpXMWZ2bnZpTXoxVHQ3ZTBiLVdHWWE1aGdwZkhfTW5TOXdsaGx4aGVMQ2lhZDlrLW96c1h1X2hpVkhZZTdheXRDbXpSanU5eGYyMERnYUdsNmtVTUhvZXBhbg?oc=5"
     },
@@ -271,8 +271,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "CafeF",
       "인기도": "2026-11-23",
-      "한글제목": "총투자액 28조 9,000억 동 이상, 6개 성·시를 통과하는 360km 이상 철도 프로젝트 현황",
-      "핵심요약": "베트남 6개 성·시를 경유하며 연장 360km를 넘고 총 289,000억 동이 투입되는 대형 철도 인프라 사업의 진행 상황을 조명합니다.",
+      "한글제목": "연장 360km 이상, 총투자액 28조 9,000억 동 규모의 철도 프로젝트 현황",
+      "핵심요약": "베트남 6개 성·도시를 관통하며 연장 360km를 넘고 총 289,000억 동 이상이 투입되는 대규모 철도 사업의 진행 상황이 공개되었습니다.",
       "원제목": "Tình hình dự án đường sắt dài trên 360km, tổng mức đầu tư hơn 289.000 tỷ đồng, đi qua 6 tỉnh, thành phố của Việt Nam",
       "링크": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOdXFoSF9zSUJiN3F2UjFxSEEwc2xZdlJJQXNoVG9MMHp1X09TZ0VmOWJ1MGctVi1DNGtWb0MyQXFMTnlrei1wejNDaUNkX2NwV2s3MWplSFdsRmp4SjhkaXdVNmo5NkR1U0UxVkg2aExJRGcxZE1YZ3lhTDcwOTdGNzgtbmJHLUZSOUtfV0pmT05oT2RGVDZWSHNyS1RLSjBKaHhjdU1NUGhJOTAtX1djdFh1N01RdEFOdTlHMFlnTFFRUkdYc3ZyVGdxbTV4RE5vRHY4MDE0anNsN0x2OThZT2NhOTFnMHM?oc=5"
     },
@@ -282,8 +282,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "Fili.vn",
       "인기도": "2026-11-21",
-      "한글제목": "국회, 신규 고속도로 3개 프로젝트 투자 정책 승인 (중복 기사)",
-      "핵심요약": "베트남 국회가 경제 활성화와 물류 개선을 위한 3개의 신규 고속도로 건설 투자 안건을 최종 통과시켰습니다.",
+      "한글제목": "베트남 국회, 신규 고속도로 3개 사업 투자 정책 승인",
+      "핵심요약": "국가 교통망 연결성 강화를 위한 신규 고속도로 3개 노선의 건설 투자 정책이 공식 의결되었습니다.",
       "원제목": "Quốc hội thông qua chủ trương đầu tư 3 dự án cao tốc mới",
       "링크": "https://news.google.com/rss/articles/CBMingFBVV95cUxPT1d3cjNVRXNOM185R2hvaW5EREl4TkNpbVlTY2pDSS10dFA1d0RNRk10VFNocml1TXRSY2ZQb0lLOHp4UkZXUjFlY1hMVjgzOTFjeHp4WnV6RVNsZVA4TDJSMUNQUWxjRkFVT2tUUF83cV91UHJqVEg1ZVluSTE5SndYTGRsZ1QwM1BmQnZySGdVMGpHNF80eDVqNHdPdw?oc=5"
     },
@@ -731,17 +731,6 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "해외토목-동남아",
-      "구분": "글로벌이코노믹",
-      "인기도": "2026-11-14",
-      "한글제목": "시공만 하던 한국 건설사, 베트남서 '신도시 판'을 통째로 짜는 이유",
-      "핵심요약": "시공만 하던 한국 건설사, 베트남서 '신도시 판'을 통째로 짜는 이유 글로벌이코노믹",
-      "원제목": "시공만 하던 한국 건설사, 베트남서 '신도시 판'을 통째로 짜는 이유",
-      "링크": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQOFN5M0lORGF5ZjFkekVrVExSSm5uSkIxUDFoekJKYTdiX2dBdXpmUC1mdWdmTXZ5TTRrQXNFYWZiTDNqQzU2TVk5RHZmYjBVbjk2d29CTXcxLTFHYUE2UmNLUU1HY0JxRnZFUldIM2ZTTlAtM081dEFFWWJkNGZXenZCaHE5VjVx?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "해외토목-동남아",
-      "출처": "해외토목-동남아",
       "구분": "동아일보",
       "인기도": "2026-11-12",
       "한글제목": "韓건설사들, 동남아에 ‘K시티’ 수출 러시",
@@ -753,12 +742,23 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "해외토목-동남아",
-      "구분": "매일일보",
-      "인기도": "2026-11-12",
-      "한글제목": "韓·美·中 몰리는 동남아 AIDC…K-기업, 인프라 수주전 뛰어든다",
-      "핵심요약": "韓·美·中 몰리는 동남아 AIDC…K-기업, 인프라 수주전 뛰어든다 매일일보",
-      "원제목": "韓·美·中 몰리는 동남아 AIDC…K-기업, 인프라 수주전 뛰어든다",
-      "링크": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5PeU9naEdZOEMwUFRHdmw4eTRVbFpxSHpLZHpLb0xJNkt6TkVSTlUzU0Y1Z3V3SkNEbWNYU3hPb19EV1FxODNKX21vaUNmeGlPM0F3Xzl6MU01aEE4SFBKNk1tOWQ?oc=5"
+      "구분": "녹색경제신문",
+      "인기도": "2026-11-20",
+      "한글제목": "일진전기, 싱가포르서 1100억원 규모 초고압 케이블 수주...유럽·동남아 잇단 대형계약",
+      "핵심요약": "일진전기, 싱가포르서 1100억원 규모 초고압 케이블 수주...유럽·동남아 잇단 대형계약 녹색경제신문",
+      "원제목": "일진전기, 싱가포르서 1100억원 규모 초고압 케이블 수주...유럽·동남아 잇단 대형계약",
+      "링크": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBPNjFYZlJIUkxpRF80QTd4M3BlbmlXMUl1b2NKUC1QenYwNURpb0tVdUtGTEdHY1NCc29OWVJ6QU5Oa1hrSnhxTGtmSDRBTW56Ui1TMTJmY1B1VE9QUlpGSFN0cDE3aFNZ?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "전기신문",
+      "인기도": "2026-11-19",
+      "한글제목": "일진전기, 싱가포르서 1천억대 초고압 케이블 수주…동남아 전력망 공략 가속",
+      "핵심요약": "일진전기, 싱가포르서 1천억대 초고압 케이블 수주…동남아 전력망 공략 가속 전기신문",
+      "원제목": "일진전기, 싱가포르서 1천억대 초고압 케이블 수주…동남아 전력망 공략 가속",
+      "링크": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5mU093SkFRSE50Q05kZXF0bW54alhIR2dKT1NiaXpCZVV3TmxDZnMxcmdSVHBCX2hLV29LYWNhNkVaZWlrZG1UaUZhalliTGFLMzBzekkzMmxHRFg1UWFWRFhFcE9nT3VqSXVLatIBcEFVX3lxTFBXcmhzd1VWLVd6UmdrNF9FWmVWSkkzdmxQMWlfVExPRkdzcWxuVEhCSThQb3VtckFuSnFSNEVwbGlkX0twYmFXQ3JtS3JDbUJOQ0pVR0VWZ3ZkYXVtVGdObjZvZC15UmQ5TWVhYjl3aHI?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -973,6 +973,17 @@
       "수집일": "2026-11-24",
       "카테고리": "국내경제",
       "출처": "국내경제",
+      "구분": "기호일보",
+      "인기도": "2026-11-24",
+      "한글제목": "한은 인천본부, 2026 지역경제세미나 개최",
+      "핵심요약": "한은 인천본부, 2026 지역경제세미나 개최 기호일보",
+      "원제목": "한은 인천본부, 2026 지역경제세미나 개최",
+      "링크": "https://news.google.com/rss/articles/CBMib0FVX3lxTE54QlJQWHo0ZVlrR1RKZ3NLNy1fdllZbzNIUjROd1VDMEZ0c05kT2RwbVNkZW5ZQklueDdmaHR5M0hMelpjME43YXdKTXBTUWdFRGw1QjZFSHhodmVCd2M3ZXNuV3VmS29ydk54RGtRWQ?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "국내경제",
+      "출처": "국내경제",
       "구분": "인더스트리뉴스",
       "인기도": "2026-11-24",
       "한글제목": "무보, 방산진흥회와 맞손…K-방산 중소기업 수출 지원",
@@ -1012,17 +1023,6 @@
       "핵심요약": "코스피 이어 코스닥도 매수 사이드카 발동…장 초반 4.88% 급등 뉴스인",
       "원제목": "코스피 이어 코스닥도 매수 사이드카 발동…장 초반 4.88% 급등",
       "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9qX1pwSW12a1VzLXNoakZ5TERBZ0dVejBMaTFNeXdCdldsT3pSUkZJMG13SkFia2dXZGdNbk1haDdidk45bWZvMzRoRVNGRjU3eHlWSVp5ejI4V2w2cXByZ21USE5rWW04eUlR?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "국내경제",
-      "출처": "국내경제",
-      "구분": "진일보 | 전남일보",
-      "인기도": "2026-11-24",
-      "한글제목": "코스피 장 초반 6% 폭등, '5천피' 탈환 시도·사이드카 발동",
-      "핵심요약": "코스피 장 초반 6% 폭등, '5천피' 탈환 시도·사이드카 발동 진일보 | 전남일보",
-      "원제목": "코스피 장 초반 6% 폭등, '5천피' 탈환 시도·사이드카 발동",
-      "링크": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1DeUp6bGJyMVR5QXhNZ1ZlTTM3V2lyLXIwT2pKMnJpd1dPNnplWE82SHpJUXFSQ3hsN3VQUV81cGpzR2JsbFoyX0xaY0o5WjZ3UXdCcDAzLThqa3hDOTJaRW82enl1enBhTy1pc3FkUQ?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -1074,10 +1074,10 @@
       "출처": "해외경제",
       "구분": "연합인포맥스",
       "인기도": "2026-11-23",
-      "한글제목": "월가서 연준 '2% 물가 목표' 회의론…\"정책적 선택일뿐\" |",
-      "핵심요약": "월가서 연준 '2% 물가 목표' 회의론…\"정책적 선택일뿐\" | 연합인포맥스",
-      "원제목": "월가서 연준 '2% 물가 목표' 회의론…\"정책적 선택일뿐\" |",
-      "링크": "https://news.google.com/rss/articles/CBMidEFVX3lxTE92YWRIU1ZRdHlMN3JDV3JSRkJpUTQ1eGtFNjIyb1VhRTYwbnVSY0d1a1BvUG9mNTIxanRZSkd6eVFmRTRWRG9LN1JRN1ZpQ2xDaGxJemFXa3lLdGFiZ2txeFp3S2V3MEN0dVlkRUpjYUFEcmpJ?oc=5"
+      "한글제목": "월가서 연준 '2% 물가 목표' 회의론…\"정책적 선택일뿐\"",
+      "핵심요약": "월가서 연준 '2% 물가 목표' 회의론…\"정책적 선택일뿐\" 연합인포맥스",
+      "원제목": "월가서 연준 '2% 물가 목표' 회의론…\"정책적 선택일뿐\"",
+      "링크": "https://news.google.com/rss/articles/CBMicEFVX3lxTE93RnBoUW5rWEZDYmFTWE0tUHdOVFRuV0ttclM4ZzdyOHliNTdxb0dzRVlyR0lFRzFuVlVScGNWQXpjVEJSSFpZeUZnamVIQVdIa3BoaDhoVGF5X3BhU3d1dG90X01wcGpYSEM1SHJXZS0?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -1094,23 +1094,23 @@
       "수집일": "2026-11-24",
       "카테고리": "해외경제",
       "출처": "해외경제",
+      "구분": "Vietnam.vn",
+      "인기도": "2026-11-24",
+      "한글제목": "전 세계 원유 수출량이 3년 만에 최고치를 기록했습니다.",
+      "핵심요약": "전 세계 원유 수출량이 3년 만에 최고치를 기록했습니다. Vietnam.vn",
+      "원제목": "전 세계 원유 수출량이 3년 만에 최고치를 기록했습니다.",
+      "링크": "https://news.google.com/rss/articles/CBMidkFVX3lxTE40ZEdyMHlHNzZ5RHZhRHBJRkRfT0tzWVZ1YnVWblctdm5ES2FiYmlMc2dzcXhCZ2puZ1NoX1Yya2p0QmMwa1JJMDN4Mm9pWjlNM3kxR2RYT1c4cndYNGtvVG8wOEN3b19RRGNuNnRXbHZoTWFKMVE?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외경제",
+      "출처": "해외경제",
       "구분": "KPI뉴스",
       "인기도": "2026-11-23",
       "한글제목": "[조홍균의 금융경제 읽기] 관세의 역설…미국은 표심이, 세계는 교역로가 바뀌었다",
       "핵심요약": "[조홍균의 금융경제 읽기] 관세의 역설…미국은 표심이, 세계는 교역로가 바뀌었다 KPI뉴스",
       "원제목": "[조홍균의 금융경제 읽기] 관세의 역설…미국은 표심이, 세계는 교역로가 바뀌었다",
       "링크": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9pY1hYeVZGOGpLV1pxNG1NanMzb2JFclUzZ09yd3U3cEdBTkFST0RCU1BCbjFsQkpYYXM0N2w3RlZ2blVVbHE2dUpKNk5nMjcxM2dVbWRIRdIBU0FVX3lxTE1KM1pqLWdRNExFZWNxazZId2djVWhqbTZ4S1hyVXM4TzN2c184TTNidzNkVDE1ay1uQ3pZc1V5TktieUNUdVBmNndRWXNTQ0p2aktj?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "해외경제",
-      "출처": "해외경제",
-      "구분": "뉴데일리",
-      "인기도": "2026-11-23",
-      "한글제목": "'월가 큰손' 애크먼 \"연준, 12월 또 실수할 것 … 금리 더 올리면 세계 경기침체\"",
-      "핵심요약": "'월가 큰손' 애크먼 \"연준, 12월 또 실수할 것 … 금리 더 올리면 세계 경기침체\" 뉴데일리",
-      "원제목": "'월가 큰손' 애크먼 \"연준, 12월 또 실수할 것 … 금리 더 올리면 세계 경기침체\"",
-      "링크": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNMmZYcFdzS3pvMldDbk5qcFhOOFJSNm1yWXYxdUlWbmFrMXJ3a3FpUjNCbnJlOFlaQnFUeG50bEY2RzJhY0x5dnVnLS10V21vcnptdUk1T2tRRllyM1QwNElXUllsaTFQakRaSk5lRnJNQlE3bHZ3Q3Y2YjU4RlBpMtIBgAFBVV95cUxNMmZYcFdzS3pvMldDbk5qcFhOOFJSNm1yWXYxdUlWbmFrMXJ3a3FpUjNCbnJlOFlaQnFUeG50bEY2RzJhY0x5dnVnLS10V21vcnptdUk1T2tRRllyM1QwNElXUllsaTFQakRaSk5lRnJNQlE3bHZ3Q3Y2YjU4RlBpMg?oc=5"
     }
   ]
 }
