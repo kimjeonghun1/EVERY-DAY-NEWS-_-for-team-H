@@ -122,6 +122,7 @@
       background: rgba(148, 163, 184, 0.12);
       color: #cbd5e1;
     }
+    .badge.sambo { background: rgba(14, 165, 233, 0.18); color: #38bdf8; }
     .badge.ai { background: rgba(168, 85, 247, 0.16); color: #d8b4fe; }
     .badge.civil { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; }
     .badge.bid { background: rgba(251, 191, 36, 0.16); color: #fde68a; }
@@ -175,6 +176,7 @@
     <div class="controls">
       <div class="filters" id="filters">
         <button class="filter-btn active" data-cat="ALL">전체</button>
+        <button class="filter-btn" data-cat="삼보기술단">🏢 삼보기술단</button>
         <button class="filter-btn" data-cat="AI 트렌드">🤖 AI 트렌드</button>
         <button class="filter-btn" data-cat="기술사-토목구조">📐 기술사-토목구조</button>
         <button class="filter-btn" data-cat="국내 입찰·용역">📋 국내 입찰·용역</button>
@@ -201,6 +203,7 @@
     }
 
     function getBadgeClass(cat) {
+      if (cat === '삼보기술단') return 'sambo';
       if (cat === 'AI 트렌드') return 'ai';
       if (cat === '기술사-토목구조' || cat === '토목·구조') return 'civil';
       if (cat === '국내 입찰·용역') return 'bid';
