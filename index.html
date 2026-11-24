@@ -126,6 +126,8 @@
     .badge.civil { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; }
     .badge.bid { background: rgba(251, 191, 36, 0.16); color: #fde68a; }
     .badge.global { background: rgba(52, 211, 153, 0.16); color: #6ee7b7; }
+    .badge.sea { background: rgba(45, 212, 191, 0.16); color: #5eead4; }
+    .badge.vn { background: rgba(248, 113, 113, 0.16); color: #fca5a5; }
     .badge.krpol { background: rgba(96, 165, 250, 0.16); color: #93c5fd; }
     .badge.glpol { background: rgba(129, 140, 248, 0.16); color: #a5b4fc; }
     .badge.kreco { background: rgba(244, 114, 182, 0.16); color: #f9a8d4; }
@@ -165,7 +167,7 @@
     <header>
       <div>
         <h1><span>Team H</span> 데일리 브리핑</h1>
-        <p class="subtitle">AI 트렌드 · 토목구조(기술사) · 입찰/용역 · 해외토목 · 국내외 정치/경제</p>
+        <p class="subtitle">AI 트렌드 · 기술사-토목구조 · 국내입찰 · 해외토목(동남아/베트남) · 국내외 정치/경제</p>
       </div>
       <div class="updated" id="updatedAt">불러오는 중...</div>
     </header>
@@ -174,9 +176,11 @@
       <div class="filters" id="filters">
         <button class="filter-btn active" data-cat="ALL">전체</button>
         <button class="filter-btn" data-cat="AI 트렌드">🤖 AI 트렌드</button>
-        <button class="filter-btn" data-cat="토목·구조">🏗️ 토목·구조</button>
+        <button class="filter-btn" data-cat="기술사-토목구조">📐 기술사-토목구조</button>
         <button class="filter-btn" data-cat="국내 입찰·용역">📋 국내 입찰·용역</button>
         <button class="filter-btn" data-cat="해외 토목사업">🌍 해외 토목사업</button>
+        <button class="filter-btn" data-cat="해외토목-동남아">🌏 해외토목-동남아</button>
+        <button class="filter-btn" data-cat="해외토목-베트남">🇻🇳 해외토목-베트남</button>
         <button class="filter-btn" data-cat="국내정치">🏛️ 국내정치</button>
         <button class="filter-btn" data-cat="해외정치">🌐 해외정치</button>
         <button class="filter-btn" data-cat="국내경제">📈 국내경제</button>
@@ -198,9 +202,11 @@
 
     function getBadgeClass(cat) {
       if (cat === 'AI 트렌드') return 'ai';
-      if (cat === '토목·구조') return 'civil';
+      if (cat === '기술사-토목구조' || cat === '토목·구조') return 'civil';
       if (cat === '국내 입찰·용역') return 'bid';
       if (cat === '해외 토목사업') return 'global';
+      if (cat === '해외토목-동남아') return 'sea';
+      if (cat === '해외토목-베트남') return 'vn';
       if (cat === '국내정치') return 'krpol';
       if (cat === '해외정치') return 'glpol';
       if (cat === '국내경제') return 'kreco';
@@ -235,10 +241,15 @@
       grid.innerHTML = filtered.map(item => {
         const cat = getCategory(item);
         const isGoogleRss = (item.링크 || '').includes('news.google.com');
-        const targetUrl = isGoogleRss
-          ? `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(item.한글제목 || item.원제목)}`
-          : item.링크;
-        const linkLabel = isGoogleRss ? '네이버에서 기사 보기 →' : '원문 보기 →';
+        let targetUrl = item.링크;
+        let linkLabel = '원문 보기 →';
+        if (isGoogleRss && cat === '해외토목-베트남') {
+          targetUrl = `https://www.bing.com/search?q=${encodeURIComponent(item.원제목 || item.한글제목)}`;
+          linkLabel = '현지 기사 검색 →';
+        } else if (isGoogleRss) {
+          targetUrl = `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(item.한글제목 || item.원제목)}`;
+          linkLabel = '네이버에서 기사 보기 →';
+        }
         return `
           <article class="card">
             <div>
