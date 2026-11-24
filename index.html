@@ -303,7 +303,7 @@
     <header>
       <div>
         <h1><span>우리팀만 보는</span> 데일리 브리핑</h1>
-        <p class="subtitle">AI 트렌드 · 기술사-토목구조 · 국내입찰 · 해외토목(동남아/베트남) · 국내외 정치/경제</p>
+        <p class="subtitle">AI 트렌드 · 기술사-토목구조 · 국내입찰 · 해외토목(베트남/방글라데시) · 국내외 정치/경제</p>
         <div class="weather-strip" id="weatherStrip"></div>
       </div>
       <div class="header-right">
@@ -322,7 +322,7 @@
         <button class="filter-btn" data-cat="기술사-토목구조">📐 기술사-토목구조</button>
         <button class="filter-btn" data-cat="국내 입찰·용역">📋 국내 입찰·용역</button>
         <button class="filter-btn" data-cat="해외 토목사업">🌍 해외 토목사업</button>
-        <button class="filter-btn" data-cat="해외토목-동남아">🌏 해외토목-동남아</button>
+        <button class="filter-btn" data-cat="해외토목-방글라데시">🇧🇩 해외토목-방글라데시</button>
         <button class="filter-btn" data-cat="해외토목-베트남">🇻🇳 해외토목-베트남</button>
         <button class="filter-btn" data-cat="국내정치">🏛️ 국내정치</button>
         <button class="filter-btn" data-cat="해외정치">🌐 해외정치</button>
@@ -356,7 +356,7 @@
       if (cat === '기술사-토목구조' || cat === '토목·구조') return 'civil';
       if (cat === '국내 입찰·용역') return 'bid';
       if (cat === '해외 토목사업') return 'global';
-      if (cat === '해외토목-동남아') return 'sea';
+      if (cat === '해외토목-방글라데시' || cat === '해외토목-동남아') return 'sea';
       if (cat === '해외토목-베트남') return 'vn';
       if (cat === '국내정치') return 'krpol';
       if (cat === '해외정치') return 'glpol';
