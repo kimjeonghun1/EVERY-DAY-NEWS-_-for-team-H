@@ -126,7 +126,10 @@
     .badge.civil { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; }
     .badge.bid { background: rgba(251, 191, 36, 0.16); color: #fde68a; }
     .badge.global { background: rgba(52, 211, 153, 0.16); color: #6ee7b7; }
-    .badge.macro { background: rgba(244, 114, 182, 0.16); color: #f9a8d4; }
+    .badge.krpol { background: rgba(96, 165, 250, 0.16); color: #93c5fd; }
+    .badge.glpol { background: rgba(129, 140, 248, 0.16); color: #a5b4fc; }
+    .badge.kreco { background: rgba(244, 114, 182, 0.16); color: #f9a8d4; }
+    .badge.gleco { background: rgba(251, 146, 60, 0.16); color: #fdba74; }
     .pop { color: var(--muted); font-variant-numeric: tabular-nums; }
     .title { font-size: 1.04rem; font-weight: 650; color: #f8fafc; line-height: 1.45; }
     .summary { font-size: 0.9rem; color: #cbd5e1; }
@@ -162,7 +165,7 @@
     <header>
       <div>
         <h1><span>Team H</span> 데일리 브리핑</h1>
-        <p class="subtitle">AI 트렌드 · 토목구조 · 국내 입찰/용역 · 해외 토목사업 · 정치/경제 뉴스</p>
+        <p class="subtitle">AI 트렌드 · 토목구조(기술사) · 입찰/용역 · 해외토목 · 국내외 정치/경제</p>
       </div>
       <div class="updated" id="updatedAt">불러오는 중...</div>
     </header>
@@ -174,7 +177,10 @@
         <button class="filter-btn" data-cat="토목·구조">🏗️ 토목·구조</button>
         <button class="filter-btn" data-cat="국내 입찰·용역">📋 국내 입찰·용역</button>
         <button class="filter-btn" data-cat="해외 토목사업">🌍 해외 토목사업</button>
-        <button class="filter-btn" data-cat="정치·경제">📰 정치·경제</button>
+        <button class="filter-btn" data-cat="국내정치">🏛️ 국내정치</button>
+        <button class="filter-btn" data-cat="해외정치">🌐 해외정치</button>
+        <button class="filter-btn" data-cat="국내경제">📈 국내경제</button>
+        <button class="filter-btn" data-cat="해외경제">💹 해외경제</button>
       </div>
       <input type="search" class="search-box" id="searchInput" placeholder="키워드 검색 (예: 교량, 입찰, 에이전트...)" />
     </div>
@@ -195,7 +201,10 @@
       if (cat === '토목·구조') return 'civil';
       if (cat === '국내 입찰·용역') return 'bid';
       if (cat === '해외 토목사업') return 'global';
-      return 'macro';
+      if (cat === '국내정치') return 'krpol';
+      if (cat === '해외정치') return 'glpol';
+      if (cat === '국내경제') return 'kreco';
+      return 'gleco';
     }
 
     function updateCounts() {
