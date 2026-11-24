@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-11-24 13:43",
+  "updatedAt": "2026-11-24 13:58",
   "items": [
     {
       "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "Dart",
-      "인기도": "★ 30903",
+      "인기도": "★ 30911",
       "한글제목": "ccch1mneyyy/dsh-Go",
-      "핵심요약": "스마트폰 본체에서 실행되며 컴퓨터를 원격 제어할 수 있는 DeepSeek 하네스 도구입니다.",
+      "핵심요약": "DeepSeek 하네스를 모바일에 탑재하여 스마트폰 기기 내에서 실행하고 PC까지 원격 제어할 수 있는 도구입니다.",
       "원제목": "ccch1mneyyy/dsh-Go",
       "링크": "https://github.com/ccch1mneyyy/dsh-Go"
     },
@@ -19,7 +19,7 @@
       "구분": "TypeScript",
       "인기도": "★ 24391",
       "한글제목": "deepseek-ai/dsh-superagent-prototype",
-      "핵심요약": "더욱 자율적인 에이전트 시스템 구축을 위한 프로토타입 프로젝트입니다.",
+      "핵심요약": "더욱 자율적인 에이전트 시스템 구축을 지향하는 프로토타입 프로젝트입니다.",
       "원제목": "deepseek-ai/dsh-superagent-prototype",
       "링크": "https://github.com/deepseek-ai/dsh-superagent-prototype"
     },
@@ -28,9 +28,9 @@
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "JavaScript",
-      "인기도": "★ 20915",
+      "인기도": "★ 20920",
       "한글제목": "heydamir/unslop",
-      "핵심요약": "AI가 생성한 듯한 어설픈 UI 인터페이스를 세련된 디자인으로 변환해 주는 Claude 스킬입니다.",
+      "핵심요약": "AI가 만든 듯한 바이브 코딩 스타일의 UI를 세련된 디자인 인터페이스로 변환해 주는 클로드(Claude) 스킬입니다.",
       "원제목": "heydamir/unslop",
       "링크": "https://github.com/heydamir/unslop"
     },
@@ -39,9 +39,9 @@
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "Python",
-      "인기도": "★ 12739",
+      "인기도": "★ 12743",
       "한글제목": "JuneYaooo/rea-video",
-      "핵심요약": "실사, AI 생성, 코딩 등 모든 비디오를 숏츠 단위로 역설계하고 복제 방법을 알려주는 오픈 포맷(VIDEO.md) 분석 도구입니다.",
+      "핵심요약": "촬영본, AI 생성, 코드 기반 등 모든 비디오의 샷을 역설계하여 분석하고 리메이크 방법을 안내하며 VIDEO.md 포맷으로 결과를 출력합니다.",
       "원제목": "JuneYaooo/rea-video",
       "링크": "https://github.com/JuneYaooo/rea-video"
     },
@@ -50,9 +50,9 @@
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "AI/Code",
-      "인기도": "★ 11430",
+      "인기도": "★ 11433",
       "한글제목": "janestreet/agent_skills",
-      "핵심요약": "AI 에이전트의 역량 강화를 위한 스킬셋 모음입니다.",
+      "핵심요약": "AI 에이전트의 역량과 기술을 향상시키기 위한 모듈 및 관련 레포지토리입니다.",
       "원제목": "janestreet/agent_skills",
       "링크": "https://github.com/janestreet/agent_skills"
     },
@@ -62,8 +62,19 @@
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
       "인기도": "▲ 1",
+      "한글제목": "어텐션 맵을 넘어: 시각적 가치를 통한 의료용 멀티모달 대규모 언어 모델(MLLM) 이해 및 개선",
+      "핵심요약": "기존의 공간적 어텐션 맵 중심 시각 인지 방식의 한계를 극복하고 의료용 MLLM의 성능을 향상시키는 새로운 접근법을 제시합니다.",
+      "원제목": "Beyond Attention Maps: Understanding and Improving Medical MLLMs via Visual Values",
+      "링크": "https://huggingface.co/papers/2611.29361"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "AI 트렌드",
+      "출처": "HuggingFace Papers",
+      "구분": "신개념/메커니즘",
+      "인기도": "▲ 1",
       "한글제목": "SAVIOR: OCR 표현을 위한 비전-언어 모델의 샘플 효율적 적응",
-      "핵심요약": "기존 문서 이해 벤치마크에서는 우수하나 특정 문서 패턴에서 성능이 저하되는 OCR 파이프라인과 비전-언어 모델의 한계를 극복하기 위한 연구입니다.",
+      "핵심요약": "표준 OCR 및 문서 이해 벤치마크에서는 우수하지만 비정형 문서 패턴에서 성능이 저하되는 비전-언어 모델의 한계를 극복하기 위한 방법론입니다.",
       "원제목": "SAVIOR: Sample-efficient Adaptation of Vision-Language Models for OCR Representation",
       "링크": "https://huggingface.co/papers/2611.27319"
     },
@@ -73,8 +84,8 @@
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
       "인기도": "▲ 4",
-      "한글제목": "GameAnything: 영감을 플레이 가능한 게임 세계로 전환",
-      "핵심요약": "다양한 인간의 아이디어와 영감을 AI 주도로 대화형 게임 세계로 변환하는 기술과 벤치마크입니다.",
+      "한글제목": "GameAnything: 아이디어에서 플레이 가능한 게임 세계로",
+      "핵심요약": "인간의 다양한 영감을 상호작용 가능한 게임 경험으로 전환하는 AI 기반 게임 개발 시스템 및 벤치마크 연구입니다.",
       "원제목": "GameAnything: From Any Inspirations to Playable Game Worlds",
       "링크": "https://huggingface.co/papers/2611.29238"
     },
@@ -85,7 +96,7 @@
       "구분": "신개념/메커니즘",
       "인기도": "▲ 10",
       "한글제목": "로봇 조작을 위한 파운데이션 모델로서 VLM 학습 엿보기",
-      "핵심요약": "최신 로봇 제어 모델인 GPT-6 Astra의 강력한 일반화 능력을 재현하기 위한 비전-언어 모델 학습 접근법 'nanoAstra'를 소개합니다.",
+      "핵심요약": "강력한 로봇 제어 일반화 능력을 보여준 GPT-6 Astra의 학습 방식을 재현하기 위한 오픈소스 접근법인 'nanoAstra'를 소개합니다.",
       "원제목": "A Glimpse of Training VLMs as Foundation Models for Robotic Manipulation",
       "링크": "https://huggingface.co/papers/2611.29338"
     },
@@ -94,22 +105,11 @@
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
-      "인기도": "▲ 22",
-      "한글제목": "AutoPILOT: 실시간 게임플레이를 위한 비주얼 에이전트 하네스",
-      "핵심요약": "멀티모달 파운데이션 모델이 실시간으로 구동되는 비디오 게임에서 겪는 인지 및 제어 한계를 극복하기 위한 하네스 시스템입니다.",
+      "인기도": "▲ 23",
+      "한글제목": "AutoPILOT: 실시간 게임 플레이를 위한 시각적 에이전트 하네스",
+      "핵심요약": "실시간으로 진행되는 비디오 게임 환경에서 멀티모달 파운데이션 모델이 겪는 시각 처리 및 반응의 한계를 극복하기 위한 하네스 시스템입니다.",
       "원제목": "AutoPILOT: A Visual Agent Harness for Real-Time Gameplay",
       "링크": "https://huggingface.co/papers/2611.28202"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "AI 트렌드",
-      "출처": "HuggingFace Papers",
-      "구분": "신개념/메커니즘",
-      "인기도": "▲ 8",
-      "한글제목": "Self-WSP: 언어 모델은 가중치 공간 프로그래밍을 통해 스스로 발전할 수 있는가?",
-      "핵심요약": "대형 언어 모델이 코드처럼 신경망의 가중치를 직접 읽고 수정하여 소형 모델을 개선하는 '가중치 공간 프로그래밍(WSP)'의 대형 모델 적용 가능성을 탐구합니다.",
-      "원제목": "Self-WSP: Can Language Models Improve Themselves Through Weight-Space Programming?",
-      "링크": "https://huggingface.co/papers/2611.28833"
     },
     {
       "수집일": "2026-11-24",
@@ -118,7 +118,7 @@
       "구분": "gradio",
       "인기도": "♥ 670",
       "한글제목": "JCisHERE/wan2-2-i2v-v3",
-      "핵심요약": "Hugging Face의 인기 이미지-투-비디오(I2V) 관련 AI 모델/애플리케이션입니다.",
+      "핵심요약": "허깅페이스(Hugging Face)에서 인기를 끌고 있는 이미지-투-비디오(I2V) 생성 관련 AI 애플리케이션입니다.",
       "원제목": "JCisHERE/wan2-2-i2v-v3",
       "링크": "https://huggingface.co/spaces/JCisHERE/wan2-2-i2v-v3"
     },
@@ -127,9 +127,9 @@
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Spaces",
       "구분": "gradio",
-      "인기도": "♥ 308",
+      "인기도": "♥ 309",
       "한글제목": "MiniMaxAI/minimax-h3-image",
-      "핵심요약": "Hugging Face에서 주목받는 MiniMax의 최신 이미지 생성 관련 AI 앱입니다.",
+      "핵심요약": "허깅페이스 트렌딩에 오른 MiniMax의 최신 이미지 생성 관련 AI 애플리케이션입니다.",
       "원제목": "MiniMaxAI/minimax-h3-image",
       "링크": "https://huggingface.co/spaces/MiniMaxAI/minimax-h3-image"
     },
@@ -140,7 +140,7 @@
       "구분": "docker",
       "인기도": "♥ 837",
       "한글제목": "huggingface/moe-blogpost",
-      "핵심요약": "Mixture of Experts(MoE) 아키텍처에 대한 허깅페이스의 공식 블로그 포스트 및 관련 앱입니다.",
+      "핵심요약": "전문가 혼합(Mixture of Experts, MoE) 모델 구조와 관련된 허깅페이스 공식 블로그 포스트 및 관련 자료입니다.",
       "원제목": "huggingface/moe-blogpost",
       "링크": "https://huggingface.co/spaces/huggingface/moe-blogpost"
     },
@@ -151,7 +151,7 @@
       "구분": "docker",
       "인기도": "♥ 537",
       "한글제목": "joelniklaus/harness-leaderboard",
-      "핵심요약": "AI 에이전트 및 하네스 성능을 비교 평가하는 리더보드 앱입니다.",
+      "핵심요약": "AI 에이전트 및 모델 하네스 성능을 비교·평가하는 리더보드 애플리케이션입니다.",
       "원제목": "joelniklaus/harness-leaderboard",
       "링크": "https://huggingface.co/spaces/joelniklaus/harness-leaderboard"
     },
@@ -162,7 +162,7 @@
       "구분": "gradio",
       "인기도": "♥ 143",
       "한글제목": "Lakonik/pi-H3",
-      "핵심요약": "Hugging Face 인기 트렌드에 오른 오픈 AI 관련 어플리케이션입니다.",
+      "핵심요약": "허깅페이스 스페이스에서 주목받고 있는 최신 AI 실험 모델 및 애플리케이션입니다.",
       "원제목": "Lakonik/pi-H3",
       "링크": "https://huggingface.co/spaces/Lakonik/pi-H3"
     },
@@ -172,8 +172,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-18",
-      "한글제목": "Sidehand - 내가 타이핑하는 동안 창 뒤의 Windows 앱을 AI 에이전트가 조작하는 MCP 서버",
-      "핵심요약": "사용자가 타이핑하는 동안 백그라운드에서 윈도우 앱을 AI 에이전트가 대신 조작해 주는 MCP 서버 도구입니다.",
+      "한글제목": "Show GN: Sidehand - 내가 타이핑하는 동안 창 뒤의 Windows 앱을 AI 에이전트가 조작하는 MCP 서버 - GeekNews",
+      "핵심요약": "사용자가 타이핑하는 동안 백그라운드 창의 Windows 앱을 AI 에이전트가 실시간으로 조작해 주는 MCP 서버 도구입니다.",
       "원제목": "Show GN: Sidehand - 내가 타이핑하는 동안 창 뒤의 Windows 앱을 AI 에이전트가 조작하는 MCP 서버 - GeekNews",
       "링크": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBDaFJ3eF9qR0dyU0NkcTlJY1IyZEQ3WFdJQmd5VWNFejBXR3F1X2x1TnVQRVpGNFZYOVVmTzZZT3REejg5YUpOMzZPOA?oc=5"
     },
@@ -183,8 +183,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-22",
-      "한글제목": "AgentCore CLI로 AI 에이전트 개발부터 배포까지 – Kiro CLI, Claude Code와 함께 쓰는 워크 플로우",
-      "핵심요약": "AWS의 AgentCore CLI를 활용해 최신 개발 도구들과 연계하여 AI 에이전트를 개발하고 배포하는 워크플로우를 소개합니다.",
+      "한글제목": "AgentCore CLI로 AI 에이전트 개발부터 배포까지 – Kiro CLI, Claude Code와 함께 쓰는 워크 플로우 - Amazon Web Services",
+      "핵심요약": "AWS의 AgentCore CLI를 활용해 AI 에이전트의 개발부터 배포까지 효율적으로 수행하는 최신 개발 워크플로우를 소개합니다.",
       "원제목": "AgentCore CLI로 AI 에이전트 개발부터 배포까지 – Kiro CLI, Claude Code와 함께 쓰는 워크 플로우 - Amazon Web Services",
       "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA5dzJzem9NZEVydUdMNUQ4SGxxa1RubW1rM3dFczNsZmFBYjF5ZUMzbTNpN285LUxnR2htdDJhdUJYdXRISUkyVkg2QUd6NExFV2U4X2dXRFRmOFB4NVdrUWhmT1hDd1NOaTVB?oc=5"
     },
@@ -194,8 +194,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-20",
-      "한글제목": "[AI리더의 서가] 일하는 AI 에이전트 설계하는 사람",
-      "핵심요약": "실무에서 직접 작동하는 AI 에이전트를 기획하고 설계하는 전문가의 인사이트를 다룬 도서/칼럼 리뷰입니다.",
+      "한글제목": "[AI리더의 서가] 일하는 AI 에이전트 설계하는 사람 - AI타임스",
+      "핵심요약": "실무에서 직접 작동하는 AI 에이전트를 설계하고 구축하는 인물 및 관련 도서를 조명한 기사입니다.",
       "원제목": "[AI리더의 서가] 일하는 AI 에이전트 설계하는 사람 - AI타임스",
       "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE40aU54Q0QxbHlVSnd1eDRWM2QxeW1PYnlIUWhNRG5uVnhxZVkzS1dGc1E2M1NTNFZSNlVodG01YUxVYUhoWGJOTW5ubDZna0podjZScnhQUzZiT2phbFNBcjRUaXM1ZkxIZHc?oc=5"
     },
@@ -205,8 +205,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-19",
-      "한글제목": "日 특허청, AI 에이전트와 특허정보시스템 연계 추진…2027년 구축 목표",
-      "핵심요약": "일본 특허청이 업무 효율화를 위해 AI 에이전트를 특허정보시스템과 연동하여 2027년까지 구축하는 사업을 추진합니다.",
+      "한글제목": "日 특허청, AI 에이전트와 특허정보시스템 연계 추진…2027년 구축 목표 - 전자신문",
+      "핵심요약": "일본 특허청이 업무 효율화를 위해 AI 에이전트를 특허정보시스템과 연계하는 사업을 추진하며 2027년 구축을 목표로 하고 있습니다.",
       "원제목": "日 특허청, AI 에이전트와 특허정보시스템 연계 추진…2027년 구축 목표 - 전자신문",
       "링크": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB4OV9MdU5nMU1zVnZVRU1QdGlQeVF2c3hBR3JOQnFOZEpFUUs3X0hUdEtlaDdHSFBDUjV1N3JvazczV0pBM1ZwbWtTNlNSUQ?oc=5"
     },
@@ -216,8 +216,8 @@
       "출처": "AI 뉴스",
       "구분": "활용법/트렌드",
       "인기도": "2026-11-18",
-      "한글제목": "MS, ‘이그나이트 2026’서 위협 차단 에이전트 ‘퍼셉션’ 등 AI·보안 신기술 공개",
-      "핵심요약": "마이크로소프트가 연례 행사에서 실시간 위협 차단 기능을 갖춘 AI 보안 에이전트 '퍼셉션' 등 차세대 기술을 선보였습니다.",
+      "한글제목": "MS, ‘이그나이트 2026’서 위협 차단 에이전트 ‘퍼셉션’ 등 AI·보안 신기술 공개 - 보안뉴스",
+      "핵심요약": "마이크로소프트가 연례 행사에서 AI 기반 사이버 위협 차단 에이전트 '퍼셉션' 등 차세대 보안 및 AI 신기술을 대거 공개했습니다.",
       "원제목": "MS, ‘이그나이트 2026’서 위협 차단 에이전트 ‘퍼셉션’ 등 AI·보안 신기술 공개 - 보안뉴스",
       "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9hOV9IOHBDemJyYWt3LUlUcmt0Z3lRRHhmeTh2bzVBVWI0WjVRVFpiRC1yRXFKRlRVXzlMOFdUanN0a3ZicUQtcDF5OHY5VE81NlJiamJNME5qbGp3bHpmR18xY0lCN0dUZFdn?oc=5"
     },
@@ -225,23 +225,12 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
-      "구분": "Báo Xây dựng",
+      "구분": "Znews",
       "인기도": "2026-11-24",
-      "한글제목": "베트남 건설부, 푸토성에 40km 이상 비엣찌-호아빈 고속도로 관리 및 투자 임무 위임",
-      "핵심요약": "베트남 건설부가 푸토성(Phú Thọ)에 연장 40km가 넘는 비엣찌-호아빈 고속도로 프로젝트의 관리 및 투자 권한을 공식 위임했습니다.",
-      "원제목": "Bộ Xây dựng giao tỉnh Phú Thọ quản lý, đầu tư hơn 40km cao tốc Việt Trì - Hòa Bình",
-      "링크": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOXzY2a1pxQ1V3TnhQZFJKS2hjWG5NWEFfd01SWjNPNWtCRzY2clFEbXlXM0UtdmJmb0VnR1psd1FRVWVNMmV1ejN5Z0x0ZzhYWXFPclB3Y0lScFJndmptaVBuT2ZmRVhsQUtqdTVfMjRJTkpmdXRFbnNWUjhoYWFwWVlZVnRwSlJwZEJPUmN4U2t1bDBDWVZ0MEFlUzFKXzc3b1AtUjJRNWJtXzFkR19EZ0ctbE5ja3dScmpLdGlwdTdYQQ?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "해외토목-베트남",
-      "출처": "베트남 현지뉴스",
-      "구분": "CafeF",
-      "인기도": "2026-11-24",
-      "한글제목": "러시아 시공사 선정, 2천억 동 규모의 고속철도 프로젝트 재착공 (총연장 약 80km, 교량 17개소)",
-      "핵심요약": "러시아 시공사를 계약자로 선정하여 총사업비 2,000억 동 규모, 연장 약 80km에 17개의 교량이 포함된 철도 프로젝트가 재착공에 들어갔습니다.",
-      "원제목": "Chọn nhà thầu Nga, tái khởi công dự án đường sắt cao tốc 2.000 tỷ đồng, toàn bộ công trình dài gần 80 km với 17 cây cầu",
-      "링크": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxORk1OLWppdDFFUFNvM01KM2xxWXVXZGxqOEdnQ2NNSjBFV3ItemVKZmowYTJIaFF6c2JBODlSdzk5alZJLWx1YTkzSks0dkZzcWRuVEVJWVhLRHc5aTd1UjBOUTlndEpGQ1JmU1NmbHNNbENSa0N3S2NZUW1JMWVleGRXYzQzd3hTU1lBdUgzYnUzVXdPX3RhZ3lJUHFBRkl3cEduM0toTXd6MnB3MFFxR0JoREs2S0U0WnFqSHBOd05GU0ppZXVJTEhXVkRkUElmazlGUExDei1faFF5OUs3MlpkNG1YWHVvQ19IRQ?oc=5"
+      "한글제목": "2027년 남북 고속도로 확장 민간투자자 선정 입찰 실시 예정",
+      "핵심요약": "베트남 정부가 남북 고속도로 구간의 확장 공사를 민간 투자 방식으로 추진하기 위해 2027년 중 투자자 입찰을 진행할 계획입니다.",
+      "원제목": "Sẽ đấu thầu chọn nhà đầu tư mở rộng cao tốc Bắc - Nam trong năm 2027",
+      "링크": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQQWUwT3ZURWVLMjh3cnJYX3NWV2MwNTlhMUh6WWZsRGhnQjhyNlc1NjF5Y3pnZWhNcU1ta1NMVTZRa2RWS0JNUElqT1BKSzkzMVhDMUNKaGF6UjBjZUhZeVZfakxTTlB4YVRNeWE2dDV0Mk95X2lUeGNhNncwVk12SWVRSWl1OGZ0elN1WHhTU1FvdVhONmJfa1FsNl9jUDdXUXc?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -250,7 +239,7 @@
       "구분": "Tin nhanh chứng khoán",
       "인기도": "2026-11-24",
       "한글제목": "교통 인프라 프로젝트의 아스팔트 공급난 심화",
-      "핵심요약": "베트남 주요 교통 인프라 건설 현장에서 필수 자재인 아스팔트 공급 부족과 가격 변동으로 인해 공정 차질 우려가 커지고 있습니다.",
+      "핵심요약": "베트남 전역의 주요 교통 인프라 건설 현장에서 원자재인 아스팔트 수급 불안정이 공정 차질의 주요 원인으로 대두되고 있습니다.",
       "원제목": "Căng thẳng nguồn cung nhựa đường tại dự án hạ tầng giao thông",
       "링크": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZmVzN05ZZzIyUHp3RTFVWWIxUXFHMmdqV0hlbHkzbTR6eFRTMEFTcVhWUTNQd1dpRUFINE9HX3JwRkVEZmF1YmFaOWU3ZFlSOWZqR3B0Sk1nUmV1UkROT2I2MEh4aldRRDhMRUFKa05Tbkc4UlBERTJ0REFTbzVadEtPNTNMZFJwZ1VBejczd19vM3ZHdmJzQlhWWVNOdXpycGd0ZVFzeE1WalFTV0FOZ9IBrAFBVV95cUxOTkFzUHJJQ2VpcnloU1paZlpnLTlqdUhQVmo1UG02alB6WERsbHZqTkxmZER3VmxjQ2Y5TDVGczBXMHhxemF5RzkxelVqTE9uMEdlc1B4U3RFTkVRMjJlbXU5bjlQcDBNSWM3MFcwbnNmb2RlcnlXUnprY014SmJLMHc5elVSd09YU1VOd3VKaFlWaS03UVhRUzgxaXdleWZoN2o4WjNaSm5tQ0V3?oc=5"
     },
@@ -260,8 +249,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "Báo Xây dựng",
       "인기도": "2026-11-24",
-      "한글제목": "남북 고속철도 프로젝트 수립을 위한 4대 추진 일정 마일스톤 설정",
-      "핵심요약": "베트남 정부가 국가 핵심 사업인 남북 고속철도 건설 프로젝트의 타당성 조사 및 마스터플랜 수립을 위한 4가지 주요 일정 단계(마일스톤)를 확정했습니다.",
+      "한글제목": "남북 고속철도 프로젝트 추진을 위한 4대 핵심 이행 마일스톤 설정",
+      "핵심요약": "베트남 대형 국책 사업인 남북 고속철도의 성공적인 추진을 위해 타당성 조사 및 설계 등 구체적인 4단계 추진 일정이 수립되었습니다.",
       "원제목": "Thiết lập 4 cột mốc tiến độ lập dự án đường sắt tốc độ cao Bắc - Nam",
       "링크": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQaGJfQ1V2VHZoQ2IxUXc1MldqUW9HZGRiZUFlUFhjbWdQR3llVXBKZC1CdXdObUVtLWUtTnJOU1l2ZGw2aHVhZmNQYkdReUZVV3RLdlNXWXVhRXlNNkppLU5NWWFqT0ZHc1oyOFB4ak9oSFBlVWNjb1RoOWFfeTNJOXlPdE42Z01tbVhZWjkwek4wbE80VnFnb2hlNVFEdXVqSUFpTVNidFlOR3c5dEJWMw?oc=5"
     },
@@ -271,8 +260,8 @@
       "출처": "베트남 현지뉴스",
       "구분": "Báo Đấu thầu",
       "인기도": "2026-11-24",
-      "한글제목": "대규모 자본 투입되는 주요 교통 프로젝트: 공정 지연 유발하는 병목 현상 지목",
-      "핵심요약": "막대한 예산이 배정된 베트남 주요 교통 인프라 프로젝트에서 행정 절차, 부지 정지 작업(보상·이주), 자재 수급 등이 공정을 지연시키는 주요 병목 원인으로 지목되었습니다.",
+      "한글제목": "핵심 교통 프로젝트의 대규모 자금 투입: 공정을 지연시키는 병목 현상 지목",
+      "핵심요약": "막대한 예산이 배정된 주요 교통 인프라 사업들이 행정 절차와 부지 정리 등의 문제로 예산 집행 및 공정에서 병목 현상을 겪고 있습니다.",
       "원제목": "Vốn lớn cho loạt dự án giao thông trọng điểm: Gọi tên điểm nghẽn níu tiến độ",
       "링크": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaDJ3VnhiQ2lrTVVocWM3b3dNMGZhS193aGpTQWw4Nm1CVDVUNWZpR0JkcmZQUjdmMzNIYWx2MHdlZlEzeDktYTZSSWFzdkVFTFlnVmdNQmNNWmRRWEFnZkJiTlJsMEpQMHRHejVCM09JSkl6VmR1c2ItaEZNSkZPWFdmZEVYVElTdXh2dW9ncUFPQ0t4TW1EVUItYzVVLUhKYnV4QllGdDNMaV94bjZRVHJ5WQ?oc=5"
     },
@@ -280,12 +269,199 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
-      "구분": "Báo Xây dựng",
+      "구분": "Tin nhanh chứng khoán",
       "인기도": "2026-11-24",
-      "한글제목": "2027년 동부 남북 고속도로 확장 사업 투자자 선정 입찰 실시",
-      "핵심요약": "베트남 건설부가 동부 남북 고속도로 구간의 확장 공사를 수행할 민간 투자자를 선발하기 위한 경쟁 입찰을 2027년 내에 진행할 예정입니다.",
-      "원제목": "Đấu thầu lựa chọn nhà đầu tư mở rộng cao tốc Bắc - Nam phía Đông trong năm 2027",
-      "링크": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNYlFpTl9QYTIydEgzeWwtTjQyNTV4VEN1b3FEMkotV3lXNDR1VnplaF9oa3Z6ajJQeFliUDY0M3pESjhxeHdkRnV0ZElpNmliQW1VaU5reHdtSktQeHJtTjUwTUZlRVZ5Y2xtdE44N1VJZkVUdHl6aUhpMFRMeFJCUG81b09oMHBhMmdpTm1NdXdPOUEtUGVBU01uQy13MG90RlBHX29tY09yZ29mSHpZN3RxcFZucXo0SFgwNzd4UQ?oc=5"
+      "한글제목": "썬 그룹, 호치민시 전략적 인프라·도시 개발 및 대형 복합단지 투자 희망",
+      "핵심요약": "베트남의 대형 민간 개발사인 썬 그룹(Sun Group)이 호치민시의 교통 인프라, 도시 개발, 대규모 엔터테인먼트 복합단지 사업 참여 의사를 밝혔습니다.",
+      "원제목": "Sun Group muốn tham gia đầu tư hạ tầng chiến lược, đô thị và các tổ hợp giải trí lớn tại TP.HCM",
+      "링크": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPcXRVV1dmdDcwRWhlS2RKM1hJanVQdi0wQjJCZXdmYlFnWjVENElqTk5BQnJVMkFabWJBMXBRX2g0cU1oTXp4ak1zZ3BRbmxGRFIwN0hNQXRqaEV6OF92Z3EzNDhCbDlBLUQ1VEFXLTNVTDdaTVFGbXljd3pUVmwxSGhvSTBQSG9VcVVsNGdLMzNoUm5SN1JKR2dBVFpRMU5NbkF4MWY0dkV3UUw5a1JRU2NWSTBtdEVLTmw2NWVTbWZLX01nbHhRTHlvN1pCNmUyMVh0Q1g2TdIB1wFBVV95cUxPcXRVV1dmdDcwRWhlS2RKM1hJanVQdi0wQjJCZXdmYlFnWjVENElqTk5BQnJVMkFabWJBMXBRX2g0cU1oTXp4ak1zZ3BRbmxGRFIwN0hNQXRqaEV6OF92Z3EzNDhCbDlBLUQ1VEFXLTNVTDdaTVFGbXljd3pUVmwxSGhvSTBQSG9VcVVsNGdLMzNoUm5SN1JKR2dBVFpRMU5NbkF4MWY0dkV3UUw5a1JRU2NWSTBtdEVLTmw2NWVTbWZLX01nbHhRTHlvN1pCNmUyMVh0Q1g2TQ?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Thời báo Tài chính Việt Nam",
+      "인기도": "2026-11-24",
+      "한글제목": "깜로-라선 고속도로 확장 사업의 누적되는 난항",
+      "핵심요약": "깜로-라선 고속도로 확장 공사 현장에서 예산 집행, 자재 수급, 현장 여건 등 복합적인 어려움이 겹치며 난항을 겪고 있습니다.",
+      "원제목": "Khó khăn dồn dập tại dự án mở rộng cao tốc Cam Lộ - La Sơn",
+      "링크": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQYzZYZ19QREpMby1SZk9LdF9BbDhiTWpBY1lrcGpjWGN4SUtIaHpCcjJ4VmluZi1ybkc3dVo0SURpcjJMMkpPZ3ZGRVlTNE0zU19WbW8xb2gxTmZaVU9XZXZGOFFzNE12aUhieTd1TnlmVkVQTjE2RzFGMFhYaThMMzJiUktaam1YcGZ0MXVvZTVkMDFiN3Fsc2pPaTV5aGg3Y3Z0TlB1SHREd0Fwcmc?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "CafeLand",
+      "인기도": "2026-11-23",
+      "한글제목": "시속 350km 남북 고속철도 15개 성·시 통과: 최초 착공 예상 2개 역사 공개",
+      "핵심요약": "전국 15개 성·시를 관통하는 시속 350km 남북 고속철도 노선 중 사업 진척이 빠른 핵심 2개 역사가 우선 착공될 것으로 예상됩니다.",
+      "원제목": "Đường sắt tốc độ cao 350km/h chạy qua 15 tỉnh thành: Hé lộ 2 nhà ga có thể khởi công đầu tiên",
+      "링크": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNaDZkYnNHQUIxZTdUcDd2T2tlTHlUNTRydGE5MFpWdkp3c05wQ0dqLUVObnJwWGtIM21sNWlVdW84VGcxMzRrR0JaTG1VNzAyR0pGcUFTMXR3MHlmcVRzUGl3WmNBQ0pvUGJ4eVdqOEZ1U3o3VTRtdFY3cTA2TWd0Vlg3SFhVNkhrS1RWb19CX0FfREFqVHg0Y1BoODlYMGtYMnd6V29xUHBCM2NVWEpXRjY2ODRKTnJSdmQ5eGNMWjJQYUtVU0pzTkJsaw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "dangcongsan.vn",
+      "인기도": "2026-11-23",
+      "한글제목": "다오(Đào)강 연결 교량 및 진입도로 건설 사업 주민 의견 수렴",
+      "핵심요약": "다오강을 가로질러 주요 지역을 연결하는 교량 및 접속도로 건설 프로젝트와 관련해 현지 주민들을 대상으로 한 공식 의견 수렴 절차가 진행 중입니다.",
+      "원제목": "Lấy ý kiến người dân nơi thực hiện dự án Xây dựng cầu và đường dẫn lên cầu qua sông Đào nối từ ...",
+      "링크": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQcFBRUS0wWlptemNuRnh6M3BRM1NNUlhtbHZwSnlHTlJBZWhnaklWUXhQOGhzMkhSSGRQRUcwaVYxNVJrMENVek5GOFRGRjZzczd0S2hlSDYxRFM1R1hoRWM4czdCVjJVZDJ3RlhtUzFxeENubXE2ZUg5ZXAyektPM2Y0U1JfT2hFMkdEUGw0V2tiTDZvREZ4UF9zQkoyRElSc3gtbkRaclVLYXprUGJYd2Vkb2tBM0oyYlc5czduYXBRLUpTcThpQnFibFJMWVZ6MXVZbmpWLWVqMGZPVGhrQnhkMnZ2aFdWb0VRS3VCektQcVBhaXFQam9uSm5haTdDRl9nSUZR?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Báo Dân trí",
+      "인기도": "2026-11-23",
+      "한글제목": "깟라이(Cát Lái) 교량 ~ 벤륵-롱탄 고속도로 연결 도로 건설에 9조 동 이상 투입",
+      "핵심요약": "총 9조 동(VND) 이상의 예산을 투입해 깟라이 다리에서 벤륵-롱탄 고속도로를 잇는 신규 교통 연결 도로 건설 사업이 추진됩니다.",
+      "원제목": "Hơn 9.000 tỷ làm đường nối cầu Cát Lái đến cao tốc Bến Lức - Long Thành",
+      "링크": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWENpeFo2SWI3TWtueU84UHpZWlZLWjZUd0NwV2hWSjQ3cXAtNEJ5UU1RdU9rZGJWb2k2eUVqeTUxRzBfV3FlUVlwVm5rcS04cm9kZkh1ZGo0b0o3Nzh1WWNXTEw3LTE2X2dnczI2SkYwX0JMcEJOV25DcHhBVF9CS2FqOEI5cVNFYTVKenIyeWU0MHlXUW01NDExZjVySjBmRzVDNkF4ckxzdVQwdEJKM0Zpc29YdzVLSjNCdw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Sputnik Việt Nam",
+      "인기도": "2026-11-23",
+      "한글제목": "베트남 670억 달러 초고속철도 슈퍼 프로젝트, 1조 243억 동 규모 컨소시엄 선정",
+      "핵심요약": "약 670억 달러 규모의 베트남 남북 고속철도 대형 사업을 위해 1조 243억 동 이상의 예산이 투입되는 자문 컨소시엄이 최종 선정되었습니다.",
+      "원제목": "Siêu dự án đường sắt 67 tỷ USD của Việt Nam chọn liên danh tư vấn hơn 10.243 tỷ đồng",
+      "링크": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPVGcxZG1WTFF5b3JyS252enBnTVJISGZiWERKMFdRek1pXy1GZm1uQUJ2dlhaaFkxM2sybHlLM18tQWZ2bU8yRXV5TWlPeHZHalYzdnRna3JISVEyZnJSZjNOOGo2azdFNHpqZUJia0lNQ1ZhaDFlM0d6RDlPRUNkZDBGWGF0dWVrUUxLRXBxY3hJRTdMSUxScVRPemZESExMZ00tTEZLblFHVmV4cy11LVkzMkt5d2FmUUoyVFpfWmg0MTg?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Laodong.vn",
+      "인기도": "2026-11-23",
+      "한글제목": "푸토성 주민들, 5조 8,500억 동 규모 고속도로 구간 개통 기대",
+      "핵심요약": "총사업비 5조 8,500억 동이 투입된 푸토성 지역의 고속도로 구간이 완공을 앞두고 있어 현지 주민들의 교통 편의가 크게 향상될 전망입니다.",
+      "원제목": "Người dân ở Phú Thọ đón chờ đoạn tuyến cao tốc 5.850 tỉ đồng",
+      "링크": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPbmJiZ2VFeXRoTDdWcXZVdlk3OWNIdUlIMDhsSE1Nem9UZ2JFN1JWTGpFMGJCRWZRTVFwX3FtQ0xfTWhLcU1qTEp2SHM1SVFoTjN6c0FHR1hFM3ZmUE9kWEhxYmduMnZyWlM1Q1ZMUkhNOHZDZG1ydVlabFoxUWp6ay0tTk9IcWlfSXVYaWpDa2JWejdkTk9rOWJwZVRLbFk?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Fili.vn",
+      "인기도": "2026-11-23",
+      "한글제목": "라오까이-하노이-하이퐁 철도 프로젝트 부지 정리 지연",
+      "핵심요약": "북부 핵심 물류축인 라오까이-하노이-하이퐁 철도 건설 사업이 토지 보상 및 부지 확보(용지매수) 지연으로 공정에 차질을 빚고 있습니다.",
+      "원제목": "Chậm giải phóng mặt bằng cho dự án đường sắt Lào Cai - Hà Nội - Hải Phòng",
+      "링크": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOWUZqMk9pNW82V05lbVRNSHA5VjRJWmpVUjRyRFRoZXhUMXh2aFJETFdtbWRvTDZjZVFjSlFzUmVPclRQYU91cG92VFlqeTNacGxmdklKWUwtY21NYzk1VGhHWmlFTV96SE90QzM1amUxVjlYMTlVcmZHVnJVQjFtZjRxcllyX1RNdmQxXzdHMU1yNm0wT0pYSzljR2FYZzdONjFrMm5fZTVZSF9L?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Cổng Thông tin điện tử Bộ Công an",
+      "인기도": "2026-11-23",
+      "한글제목": "호치민시-쭝르엉-미투언 고속도로 확장 사업의 안전 및 보안 선제 확보",
+      "핵심요약": "교통량이 집중되는 호치민시-쭝르엉-미투언 고속도로 확장 구간의 원활한 공사와 교통 안전을 확보하기 위한 종합 대책이 추진됩니다.",
+      "원제목": "Chủ động bảo đảm an ninh, an toàn dự án mở rộng cao tốc TP. Hồ Chí Minh – Trung Lương – Mỹ Thuận",
+      "링크": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPd3MyY2JSYWxETC1JZlRHU3gtdndCdFR3R3o4b0JILXh4Vm5HOVQ2Ml9KNDlPTDdvNHpHT1JNb2EtZ1NWR2FQRy1ENDJCR2lnMGhaUWZVZjhmeTF2eWVTeEpOMHRnMVVyTXJQRi1UTm1jT3F3Zjhya1JLMG1RNmpQQnh4bHdXZHk4RlpnTnBLa3g0ZkdmZWdjQ2lZMXdsNFBTbVhDMVo3dXdPY0RqeEdjQ3VDR1VHSllNZGMwbEtmeVZyWFROb2UwLQ?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Báo Công an nhân dân",
+      "인기도": "2026-11-23",
+      "한글제목": "동부 남북 고속도로 휴게소 건립 일정 차질 우려",
+      "핵심요약": "남북 고속도로 동부 구간 내 필수 부대시설인 휴게소 건설 사업들이 행정 절차 및 시공 지연으로 당초 준공 기한을 맞추기 어려울 것으로 보입니다.",
+      "원제목": "Trạm dừng nghỉ trên cao tốc Bắc - Nam phía Đông khó về đích đúng hẹn",
+      "링크": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQZm1kMjZPejMtN3ZyckRnbTVDa296LXUyMzBkVF9na0VZYzAxSUh4N01LbG1RMXVhNXlDWUpTRnpyVWFBVjdfTkN0b3dHME5nMFVrbTZlUVBWUmVDUE05T1NOXzFZRzdNVnhQWWt1ZlY3ZFBoaVdKUkhYc1l5aktMbDNaUjRiUThNbWp6anVFMTlfNnBvSld0bHcyZVh4TFU?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Báo Đấu thầu",
+      "인기도": "2026-11-23",
+      "한글제목": "빈롱성, 3조 5,000억 동 투자해 제2꼬찌엔(Cổ Chiên 2) 교량 건설 추진",
+      "핵심요약": "빈롱성이 지역 연계 교통망 강화를 위해 총 3조 5,000억 동(VND)을 투자하여 제2꼬찌엔 교량 건설 프로젝트를 추진합니다.",
+      "원제목": "Vĩnh Long đầu tư 3.500 tỷ đồng xây dựng cầu Cổ Chiên 2",
+      "링크": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOWHdDTDVUblNWa2lZRExCUExUcUxTNGdLRXNMUFpxYmxwMFVoc0h3NlpiY2lPUk1ydm8wU2gzajcydU1PWWhncjdKeEYzTlpiSTQyMjJ3VWVSRUVqX1lDaWVDNmpUdGJaREZnUk4tU1RYM3o5RjV5WDdjNHpDR1A1UzRxV1IydzJFaWlPNC1aN21Galp1VXc?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "CafeLand",
+      "인기도": "2026-11-22",
+      "한글제목": "까마우성, 호치민시 연결 철도 및 해안도로 건설 제안",
+      "핵심요약": "최남단 까마우성이 지역 경제 활성화를 위해 호치민시를 잇는 철도 노선 신설과 까마우 곶까지 이어지는 해안도로 투자를 정부에 건의했습니다.",
+      "원제목": "Cà Mau kiến nghị đầu tư đường sắt đến TP.HCM, thêm tuyến ven biển ra Mũi Cà Mau",
+      "링크": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZlhUMF9NaEFRdlBoUGhSTEhhTERMcnBGVmNVVUFFcG5uM2MtUzc1MzJ2c01kQURKUU0zVFN6Y0dyWlFDeVRXRC1PQ1BuLWRHdGtJZ3JKWllBbVpLMTNlUGI4Ulg5VWtNNG5JYTJXa0t6ZGpIcjhfMi0tMzhkRmRRUTU5OWt0bkJNV1VSdjVYdnRySUtfVXhaT3BpdEdlR2ZJbW9Helg5U3QzS0hFTmxkbWpyandyQ2dM?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Tạp chí Điện tử Luật sư Việt Nam",
+      "인기도": "2026-11-22",
+      "한글제목": "국회, 목쩌우-선라-디엔비엔 고속도로 투자 정책 공식 승인",
+      "핵심요약": "베트남 국회가 북서부 산악 지역의 경제 발전과 안보를 위한 목쩌우-선라-디엔비엔 고속도로 건설 투자 주간 계획을 공식 통과시켰습니다.",
+      "원제목": "Quốc hội chính thức thông qua chủ trương đầu tư Dự án cao tốc Mộc Châu - Sơn La - Điện Biên",
+      "링크": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNdFVNQy1FX0RIdFNmMTRiRTU4bnRYcnhHWllJejNubVZBLWE0THhpMGNZSUFxVUV3OVNjbGdkdnNrb25jcktfdXg4Q013YlprUXVKOUFiQ2Y5eFVJcmdPZjdqdDlPbElJY3hhYXROY2M4WTlNazJob3Jjb292T0FwUXp5c2ZqbmRnZHRDeHZwX1RCS1diRFNGYTkxcHRVZnpQeVVGNldGaVBELUZud2ZJdXpQbVJ3aTA?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "baodautu",
+      "인기도": "2026-11-22",
+      "한글제목": "푸토성, 1조 5,700억 동 고속도로 투자 제안 및 하띤성 1,10억 동 목재 가공 프로젝트 추진",
+      "핵심요약": "푸토성은 1조 5,700억 동 규모의 고속도로 투자를 제안했으며, 하띤성에는 1,10억 동 규모의 목재 가공 공장 프로젝트가 신규로 추진됩니다.",
+      "원제목": "Phú Thọ đề nghị đầu tư cao tốc 15.700 tỷ đồng; Hà Tĩnh có thêm dự án chế biến gỗ 110 tỷ đồng",
+      "링크": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQdTFaRV9xSG02TDZadGZUS05yeUtQNm5Mb2tMU2dVbTI2cWc5UkVYajdHM09zSmRJekctUjhPbzhvTlJEZWdscVY5b0lkemtEV1ZoZmVyZ1hVN2dDWmhDTXlSemxzVThFUmJhenBVSzVDODc3OU9PcHBsS3NjaF92UlU5S1lTVWRiWDYzMV9kd1pub1dWU1kxRy03Y2JKc0NjTm5FZm96WmdEQXdxU003SEhITXk1SXhmUDh1aC1sS2o?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Báo Lào Cai điện tử",
+      "인기도": "2026-11-22",
+      "한글제목": "인프라 사업 난관 해소를 위한 조속한 해결책 마련 촉구",
+      "핵심요약": "베트남 전역의 토목 및 인프라 건설 현장이 마주한 복합적인 애로사항을 해결하기 위해 관계 당국의 신속한 정책적 지원이 요구되고 있습니다.",
+      "원제목": "Cần sớm có giải pháp tháo gỡ khó khăn",
+      "링크": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5iMV9mUkJneFZYSWozRnIxeFE0WUFvbzFVNVRhTVZjS1VRRGFwM00wNC12SnEyRXNYVUNzTG1kWFlEV3QweHVqaXJqWm1BV2M4T0ZxMkcxc3VPR290cnZ6ZXgtY3ZOWlA1d3lLaWY5X244MXhkNmZCRVB5MVNEOHM?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "VOV Giao Thông",
+      "인기도": "2026-11-22",
+      "한글제목": "호치민-롱탄 고속도로 오늘 차선 변경 실시, 운전자 주의 당부",
+      "핵심요약": "교통 혼잡 완화와 공사 진행을 위해 호치민-롱탄 고속도로의 차선 운영 체계가 변경되므로 운전자들의 각별한 주의가 요구됩니다.",
+      "원제목": "Hôm nay sẽ chuyển làn trên cao tốc TP.HCM - Long Thành, tài xế cần lưu ý",
+      "링크": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPRHdpSkhlVURUQ3BYVWhDQ29BTWZ3Q1IzUHF2cTlwcXFfOHpFVXZubGI5VEVmWXZEZHNIZlRKbGlSbXE3TDhYa0JUVENOTGlLcFpFZ0U5em81VGFRb09pWlZFMUI1a1EtS1NUNTd1bFpSSVV4MWVfYmpsN0xOMXB2UmNfcmRydDczU1RjV2NVUTlfMFpUWXB2SG5TTzJOWi0zZk9qby1VcFNPN1AtdlNCNWgzaUQ0dw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "Tài chính Online",
+      "인기도": "2026-11-22",
+      "한글제목": "베트남 항공, 2,000만 달러 투자 협약 체결 및 화팟(Hòa Phát) 종합항만·컨테이너 부두 추진",
+      "핵심요약": "베트남 항공이 2,000만 달러 규모의 투자 협약을 맺었으며, 철강 기업 화팟은 물류 경쟁력 강화를 위한 종합항만 및 컨테이너 부두 건설을 본격 추진합니다.",
+      "원제목": "Vietnam Airlines ký hợp tác đầu tư 20 triệu USD, Hòa Phát triển khai dự án bến cảng tổng hợp - container - Tạp chí Kinh tế",
+      "링크": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQcUx6X0hfd0F0QU1FTG5rODZlZ1lweFdjSmVOaGI4a2gxRm9GeE5UdW9mckxvOEJkZ0NqZEFObGFCdDhTWFRxWDNYX0VfZVlhd2FRNmhxaXVZVlJtckVtTjR3LXJuUE1MYmpSWm9WdVJBaUVpZDZfbzA3U2huTnJHQ1U0MzRsR2huS0Z0MDhGZkNISFJSVmVnc1daOU5RRHpXUXlTVXMwU0N1bjN6V0hUWnh0dV9SSVlwRHczUXktWkRLME56MElTbjRkTWlhLTllQXRGc3RfZ2FfSjNLWGc?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-베트남",
+      "출처": "베트남 현지뉴스",
+      "구분": "CafeLand",
+      "인기도": "2026-11-21",
+      "한글제목": "국회, 총연장 430km 이상·16조 2,000억 동 규모 신규 고속도로 3개 사업 승인",
+      "핵심요약": "베트남 국회가 총사업비 16조 2,000억 동(VND) 이상, 총연장 430km를 초과하는 대규모 신규 고속도로 3개 노선 건설 계획을 최종 승인했습니다.",
+      "원제목": "Quốc hội thông qua 3 dự án cao tốc mới hơn 162.000 tỷ đồng, dài trên 430 km",
+      "링크": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNYU9SX2Q5VGNCeThWZGdnZmdpQmVNdF9CTzhudERMaFNWVkpjQ0RoM2Y3b2t0Rndjd0RVbHNKUHdfY2RHcXg5ZDB4czlZdHRYdE1oRk1lVUNDLUN4WFJzVm1TN2lBR2FqQ0tKUGM0b3E3VVlNTml5VzBuMDZEWFpwcDh5WElKczQxRTFzQlJXRGlCdDlOeXM4ZUNmblZaNW9BSVBNTExsXzVSelpqUWt5VEttQQ?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -412,45 +588,12 @@
       "수집일": "2026-11-24",
       "카테고리": "기술사-토목구조",
       "출처": "기술사-토목구조",
-      "구분": "참여와혁신",
-      "인기도": "2026-11-23",
-      "한글제목": "국가철도공단, 원·하청 교섭 중 중노위에 행정소송?",
-      "핵심요약": "국가철도공단, 원·하청 교섭 중 중노위에 행정소송? 참여와혁신",
-      "원제목": "국가철도공단, 원·하청 교섭 중 중노위에 행정소송?",
-      "링크": "https://news.google.com/rss/articles/CBMibkFVX3lxTE96SFR1V2JrZjM5SVJFMTl6SWlkMXpzNDRjMnZ5NHNvdFJDR1hReHAtd19rOThQbE1RSjNHS3ZqbThFOEozSUZ3eGpBcGVDYXhJQWZGanhtRkJqeFdQMWZtcVV2ZmIwUGVZaHotWHl3?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "기술사-토목구조",
-      "출처": "기술사-토목구조",
-      "구분": "국토일보",
-      "인기도": "2026-11-23",
-      "한글제목": "[환경초대석] 한국물순환협회 백원옥 회장, “차도블록포장 기준 제정, 도로포장 기술 중요 전환점”",
-      "핵심요약": "[환경초대석] 한국물순환협회 백원옥 회장, “차도블록포장 기준 제정, 도로포장 기술 중요 전환점” 국토일보",
-      "원제목": "[환경초대석] 한국물순환협회 백원옥 회장, “차도블록포장 기준 제정, 도로포장 기술 중요 전환점”",
-      "링크": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9LSmdLU2NxZ0hmNDVwckVGU1hRQ2RLOUpkaFQwQU10dkhLamRKdjFINzRJLVdOc0pBajE4S1hiTjFEQlducDh5OXZMN3dicDlfd2laMkJqNXA2UGZYSUJSLTM4UQ?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "기술사-토목구조",
-      "출처": "기술사-토목구조",
       "구분": "쿠키뉴스",
       "인기도": "2026-11-21",
       "한글제목": "배터리 한 개가 멈춘 국가 전산망…부산소방, 데이터센터 전용 화재 설계 기준 전국 첫 제정",
       "핵심요약": "배터리 한 개가 멈춘 국가 전산망…부산소방, 데이터센터 전용 화재 설계 기준 전국 첫 제정 쿠키뉴스",
       "원제목": "배터리 한 개가 멈춘 국가 전산망…부산소방, 데이터센터 전용 화재 설계 기준 전국 첫 제정",
       "링크": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1mNXNTUDgyeG1zb3VTQWxnT1ZDemFPX2VUYWtSX2JnMHE5TW5pSVF3V01zbXBOeHpsYTA0LVNEUThvV1ZaZkZRb0ZTVU1TemNhM015NHFoamJJSzhxMnJfY3Z5Zw?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "기술사-토목구조",
-      "출처": "기술사-토목구조",
-      "구분": "코리아헬스로그",
-      "인기도": "2026-11-20",
-      "한글제목": "미세한 질병 신호, 정밀하게 측정 가능한 나노자임 설계 기준 제시",
-      "핵심요약": "미세한 질병 신호, 정밀하게 측정 가능한 나노자임 설계 기준 제시 코리아헬스로그",
-      "원제목": "미세한 질병 신호, 정밀하게 측정 가능한 나노자임 설계 기준 제시",
-      "링크": "https://news.google.com/rss/articles/CBMickFVX3lxTFA1dEREM1hlV2EtbWFRWHFSUFB4d1VvdFdXcTVSQjRVc1FOTHZsWVE0S0Zwem0zRXM1SGNhRUU1eGFQWlJoemhiV3lNNmdYMHBtcWVDMGZvNVVaT2hZY2d1bnlTbnNXVm1HbDZVWFRLaGtMZ9IBdkFVX3lxTFBMU2lGalFESXlmM3h3YWpIaFFUNk8xRjNLa25aTW40VC1DcGxSdGRkcDIxVUota3ltYkZHSDNUWm9ELVRRSFdveTBrRjk5TVJhZ01vRkZDZ25fcWdXYkVSZEFGa3hZNmYyd0hQSFR1TUZTZDR0eVE?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -478,34 +621,56 @@
       "수집일": "2026-11-24",
       "카테고리": "기술사-토목구조",
       "출처": "기술사-토목구조",
-      "구분": "물류신문",
-      "인기도": "2026-11-18",
-      "한글제목": "해수부, ‘항만시설 기술기준 등 개발 공청회’ 개최",
-      "핵심요약": "해수부, ‘항만시설 기술기준 등 개발 공청회’ 개최 물류신문",
-      "원제목": "해수부, ‘항만시설 기술기준 등 개발 공청회’ 개최",
-      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9hQmRmenc5Wlhub3NnZTVTNkNxbXlOWlJOeEt2TUJkRjhyWTk4Qm1TcE5aZTdVRWJSLW84bUVCODRleVRQckM5eW1Qb2Q3d1R4ZjQzazFPU19YX1JhSGNsZDhRZU5vMTFnYkdv?oc=5"
+      "구분": "쉬핑뉴스넷",
+      "인기도": "2026-11-17",
+      "한글제목": "안전은 빈틈없이, 물류는 막힘없이! 항만 기술 표준 대국민 공청회 개최한다",
+      "핵심요약": "안전은 빈틈없이, 물류는 막힘없이! 항만 기술 표준 대국민 공청회 개최한다 쉬핑뉴스넷",
+      "원제목": "안전은 빈틈없이, 물류는 막힘없이! 항만 기술 표준 대국민 공청회 개최한다",
+      "링크": "https://news.google.com/rss/articles/CBMic0FVX3lxTFAxT0tmMm1IbzZtTGE3UGNXTld4cVVwUk13QnZFR19vR0o3YWxRSnBya2ljNXpCVFVEOVFOU2t0SENvQnFFZTFzaER4RlZPR3V5MTktVVphRmMzTm43R211X3RabzQwaURUblVla0lXN21Ralk?oc=5"
     },
     {
       "수집일": "2026-11-24",
       "카테고리": "기술사-토목구조",
       "출처": "기술사-토목구조",
-      "구분": "willawip.com",
-      "인기도": "2026-11-18",
-      "한글제목": "[제도] 물관리 체계, 왜 지금 다시 손보나…홍수예보 270곳 확대 배경",
-      "핵심요약": "[제도] 물관리 체계, 왜 지금 다시 손보나…홍수예보 270곳 확대 배경 willawip.com",
-      "원제목": "[제도] 물관리 체계, 왜 지금 다시 손보나…홍수예보 270곳 확대 배경",
-      "링크": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbUFfMXB0RzcwTFE5QVg4bk03WVpCUWZrNTBWR21fUlhFemUyM3cyYTFIZjVCbjNrNnl2T25Mb2pPV0Y5NUh4a1d4cUlpQW5SenFpWXdlcHIyX2NXdExnR3pFenRwMUt4Vl9iU3FURjBnNU90alZoQlptdDFDcXNWUXhia3ZTVVhVZXgxaGVTbV9QMWYxYW5Rbg?oc=5"
+      "구분": "해사신문",
+      "인기도": "2026-11-17",
+      "한글제목": "해수부, 항만시설 설계기준 개정 추진…내식성 보강근·현장 안전기준 강화",
+      "핵심요약": "해수부, 항만시설 설계기준 개정 추진…내식성 보강근·현장 안전기준 강화 해사신문",
+      "원제목": "해수부, 항만시설 설계기준 개정 추진…내식성 보강근·현장 안전기준 강화",
+      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE4zeXhxOEE3S2FUQTUyZlR5TDVHZmpxTjZTSFpXZkFoT3RnbHp4eEtVX2xHNEJyVl9HeGZpdTEwNGFsY0lVYld0ZGRxZ2JxRVpJT0E0U05iQUhoUjBIX2RGOGZ4ZDZtemFCR09r?oc=5"
     },
     {
       "수집일": "2026-11-24",
-      "카테고리": "국내 입찰·용역",
-      "출처": "국내 입찰·용역",
-      "구분": "경남미디어",
-      "인기도": "2026-11-24",
-      "한글제목": "예원조경건설(주), 진주 수의계약 3건 4446만8000원",
-      "핵심요약": "예원조경건설(주), 진주 수의계약 3건 4446만8000원 경남미디어",
-      "원제목": "예원조경건설(주), 진주 수의계약 3건 4446만8000원",
-      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5oQ2tWWXRzREFpcm9lNHBqc1dDYU9DdHlEWGdiZllicFA5YS1kUnpmYmIya0J4cGpldVVFci1wSHJqQmJvNF8zRjhpazRpUFJQQzIxRHVFOENYSGFjQ0VEMFZ1dzNjcmpabkJZ?oc=5"
+      "카테고리": "기술사-토목구조",
+      "출처": "기술사-토목구조",
+      "구분": "매일건설신문",
+      "인기도": "2026-11-16",
+      "한글제목": "토목구조기술사회 “가설구조물 설계 검토 제도 명확히 해야”",
+      "핵심요약": "토목구조기술사회 “가설구조물 설계 검토 제도 명확히 해야” 매일건설신문",
+      "원제목": "토목구조기술사회 “가설구조물 설계 검토 제도 명확히 해야”",
+      "링크": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNR2h4VEJHUG0tdGZKbXB6U0JOcTlEUjE4Vkt6UDNmbkRlVDBLRVV4bm5PSHRWNnRUQmlROTUyN0hBOThqV2dNZll0aVhjWjMzR3JSOGZBVEJiTzh1bjFYRzJTa1hCSmhZMmpfeFNqVGstNnZ0US1CRzE0M2pDRmpnWEhpSW1fY2w5SWtMVDFHUjMyUnRHM3E1SWpXSjVHczB1TGpqM3BabjlYUkJRUEw5clZfWmdGdWdDMDg2Ni1KMUs2Y2Z0N0ZKX09n?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "기술사-토목구조",
+      "출처": "기술사-토목구조",
+      "구분": "비건뉴스",
+      "인기도": "2026-11-13",
+      "한글제목": "심부 지하수 조사에 국가표준 2종…시추공 설계 기준 마련",
+      "핵심요약": "심부 지하수 조사에 국가표준 2종…시추공 설계 기준 마련 비건뉴스",
+      "원제목": "심부 지하수 조사에 국가표준 2종…시추공 설계 기준 마련",
+      "링크": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE8zTVFFM2Y4X3RnVXJLdmI2TU9XY2t6Wk9vZUxXVlFoZ0tnb1owT0JKVGFMUDBuaEE0Z1BnNy1ZXzJ4TERLeV9Zdm5OTmtYUUFyc0pwd1FUNUM2OFZXYl9wMS1uZGV3dw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "기술사-토목구조",
+      "출처": "기술사-토목구조",
+      "구분": "한국농어민신문",
+      "인기도": "2026-10-30",
+      "한글제목": "“설계기준 바꿔도 노후시설 그대로”…기후대응 예산 확충해야",
+      "핵심요약": "“설계기준 바꿔도 노후시설 그대로”…기후대응 예산 확충해야 한국농어민신문",
+      "원제목": "“설계기준 바꿔도 노후시설 그대로”…기후대응 예산 확충해야",
+      "링크": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBnSldzdHZnMFUxM003eGp0SksyWi01UTVscW9QdlhZTmZmYkc4MDJmVE5jekJUMnYzYllaV0gtZVcyOVlVXzI0Q2dHek16YlFsTFBpeldORjJNLVBqZ1YtY1hMRGx3Rmxqbm0wV3JB?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -513,32 +678,10 @@
       "출처": "국내 입찰·용역",
       "구분": "Vietnam.vn",
       "인기도": "2026-11-23",
-      "한글제목": "남북 고속철도 사업 컨설팅 용역 입찰에서 낙찰된 회사의 재무 건전성.",
-      "핵심요약": "남북 고속철도 사업 컨설팅 용역 입찰에서 낙찰된 회사의 재무 건전성. Vietnam.vn",
-      "원제목": "남북 고속철도 사업 컨설팅 용역 입찰에서 낙찰된 회사의 재무 건전성.",
-      "링크": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOei1weGZNdEVxQjVLU2FoUHZDVWVPTm84QkFtTXhtNTFFdzE1V3VVblZ2X3JKcThrVjU0T0xUSXZGNGxLVkVZeFpUTGlya09JSlBndlNFWTM4YmhDbmFUVG9OSFpSZlU4YWJ6ZjVTNEdpalFIckhONTRlM1dMdm4wS3h0cGoxTFVOSENUQmMzdFp6dl91eGc?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "국내 입찰·용역",
-      "출처": "국내 입찰·용역",
-      "구분": "더구루",
-      "인기도": "2026-11-23",
-      "한글제목": "현대엔지니어링, 쿠웨이트 4.4조 LNG프로젝트 최종 후보군 선정",
-      "핵심요약": "현대엔지니어링, 쿠웨이트 4.4조 LNG프로젝트 최종 후보군 선정 더구루",
-      "원제목": "현대엔지니어링, 쿠웨이트 4.4조 LNG프로젝트 최종 후보군 선정",
-      "링크": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBqLVg1eHUwbFFlamFHVmdCWUo2WHNSblA1ZkpvUENYam45REhOanJ3MVNKa1pibEpRckU3T3kteC1NYl9nNjgyYmFmYjJicDlfNkFuMEh3YUlJaC02Nm9uR0pRbw?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "국내 입찰·용역",
-      "출처": "국내 입찰·용역",
-      "구분": "엔지니어링데일리",
-      "인기도": "2026-11-23",
-      "한글제목": "[시론]우리는 왜 스스로 값을 깎는가",
-      "핵심요약": "[시론]우리는 왜 스스로 값을 깎는가 엔지니어링데일리",
-      "원제목": "[시론]우리는 왜 스스로 값을 깎는가",
-      "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1fbmllUWxtSXJ1SzV4MHFQNThNREtTXy1TR2ZpRkhlanhZb19zR0lEZnBOWFN5SHJYajBMQ2NYZkFBNXFLanhfODluZHBXejVsTTFvTTBSSDJxbWFVb0FZMHVsTVIwekZIa2c?oc=5"
+      "한글제목": "남북 고속철도 컨설팅 용역 입찰에서 낙찰된 회사의 재무 건전성.",
+      "핵심요약": "남북 고속철도 컨설팅 용역 입찰에서 낙찰된 회사의 재무 건전성. Vietnam.vn",
+      "원제목": "남북 고속철도 컨설팅 용역 입찰에서 낙찰된 회사의 재무 건전성.",
+      "링크": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOdjlxREtDbGRfNUNFVmtZT05sZnlRbUxkWVl1OFhaZkpEUno5cU1FRDdPQkN0djVkcHhLQmRUOHBXU1JPblUyeG44Y0ZPSzU5clBNb0V3QWh6QVloMVR5MWpUMWc2ZUF6TWVOWHVXSUNQMGNRWGxVWlZmdUVvcWVsVjdaX2h0WDNYS2hQWG1VTnpNam9CTVVndFJR?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -577,12 +720,45 @@
       "수집일": "2026-11-24",
       "카테고리": "국내 입찰·용역",
       "출처": "국내 입찰·용역",
-      "구분": "대한전문건설신문",
+      "구분": "월드장애인사랑뉴스",
       "인기도": "2026-11-23",
-      "한글제목": "GS건설, 3490억 필리핀 도로공사 낙찰",
-      "핵심요약": "GS건설, 3490억 필리핀 도로공사 낙찰 대한전문건설신문",
-      "원제목": "GS건설, 3490억 필리핀 도로공사 낙찰",
-      "링크": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5nMEJGMFRiVFhIVDhOcG5RSS05WUFIZ2w5Z21iUkJUZkVsWU9IMEQ1LU85TkU1MHdJOFFRNW4xSmJjY1dnb0NpMUlyUnBnMmlwQnZxQWYxN2JYRF80TzBJd2lHOWJrbnVV0gFsQVVfeXFMTktJNjR3RV9SODJHWGkxSDdKRGJCSmFQc2tLNE9uNkVxWHhaY0hQd2l0dzJIVFdqWFY5S1hGc295bXJVdmRkYXFZSXQyNldON05pQ0NKeW1TRmZhUk5oYU9yVUN2NUcxSk45Z05n?oc=5"
+      "한글제목": "양승주 고양시의원, 소상공인 권익·도로안전 점검…폐기물 감량 실효성·공공입찰 투명성 강조",
+      "핵심요약": "양승주 고양시의원, 소상공인 권익·도로안전 점검…폐기물 감량 실효성·공공입찰 투명성 강조 월드장애인사랑뉴스",
+      "원제목": "양승주 고양시의원, 소상공인 권익·도로안전 점검…폐기물 감량 실효성·공공입찰 투명성 강조",
+      "링크": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9INWlTOXA0ZDNxbHJuNndZTEt6NEJzTTBjTDcxTngyRVpYQi1keklIQ05DSUhYSEI3TGNpb3ZzLXA5RTVucmFtcXhmWW5BelRJa0ZjYnV3NDFIeHJsaFR2OW5QM21idHZ6eDMzb1R5TQ?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "국내 입찰·용역",
+      "출처": "국내 입찰·용역",
+      "구분": "충청시사신문",
+      "인기도": "2026-11-23",
+      "한글제목": "충청권 공공공사 5701억 발주…천안 도로건설 4537억 '수주전'",
+      "핵심요약": "충청권 공공공사 5701억 발주…천안 도로건설 4537억 '수주전' 충청시사신문",
+      "원제목": "충청권 공공공사 5701억 발주…천안 도로건설 4537억 '수주전'",
+      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBjNUFOSWI0ejJXb3J3eVJhbXlybnpNbEFkcFpNMTROVjNwS3ExaldhazMxeEVlUWxUekN1QTZUMkJ0bWFhMFQ5WDNfajZXc2I0VkMyMnJSRW1YdnEtOGRERmk5WXdrMkVMRE9v?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "국내 입찰·용역",
+      "출처": "국내 입찰·용역",
+      "구분": "현대경제",
+      "인기도": "2026-11-23",
+      "한글제목": "충청권 이번 주 공공 공사·물품구매 입찰 잇따라…충남 4,744억 원 ‘전국 최대’",
+      "핵심요약": "충청권 이번 주 공공 공사·물품구매 입찰 잇따라…충남 4,744억 원 ‘전국 최대’ 현대경제",
+      "원제목": "충청권 이번 주 공공 공사·물품구매 입찰 잇따라…충남 4,744억 원 ‘전국 최대’",
+      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5CRWtIcjdDS19qTVJuT0tLS0VPYVY1Zy1zQ01EMV9pQ2hKTTViM25MWFo0a0VoLUdTZy16bWhZZGx3N01OVU9ZNmNGOVhJdDhkMW04bTFhMmtCUmktTF9pVk5jQ0FEOHVMcUdj?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "국내 입찰·용역",
+      "출처": "국내 입찰·용역",
+      "구분": "데이터투자",
+      "인기도": "2026-11-23",
+      "한글제목": "GS건설, 필리핀 도로 신설 사업 3490억원 규모 낙찰",
+      "핵심요약": "GS건설, 필리핀 도로 신설 사업 3490억원 규모 낙찰 데이터투자",
+      "원제목": "GS건설, 필리핀 도로 신설 사업 3490억원 규모 낙찰",
+      "링크": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0zN1NRUy1CaHF6TXFyVkZRdUJHODJ6a3dSMHppVHFRYUdtcEdYaUhRekxHNHZ1c0c3VmpvLTloS0FHSXl2c202ZlBpTmlxT19QbWpNQ2F3c05yS3BydE0wX2x1Z2hYWHhIY0VJOWJUS3NBbUE?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -601,6 +777,17 @@
       "출처": "해외 토목사업",
       "구분": "토목신문",
       "인기도": "2026-11-23",
+      "한글제목": "국가철도공단·유신·삼보 참여 글로벌 컨소시엄",
+      "핵심요약": "국가철도공단·유신·삼보 참여 글로벌 컨소시엄 토목신문",
+      "원제목": "국가철도공단·유신·삼보 참여 글로벌 컨소시엄",
+      "링크": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBHTlNCNXROTm92Y1BqQVZOdDdrN2xfTFJBdDJUYTNNMkxEVF85YVE4OEc2aHNycFAwZmpjQkk1S045ZW5jMWlkUmo3enU0WG9sUnNYNUhUakZFM1ZxN0ROV0ZNaEhlckds?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외 토목사업",
+      "출처": "해외 토목사업",
+      "구분": "토목신문",
+      "인기도": "2026-11-23",
       "한글제목": "韓 참여 컨소시엄, 5,600억 원 베트남 고속철 기본설계 수주",
       "핵심요약": "韓 참여 컨소시엄, 5,600억 원 베트남 고속철 기본설계 수주 토목신문",
       "원제목": "韓 참여 컨소시엄, 5,600억 원 베트남 고속철 기본설계 수주",
@@ -610,23 +797,23 @@
       "수집일": "2026-11-24",
       "카테고리": "해외 토목사업",
       "출처": "해외 토목사업",
-      "구분": "https://www.sisaworld.kr/",
+      "구분": "엔지니어링데일리",
       "인기도": "2026-11-23",
-      "한글제목": "한국 컨소시엄, 5600억 베트남 고속철 설계 수주…해외철도 역대 최대",
-      "핵심요약": "한국 컨소시엄, 5600억 베트남 고속철 설계 수주…해외철도 역대 최대 https://www.sisaworld.kr/",
-      "원제목": "한국 컨소시엄, 5600억 베트남 고속철 설계 수주…해외철도 역대 최대",
-      "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LTzFINnNuR2dtUVJhZ3BJSUliMXpMX0VfMGpQV1FLWkZ3V290N3B0QUo1OVhnQnQ4VHo2MmRtZkx6bEU0aGc3T0pENnFRX29KTXZLWjZBc3BfSW5uazN0OVc1dUJnNWFISEE?oc=5"
+      "한글제목": "[기자수첩]지분 5%로 생색내는 국토부",
+      "핵심요약": "[기자수첩]지분 5%로 생색내는 국토부 엔지니어링데일리",
+      "원제목": "[기자수첩]지분 5%로 생색내는 국토부",
+      "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5ndTlvbHNIODVxSDFxWmJtcXpheFFHeHFhTTd2YW5EZURQWjJjVDJ2dl9xcmNGTnFOOUdkQUhtSFc3cWFWSkpYelQyTXF2V1d6ZzY2eDh5MGtsVTJiOFhFcmRObUU1dWtNcnc?oc=5"
     },
     {
       "수집일": "2026-11-24",
       "카테고리": "해외 토목사업",
       "출처": "해외 토목사업",
-      "구분": "이뉴스투데이",
+      "구분": "전민일보",
       "인기도": "2026-11-23",
-      "한글제목": "K-철도, 5600억 베트남 북남 고속철 기본설계 수주",
-      "핵심요약": "K-철도, 5600억 베트남 북남 고속철 기본설계 수주 이뉴스투데이",
-      "원제목": "K-철도, 5600억 베트남 북남 고속철 기본설계 수주",
-      "링크": "https://news.google.com/rss/articles/CBMicEFVX3lxTE8zMklVbWN5ejdHYjlZdDVmN0JfcWh4aTJNWHNEb2Jpc0pwNi1DQU4xM0NyeGhhUm4zUFRwX3Rna0U1UFpIUU9Jd19ZQm9QeHd5R0I0RHRLdTdUTmNPeE04Nm9IZzdJallQT2NNd2hlb2zSAXRBVV95cUxQWFJWRGhxYU1EV0o5VEp5d212MlFvamo4SXZTVTJUcFp4dnBzc0RITUN3NmVTamk4ak1qVWJiRjVkVjRUZS13Vzh3SjFqUm41MHVjSWU5bnlkY25CVmdWTDduRG1OUmpMMktpaDRTOTNXbkNmaQ?oc=5"
+      "한글제목": "이재명 대통령, K-철도 베트남 수주 성과 치하…김윤덕 전 장관 노고 격려",
+      "핵심요약": "이재명 대통령, K-철도 베트남 수주 성과 치하…김윤덕 전 장관 노고 격려 전민일보",
+      "원제목": "이재명 대통령, K-철도 베트남 수주 성과 치하…김윤덕 전 장관 노고 격려",
+      "링크": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBDaUstVUg4LTZGdzZ4Q1RkNWhtcGZMZDJzVUNQWDBvSVdyT3JRT3dtU3dTZU03R1VpT3hIS2hBRWVJX1YwSHlpOUZZZkl4LXp1RDJuWm56cEpyU3hjdlB1TWZVNFhQdw?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -643,34 +830,23 @@
       "수집일": "2026-11-24",
       "카테고리": "해외 토목사업",
       "출처": "해외 토목사업",
-      "구분": "한국철도일보",
-      "인기도": "2026-11-23",
-      "한글제목": "베트남 북남고속철도 설계용역 수주…해외 철도 계획·설계 역대 최대 규모",
-      "핵심요약": "베트남 북남고속철도 설계용역 수주…해외 철도 계획·설계 역대 최대 규모 한국철도일보",
-      "원제목": "베트남 북남고속철도 설계용역 수주…해외 철도 계획·설계 역대 최대 규모",
-      "링크": "https://news.google.com/rss/articles/CBMicEFVX3lxTFAwMjJEMXdtY1JqMFNpd1NKQjBMSmp6ZUJFa1ZIYjBmOVE4eC1nbUFtOUFoS0oxdXpCcE4wODg4N1RxVEgtM3U1M1loTFowY2M1OUZkYlh3VTd3LWt4d01mY3ZUbTRNdHRhM0VfbUZDLXI?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "해외 토목사업",
-      "출처": "해외 토목사업",
       "구분": "철도경제신문",
       "인기도": "2026-11-23",
       "한글제목": "韓 참여 컨소, 95조 베트남 북남 고속철도 첫발…5600억 용역 수주",
       "핵심요약": "韓 참여 컨소, 95조 베트남 북남 고속철도 첫발…5600억 용역 수주 철도경제신문",
       "원제목": "韓 참여 컨소, 95조 베트남 북남 고속철도 첫발…5600억 용역 수주",
-      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9sMS1DQU9sZ1pnb0NwLTdSQmQ1M0NfY0dkQWg3MzhxY0F5bmlRejNSNklaMTlMZ0U4RHhSTHNic0hZY25JZ0hUbm5velVoNHpVMklMUTlfSk0wV0VnekN0dWFkMUh2b29vZXZR?oc=5"
+      "링크": "https://news.google.com/rss/articles/CBMibEFVX3lxTE03UUdGLUE5aFg3OE1GVFJkbnUwbU5TVGtwR3NFX091OW1iUWVtVXRRTU9pR3VzcWMwR05RbWR6M0xSZXRUVnZhc20yU1FkVU00ZHMxLTAzbU9KT0JvcFZyZ0NYa3NzSV9qWkxzQg?oc=5"
     },
     {
       "수집일": "2026-11-24",
       "카테고리": "해외 토목사업",
       "출처": "해외 토목사업",
-      "구분": "오피니언뉴스",
-      "인기도": "2026-11-23",
-      "한글제목": "국가철도공단·삼보·유신엔지니어링, 베트남 고속철 컨설팅 사업 수주...프랑스 주도 컨소시엄 참여",
-      "핵심요약": "국가철도공단·삼보·유신엔지니어링, 베트남 고속철 컨설팅 사업 수주...프랑스 주도 컨소시엄 참여 오피니언뉴스",
-      "원제목": "국가철도공단·삼보·유신엔지니어링, 베트남 고속철 컨설팅 사업 수주...프랑스 주도 컨소시엄 참여",
-      "링크": "https://news.google.com/rss/articles/CBMickFVX3lxTE9KSmJTeldyT1JJZW80SC1MdEMtNjhvM254c0xUQkZjUVpaMHc3MURqN192d0xpc1l3V1VjeGJ5SUJjU0pTTVZfOThMU2hTTHZBNE01TnQxeHJpamNoUzN1NHNPRzZkQzhlYmRnMF9QTTNTZw?oc=5"
+      "구분": "아세안익스프레스",
+      "인기도": "2026-11-22",
+      "한글제목": "“사업비만 95조” 베트남 북남고속철…한국이 설계 따냈다",
+      "핵심요약": "“사업비만 95조” 베트남 북남고속철…한국이 설계 따냈다 아세안익스프레스",
+      "원제목": "“사업비만 95조” 베트남 북남고속철…한국이 설계 따냈다",
+      "링크": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5Ud3hGakpueXhWRHVRTzdodHZadGVzVzUtSmZPVUhWRE55LUNZcmxyWFVobUE1dVRUZ2x1T0FiZzZnck5tYklvZVQxYzN2YlNPSElXV3RhOGczdTNEek1henBKRGpvS2NJ?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -687,12 +863,34 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "해외토목-동남아",
-      "구분": "더쎈뉴스",
+      "구분": "뉴시안",
       "인기도": "2026-11-24",
-      "한글제목": "밸류엑스, 인도네시아 현지법인 설립…기업용 AI 인프라 시장 진출",
-      "핵심요약": "밸류엑스, 인도네시아 현지법인 설립…기업용 AI 인프라 시장 진출 더쎈뉴스",
-      "원제목": "밸류엑스, 인도네시아 현지법인 설립…기업용 AI 인프라 시장 진출",
-      "링크": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5ZQjVsWDBDZTVwaFNiUnFCdG5Xd3dvUVVEQnJOVkM5bWFtd2w4RWtDZGJCcXhISXNYWEF1Zjc3TllWTm9TLUlLSUE4akVNS01WSWFmS280eUt4dkpfWjc5aXRFTlRCMHM?oc=5"
+      "한글제목": "[Biz 포커스] “AX 시장 진격” 밸류엑스, ‘3중 폐쇄망 AI’로 인니 공략 본격화",
+      "핵심요약": "[Biz 포커스] “AX 시장 진격” 밸류엑스, ‘3중 폐쇄망 AI’로 인니 공략 본격화 뉴시안",
+      "원제목": "[Biz 포커스] “AX 시장 진격” 밸류엑스, ‘3중 폐쇄망 AI’로 인니 공략 본격화",
+      "링크": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ndlU2dGZDZGo2cGUzbEZPVF9VQlM0d0VPb1JabWZmWE4xQ3YzSjV2VTFUam1fZ0JWcVBNYmRqT2NLWmhjb1VMR0Raa2pxeVpQOUtTakFWcFN6YW1pVUlvU3ZaQW5IeDhMeHVaQw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "뉴데일리 경제",
+      "인기도": "2026-11-24",
+      "한글제목": "[단독] 첫 해외공항 운영 꿈꿨는데 … 한국공항공사, 필리핀 일로일로 사업 '우선협상 지위' 날아갔다",
+      "핵심요약": "[단독] 첫 해외공항 운영 꿈꿨는데 … 한국공항공사, 필리핀 일로일로 사업 '우선협상 지위' 날아갔다 뉴데일리 경제",
+      "원제목": "[단독] 첫 해외공항 운영 꿈꿨는데 … 한국공항공사, 필리핀 일로일로 사업 '우선협상 지위' 날아갔다",
+      "링크": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQZTZ0Vl9IdzZQTUpPZjBkQldzM0UyTE9rTUlQdmQwTXBNd0xoMzh0Rm16Q25ES2kxNC0wbWtuclFlTmNTZEhrMXRueF94NnotZlRIb3dMR0xTazZ4LXRQRHRNSWotdkpucWh3Y2JBajRzdUpXT09QdFRiT3NiVjJjYtIBgAFBVV95cUxQZTZ0Vl9IdzZQTUpPZjBkQldzM0UyTE9rTUlQdmQwTXBNd0xoMzh0Rm16Q25ES2kxNC0wbWtuclFlTmNTZEhrMXRueF94NnotZlRIb3dMR0xTazZ4LXRQRHRNSWotdkpucWh3Y2JBajRzdUpXT09QdFRiT3NiVjJjYg?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "IndexBox",
+      "인기도": "2026-11-23",
+      "한글제목": "NMDC Energy, Wasco 엔지니어링·제작 사업 인수 - 뉴스 및 통계",
+      "핵심요약": "NMDC Energy, Wasco 엔지니어링·제작 사업 인수 - 뉴스 및 통계 IndexBox",
+      "원제목": "NMDC Energy, Wasco 엔지니어링·제작 사업 인수 - 뉴스 및 통계",
+      "링크": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPX245OGd3LTMxQjJIcU5zamJBMWZXeXozYnpHUmxTLTJBZHd5cF8wWjNIVVFpdFRTVWpYN08wUl9fOVVOemhLRGJWQkxzRE1GYUJjX3UyeTVaWlZyUzhfY3RsUHYxRl9STDBxTTQ1QVBRRDQ4eF9zUml4UVdCcjU5WDZJSzdIR2VhTmtZaU9WNjM2b0J2WEl6cUZVOElJbHVhOWh1a0loTWhEajdNWEJtcTB1dDk?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -731,6 +929,28 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "해외토목-동남아",
+      "구분": "Vietnam.vn",
+      "인기도": "2026-11-22",
+      "한글제목": "베트남과 태국의 교역액은 약 240억 달러에 달했으며, 무역 적자는 50억 달러를 넘어섰습니다.",
+      "핵심요약": "베트남과 태국의 교역액은 약 240억 달러에 달했으며, 무역 적자는 50억 달러를 넘어섰습니다. Vietnam.vn",
+      "원제목": "베트남과 태국의 교역액은 약 240억 달러에 달했으며, 무역 적자는 50억 달러를 넘어섰습니다.",
+      "링크": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNVFFkbTJSMjFndFIyeTUxcHZqVlp0T1MxM2NoRk9ibWtDMjZ5VzhuRk5DaVpvckZjZUNadG5Tb0ZRMk1FYmhFMndtaUJtREg4MV8yUE0wWVJPaU1ydVZfSUdaTVZpYkszajVEcENpeW8wZ0tRUlQwWkQycnNrN080cVBvdTk4Q2xzX1YzWG5kVjNiNUxENDR0YS1aNA?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "경기일보",
+      "인기도": "2026-11-22",
+      "한글제목": "한국 고속철도, 베트남 사업 진출 첫발…5천600억 기본설계 수주",
+      "핵심요약": "한국 고속철도, 베트남 사업 진출 첫발…5천600억 기본설계 수주 경기일보",
+      "원제목": "한국 고속철도, 베트남 사업 진출 첫발…5천600억 기본설계 수주",
+      "링크": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9NZE5GZnNUUlh2d2JUZXgtV05RZGVRbkgyVkktV3loNjk5eTB4MXRPU1VlZEpsTVpnUXZaRnU5d3Q3ZE5XVGlUb21qd09heENZTVN6cWUtMnFpZ3c?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
       "구분": "https://www.the-today.com/",
       "인기도": "2026-11-21",
       "한글제목": "[단독] 현대로템 \"차량설계 협력\"·LH \"조사 지원\"…태국 차관, 3개 사업 한국 관심 전언",
@@ -753,12 +973,122 @@
       "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "해외토목-동남아",
-      "구분": "한국일보",
+      "구분": "엔지니어링데일리",
       "인기도": "2026-11-20",
-      "한글제목": "트럼프, 아세안 정상회담 계기 '22조 원 규모' 수주 성과",
-      "핵심요약": "트럼프, 아세안 정상회담 계기 '22조 원 규모' 수주 성과 한국일보",
-      "원제목": "트럼프, 아세안 정상회담 계기 '22조 원 규모' 수주 성과",
-      "링크": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9MQVVZak9Yck5ZTXBHYmxjS2hmLVVFUWpNWGVLTmxsWlhLc1lDRDlva1lvLWFaOWNTSUhLdF92RkFlaUIzQ1p1QzNzYVVvQUdDaVNSdUVuR2hiS3MxWk1Hb2haMzAyZ2F6ZzN3VmUxTktWMVnSAXNBVV95cUxPTEFVWWpPWHJOWU1wR2JsY0toZi1VRVFqTVhlS05sbFpYS3NZQ0Q5b2tZby1hWjljU0lIS3RfdkZBZWlCM0NadUMzc2FVb0FHQ2lTUnVFbkdoYktzMVpNR29oWjMwMmdhemczd1ZlMU5LVjFZ?oc=5"
+      "한글제목": "[FIDIC 아·태 특집]위둔 치암칫트롱 FIDIC 아시아태평양 회장 “동남아 건설시장의 방향성, 태국에서 찾는다”",
+      "핵심요약": "[FIDIC 아·태 특집]위둔 치암칫트롱 FIDIC 아시아태평양 회장 “동남아 건설시장의 방향성, 태국에서 찾는다” 엔지니어링데일리",
+      "원제목": "[FIDIC 아·태 특집]위둔 치암칫트롱 FIDIC 아시아태평양 회장 “동남아 건설시장의 방향성, 태국에서 찾는다”",
+      "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aMlUzYUV1N01xbTBnSW94eTFPbUMydGNqeF9POUdWUG85SGN5bXpMODZCRk5pOFhIRjJqQmY2UllPZ3Bhcjczc1owc2dGQVFKUXhVRHR2SmFZWmxSUnBjMWNHaGZSR1I3Wnc?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "현대경제신문",
+      "인기도": "2026-11-19",
+      "한글제목": "[공시]일성건설, 캄보디아 교량·도로 공사 수주···매출 10.24%",
+      "핵심요약": "[공시]일성건설, 캄보디아 교량·도로 공사 수주···매출 10.24% 현대경제신문",
+      "원제목": "[공시]일성건설, 캄보디아 교량·도로 공사 수주···매출 10.24%",
+      "링크": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9veFJYZ2pneW5RTHRjVklDQWo2ckQzempOY25rZzdxQjFkcGk1LWx3Uk1OcFg1V2ZiWWJmMFB6c09aSzZWSlEyRmgwZ1RfZ0wtWWE4UXIyU05PSkdKM1o2elZ0b0Z0WG9RQWZB0gFrQVVfeXFMT294Ulhnamd5blFMdGNWSUNBajZyRDN6ak5jbmtnN3FCMWRwaTUtbHdSTU5wWDVXZmJZYmYwUHpzT1pLNlZKUTJGaDBnVF9nTC1ZYThRcjJTTk9KR0ozWjZ6VnRvRnRYb1FBZkE?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "디지털투데이",
+      "인기도": "2026-11-19",
+      "한글제목": "일성건설, 캄보디아 농촌 연결성 개선사업 463억8218만원 규모 수주",
+      "핵심요약": "일성건설, 캄보디아 농촌 연결성 개선사업 463억8218만원 규모 수주 디지털투데이",
+      "원제목": "일성건설, 캄보디아 농촌 연결성 개선사업 463억8218만원 규모 수주",
+      "링크": "https://news.google.com/rss/articles/CBMie0FVX3lxTE95TXZBLUdSb09UOHgxZ1hkZHNFcUkycjk4dHNnRS1xVjlCOHR2cU55c0tIV1RMUW0ybzUxUHhTY09mcW95ejROcF9FUmtpdTZjSkQ5S2dmOGlEdUIzdXQyR1dLUFFiTmtnMjJLcXZjQTVLRWZsUkp4LTIwaw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "IndexBox",
+      "인기도": "2026-11-19",
+      "한글제목": "DNV와 PLN Enjiniring, 인도네시아 전력 시스템 위한 엔지니어링 협력 확대",
+      "핵심요약": "DNV와 PLN Enjiniring, 인도네시아 전력 시스템 위한 엔지니어링 협력 확대 IndexBox",
+      "원제목": "DNV와 PLN Enjiniring, 인도네시아 전력 시스템 위한 엔지니어링 협력 확대",
+      "링크": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMkNsaDZVUENZQk5EaTdKdUhwUTZiS1EzcUM2d2FtdGFCSk9rTWVTY2xlbGlnb0JKSjNKQ0FYd2sxOHdPTkxSRnJlVm5fTTNfMzdwZndxWWdYZmJYakhlYUlNM3RzMF9sNDlaQUxTOWFkeVFiQmEzY09EM1VaZk9pZjE3QnE1dHNhbFJmTUNyaWc4SEx1MXJGQ3pZaHliSWxiakQwZldSTjQ1NHJCeGhnNmlnVm13QQ?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "엔지니어링데일리",
+      "인기도": "2026-11-19",
+      "한글제목": "도화, 산업부 세계일류상품 선정…\"철도 설계 기술력 입증\"",
+      "핵심요약": "도화, 산업부 세계일류상품 선정…\"철도 설계 기술력 입증\" 엔지니어링데일리",
+      "원제목": "도화, 산업부 세계일류상품 선정…\"철도 설계 기술력 입증\"",
+      "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTE44a29NVzU4SHZiaS1qSXFjNHBRaXh6QzhIVWg5QWxreGhlc3R1Q2FFQmVRcENTT3pEVnBSdk1CYW83dVVJQWdXRVMtbWZEd2xxR0VqOXY3RXBaYXJsUXhrYVEwRURZbmNRS1E?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "알파경제",
+      "인기도": "2026-11-17",
+      "한글제목": "소프트뱅크(9984 JP), 말레이시아 AI 인프라에 10억달러 투자…그랩과 맞손",
+      "핵심요약": "소프트뱅크(9984 JP), 말레이시아 AI 인프라에 10억달러 투자…그랩과 맞손 알파경제",
+      "원제목": "소프트뱅크(9984 JP), 말레이시아 AI 인프라에 10억달러 투자…그랩과 맞손",
+      "링크": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5rVTh6WndJTS1mVFJfWFdPSHgzalltREhOaXJOMU1pU0pZVjdveXpEU0NyQ2Fscm1acUl0Q3BIcndDNEFOLWEzZlJRRm95S180SGVMS2ZCWkxVNWoxZ1VIVlU2N0VweThmWGE3NGZn?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "뉴스핌",
+      "인기도": "2026-11-16",
+      "한글제목": "SG, 3분기 매출 244억원·영업이익 흑자전환",
+      "핵심요약": "SG, 3분기 매출 244억원·영업이익 흑자전환 뉴스핌",
+      "원제목": "SG, 3분기 매출 244억원·영업이익 흑자전환",
+      "링크": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBOa3owWlZuenJQRXdkei1nTU5SUUFoc3hpSGRiLTNaX0pkdGhPMkpHNmJaQzUzRVRrcmtlR0xWWVpEcTMtX2lId1RRVVpERnF0cDFEdlRDT1AwS0ZS?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "더구루",
+      "인기도": "2026-11-16",
+      "한글제목": "KIND, 라오스 철도·도시개발 사업 추진…동남아 인프라 시장 공략",
+      "핵심요약": "KIND, 라오스 철도·도시개발 사업 추진…동남아 인프라 시장 공략 더구루",
+      "원제목": "KIND, 라오스 철도·도시개발 사업 추진…동남아 인프라 시장 공략",
+      "링크": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBvdlRiSkxPVmxFTnJ0NjVpQzI1aG1uS0Q5eEt5enphV2JPNm11T1BhaVJPNDdaQVI1dlBlOEpJdUVTVzY0WTZHUUZtc3F0ZktvRGdPb2lOeWpiTWRsbWV5SGNQNA?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "굿모닝베트남미디어",
+      "인기도": "2026-11-14",
+      "한글제목": "[인프라] 호찌민~껀터 철도 175.2km 사전타당성조사 완료…총사업비 199조 동 제안",
+      "핵심요약": "[인프라] 호찌민~껀터 철도 175.2km 사전타당성조사 완료…총사업비 199조 동 제안 굿모닝베트남미디어",
+      "원제목": "[인프라] 호찌민~껀터 철도 175.2km 사전타당성조사 완료…총사업비 199조 동 제안",
+      "링크": "https://news.google.com/rss/articles/CBMicEFVX3lxTE11WEJPcHRrMW1CeVFxd0JMbTVTSjRpLTRCM2RXZjJ3QV9IX2hkT1UzSlZrRHVXaHFaRWVSN3dWZ0s1NGVhSWc5UE9GTW1Nbm1pNXNxdFQxbndkdXB3OTdVTFJBWUdqaGtmeC12ZkNGbmI?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "아이투자",
+      "인기도": "2026-11-13",
+      "한글제목": "대한민국 대표 가치투자포털",
+      "핵심요약": "대한민국 대표 가치투자포털 아이투자",
+      "원제목": "대한민국 대표 가치투자포털",
+      "링크": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE1NUk15bTc4bmgxYXJVSjBPZVk2M3BrWDNUMzFEWXpjLUo0TmVPQUNXS2Y4QVQwd3hhS0J1Y2V0UlVEa3lTeFRV?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외토목-동남아",
+      "출처": "해외토목-동남아",
+      "구분": "매일일보",
+      "인기도": "2026-11-12",
+      "한글제목": "韓·美·中 몰리는 동남아 AIDC…K-기업, 인프라 수주전 뛰어든다",
+      "핵심요약": "韓·美·中 몰리는 동남아 AIDC…K-기업, 인프라 수주전 뛰어든다 매일일보",
+      "원제목": "韓·美·中 몰리는 동남아 AIDC…K-기업, 인프라 수주전 뛰어든다",
+      "링크": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5PeU9naEdZOEMwUFRHdmw4eTRVbFpxSHpLZHpLb0xJNkt6TkVSTlUzU0Y1Z3V3SkNEbWNYU3hPb19EV1FxODNKX21vaUNmeGlPM0F3Xzl6MU01aEE4SFBKNk1tOWQ?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -852,6 +1182,17 @@
       "수집일": "2026-11-24",
       "카테고리": "해외정치",
       "출처": "해외정치",
+      "구분": "현장언론 민플러스",
+      "인기도": "2026-11-24",
+      "한글제목": "‘위성락 원톱 체제’가 선언한 실용외교의 파산, 이제 환상을 거둘 때다",
+      "핵심요약": "‘위성락 원톱 체제’가 선언한 실용외교의 파산, 이제 환상을 거둘 때다 현장언론 민플러스",
+      "원제목": "‘위성락 원톱 체제’가 선언한 실용외교의 파산, 이제 환상을 거둘 때다",
+      "링크": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1zeXBVRGl4R3FuMlllZ2F4UlBGSDZTd25vLXJLdUp4dGV3Y0dlT2h1VDl4RUIzbUFnNGloSFU2RVNzS3VMSnhBXzFSQkprUkhFTUNTcDlBYWhocE9pQ3VTZXIyWVQ2ZUtpRWVfUzhR?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외정치",
+      "출처": "해외정치",
       "구분": "데일리연합",
       "인기도": "2026-11-24",
       "한글제목": "[심층분석] 네타냐후의 ‘이란 공격 의지’는 이스라엘을 위한것인가, 그를 위한것인가",
@@ -927,14 +1268,14 @@
     },
     {
       "수집일": "2026-11-24",
-      "카테고리": "해외정치",
-      "출처": "해외정치",
-      "구분": "세계일보",
-      "인기도": "2026-11-23",
-      "한글제목": "임재환 아오야마가쿠인대 교수 “1년 넘게 얼어붙은 中·日관계… 韓에 기회로 보기는 어려워” [세계초대석]",
-      "핵심요약": "임재환 아오야마가쿠인대 교수 “1년 넘게 얼어붙은 中·日관계… 韓에 기회로 보기는 어려워” [세계초대석] 세계일보",
-      "원제목": "임재환 아오야마가쿠인대 교수 “1년 넘게 얼어붙은 中·日관계… 韓에 기회로 보기는 어려워” [세계초대석]",
-      "링크": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5FQTRhdWtRVS1KeXhFMEF3Xzdqcjh0dDZUdEZkaXFEM2tvWEZwOTRYSlRHWjc2VGF3X2YzVFlDcUhpR0Z6NG1DU2tkVEZZNDBz0gFUQVVfeXFMUHFlNDlhYTktMzJBN0YxX0t0Z1dEOTh6Nkc4X2gwUi1uYnYydV9tdkFfN3VFXzdadHEwR2lmcTQ3by1vVEZtMmZfTy11NllrSWFmc1NH?oc=5"
+      "카테고리": "국내경제",
+      "출처": "국내경제",
+      "구분": "연합뉴스 한민족센터",
+      "인기도": "2026-11-24",
+      "한글제목": "[경제읽기] 젠슨 황 복귀에 코스피 급등…매수 사이드카 발동도",
+      "핵심요약": "[경제읽기] 젠슨 황 복귀에 코스피 급등…매수 사이드카 발동도 연합뉴스 한민족센터",
+      "원제목": "[경제읽기] 젠슨 황 복귀에 코스피 급등…매수 사이드카 발동도",
+      "링크": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1reVVZYWNFT2dTV2ZCLTFPTWNqUkFOOWMtVmc3QW9nMGNMNXA5R2ZFZDZlZ0FtbWpQUXFEQTJJX2g4b3NzN1NXQW9KUEFHRWRoTTh4ZUZxYnE4UGxxLWt5UjRkRGM1ZFpCdHlvX2l3TkRkMTl6?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -946,6 +1287,17 @@
       "핵심요약": "무보·방위산업진흥회, K-방산 중기 수출경쟁력 강화 맞손 더팩트",
       "원제목": "무보·방위산업진흥회, K-방산 중기 수출경쟁력 강화 맞손",
       "링크": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9mVklGYU5DaUlyOVRtWmlsM0RGcjNqaTFMN1Z5d1lMZzFnZG13WUYyX1gwRlJ4czFzcnZMVzJOMXlfLWVDV2VyS3ZXZVhiMDVweEJKZmxxaWU2QdIBVEFVX3lxTE9fMndjTXNZeXh3VFQ4SmY1TThSV2FDZnZFY0lHQ3Z6X0V6S1I3aVJuanNSNnV2Ykk1c0l6T1Y3THE3aHJkNnJyNDloOFk1N2tFRDllZw?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "국내경제",
+      "출처": "국내경제",
+      "구분": "채널A",
+      "인기도": "2026-11-24",
+      "한글제목": "김정관 산업통상부 장관 “수출 1조 달러 달성…한국 경제의 새로운 이정표”",
+      "핵심요약": "김정관 산업통상부 장관 “수출 1조 달러 달성…한국 경제의 새로운 이정표” 채널A",
+      "원제목": "김정관 산업통상부 장관 “수출 1조 달러 달성…한국 경제의 새로운 이정표”",
+      "링크": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5rLTNWZnZjN05pcUNpTDNFVTV4djkyVC0xX2QwTzBfVU1jS01TS2ZkOHc3VnJ0ajNpNXI5SGpHb0w2R3NScmlGd0hzbDZjbnNSYUpnQjNCdkdhOG5uX0HSAWNBVV95cUxQTXhNLVluUmp1Qmlpdk5GTC1KLW1MdDM1SHhmU0JOMFZUOV9UYUNPOHJjR2lfUkZBeUp4bEdVTmFXeFMzVXNlQWVYQnFzRXFjX3RFUGIyUlQ1emEwQ1paQ1NRajA?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -1004,28 +1356,6 @@
     },
     {
       "수집일": "2026-11-24",
-      "카테고리": "국내경제",
-      "출처": "국내경제",
-      "구분": "메디컬투데이",
-      "인기도": "2026-11-24",
-      "한글제목": "감성코퍼레이션, 스노우피크 해외 수출 확대로 성장세 지속",
-      "핵심요약": "감성코퍼레이션, 스노우피크 해외 수출 확대로 성장세 지속 메디컬투데이",
-      "원제목": "감성코퍼레이션, 스노우피크 해외 수출 확대로 성장세 지속",
-      "링크": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02Y2ZmMW53Qlc1ODlrcHZPMzlVa3NreHJwYk5IUXRxemJPMFUzSUdBQ2VFUGVrM3IwYWV5QkVGVWJ1a3YtVG9BOFNGZkctanMwSEZDLWR4OHI2SVMtR3FsTjJ1cTlUTGNobkJoSw?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "국내경제",
-      "출처": "국내경제",
-      "구분": "헤럴드경제",
-      "인기도": "2026-11-24",
-      "한글제목": "1년전 PBR된 코스피, 멀어진 ‘체질 개선’",
-      "핵심요약": "1년전 PBR된 코스피, 멀어진 ‘체질 개선’ 헤럴드경제",
-      "원제목": "1년전 PBR된 코스피, 멀어진 ‘체질 개선’",
-      "링크": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9LUVhLVm50QzVnQktwRjBVeWhYeURyeTFUZDVyVVJESEM0Y0N4cmRGWGRoWlF1WV9jc1liLWxad2VGa2ZNbTRmeFRxT3dDRDZPUHBSLXN3?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
       "카테고리": "해외경제",
       "출처": "해외경제",
       "구분": "뉴시스",
@@ -1056,17 +1386,6 @@
       "핵심요약": "김제시, 제16회 미래발전 경영인 포럼…금융시장 위기·기회 조명 더파워",
       "원제목": "김제시, 제16회 미래발전 경영인 포럼…금융시장 위기·기회 조명",
       "링크": "https://news.google.com/rss/articles/CBMifkFVX3lxTE91M3BEWFFPRWgtT2xWSlFLaDJBX3RQalJ1eVF4YXo1Y21TUmNHaXlnTVhWUHV0eUEySGYxUGhGRVJRcDNmUGZoWWo3Tmp2amZOMjJMOTgzdDVNT1hLUFBrcUNNdm9welJVUXNaRG4wQkV0ZG1ydURzeFlDd3hNZw?oc=5"
-    },
-    {
-      "수집일": "2026-11-24",
-      "카테고리": "해외경제",
-      "출처": "해외경제",
-      "구분": "이데일리",
-      "인기도": "2026-11-24",
-      "한글제목": "관세 이어 젠슨 황까지…트럼프가 '멱살 잡고' 끌어올린 AI 증시",
-      "핵심요약": "관세 이어 젠슨 황까지…트럼프가 '멱살 잡고' 끌어올린 AI 증시 이데일리",
-      "원제목": "관세 이어 젠슨 황까지…트럼프가 '멱살 잡고' 끌어올린 AI 증시",
-      "링크": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNQXo0b01QRzk2bWVGbm8xUW5YRWZrc3dmM3JhUnlFTVVjdUF5c3hHT2JOVkxYWlNoNDVBVTRlbUdBVi01VUpDYXgzS0FQcGJfdGRvanF4RDRocjA5S0RyWlhIVkVFaWhLYXR2ck1DbFNxZW1IOFRXcElxTy01WGJtQw?oc=5"
     },
     {
       "수집일": "2026-11-24",
@@ -1111,6 +1430,17 @@
       "핵심요약": "[국제유가] 공급 과잉 전망에 3%대 급락 신아일보",
       "원제목": "[국제유가] 공급 과잉 전망에 3%대 급락",
       "링크": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9ZNXpQeHhZRVgyTW5DR3hULUMyaTBZMVNsaGhPRGhPaURqWW5OdlZCOWwtVTAweGxqUzJXYVZpRXpVMFVVdVU2aTd3WHp3VWxSV1FIbWVMWk16RDVPVktBNUZlRWdnRExtNHhKeXVfcTY?oc=5"
+    },
+    {
+      "수집일": "2026-11-24",
+      "카테고리": "해외경제",
+      "출처": "해외경제",
+      "구분": "포커스온경제",
+      "인기도": "2026-11-23",
+      "한글제목": "국제유가, 글로벌 원유공급 우려 완화 등 영향 하락-WTI·브렌트유 3%대 내려 3개월만 최저치",
+      "핵심요약": "국제유가, 글로벌 원유공급 우려 완화 등 영향 하락-WTI·브렌트유 3%대 내려 3개월만 최저치 포커스온경제",
+      "원제목": "국제유가, 글로벌 원유공급 우려 완화 등 영향 하락-WTI·브렌트유 3%대 내려 3개월만 최저치",
+      "링크": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5vdkpjenBIS2Vjd0t0VGdLUklJdmxCYUYyV2ZxQUo5ajd6RjZPVG1GRUI2c25qazNxaWpIMk5GRGNabHAzeXlmWmFVSkh4eHQwcHU4M3pFUkRWcFRrMTcw?oc=5"
     }
   ]
 }
