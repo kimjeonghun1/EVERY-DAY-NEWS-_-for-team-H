@@ -195,6 +195,33 @@
       color: #9ca3af;
       line-height: 1.45;
     }
+    .date-group-header {
+      margin-top: 1.35rem;
+      margin-bottom: 0.35rem;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid var(--border);
+      color: var(--muted);
+    }
+    .date-group-header:first-child { margin-top: 0.25rem; }
+    .date-group-header.today { border-left-color: #34d399; color: #6ee7b7; background: rgba(52, 211, 153, 0.08); }
+    .date-group-header.week { border-left-color: #38bdf8; color: #7dd3fc; background: rgba(56, 189, 248, 0.08); }
+    .date-group-header.pinned { border-left-color: #fbbf24; color: #fde68a; background: rgba(251, 191, 36, 0.08); }
+    .new-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 5px;
+      background: rgba(52, 211, 153, 0.2);
+      color: #6ee7b7;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+    .news-row.older .news-row-title { color: #cbd5e1; font-weight: 500; }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
@@ -371,8 +398,28 @@
         return;
       }
 
+      const baseDateStr = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+      const baseMs = new Date(baseDateStr + 'T00:00:00Z').getTime();
+
+      function getDateGroup(item) {
+        if ((item.인기도 || '') === '상시') return { key: 'pinned', label: '📌 고정 안내' };
+        const dStr = /^\d{4}-\d{2}-\d{2}$/.test(item.인기도 || '') ? item.인기도 : (item.수집일 || baseDateStr);
+        const diffDays = Math.floor((baseMs - new Date(dStr + 'T00:00:00Z').getTime()) / 86400000);
+        if (diffDays <= 0) return { key: 'today', label: `🟢 오늘 (${dStr})` };
+        if (diffDays <= 7) return { key: 'week', label: '🔵 최근 7일' };
+        return { key: 'older', label: '⚪ 지난 소식 (8일 이상)' };
+      }
+
+      let lastGroupKey = '';
       grid.innerHTML = filtered.map(item => {
         const cat = getCategory(item);
+        const grp = getDateGroup(item);
+        let groupHeaderHtml = '';
+        if (currentView === 'list' && grp.key !== lastGroupKey) {
+          lastGroupKey = grp.key;
+          groupHeaderHtml = `<div class="date-group-header ${grp.key}">${grp.label}</div>`;
+        }
+
         const isGoogleRss = (item.링크 || '').includes('news.google.com');
         let targetUrl = item.링크;
         let linkLabel = '원문 보기 →';
@@ -388,10 +435,11 @@
           const pub = item.구분 || item.출처 || cat;
           const dateOrPop = item.인기도 || item.수집일 || '';
           const showSummary = item.핵심요약 && !item.핵심요약.endsWith('원문에서 상세 내용을 확인하세요.') && !item.핵심요약.endsWith('원문 링크에서 상세 내용을 확인하세요.');
-          return `
-            <div class="news-row">
+          const todayBadge = grp.key === 'today' ? '<span class="new-pill">오늘</span>' : '';
+          return `${groupHeaderHtml}
+            <div class="news-row ${grp.key}">
               <div class="news-row-head">
-                <a class="news-row-title" href="${targetUrl}" target="_blank" rel="noopener noreferrer">${item.한글제목 || item.원제목}</a>
+                <a class="news-row-title" href="${targetUrl}" target="_blank" rel="noopener noreferrer">${todayBadge}${item.한글제목 || item.원제목}</a>
                 <span class="news-row-meta">${pub}<span class="sep">|</span>${dateOrPop}<span class="sep">|</span>${cat}</span>
               </div>
               ${showSummary ? `<div class="news-row-summary">${item.핵심요약}</div>` : ''}
