@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 트렌드 레이더 | 매일 오전 8시 자동 업데이트</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #131a2a;
+      --card-hover: #1a2338;
+      --border: #232e47;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem 4rem;
+    }
+    .container { max-width: 1120px; margin: 0 auto; }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+    h1 span { color: var(--accent); }
+    .subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 0.25rem; }
+    .updated {
+      font-size: 0.85rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #0b0f19;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    .search-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      min-width: 240px;
+      outline: none;
+    }
+    .search-box:focus { border-color: var(--accent); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.85rem;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      background: var(--card-hover);
+      border-color: #334155;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+    }
+    .badge {
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-weight: 600;
+      background: rgba(148, 163, 184, 0.12);
+      color: #cbd5e1;
+    }
+    .badge.gh { background: rgba(168, 85, 247, 0.15); color: #d8b4fe; }
+    .badge.hfp { background: rgba(251, 191, 36, 0.15); color: #fde68a; }
+    .badge.hfs { background: rgba(244, 114, 182, 0.15); color: #f9a8d4; }
+    .badge.news { background: rgba(52, 211, 153, 0.15); color: #6ee7b7; }
+    .pop { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .title { font-size: 1.05rem; font-weight: 650; color: #f8fafc; line-height: 1.4; }
+    .summary { font-size: 0.9rem; color: #cbd5e1; }
+    .orig { font-size: 0.78rem; color: var(--muted); word-break: break-word; }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem;
+    }
+    .lang-tag { color: var(--muted); }
+    .link-btn {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .link-btn:hover { text-decoration: underline; }
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px dashed var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1><span>AI</span> 트렌드 레이더</h1>
+        <p class="subtitle">GitHub · Hugging Face · AI 신기술 뉴스를 매일 자동 수집 &amp; 한국어 요약</p>
+      </div>
+      <div class="updated" id="updatedAt">불러오는 중...</div>
+    </header>
+
+    <div class="controls">
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-source="ALL">전체</button>
+        <button class="filter-btn" data-source="GitHub Trending">GitHub</button>
+        <button class="filter-btn" data-source="HuggingFace Papers">HF 논문</button>
+        <button class="filter-btn" data-source="HuggingFace Spaces">HF 앱</button>
+        <button class="filter-btn" data-source="AI 뉴스">AI 뉴스</button>
+      </div>
+      <input type="search" class="search-box" id="searchInput" placeholder="키워드 검색 (예: 에이전트, MCP...)" />
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script>
+    let allItems = [];
+    let currentSource = 'ALL';
+
+    function getBadgeClass(src) {
+      if (src.includes('GitHub')) return 'gh';
+      if (src.includes('Papers')) return 'hfp';
+      if (src.includes('Spaces')) return 'hfs';
+      return 'news';
+    }
+
+    function render() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const filtered = allItems.filter(item => {
+        const matchSource = currentSource === 'ALL' || item.출처 === currentSource;
+        const text = `${item.한글제목} ${item.핵심요약} ${item.원제목} ${item.구분}`.toLowerCase();
+        const matchQuery = !q || text.includes(q);
+        return matchSource && matchQuery;
+      });
+
+      const grid = document.getElementById('grid');
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty">표시할 항목이 없습니다.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="badge ${getBadgeClass(item.출처)}">${item.출처}</span>
+              <span class="pop">${item.인기도 || ''}</span>
+            </div>
+            <h2 class="title" style="margin-top:0.65rem;">${item.한글제목 || item.원제목}</h2>
+            <p class="summary" style="margin-top:0.5rem;">${item.핵심요약 || ''}</p>
+            ${item.원제목 && item.원제목 !== item.한글제목 ? `<p class="orig" style="margin-top:0.45rem;">원제: ${item.원제목}</p>` : ''}
+          </div>
+          <div class="card-footer">
+            <span class="lang-tag">${item.구분 || ''}</span>
+            <a class="link-btn" href="${item.링크}" target="_blank" rel="noopener noreferrer">원문 보기 →</a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    document.getElementById('filters').addEventListener('click', e => {
+      if (!e.target.classList.contains('filter-btn')) return;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      currentSource = e.target.dataset.source;
+      render();
+    });
+
+    document.getElementById('searchInput').addEventListener('input', render);
+
+    fetch('./data/latest.json?t=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('updatedAt').textContent = `업데이트: ${data.updatedAt || '-'}`;
+        allItems = data.items || [];
+        render();
+      })
+      .catch(() => {
+        document.getElementById('updatedAt').textContent = '데이터 로드 실패';
+        document.getElementById('grid').innerHTML = '<div class="empty">data/latest.json 파일을 불러올 수 없습니다. (n8n 워크플로우를 실행해 주세요)</div>';
+      });
+  </script>
+</body>
+</html>
