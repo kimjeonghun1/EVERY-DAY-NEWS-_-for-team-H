@@ -354,6 +354,14 @@
         const text = `${item.한글제목} ${item.핵심요약} ${item.원제목} ${item.출처} ${item.구분}`.toLowerCase();
         const matchQuery = !q || text.includes(q);
         return matchCat && matchQuery;
+      }).sort((a, b) => {
+        const pa = a.인기도 || '';
+        const pb = b.인기도 || '';
+        if (pa === '상시' && pb !== '상시') return -1;
+        if (pb === '상시' && pa !== '상시') return 1;
+        const da = /^\d{4}-\d{2}-\d{2}$/.test(pa) ? pa : (a.수집일 || '');
+        const db = /^\d{4}-\d{2}-\d{2}$/.test(pb) ? pb : (b.수집일 || '');
+        return db.localeCompare(da);
       });
 
       const grid = document.getElementById('grid');
