@@ -2,7 +2,7 @@
   "updatedAt": "2026-11-24 14:10",
   "items": [
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "TypeScript",
@@ -13,7 +13,7 @@
       "링크": "https://github.com/deepseek-ai/dsh-superagent-prototype"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "JavaScript",
@@ -24,7 +24,7 @@
       "링크": "https://github.com/heydamir/unslop"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "GitHub Trending",
       "구분": "Python",
@@ -35,7 +35,7 @@
       "링크": "https://github.com/JuneYaooo/rea-video"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
@@ -46,7 +46,7 @@
       "링크": "https://huggingface.co/papers/2611.29361"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
@@ -57,7 +57,7 @@
       "링크": "https://huggingface.co/papers/2611.27319"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Papers",
       "구분": "신개념/메커니즘",
@@ -68,7 +68,7 @@
       "링크": "https://huggingface.co/papers/2611.29238"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Spaces",
       "구분": "gradio",
@@ -79,7 +79,7 @@
       "링크": "https://huggingface.co/spaces/JCisHERE/wan2-2-i2v-v3"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Spaces",
       "구분": "gradio",
@@ -90,7 +90,7 @@
       "링크": "https://huggingface.co/spaces/MiniMaxAI/minimax-h3-image"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "AI 트렌드",
       "출처": "HuggingFace Spaces",
       "구분": "docker",
@@ -101,117 +101,117 @@
       "링크": "https://huggingface.co/spaces/huggingface/moe-blogpost"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Znews",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "2027년 남북 고속도로 확장 투자자 선정 입찰 실시",
       "핵심요약": "베트남 정부가 남북 고속도로 확장 구간의 민간 투자자 선정을 위한 입찰을 2027년에 진행할 예정입니다.",
       "원제목": "Sẽ đấu thầu chọn nhà đầu tư mở rộng cao tốc Bắc - Nam trong năm 2027",
       "링크": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQQWUwT3ZURWVLMjh3cnJYX3NWV2MwNTlhMUh6WWZsRGhnQjhyNlc1NjF5Y3pnZWhNcU1ta1NMVTZRa2RWS0JNUElqT1BKSzkzMVhDMUNKaGF6UjBjZUhZeVZfakxTTlB4YVRNeWE2dDV0Mk95X2lUeGNhNncwVk12SWVRSWl1OGZ0elN1WHhTU1FvdVhONmJfa1FsNl9jUDdXUXc?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Báo Xây dựng",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "건설부, 푸토성에 40km 이상 규모의 비엣찌-호아빈 고속도로 관리 및 투자 임무 위임",
       "핵심요약": "푸토성이 40km가 넘는 비엣찌-호아빈 고속도로 프로젝트의 관리와 투자를 주도적으로 맡게 됩니다.",
       "원제목": "Bộ Xây dựng giao tỉnh Phú Thọ quản lý, đầu tư hơn 40km cao tốc Việt Trì - Hòa Bình",
       "링크": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOXzY2a1pxQ1V3TnhQZFJKS2hjWG5NWEFfd01SWjNPNWtCRzY2clFEbXlXM0UtdmJmb0VnR1psd1FRVWVNMmV1ejN5Z0x0ZzhYWXFPclB3Y0lScFJndmptaVBuT2ZmRVhsQUtqdTVfMjRJTkpmdXRFbnNWUjhoYWFwWVlZVnRwSlJwZEJPUmN4U2t1bDBDWVZ0MEFlUzFKXzc3b1AtUjJRNWJtXzFkR19EZ0ctbE5ja3dScmpLdGlwdTdYQQ?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "CafeF",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "러시아 계약자 선정, 2조 동 규모의 고속철도 사업 재착공 (총연장 약 80km, 교량 17개소)",
       "핵심요약": "러시아 시공사를 선정하여 총연장 약 80km에 교량 17개가 포함된 2조 동 규모의 고속철도 프로젝트가 다시 공사에 들어갑니다.",
       "원제목": "Chọn nhà thầu Nga, tái khởi công dự án đường sắt cao tốc 2.000 tỷ đồng, toàn bộ công trình dài gần 80 km với 17 cây cầu",
       "링크": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxORk1OLWppdDFFUFNvM01KM2xxWXVXZGxqOEdnQ2NNSjBFV3ItemVKZmowYTJIaFF6c2JBODlSdzk5alZJLWx1YTkzSks0dkZzcWRuVEVJWVhLRHc5aTd1UjBOUTlndEpGQ1JmU1NmbHNNbENSa0N3S2NZUW1JMWVleGRXYzQzd3hTU1lBdUgzYnUzVXdPX3RhZ3lJUHFBRkl3cEduM0toTXd6MnB3MFFxR0JoREs2S0U0WnFqSHBOd05GU0ppZXVJTEhXVkRkUElmazlGUExDei1faFF5OUs3MlpkNG1YWHVvQ19IRQ?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Tin nhanh chứng khoán",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "교통 인프라 프로젝트의 아스팔트 공급난 심화",
       "핵심요약": "베트남 내 주요 교통 인프라 건설 현장에서 필수 자재인 아스팔트 공급 부족 문제가 대두되고 있습니다.",
       "원제목": "Căng thẳng nguồn cung nhựa đường tại dự án hạ tầng giao thông",
       "링크": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZmVzN05ZZzIyUHp3RTFVWWIxUXFHMmdqV0hlbHkzbTR6eFRTMEFTcVhWUTNQd1dpRUFINE9HX3JwRkVEZmF1YmFaOWU3ZFlSOWZqR3B0Sk1nUmV1UkROT2I2MEh4aldRRDhMRUFKa05Tbkc4UlBERTJ0REFTbzVadEtPNTNMZFJwZ1VBejczd19vM3ZHdmJzQlhWWVNOdXpycGd0ZVFzeE1WalFTV0FOZ9IBrAFBVV95cUxOTkFzUHJJQ2VpcnloU1paZlpnLTlqdUhQVmo1UG02alB6WERsbHZqTkxmZER3VmxjQ2Y5TDVGczBXMHhxemF5RzkxelVqTE9uMEdlc1B4U3RFTkVRMjJlbXU5bjlQcDBNSWM3MFcwbnNmb2RlcnlXUnprY014SmJLMHc5elVSd09YU1VOd3VKaFlWaS03UVhRUzgxaXdleWZoN2o4WjNaSm5tQ0V3?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Báo Xây dựng",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "남북 고속철도 사업 수립을 위한 4단계 진척 마일스톤 설정",
       "핵심요약": "대규모 국책 사업인 남북 고속철도 건설 프로젝트의 원활한 추진을 위해 4가지 핵심 추진 일정 단계가 수립되었습니다.",
       "원제목": "Thiết lập 4 cột mốc tiến độ lập dự án đường sắt tốc độ cao Bắc - Nam",
       "링크": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQaGJfQ1V2VHZoQ2IxUXc1MldqUW9HZGRiZUFlUFhjbWdQR3llVXBKZC1CdXdObUVtLWUtTnJOU1l2ZGw2aHVhZmNQYkdReUZVV3RLdlNXWXVhRXlNNkppLU5NWWFqT0ZHc1oyOFB4ak9oSFBlVWNjb1RoOWFfeTNJOXlPdE42Z01tbVhZWjkwek4wbE80VnFnb2hlNVFEdXVqSUFpTVNidFlOR3c5dEJWMw?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Nghiên cứu Kinh tế-Tài chính",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "거점 지역의 경제 성장을 견인하는 공공 투자: 2021-2025년 현황 및 2026-2030년 방향",
       "핵심요약": "주요 경제 거점 지역의 공공 투자 성과를 평가하고 2026~2030년 기간의 인프라 투자 방향성을 제시합니다.",
       "원제목": "Đầu tư công thúc đẩy tăng trưởng kinh tế tại các vùng động lực: Thực trạng giai đoạn 2021-2025 và định hướng giai đoạn 2026-2030",
       "링크": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQc3VyTnpzNFFYcmpSZXhjSmg1VDlIZXpBajhmSF9BSjNpODItanl5NDZ5RDBjdEtrRTQ4TEZJZ0RJSjlTVjRybnJ6eE0yMXNXbVlLcUx4aEM2WTZieGZrZlFWUTlDYXJTT3FTZXNxVDZEVnBpVW1CbUg5azhMVEFFVEFnLU1Hd1lhRVFRWTd4ckMtUG9YZHRGUm9rY2FIaV9jMzlDcERUa1ZWRUc1QW5aeVctT2xiR1BNYUdTQmtNR2tXMkF1azRiRTVMdUZLR2RYd2ZrZV9FVXhFMDVrZmZ4bzdkN2xlZDlXX0drVmx6dmgxSmsxRDJQUmo3REZzUUxKMnFQX1kwdGNqQmxqZVE?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Báo Đấu thầu",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "대규모 예산 투입되는 주요 교통 프로젝트: 공정 지연 유발하는 병목 현상 집중 조명",
       "핵심요약": "대규모 자금이 투입되는 중점 교통 인프라 사업에서 공기를 지연시키는 주요 장애 요인들을 분석했습니다.",
       "원제목": "Vốn lớn cho loạt dự án giao thông trọng điểm: Gọi tên điểm nghẽn níu tiến độ",
       "링크": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaDJ3VnhiQ2lrTVVocWM3b3dNMGZhS193aGpTQWw4Nm1CVDVUNWZpR0JkcmZQUjdmMzNIYWx2MHdlZlEzeDktYTZSSWFzdkVFTFlnVmdNQmNNWmRRWEFnZkJiTlJsMEpQMHRHejVCM09JSkl6VmR1c2ItaEZNSkZPWFdmZEVYVElTdXh2dW9ncUFPQ0t4TW1EVUItYzVVLUhKYnV4QllGdDNMaV94bjZRVHJ5WQ?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Thời báo Tài chính Việt Nam",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "깜로-라선 고속도로 확장 사업의 연이은 난항",
       "핵심요약": "깜로-라선 고속도로 확장 공사 현장에서 예산, 보상, 지형적 요인 등으로 인한 복합적인 어려움이 지속되고 있습니다.",
       "원제목": "Khó khăn dồn dập tại dự án mở rộng cao tốc Cam Lộ - La Sơn",
       "링크": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQYzZYZ19QREpMby1SZk9LdF9BbDhiTWpBY1lrcGpjWGN4SUtIaHpCcjJ4VmluZi1ybkc3dVo0SURpcjJMMkpPZ3ZGRVlTNE0zU19WbW8xb2gxTmZaVU9XZXZGOFFzNE12aUhieTd1TnlmVkVQTjE2RzFGMFhYaThMMzJiUktaam1YcGZ0MXVvZTVkMDFiN3Fsc2pPaTV5aGg3Y3Z0TlB1SHREd0Fwcmc?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Tạp chí Diễn đàn Doanh nghiệp",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "고속도로 5,000km 달성 목표를 위해 필요한 '사고방식의 대전환'",
       "핵심요약": "베트남 정부의 5,000km 고속도로 구축 목표를 차질 없이 달성하기 위해 기존 관행을 깨는 혁신적 사고가 촉구되고 있습니다.",
       "원제목": "Cần \"cách mạng tư duy\" để đảm bảo mục tiêu 5.000 km đường cao tốc",
       "링크": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQMldaN1RVVTA0dGgxa1NRZDVnZlV6ZjN2YUFNdndzaTlwYWJCRkwzeF9VMHZ2WHR3M2htb3NzZHYxaUZNdmRQV0d4RGxzZkQ0YkZOTk02SFNyQUZ0LWZBTjlGV1FDSUNzUEo1TnhVdVlUa21UU281Zk9RMTFHclR4RC1Hcmx1T2U4RmEzc3RIMk9uV0dmWlpiWU96UzRCS2lJNnJOVkhvSnU3QUU?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-베트남",
       "출처": "베트남 현지뉴스",
       "구분": "Znews",
-      "인기도": "202",
+      "인기도": "2026-11-24",
       "한글제목": "남북 고속철도 컨설팅 입찰 수주 기업의 '재무 건전성' 진단",
       "핵심요약": "남북 고속철도 타당성 조사 및 컨설팅 용역을 수주한 기업들의 재무 상태와 수행 능력을 평가합니다.",
       "원제목": "'Sức khỏe' doanh nghiệp trúng thầu tư vấn đường sắt cao tốc Bắc - Nam",
       "링크": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOVGozaEtJREJmSjRDRVVHTjNVcF9FZWJKamFYbmZBVXRfQU00M3dZQ1I3Q0tUR3hGeGYzN3R6T1NLZTh5dzUzY18yTmJYeHliRnh4RU1ta0dWX25PWWhkU2VkVFU4eGtlVkk2WUlORGZSMi00b2xyYkd2WTdlMVBlQ2RUb1pCdjhWdGZUSGdMOUY4OVo2Mi1PVFpnal9RWmM2?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "Demokratis.co.id",
@@ -222,7 +222,7 @@
       "링크": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBSVmZOUi1CRFJnSGQ3M0hXajc1VWVPLTN3cVRETEo0bTZmallfRk1Qb3NYTVFfS1ZzUDVnQkpOaWt3RGFEcnBMc0ZpbTdwSlNmYXdDaV9JV2JiVUZibmRUUU51RUQzT3J0dUE?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "Rilis Kalimantan",
@@ -233,7 +233,7 @@
       "링크": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQWkwycTc1dElHdXVMdlZsaGdhSVItUjlNNkluUUdKYzRIaks1TkRUd2V0TW12anZUbXlraFgwRGctRWVSZS14Q1hzS1p3NGNtYVZmZnF1UGx4ajA4ekJhRG5fTkdNTXJQNXNjMnhjU3FnODZ3UEo2aWNnM0ZxTkpReV96LUF1S1U?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "RADAR NUSANTARA NEWS",
@@ -244,7 +244,7 @@
       "링크": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOa3NVY1ZWbjFPRTlQM0Y2ZXQwemVja19seWUxRXpZdWVOSmVNVURYSGhFTHJidnVOaXhFMy1DX3dxS2tLQWh3cmpNcEp5NUNoUWQ3eElLQWE1WGJzQ1JEemozTWZBTHpKb3RyM1BTVlBOUVBacWxuSnRLNVFkaTN6c0N2OWNPUQ?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "Vietnam.vn",
@@ -255,7 +255,7 @@
       "링크": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOME4wUVVTZzJKN05DRm02RVpWTkRlYlBMVnBrMlR5cmtpZklIaWxUR0R0U2w3NFpySHpEajVJNnFZSWxnOVFGOWpuYnlVVXRKQlB1VXdHYUtPMVZ1N3JDcmxsV3RITGZsaUZRV2gxLVJ4ajlYZ0o1QWV0MXJjOU9USFNWbk9ULXUx?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "NUSABALI.com",
@@ -266,7 +266,7 @@
       "링크": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNV0N5bk9ZdVh4TXZZRGtMRHdGdEtMYnE0d1VfaXdZcm9EWjBhLXZlZUppTUZnWGlwdXFsVkN2S1VSMEV2Tm9YN0k3Z2tiM2RBdDBtNHk4TElLa2FDZlQwTTRzb2pKdUNMWkdMYXE2V3NMVDY5QWZKcG16TUx4bnFnREloUlpoV18xTW1N?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "NUSABALI.com",
@@ -277,7 +277,7 @@
       "링크": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPUy1GTEg2X2lWd09fbEhFdWNyM1dXaUo0QUZieHlZZ0Jxb1lHRzJWOGV4MVg2ZlcxbFgtTHptLW1rWW1waFZrN2F1VjdYSmdUNTNXUndSMWJkWDNqY3NrTnZvcGZQazhTR0FNZXYxZmJaMlBDLW52cGVSblpfODVkbVJYcVZ5Wmc2cWdmWl9RRkZxMVpFQWM4YlJsZjdyYmZ1Yldv?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "Top Konstruksi",
@@ -288,7 +288,7 @@
       "링크": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQeDZ3ODFxMzlYV2FJSjE1Um4tcWFneWo5U1B6RWYyVmU3dFFVQTc0Vk5oc1lfbHVLaXpJUkxDRkFoR1JVNm94aU9YVktSWENfZUNXaVRvNEljRk1Fbk5lc2dVUElYeGxla1NOU0FDYURUanJtOS1YZzlEVDIzZlpCN1JONjlyS0pJREZkRjdlTDVSTnBpMmtCbGQ3czhkMk1JZHJHTzI3R2I0MWty?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "Intel Post News",
@@ -299,7 +299,7 @@
       "링크": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOXzdKaVhPX0Frb0FaeGdOSmFMM2k5SXBLUzV4VVotYjdKc2lHamUzX0JrQ3hQUmw2RlR2V1hxWnJsSDdsWFZGVU9aTWFmd1F0cktTaWUzQkVwZjJyTWRhaEx6X2Q4YWtzZFNJekV2MDFTcDNTUnBNSldjYmwwd05MLUNFTzlnVk5LTE5mQnNKckxIYlV2NXF1bTktOG94NkZ4bG1BeTA1TzMtMjlDc3J4bU9LRW00QUFHUkNEU1o3U280cjh2SWdRQmtwaV9nQUYxamhpX1h6ZmJCanVFZnljWU9XN2tOWkNMdndSUlFQZw?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "Blorakab.go.id",
@@ -310,7 +310,7 @@
       "링크": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPOEE5aWdTbGVmcUMwT0VIYkxtUFFZLUxkWXNSandMaW1kYTBqUVlGWnczVUdMQXF2S2g0cFB6d0xWTHJzTWRkc1RVWXN2QzI2Z3BQQ1lUQnA4ekg4cFpPWnlNN1hMZTg2SUZlTFVqeldNWVl2d09wdVJjVlBVRDh1TUhKbDlqb3hTaWZrcFV6QXVwNmZ0NGVjbENkWnZ0aUJWcTNJcWUxc2dQZ2xnQjZNYmFOUWdyejJiVjc5Z2huSGFMRkY3OXZBTVZMSFZ2ZzZtU0NYR1NhWGQ4NEo1TUtVcXpsZ2M?oc=5"
     },
     {
-      "수집일": "202",
+      "수집일": "2026-11-24",
       "카테고리": "해외토목-동남아",
       "출처": "동남아 현지뉴스",
       "구분": "CNBC Indonesia",
