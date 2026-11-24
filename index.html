@@ -423,7 +423,7 @@
         const isGoogleRss = (item.링크 || '').includes('news.google.com');
         let targetUrl = item.링크;
         let linkLabel = '원문 보기 →';
-        if (isGoogleRss && cat === '해외토목-베트남') {
+        if (isGoogleRss && !/[가-힣]/.test(item.원제목 || '')) {
           targetUrl = `https://www.bing.com/search?q=${encodeURIComponent(item.원제목 || item.한글제목)}`;
           linkLabel = '현지 기사 검색 →';
         } else if (isGoogleRss) {
