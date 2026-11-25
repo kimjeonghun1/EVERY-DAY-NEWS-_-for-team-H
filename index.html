@@ -100,6 +100,10 @@
   }
   .wx-panel[hidden] { display: none; }
   .wx-h { font-size: 12px; color: var(--faint); padding: .3rem .5rem .4rem; }
+  .wx-cities { display: flex; flex-wrap: wrap; gap: .25rem; padding: .2rem .35rem .5rem; border-bottom: 1px solid var(--line); margin-bottom: .35rem; }
+  .wx-c { font-size: 12px; padding: .22rem .5rem; border-radius: 6px; color: var(--sub); }
+  .wx-c:hover { background: var(--hover); color: var(--ink); }
+  .wx-c[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 650; }
   .wx-r {
     display: grid; grid-template-columns: 2.6rem 1.6rem 1fr auto; align-items: center;
     gap: .25rem; padding: .35rem .5rem; border-radius: 8px; font-size: 13px;
@@ -723,7 +727,21 @@
     .catch(function () {})
     .then(function () { loadFeed('latest'); });
 
-  /* ───────── 날씨 (서울, Open-Meteo) ───────── */
+  /* ───────── 날씨 (서울·청주·전주·광주·창원, Open-Meteo) ───────── */
+  var WX_CITIES = [
+    { id: 'seoul', name: '서울', lat: 37.5665, lon: 126.9780 },
+    { id: 'cheongju', name: '청주', lat: 36.6424, lon: 127.4890 },
+    { id: 'jeonju', name: '전주', lat: 35.8242, lon: 127.1480 },
+    { id: 'gwangju', name: '광주', lat: 35.1595, lon: 126.8526 },
+    { id: 'changwon', name: '창원', lat: 35.2279, lon: 128.6811 }
+  ];
+  var wxCache = {};
+  var wxCityId = 'seoul';
+  try {
+    var savedCity = localStorage.getItem('briefing-city');
+    if (WX_CITIES.some(function (c) { return c.id === savedCity; })) wxCityId = savedCity;
+  } catch (e) {}
+
   function wIcon(c) {
     if (c === 0) return '☀️'; if (c <= 3) return '⛅'; if (c <= 48) return '🌫️';
     if (c <= 67 || (c >= 80 && c <= 82)) return '🌧️'; if (c <= 77 || (c >= 85 && c <= 86)) return '❄️'; return '⛈️';
@@ -734,26 +752,47 @@
     var p = $('#wxPanel'); p.hidden = !p.hidden;
     $('#wxBtn').setAttribute('aria-expanded', String(!p.hidden));
   });
+  $('#wxPanel').addEventListener('click', function (e) {
+    var btn = e.target.closest('.wx-c');
+    if (!btn) return;
+    e.stopPropagation();
+    wxCityId = btn.dataset.city;
+    try { localStorage.setItem('briefing-city', wxCityId); } catch (err) {}
+    loadWeather(wxCityId);
+  });
   document.addEventListener('click', function (e) { if (!e.target.closest('.wx')) closeWx(); });
 
-  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul')
-    .then(function (r) { return r.json(); })
-    .then(function (w) {
-      var d = w.daily; if (!d || !d.time) return;
-      var names = ['일', '월', '화', '수', '목', '금', '토'];
-      var rain0 = d.precipitation_probability_max ? d.precipitation_probability_max[0] : 0;
-      $('#wxBtn').innerHTML = '<span>' + wIcon(d.weather_code[0]) + '</span><span>서울 ' + Math.round(d.temperature_2m_min[0]) + '° / ' + Math.round(d.temperature_2m_max[0]) + '°</span>' +
-        (rain0 >= 30 ? '<span style="color:var(--down)">' + rain0 + '%</span>' : '');
-      $('#wxBtn').hidden = false;
-      $('#wxPanel').innerHTML = '<div class="wx-h">서울 7일 예보</div>' + d.time.map(function (dt, k) {
-        var rain = d.precipitation_probability_max ? d.precipitation_probability_max[k] : 0;
-        var dn = k === 0 ? '오늘' : names[new Date(dt + 'T00:00:00+09:00').getDay()];
-        return '<div class="wx-r' + (k === 0 ? ' today' : '') + '"><span class="dn">' + dn + '</span><span>' + wIcon(d.weather_code[k]) + '</span>' +
-          '<span>' + Math.round(d.temperature_2m_min[k]) + '° / ' + Math.round(d.temperature_2m_max[k]) + '°</span>' +
-          '<span class="rain">' + (rain >= 20 ? '강수 ' + rain + '%' : '') + '</span></div>';
-      }).join('');
-    })
-    .catch(function () {});
+  function renderWeather(city, d) {
+    var names = ['일', '월', '화', '수', '목', '금', '토'];
+    var rain0 = d.precipitation_probability_max ? d.precipitation_probability_max[0] : 0;
+    $('#wxBtn').innerHTML = '<span>' + wIcon(d.weather_code[0]) + '</span><span>' + city.name + ' ' + Math.round(d.temperature_2m_min[0]) + '° / ' + Math.round(d.temperature_2m_max[0]) + '°</span>' +
+      (rain0 >= 30 ? '<span style="color:var(--down)">' + rain0 + '%</span>' : '');
+    $('#wxBtn').hidden = false;
+    var cityTabs = '<div class="wx-cities">' + WX_CITIES.map(function (c) {
+      return '<button class="wx-c" data-city="' + c.id + '" aria-pressed="' + String(c.id === city.id) + '">' + c.name + '</button>';
+    }).join('') + '</div>';
+    $('#wxPanel').innerHTML = cityTabs + '<div class="wx-h">' + city.name + ' 7일 예보</div>' + d.time.map(function (dt, k) {
+      var rain = d.precipitation_probability_max ? d.precipitation_probability_max[k] : 0;
+      var dn = k === 0 ? '오늘' : names[new Date(dt + 'T00:00:00+09:00').getDay()];
+      return '<div class="wx-r' + (k === 0 ? ' today' : '') + '"><span class="dn">' + dn + '</span><span>' + wIcon(d.weather_code[k]) + '</span>' +
+        '<span>' + Math.round(d.temperature_2m_min[k]) + '° / ' + Math.round(d.temperature_2m_max[k]) + '°</span>' +
+        '<span class="rain">' + (rain >= 20 ? '강수 ' + rain + '%' : '') + '</span></div>';
+    }).join('');
+  }
+
+  function loadWeather(cityId) {
+    var city = WX_CITIES.find(function (c) { return c.id === cityId; }) || WX_CITIES[0];
+    if (wxCache[city.id]) { renderWeather(city, wxCache[city.id]); return; }
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + city.lat + '&longitude=' + city.lon + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul')
+      .then(function (r) { return r.json(); })
+      .then(function (w) {
+        if (!w || !w.daily || !w.daily.time) return;
+        wxCache[city.id] = w.daily;
+        renderWeather(city, w.daily);
+      })
+      .catch(function () {});
+  }
+  loadWeather(wxCityId);
 
   /* ───────── 시장 지표 (선택 기능: 불러오지 못한 항목은 자동으로 숨김) ───────── */
   var fxCache = null;
