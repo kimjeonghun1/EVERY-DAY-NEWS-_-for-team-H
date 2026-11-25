@@ -1,562 +1,783 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>우리팀만 보는 데일리 브리핑</title>
-  <style>
-    :root {
-      --bg: #0b0f19;
-      --card: #131a2a;
-      --card-hover: #1a2338;
-      --border: #232e47;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>우리팀만 보는 데일리 브리핑</title>
+<script>
+  /* 첫 화면 깜빡임 방지: 저장된 테마 또는 시스템 설정을 먼저 적용 */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('briefing-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 2rem 1rem 4rem;
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root {
+    --hh: 60px;
+    --bg: #F2F5F8;
+    --panel: #FFFFFF;
+    --ink: #14202B;
+    --sub: #536170;
+    --faint: #85919E;
+    --line: #DCE3EA;
+    --hover: #EBF0F5;
+    --accent: #1F5F9E;
+    --accent-soft: #E3EEF9;
+    --up: #D4352F;
+    --down: #2563C9;
+    --warn: #9A5B00;
+    --warn-soft: #FDF1D6;
+    --dotl: 42%;
+    --shadow: 0 8px 28px rgba(20, 32, 43, .14);
+  }
+  [data-theme="dark"] {
+    --bg: #0E141B;
+    --panel: #151D26;
+    --ink: #E7ECF1;
+    --sub: #A5B0BC;
+    --faint: #76828F;
+    --line: #243040;
+    --hover: #1B2531;
+    --accent: #7DB4EA;
+    --accent-soft: #19304A;
+    --up: #FF7B76;
+    --down: #78A8FF;
+    --warn: #F2B35A;
+    --warn-soft: #36290F;
+    --dotl: 62%;
+    --shadow: 0 8px 28px rgba(0, 0, 0, .5);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-padding-top: calc(var(--hh) + 64px); }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  button, select, input { font: inherit; color: inherit; }
+  button { cursor: pointer; background: none; border: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+  /* ───────── 상단 바 ───────── */
+  .top {
+    position: sticky; top: 0; z-index: 40;
+    height: var(--hh);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top-in {
+    max-width: 1320px; height: 100%; margin: 0 auto; padding: 0 1.25rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .brand h1 { font-size: 1.12rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+  .brand p { font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .tools { display: flex; align-items: center; gap: .5rem; }
+  .ctl {
+    height: 36px; padding: 0 .75rem;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 9px;
+    font-size: 13px; display: inline-flex; align-items: center; gap: .4rem;
+  }
+  .ctl:hover { border-color: var(--accent); }
+  .ctl { white-space: nowrap; }
+  .ctl[hidden] { display: none; }
+  select.ctl { padding-right: .4rem; cursor: pointer; }
+
+  .wx { position: relative; }
+  .wx-panel {
+    position: absolute; right: 0; top: 44px; width: 250px; z-index: 50;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow); padding: .5rem;
+  }
+  .wx-panel[hidden] { display: none; }
+  .wx-h { font-size: 12px; color: var(--faint); padding: .3rem .5rem .4rem; }
+  .wx-r {
+    display: grid; grid-template-columns: 2.6rem 1.6rem 1fr auto; align-items: center;
+    gap: .25rem; padding: .35rem .5rem; border-radius: 8px; font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .wx-r.today { background: var(--accent-soft); }
+  .wx-r .rain { color: var(--down); font-size: 12px; min-width: 2.4rem; text-align: right; }
+  .wx-r .dn { font-weight: 600; }
+
+  /* ───────── 시장 지표 ───────── */
+  .market { border-bottom: 1px solid var(--line); background: var(--panel); }
+  .market[hidden] { display: none; }
+  .market-in {
+    max-width: 1320px; margin: 0 auto; padding: .45rem 1.25rem;
+    display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none;
+  }
+  .market-in::-webkit-scrollbar { display: none; }
+  .mk { display: flex; align-items: baseline; gap: .5rem; white-space: nowrap; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .mk-n { color: var(--sub); }
+  .mk-v { font-weight: 600; }
+  .mk-c.up { color: var(--up); }
+  .mk-c.down { color: var(--down); }
+  .mk-c { font-size: 12px; }
+
+  /* ───────── 전체 레이아웃 ───────── */
+  .shell {
+    max-width: 1320px; margin: 0 auto; padding: 0 1.25rem;
+    display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2.25rem;
+  }
+
+  /* ───────── 왼쪽 내비게이션 ───────── */
+  .side {
+    position: sticky; top: var(--hh); align-self: start;
+    max-height: calc(100vh - var(--hh)); overflow-y: auto;
+    padding: 1.25rem 0 2rem; scrollbar-width: thin;
+  }
+  .nav-all, .nav-i {
+    width: 100%; display: flex; align-items: center; gap: .55rem;
+    padding: .45rem .65rem; border-radius: 8px; font-size: 14px; text-align: left;
+    color: var(--sub);
+  }
+  .nav-all { font-weight: 700; color: var(--ink); font-size: 15px; padding: .55rem .65rem; }
+  .nav-all .nm, .nav-i .nm { flex: 1; min-width: 0; }
+  .nav-i .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-all:hover, .nav-i:hover { background: var(--hover); color: var(--ink); }
+  .nav-all[aria-current="true"], .nav-i[aria-current="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 650; }
+  .nav-i .n, .nav-all .n { font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  [aria-current="true"] .n { color: var(--accent); }
+  .nav-g { margin-top: 1.1rem; }
+  .nav-gt { font-size: 12px; font-weight: 650; color: var(--faint); padding: 0 .65rem .3rem; letter-spacing: .02em; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: hsl(var(--h, 210) 58% var(--dotl)); }
+  .nw { font-size: 11.5px; font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  /* ───────── 메인 ───────── */
+  main { padding: 1.25rem 0 4rem; min-width: 0; }
+  .toolbar {
+    position: sticky; top: var(--hh); z-index: 30;
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+    padding: .65rem 0; margin-bottom: .75rem;
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .search { position: relative; flex: 1 1 260px; max-width: 460px; }
+  .search input {
+    width: 100%; height: 38px; padding: 0 2.2rem 0 2.3rem;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px; outline: none; font-size: 14px;
+  }
+  .search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .search svg { position: absolute; left: .75rem; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
+  .search .clr { position: absolute; right: .35rem; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 6px; color: var(--faint); font-size: 16px; }
+  .search .clr[hidden] { display: none; }
+  .search .clr:hover { background: var(--hover); color: var(--ink); }
+  .spacer { flex: 1; }
+  .toolbar .ctl { height: 38px; }
+  .toolbar.is-overview .only-list { display: none; }
+  .seg { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 3px; }
+  .seg button { height: 30px; padding: 0 .8rem; border-radius: 7px; font-size: 13px; color: var(--sub); }
+  .seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 650; }
+
+  /* 페이지 제목 */
+  .ph { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin: .25rem 0 .9rem; }
+  .ph h2 { font-size: 1.5rem; font-weight: 750; letter-spacing: -.03em; }
+  .ph .sub { display: flex; flex-wrap: wrap; gap: .1rem 1rem; font-size: 13px; color: var(--sub); font-variant-numeric: tabular-nums; }
+  .ph .sub b { color: var(--ink); font-weight: 650; }
+
+  /* ───────── 한눈에 보기(전체) ───────── */
+  .grp { margin-top: 1.9rem; }
+  .grp:first-of-type { margin-top: 1rem; }
+  .grp > h3 { font-size: 13px; font-weight: 650; color: var(--faint); margin-bottom: .6rem; letter-spacing: .02em; }
+  .blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1rem; }
+  .blk { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: .35rem 1rem .5rem; min-width: 0; }
+  .blk-h { display: flex; align-items: center; gap: .55rem; padding: .7rem 0 .55rem; border-bottom: 1px solid var(--line); }
+  .blk-h h4 { font-size: 15px; font-weight: 700; }
+  .blk-h .n { font-size: 12.5px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .blk-h .more { margin-left: auto; font-size: 12.5px; color: var(--accent); padding: .2rem .4rem; border-radius: 6px; }
+  .blk-h .more:hover { background: var(--accent-soft); }
+  .blk .none { padding: 1.1rem 0 .8rem; font-size: 13px; color: var(--faint); }
+  .blk .row { padding: .65rem 0; grid-template-columns: 2.9rem 1fr; }
+  .blk .row .t { font-size: 14.5px; }
+
+  /* ───────── 목록 ───────── */
+  .list { max-width: 880px; }
+  .gh {
+    display: flex; align-items: baseline; gap: .6rem;
+    margin: 1.7rem 0 .15rem; padding-bottom: .4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .gh:first-child { margin-top: .4rem; }
+  .gh.today { border-color: var(--accent); }
+  .gh .gl { font-weight: 700; font-size: 14.5px; }
+  .gh.today .gl { color: var(--accent); }
+  .gh .gn { font-size: 12.5px; color: var(--faint); font-variant-numeric: tabular-nums; }
+
+  .row {
+    display: grid; grid-template-columns: 3.2rem 1fr; gap: .75rem;
+    padding: .85rem .25rem; border-bottom: 1px solid var(--line);
+  }
+  .row:last-child { border-bottom: 0; }
+  .row:hover { background: var(--hover); }
+  .d { font-size: 12.5px; color: var(--faint); font-variant-numeric: tabular-nums; padding-top: .22rem; }
+  .t { color: var(--ink); font-weight: 600; font-size: 15.5px; line-height: 1.45; text-decoration: none; word-break: keep-all; overflow-wrap: anywhere; }
+  .t:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .row.read .t { color: var(--faint); font-weight: 500; }
+  .m { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem .65rem; margin-top: .15rem; font-size: 12.5px; color: var(--sub); }
+  .m .pub { font-weight: 550; }
+  .sum {
+    margin-top: .3rem; font-size: 13.5px; color: var(--sub); line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .orig { margin-top: .2rem; font-size: 12px; color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tag { display: inline-flex; align-items: center; height: 19px; padding: 0 .45rem; border-radius: 5px; font-size: 11.5px; font-weight: 600; background: var(--hover); color: var(--sub); }
+  .tag.new { background: var(--accent-soft); color: var(--accent); }
+  .tag.warn { background: var(--warn-soft); color: var(--warn); }
+  .tag.cat { background: transparent; border: 1px solid var(--line); font-weight: 500; }
+
+  /* 고정 안내 */
+  .pins { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: .8rem; max-width: 880px; margin-bottom: 1.1rem; }
+  .pin { display: block; padding: .85rem 1rem; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 10px; text-decoration: none; color: inherit; }
+  .pin:hover { border-color: var(--accent); }
+  .pin b { display: block; font-size: 14.5px; line-height: 1.45; margin-bottom: .2rem; }
+  .pin span { font-size: 12.5px; color: var(--sub); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* 카드 보기 */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+  .card { display: flex; flex-direction: column; gap: .35rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: .95rem 1rem; }
+  .card:hover { border-color: var(--accent); }
+  .card .t { font-size: 15px; }
+  .card .sum { -webkit-line-clamp: 3; }
+  .card .foot { margin-top: auto; padding-top: .5rem; font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .card.read .t { color: var(--faint); font-weight: 500; }
+
+  /* 빈 화면·오류 */
+  .state { padding: 3rem 1rem; text-align: center; color: var(--sub); }
+  .state b { display: block; font-size: 16px; color: var(--ink); margin-bottom: .35rem; }
+  .state p { font-size: 13.5px; max-width: 420px; margin: 0 auto; }
+  .state .btn { margin-top: 1rem; height: 36px; padding: 0 1rem; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); font-size: 13px; }
+  .state .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .skel { height: 64px; margin: .6rem 0; border-radius: 10px; background: linear-gradient(90deg, var(--hover), var(--panel), var(--hover)); background-size: 200% 100%; animation: sh 1.4s linear infinite; max-width: 880px; }
+  @keyframes sh { to { background-position: -200% 0; } }
+
+  /* ───────── 모바일·좁은 창 ───────── */
+  @media (max-width: 900px) {
+    :root { --hh: 56px; }
+    .shell { display: block; padding: 0; }
+    .side {
+      position: sticky; top: var(--hh); z-index: 35; max-height: none; overflow: visible;
+      display: flex; gap: .4rem; overflow-x: auto; padding: .55rem 1rem;
+      background: var(--bg); border-bottom: 1px solid var(--line); scrollbar-width: none;
     }
-    .container { max-width: 1160px; margin: 0 auto; }
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-    }
-    h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
-    h1 span { color: var(--accent); }
-    .subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 0.25rem; }
-    .updated {
-      font-size: 0.85rem;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-    }
-    .header-right {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .date-select {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.38rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      outline: none;
-    }
-    .date-select:focus { border-color: var(--accent); }
-    .weather-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      align-items: center;
-      margin-top: 0.85rem;
-    }
-    .weather-day {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.35rem 0.6rem;
-      font-size: 0.78rem;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: var(--text);
-    }
-    .weather-day.today {
-      border-color: rgba(56, 189, 248, 0.45);
-      background: var(--accent-soft);
-    }
-    .w-date { color: var(--muted); font-weight: 600; }
-    .w-temp { font-variant-numeric: tabular-nums; }
-    .w-rain { color: #60a5fa; font-size: 0.72rem; }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-    }
-    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .filter-btn {
-      background: var(--card);
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.5rem 0.95rem;
-      border-radius: 999px;
-      font-size: 0.86rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
-    .filter-btn.active {
-      background: var(--accent);
-      color: #0b0f19;
-      border-color: var(--accent);
-      font-weight: 650;
-    }
-    .count-pill {
-      font-size: 0.75rem;
-      opacity: 0.75;
-      margin-left: 0.25rem;
-    }
-    .search-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.5rem 0.9rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      min-width: 220px;
-      outline: none;
-    }
-    .search-box:focus { border-color: var(--accent); }
-    .search-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .view-toggle {
-      display: flex;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .view-btn {
-      background: transparent;
-      color: var(--muted);
-      border: none;
-      padding: 0.48rem 0.7rem;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
-    .view-btn.active {
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .news-list {
-      display: flex;
-      flex-direction: column;
-    }
-    .news-row {
-      padding: 0.95rem 0.25rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      transition: background 0.12s ease;
-    }
-    .news-row:hover {
-      background: rgba(255, 255, 255, 0.025);
-    }
-    .news-row-head {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.55rem;
-    }
-    .news-row-title {
-      color: #f1f5f9;
-      text-decoration: none;
-      font-size: 1.03rem;
-      font-weight: 600;
-      line-height: 1.45;
-    }
-    .news-row-title:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-    .news-row-meta {
-      font-size: 0.82rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .news-row-meta .sep { margin: 0 0.35rem; opacity: 0.45; }
-    .news-row-summary {
-      margin-top: 0.3rem;
-      font-size: 0.85rem;
-      color: #9ca3af;
-      line-height: 1.45;
-    }
-    .date-group-header {
-      margin-top: 1.35rem;
-      margin-bottom: 0.35rem;
-      padding: 0.45rem 0.75rem;
-      font-size: 0.84rem;
-      font-weight: 700;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border-left: 3px solid var(--border);
-      color: var(--muted);
-    }
-    .date-group-header:first-child { margin-top: 0.25rem; }
-    .date-group-header.today { border-left-color: #34d399; color: #6ee7b7; background: rgba(52, 211, 153, 0.08); }
-    .date-group-header.week { border-left-color: #38bdf8; color: #7dd3fc; background: rgba(56, 189, 248, 0.08); }
-    .date-group-header.pinned { border-left-color: #fbbf24; color: #fde68a; background: rgba(251, 191, 36, 0.08); }
-    .new-pill {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.1rem 0.4rem;
-      border-radius: 5px;
-      background: rgba(52, 211, 153, 0.2);
-      color: #6ee7b7;
-      margin-right: 0.35rem;
-      vertical-align: middle;
-    }
-    .news-row.older .news-row-title { color: #cbd5e1; font-weight: 500; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 1rem;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 0.85rem;
-      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      background: var(--card-hover);
-      border-color: #334155;
-    }
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-    }
-    .badge {
-      padding: 0.2rem 0.55rem;
-      border-radius: 6px;
-      font-weight: 600;
-      background: rgba(148, 163, 184, 0.12);
-      color: #cbd5e1;
-    }
-    .badge.sambo { background: rgba(14, 165, 233, 0.18); color: #38bdf8; }
-    .badge.ai { background: rgba(168, 85, 247, 0.16); color: #d8b4fe; }
-    .badge.civil { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; }
-    .badge.bid { background: rgba(251, 191, 36, 0.16); color: #fde68a; }
-    .badge.global { background: rgba(52, 211, 153, 0.16); color: #6ee7b7; }
-    .badge.sea { background: rgba(45, 212, 191, 0.16); color: #5eead4; }
-    .badge.vn { background: rgba(248, 113, 113, 0.16); color: #fca5a5; }
-    .badge.krpol { background: rgba(96, 165, 250, 0.16); color: #93c5fd; }
-    .badge.glpol { background: rgba(129, 140, 248, 0.16); color: #a5b4fc; }
-    .badge.kreco { background: rgba(244, 114, 182, 0.16); color: #f9a8d4; }
-    .badge.gleco { background: rgba(251, 146, 60, 0.16); color: #fdba74; }
-    .badge.krstk { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
-    .badge.glstk { background: rgba(34, 197, 94, 0.18); color: #86efac; }
-    .badge.coin { background: rgba(234, 179, 8, 0.2); color: #fde047; }
-    .pop { color: var(--muted); font-variant-numeric: tabular-nums; }
-    .title { font-size: 1.04rem; font-weight: 650; color: #f8fafc; line-height: 1.45; }
-    .summary { font-size: 0.9rem; color: #cbd5e1; }
-    .orig { font-size: 0.78rem; color: var(--muted); word-break: break-word; }
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 0.6rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.82rem;
-    }
-    .lang-tag { color: var(--muted); }
-    .link-btn {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .link-btn:hover { text-decoration: underline; }
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 3rem 1rem;
-      color: var(--muted);
-      background: var(--card);
-      border-radius: 14px;
-      border: 1px dashed var(--border);
-    }
-  </style>
+    .side::-webkit-scrollbar { display: none; }
+    .nav-g { display: contents; margin: 0; }
+    .nav-gt { display: none; }
+    .nav-all, .nav-i { width: auto; flex: none; border: 1px solid var(--line); border-radius: 999px; padding: .35rem .8rem; font-size: 13.5px; background: var(--panel); }
+    .nav-all { font-size: 13.5px; padding: .35rem .8rem; }
+    .nav-i .nm { overflow: visible; }
+    .nav-all[aria-current="true"], .nav-i[aria-current="true"] { border-color: var(--accent); }
+    main { padding: .75rem 1rem 3rem; }
+    .toolbar { position: static; padding-top: .25rem; }
+    .brand p { display: none; }
+    .top-in { padding: 0 1rem; }
+    .market-in { padding: .45rem 1rem; }
+    .blocks { grid-template-columns: 1fr; }
+    html { scroll-padding-top: calc(var(--hh) + 56px); }
+  }
+  @media (max-width: 520px) {
+    .ctl { padding: 0 .55rem; }
+    #dateSel { max-width: 104px; }
+    #themeBtn .lbl { display: none; }
+    .brand h1 { white-space: nowrap; font-size: .95rem; }
+    .wx-panel { right: -2.5rem; }
+    .row { grid-template-columns: 2.7rem 1fr; gap: .5rem; }
+    .t { font-size: 15px; }
+    .spacer { display: none; }
+    .search { max-width: none; flex-basis: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .skel { animation: none; } }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1><span>우리팀만 보는</span> 데일리 브리핑</h1>
-        <p class="subtitle">AI 트렌드 · 기술사-토목구조 · 국내입찰 · 해외토목(베트남/방글라데시) · 국내외 정치/경제</p>
-        <div class="weather-strip" id="weatherStrip"></div>
-      </div>
-      <div class="header-right">
-        <select class="date-select" id="dateSelect" title="날짜별 아카이브 선택">
-          <option value="latest">최신 브리핑</option>
-        </select>
-        <div class="updated" id="updatedAt">불러오는 중...</div>
-      </div>
-    </header>
 
-    <div class="controls">
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-cat="ALL">전체</button>
-        <button class="filter-btn" data-cat="삼보기술단">🏢 삼보기술단</button>
-        <button class="filter-btn" data-cat="AI 트렌드">🤖 AI 트렌드</button>
-        <button class="filter-btn" data-cat="기술사-토목구조">📐 기술사-토목구조</button>
-        <button class="filter-btn" data-cat="국내 입찰·용역">📋 국내 입찰·용역</button>
-        <button class="filter-btn" data-cat="해외 토목사업">🌍 해외 토목사업</button>
-        <button class="filter-btn" data-cat="해외토목-방글라데시">🇧🇩 해외토목-방글라데시</button>
-        <button class="filter-btn" data-cat="해외토목-베트남">🇻🇳 해외토목-베트남</button>
-        <button class="filter-btn" data-cat="국내정치">🏛️ 국내정치</button>
-        <button class="filter-btn" data-cat="해외정치">🌐 해외정치</button>
-        <button class="filter-btn" data-cat="국내경제">📈 국내경제</button>
-        <button class="filter-btn" data-cat="해외경제">💹 해외경제</button>
-        <button class="filter-btn" data-cat="국내주식">📊 국내주식</button>
-        <button class="filter-btn" data-cat="해외주식">💵 해외주식</button>
-        <button class="filter-btn" data-cat="코인">🪙 코인</button>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>우리팀만 보는 데일리 브리핑</h1>
+      <p id="updatedAt">불러오는 중</p>
+    </div>
+    <div class="tools">
+      <select class="ctl" id="dateSel" aria-label="브리핑 날짜 선택">
+        <option value="latest">최신 브리핑</option>
+      </select>
+      <div class="wx">
+        <button class="ctl" id="wxBtn" aria-expanded="false" aria-controls="wxPanel" aria-label="서울 날씨 예보" hidden></button>
+        <div class="wx-panel" id="wxPanel" hidden></div>
       </div>
-      <div class="search-wrap">
-        <input type="search" class="search-box" id="searchInput" placeholder="키워드 검색 (예: 교량, 입찰, 에이전트...)" />
-        <div class="view-toggle">
-          <button class="view-btn active" data-view="list">리스트</button>
-          <button class="view-btn" data-view="card">카드</button>
-        </div>
+      <button class="ctl" id="themeBtn" aria-label="화면 모드 전환" title="화면 모드 전환"></button>
+    </div>
+  </div>
+</header>
+
+<div class="market" id="market" hidden><div class="market-in" id="marketIn" aria-label="주요 시장 지표"></div></div>
+
+<div class="shell">
+  <nav class="side" id="nav" aria-label="카테고리"></nav>
+
+  <main>
+    <div class="toolbar is-overview" id="toolbar">
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="q" placeholder="기사 검색 (예: 교량, 입찰)" aria-label="키워드 검색" autocomplete="off" />
+        <button class="clr" id="qClr" aria-label="검색어 지우기" hidden>×</button>
+      </div>
+      <select class="ctl only-list" id="pubSel" aria-label="언론사 선택"></select>
+      <span class="spacer"></span>
+      <div class="seg only-list" id="groupSeg" role="group" aria-label="정렬 묶음 방식">
+        <button data-group="date" aria-pressed="true">날짜별</button>
+        <button data-group="pub" aria-pressed="false">언론사별</button>
+      </div>
+      <div class="seg only-list" id="viewSeg" role="group" aria-label="보기 방식">
+        <button data-view="list" aria-pressed="true">목록</button>
+        <button data-view="card" aria-pressed="false">카드</button>
       </div>
     </div>
+    <div id="content" aria-live="polite"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+  </main>
+</div>
 
-    <div class="news-list" id="grid"></div>
-  </div>
+<script>
+(function () {
+  'use strict';
 
-  <script>
-    let allItems = [];
-    let currentCat = 'ALL';
-    let currentView = 'list';
+  /* ───────── 카테고리 구성 (이름은 latest.json의 '카테고리' 값과 동일해야 함) ───────── */
+  var GROUPS = [
+    { name: '업무', cats: ['삼보기술단', '기술사-토목구조', '국내 입찰·용역', '해외 토목사업', '해외토목-베트남', '해외토목-방글라데시'] },
+    { name: '기술', cats: ['AI 트렌드'] },
+    { name: '시사·경제', cats: ['국내정치', '해외정치', '국내경제', '해외경제'] },
+    { name: '투자', cats: ['국내주식', '해외주식', '코인'] }
+  ];
+  var HUE = {
+    '삼보기술단': 214, '기술사-토목구조': 200, '국내 입찰·용역': 178, '해외 토목사업': 154,
+    '해외토목-베트남': 132, '해외토목-방글라데시': 112, 'AI 트렌드': 268,
+    '국내정치': 346, '해외정치': 326, '국내경제': 36, '해외경제': 24,
+    '국내주식': 8, '해외주식': 300, '코인': 48
+  };
+  var CAT_LABEL = {
+    '해외토목-베트남': '베트남 현지 기사 번역',
+    '해외토목-방글라데시': '방글라데시 현지 기사 번역'
+  };
+  function catLabel(c) { return CAT_LABEL[c] || c; }
+  var OVERVIEW_LIMIT = 4;
 
-    function getCategory(item) {
-      return item.카테고리 || 'AI 트렌드';
-    }
+  var $ = function (s) { return document.querySelector(s); };
+  var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var state = { items: [], base: '', cat: 'ALL', q: '', pub: 'ALL', view: 'list', groupBy: 'date', groups: GROUPS, loadError: '' };
 
-    function getBadgeClass(cat) {
-      if (cat === '삼보기술단') return 'sambo';
-      if (cat === 'AI 트렌드') return 'ai';
-      if (cat === '기술사-토목구조' || cat === '토목·구조') return 'civil';
-      if (cat === '국내 입찰·용역') return 'bid';
-      if (cat === '해외 토목사업') return 'global';
-      if (cat === '해외토목-방글라데시' || cat === '해외토목-동남아') return 'sea';
-      if (cat === '해외토목-베트남') return 'vn';
-      if (cat === '국내정치') return 'krpol';
-      if (cat === '해외정치') return 'glpol';
-      if (cat === '국내경제') return 'kreco';
-      if (cat === '해외경제') return 'gleco';
-      if (cat === '국내주식') return 'krstk';
-      if (cat === '해외주식') return 'glstk';
-      return 'coin';
-    }
-
-    function updateCounts() {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        const cat = btn.dataset.cat;
-        const base = btn.textContent.replace(/\s*\(\d+\)$/, '');
-        const count = cat === 'ALL' ? allItems.length : allItems.filter(i => getCategory(i) === cat).length;
-        btn.innerHTML = `${base} <span class="count-pill">(${count})</span>`;
-      });
-    }
-
-    function render() {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      const filtered = allItems.filter(item => {
-        const cat = getCategory(item);
-        const matchCat = currentCat === 'ALL' || cat === currentCat;
-        const text = `${item.한글제목} ${item.핵심요약} ${item.원제목} ${item.출처} ${item.구분}`.toLowerCase();
-        const matchQuery = !q || text.includes(q);
-        return matchCat && matchQuery;
-      }).sort((a, b) => {
-        const pa = a.인기도 || '';
-        const pb = b.인기도 || '';
-        if (pa === '상시' && pb !== '상시') return -1;
-        if (pb === '상시' && pa !== '상시') return 1;
-        const da = /^\d{4}-\d{2}-\d{2}$/.test(pa) ? pa : (a.수집일 || '');
-        const db = /^\d{4}-\d{2}-\d{2}$/.test(pb) ? pb : (b.수집일 || '');
-        return db.localeCompare(da);
-      });
-
-      const grid = document.getElementById('grid');
-      grid.className = currentView === 'list' ? 'news-list' : 'grid';
-      if (filtered.length === 0) {
-        grid.innerHTML = '<div class="empty">표시할 항목이 없습니다.</div>';
-        return;
-      }
-
-      const baseDateStr = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
-      const baseMs = new Date(baseDateStr + 'T00:00:00Z').getTime();
-
-      function getDateGroup(item) {
-        if ((item.인기도 || '') === '상시') return { key: 'pinned', label: '📌 고정 안내' };
-        const dStr = /^\d{4}-\d{2}-\d{2}$/.test(item.인기도 || '') ? item.인기도 : (item.수집일 || baseDateStr);
-        const diffDays = Math.floor((baseMs - new Date(dStr + 'T00:00:00Z').getTime()) / 86400000);
-        if (diffDays <= 0) return { key: 'today', label: `🟢 오늘 (${dStr})` };
-        if (diffDays <= 7) return { key: 'week', label: '🔵 최근 7일' };
-        return { key: 'older', label: '⚪ 지난 소식 (8일 이상)' };
-      }
-
-      let lastGroupKey = '';
-      grid.innerHTML = filtered.map(item => {
-        const cat = getCategory(item);
-        const grp = getDateGroup(item);
-        let groupHeaderHtml = '';
-        if (currentView === 'list' && grp.key !== lastGroupKey) {
-          lastGroupKey = grp.key;
-          groupHeaderHtml = `<div class="date-group-header ${grp.key}">${grp.label}</div>`;
-        }
-
-        const isGoogleRss = (item.링크 || '').includes('news.google.com');
-        let targetUrl = item.링크;
-        let linkLabel = '원문 보기 →';
-        if (isGoogleRss && !/[가-힣]/.test(item.원제목 || '')) {
-          targetUrl = `https://www.bing.com/search?q=${encodeURIComponent(item.원제목 || item.한글제목)}`;
-          linkLabel = '현지 기사 검색 →';
-        } else if (isGoogleRss) {
-          targetUrl = `https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(item.한글제목 || item.원제목)}`;
-          linkLabel = '네이버에서 기사 보기 →';
-        }
-
-        if (currentView === 'list') {
-          const pub = item.구분 || item.출처 || cat;
-          const dateOrPop = item.인기도 || item.수집일 || '';
-          const showSummary = item.핵심요약 && !item.핵심요약.endsWith('원문에서 상세 내용을 확인하세요.') && !item.핵심요약.endsWith('원문 링크에서 상세 내용을 확인하세요.');
-          const todayBadge = grp.key === 'today' ? '<span class="new-pill">오늘</span>' : '';
-          return `${groupHeaderHtml}
-            <div class="news-row ${grp.key}">
-              <div class="news-row-head">
-                <a class="news-row-title" href="${targetUrl}" target="_blank" rel="noopener noreferrer">${todayBadge}${item.한글제목 || item.원제목}</a>
-                <span class="news-row-meta">${pub}<span class="sep">|</span>${dateOrPop}<span class="sep">|</span>${cat}</span>
-              </div>
-              ${showSummary ? `<div class="news-row-summary">${item.핵심요약}</div>` : ''}
-            </div>
-          `;
-        }
-
-        return `
-          <article class="card">
-            <div>
-              <div class="card-top">
-                <span class="badge ${getBadgeClass(cat)}">${item.출처 || cat}</span>
-                <span class="pop">${item.인기도 || ''}</span>
-              </div>
-              <h2 class="title" style="margin-top:0.65rem;">${item.한글제목 || item.원제목}</h2>
-              <p class="summary" style="margin-top:0.5rem;">${item.핵심요약 || ''}</p>
-              ${item.원제목 && item.원제목 !== item.한글제목 ? `<p class="orig" style="margin-top:0.45rem;">원제: ${item.원제목}</p>` : ''}
-            </div>
-            <div class="card-footer">
-              <span class="lang-tag">${cat} · ${item.구분 || ''}</span>
-              <a class="link-btn" href="${targetUrl}" target="_blank" rel="noopener noreferrer">${linkLabel}</a>
-            </div>
-          </article>
-        `;
-      }).join('');
-    }
-
-    document.getElementById('filters').addEventListener('click', e => {
-      const btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCat = btn.dataset.cat;
-      render();
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
+  }
+  function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : '#'; }
+  function catOf(i) { return i.카테고리 || 'AI 트렌드'; }
+  function isPinned(i) { return (i.인기도 || '') === '상시'; }
+  function itemDate(i) { return DATE_RE.test(i.인기도 || '') ? i.인기도 : (i.수집일 || ''); }
+  function byDateDesc(a, b) { return itemDate(b).localeCompare(itemDate(a)); }
+  function dayMs(s) { return Date.parse(s + 'T00:00:00Z'); }
+  function kstToday() { return new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); }
+  function hasSummary(i) {
+    var s = i.핵심요약 || '';
+    return s && !/원문(\s*링크)?에서 상세 내용을 확인하세요\.$/.test(s);
+  }
 
-    document.getElementById('searchInput').addEventListener('input', render);
+  /* 구글 RSS 링크는 기존 방식 그대로 검색 결과로 연결 */
+  function target(i) {
+    var link = i.링크 || '', url = safeUrl(link), hint = '';
+    if (link.indexOf('news.google.com') !== -1) {
+      if (!/[가-힣]/.test(i.원제목 || '')) {
+        url = 'https://www.bing.com/search?q=' + encodeURIComponent(i.원제목 || i.한글제목 || '');
+        hint = '현지 기사 검색으로 이동';
+      } else {
+        url = 'https://search.naver.com/search.naver?where=news&query=' + encodeURIComponent(i.한글제목 || i.원제목 || '');
+        hint = '네이버 뉴스 검색으로 이동';
+      }
+    }
+    return { url: url, hint: hint };
+  }
 
-    document.querySelector('.view-toggle').addEventListener('click', e => {
-      const btn = e.target.closest('.view-btn');
-      if (!btn) return;
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentView = btn.dataset.view;
-      render();
+  /* ───────── 읽음 표시 ───────── */
+  var readSet = new Set();
+  try { JSON.parse(localStorage.getItem('briefing-read') || '[]').forEach(function (k) { readSet.add(k); }); } catch (e) {}
+  function markRead(url) {
+    if (!url || url === '#') return;
+    readSet.add(url);
+    try { localStorage.setItem('briefing-read', JSON.stringify(Array.from(readSet).slice(-2000))); } catch (e) {}
+  }
+
+  /* ───────── 기사 한 줄/카드 ───────── */
+  function tagsHtml(i, opt) {
+    var h = '';
+    if (itemDate(i) === state.base && !isPinned(i)) h += '<span class="tag new">새 소식</span>';
+    if (opt.cat) h += '<span class="tag cat">' + esc(catLabel(catOf(i))) + '</span>';
+    if (i.사건종류 && i.사건종류 !== 'AI자료' && i.사건종류 !== '공식바로가기') h += '<span class="tag">' + esc(i.사건종류) + '</span>';
+    if (i.인기도 && !DATE_RE.test(i.인기도) && !isPinned(i)) h += '<span class="tag">' + esc(i.인기도) + '</span>';
+    if (i.데이터상태) h += '<span class="tag warn" title="' + esc(i.데이터상태) + '">이전 데이터</span>';
+    return h;
+  }
+  function rowHtml(i, opt) {
+    var t = target(i), d = itemDate(i), pub = i.구분 || i.출처 || catOf(i);
+    var title = i.한글제목 || i.원제목 || '(제목 없음)';
+    var showOrig = opt.summary && i.원제목 && i.원제목 !== i.한글제목;
+    return '<article class="row' + (readSet.has(t.url) ? ' read' : '') + '">' +
+      '<time class="d" datetime="' + esc(d) + '">' + esc(d.slice(5)) + '</time>' +
+      '<div class="b">' +
+        '<a class="t" href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer"' + (t.hint ? ' title="' + esc(t.hint) + '"' : '') + '>' + esc(title) + '</a>' +
+        '<div class="m"><span class="pub">' + esc(pub) + '</span>' + tagsHtml(i, opt) + '</div>' +
+        (opt.summary && hasSummary(i) ? '<p class="sum">' + esc(i.핵심요약) + '</p>' : '') +
+        (showOrig ? '<p class="orig" title="' + esc(i.원제목) + '">원제 ' + esc(i.원제목) + '</p>' : '') +
+      '</div></article>';
+  }
+  function cardHtml(i, opt) {
+    var t = target(i), d = itemDate(i), pub = i.구분 || i.출처 || catOf(i);
+    var title = i.한글제목 || i.원제목 || '(제목 없음)';
+    var showOrig = i.원제목 && i.원제목 !== i.한글제목;
+    return '<article class="card' + (readSet.has(t.url) ? ' read' : '') + '">' +
+      '<div class="m"><span class="pub">' + esc(pub) + '</span>' + tagsHtml(i, opt) + '</div>' +
+      '<a class="t" href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer"' + (t.hint ? ' title="' + esc(t.hint) + '"' : '') + '>' + esc(title) + '</a>' +
+      (hasSummary(i) ? '<p class="sum">' + esc(i.핵심요약) + '</p>' : '') +
+      (showOrig ? '<p class="orig" title="' + esc(i.원제목) + '">원제 ' + esc(i.원제목) + '</p>' : '') +
+      '<div class="foot">' + esc(d) + '</div></article>';
+  }
+
+  /* ───────── 날짜 묶음 ───────── */
+  function bucket(i) {
+    var d = itemDate(i) || state.base;
+    var diff = Math.floor((dayMs(state.base) - dayMs(d)) / 86400000);
+    if (diff <= 0) return { key: 'today', label: '오늘 ' + d.slice(5) };
+    if (diff === 1) return { key: 'yest', label: '어제 ' + d.slice(5) };
+    if (diff <= 7) return { key: 'week', label: '최근 7일' };
+    return { key: 'old', label: '8일 이전' };
+  }
+
+  /* ───────── 내비게이션 ───────── */
+  function buildNav() {
+    var counts = {}, fresh = {}, total = 0;
+    state.items.forEach(function (i) {
+      if (isPinned(i)) return;
+      var c = catOf(i); counts[c] = (counts[c] || 0) + 1; total++;
+      if (itemDate(i) === state.base) fresh[c] = (fresh[c] || 0) + 1;
     });
+    var known = {};
+    GROUPS.forEach(function (g) { g.cats.forEach(function (c) { known[c] = 1; }); });
+    var extra = Object.keys(counts).filter(function (c) { return !known[c]; });
+    state.groups = extra.length ? GROUPS.concat([{ name: '기타', cats: extra }]) : GROUPS;
+    state.counts = counts;
 
-    function loadFeed(target) {
-      const url = target === 'latest' ? './data/latest.json' : `./data/${target}.json`;
-      fetch(`${url}?t=${Date.now()}`)
-        .then(r => r.json())
-        .then(data => {
-          document.getElementById('updatedAt').textContent = `업데이트: ${data.updatedAt || '-'}`;
-          allItems = data.items || [];
-          updateCounts();
-          render();
-        })
-        .catch(() => {
-          document.getElementById('updatedAt').textContent = '데이터 로드 실패';
-          document.getElementById('grid').innerHTML = '<div class="empty">해당 날짜의 데이터를 불러올 수 없습니다.</div>';
+    var h = '<button class="nav-all" data-cat="ALL"><span class="nm">전체 브리핑</span><span class="n">' + total + '</span></button>';
+    state.groups.forEach(function (g) {
+      h += '<div class="nav-g"><div class="nav-gt">' + esc(g.name) + '</div>';
+      g.cats.forEach(function (c) {
+        h += '<button class="nav-i" data-cat="' + esc(c) + '"><span class="dot" style="--h:' + (HUE[c] == null ? 210 : HUE[c]) + '"></span>' +
+          '<span class="nm">' + esc(catLabel(c)) + '</span>' + (fresh[c] ? '<span class="nw" title="새 소식 ' + fresh[c] + '건">+' + fresh[c] + '</span>' : '') +
+          '<span class="n">' + (counts[c] || 0) + '</span></button>';
+      });
+      h += '</div>';
+    });
+    $('#nav').innerHTML = h;
+    markNav();
+  }
+  function markNav() {
+    document.querySelectorAll('#nav [data-cat]').forEach(function (b) {
+      b.setAttribute('aria-current', String(b.dataset.cat === state.cat));
+    });
+  }
+
+  /* ───────── 화면 그리기 ───────── */
+  function matchQ(i) {
+    if (!state.q) return true;
+    var text = [i.한글제목, i.핵심요약, i.원제목, i.출처, i.구분, i.카테고리].join(' ').toLowerCase();
+    return text.indexOf(state.q.toLowerCase()) !== -1;
+  }
+
+  function overviewHtml() {
+    var dated = state.items.filter(function (i) { return !isPinned(i); });
+    var nNew = dated.filter(function (i) { return itemDate(i) === state.base; }).length;
+    var h = '<div class="ph"><h2>전체 브리핑</h2><p class="sub"><span>기준일 <b>' + esc(state.base) + '</b></span>' +
+      '<span>새 소식 <b>' + nNew + '건</b></span><span>전체 <b>' + dated.length + '건</b></span></p></div>';
+    state.groups.forEach(function (g) {
+      h += '<section class="grp"><h3>' + esc(g.name) + '</h3><div class="blocks">';
+      g.cats.forEach(function (c) {
+        var list = dated.filter(function (i) { return catOf(i) === c; }).sort(byDateDesc);
+        h += '<div class="blk"><div class="blk-h"><span class="dot" style="--h:' + (HUE[c] == null ? 210 : HUE[c]) + '"></span>' +
+          '<h4>' + esc(catLabel(c)) + '</h4><span class="n">' + list.length + '</span>' +
+          (list.length ? '<button class="more" data-cat="' + esc(c) + '">전체 보기</button>' : '') + '</div>';
+        if (!list.length) h += '<p class="none">이번 브리핑에 수집된 기사가 없습니다.</p>';
+        else h += list.slice(0, OVERVIEW_LIMIT).map(function (i) { return rowHtml(i, { summary: false }); }).join('');
+        h += '</div>';
+      });
+      h += '</div></section>';
+    });
+    return h;
+  }
+
+  function listHtml() {
+    var inCat = state.cat !== 'ALL';
+    var scope = state.items.filter(function (i) { return (!inCat || catOf(i) === state.cat) && matchQ(i); });
+    var pins = (inCat && !state.q) ? scope.filter(isPinned) : [];
+    var news = scope.filter(function (i) { return pins.indexOf(i) === -1; });
+
+    /* 언론사 드롭다운: 현재 범위의 언론사별 건수 */
+    var pc = {};
+    news.forEach(function (i) { var p = i.구분 || i.출처 || '기타'; pc[p] = (pc[p] || 0) + 1; });
+    var pubs = Object.keys(pc).sort(function (a, b) { return pc[b] - pc[a] || a.localeCompare(b, 'ko'); });
+    if (state.pub !== 'ALL' && !pc[state.pub]) state.pub = 'ALL';
+    $('#pubSel').innerHTML = '<option value="ALL">언론사 전체 (' + news.length + ')</option>' +
+      pubs.map(function (p) { return '<option value="' + esc(p) + '"' + (p === state.pub ? ' selected' : '') + '>' + esc(p) + ' (' + pc[p] + ')</option>'; }).join('');
+    if (state.pub !== 'ALL') news = news.filter(function (i) { return (i.구분 || i.출처 || '기타') === state.pub; });
+    news.sort(byDateDesc);
+
+    var title = state.q && !inCat ? '“' + state.q + '” 검색 결과' : (state.q ? catLabel(state.cat) + ' 안에서 “' + state.q + '” 검색' : catLabel(state.cat));
+    var h = '<div class="ph"><h2>' + esc(title) + '</h2><p class="sub"><span><b>' + news.length + '건</b></span>' +
+      (state.pub !== 'ALL' ? '<span>' + esc(state.pub) + '</span>' : '') + '</p></div>';
+
+    if (pins.length) {
+      h += '<div class="pins">' + pins.map(function (i) {
+        var t = target(i);
+        return '<a class="pin" href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer"><b>' + esc(i.한글제목 || i.원제목) + '</b><span>' + esc(i.핵심요약 || '') + '</span></a>';
+      }).join('') + '</div>';
+    }
+
+    if (!news.length) {
+      return h + '<div class="state"><b>조건에 맞는 기사가 없습니다</b><p>검색어를 바꾸거나 언론사 선택을 해제해 보세요.</p>' +
+        '<button class="btn" data-act="reset">필터 초기화</button></div>';
+    }
+
+    var opt = { summary: true, cat: !inCat };
+    if (state.view === 'card') {
+      if (state.groupBy === 'pub') {
+        var byPubCard = {};
+        news.forEach(function (i) { var p = i.구분 || i.출처 || '기타'; (byPubCard[p] = byPubCard[p] || []).push(i); });
+        var pubOrderCard = Object.keys(byPubCard).sort(function (a, b) { return byPubCard[b].length - byPubCard[a].length || a.localeCompare(b, 'ko'); });
+        pubOrderCard.forEach(function (p) {
+          h += '<div class="gh"><span class="gl">' + esc(p) + '</span><span class="gn">' + byPubCard[p].length + '건</span></div>';
+          h += '<div class="cards">' + byPubCard[p].map(function (i) { return cardHtml(i, opt); }).join('') + '</div>';
         });
+        return h;
+      }
+      return h + '<div class="cards">' + news.map(function (i) { return cardHtml(i, opt); }).join('') + '</div>';
     }
-
-    document.getElementById('dateSelect').addEventListener('change', e => {
-      loadFeed(e.target.value);
+    if (state.groupBy === 'pub') {
+      var byPub = {};
+      news.forEach(function (i) { var p = i.구분 || i.출처 || '기타'; (byPub[p] = byPub[p] || []).push(i); });
+      var pubOrder = Object.keys(byPub).sort(function (a, b) { return byPub[b].length - byPub[a].length || a.localeCompare(b, 'ko'); });
+      h += '<div class="list">';
+      pubOrder.forEach(function (p) {
+        h += '<div class="gh"><span class="gl">' + esc(p) + '</span><span class="gn">' + byPub[p].length + '건</span></div>';
+        byPub[p].forEach(function (i) { h += rowHtml(i, opt); });
+      });
+      return h + '</div>';
+    }
+    var counts = {};
+    news.forEach(function (i) { var k = bucket(i).label; counts[k] = (counts[k] || 0) + 1; });
+    var last = '';
+    h += '<div class="list">';
+    news.forEach(function (i) {
+      var b = bucket(i), key = b.key + '|' + b.label;
+      if (key !== last) {
+        last = key;
+        h += '<div class="gh ' + b.key + '"><span class="gl">' + esc(b.label) + '</span><span class="gn">' + counts[b.label] + '건</span></div>';
+      }
+      h += rowHtml(i, opt);
     });
+    return h + '</div>';
+  }
 
-    fetch('./data/dates.json?t=' + Date.now())
-      .then(r => r.ok ? r.json() : [])
-      .then(dates => {
-        const sel = document.getElementById('dateSelect');
-        if (Array.isArray(dates) && dates.length > 0) {
-          sel.innerHTML = `<option value="latest">최신 (${dates[0]})</option>` +
-            dates.map(d => `<option value="${d}">${d}</option>`).join('');
-        }
-      })
-      .catch(() => {})
-      .finally(() => loadFeed('latest'));
-
-    function weatherIcon(code) {
-      if (code === 0) return '☀️';
-      if (code <= 3) return '⛅';
-      if (code <= 48) return '🌫️';
-      if (code <= 67 || (code >= 80 && code <= 82)) return '🌧️';
-      if (code <= 77 || (code >= 85 && code <= 86)) return '❄️';
-      return '⛈️';
+  function render() {
+    if (state.loadError) {
+      $('#content').innerHTML = '<div class="state"><b>데이터를 불러오지 못했습니다</b><p>' + esc(state.loadError) + '</p>' +
+        '<button class="btn" data-act="reload">다시 불러오기</button></div>';
+      return;
     }
+    var overview = state.cat === 'ALL' && !state.q;
+    $('#toolbar').classList.toggle('is-overview', overview);
+    $('#content').innerHTML = overview ? overviewHtml() : listHtml();
+    $('#qClr').hidden = !state.q;
+    document.querySelectorAll('#viewSeg [data-view]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === state.view)); });
+    document.querySelectorAll('#groupSeg [data-group]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.group === state.groupBy)); });
+    markNav();
+  }
 
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul')
-      .then(r => r.json())
-      .then(w => {
-        const d = w.daily;
-        if (!d || !d.time) return;
-        const days = ['일','월','화','수','목','금','토'];
-        document.getElementById('weatherStrip').innerHTML = d.time.map((dt, idx) => {
-          const dayName = idx === 0 ? '오늘' : days[new Date(dt + 'T00:00:00+09:00').getDay()];
-          const minT = Math.round(d.temperature_2m_min[idx]);
-          const maxT = Math.round(d.temperature_2m_max[idx]);
-          const rain = d.precipitation_probability_max ? d.precipitation_probability_max[idx] : 0;
-          return `<div class="weather-day ${idx === 0 ? 'today' : ''}" title="${dt} 서울 예보">
-            <span class="w-date">${dayName}</span>
-            <span>${weatherIcon(d.weather_code[idx])}</span>
-            <span class="w-temp">${minT}°/${maxT}°</span>
-            ${rain >= 20 ? `<span class="w-rain">💧${rain}%</span>` : ''}
-          </div>`;
-        }).join('');
+  function setCat(cat, noScroll) {
+    state.cat = cat; state.pub = 'ALL';
+    try { history.replaceState(null, '', cat === 'ALL' ? location.pathname + location.search : '#' + encodeURIComponent(cat)); } catch (e) {}
+    render();
+    if (!noScroll) window.scrollTo({ top: 0 });
+  }
+
+  /* ───────── 이벤트 ───────── */
+  $('#nav').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-cat]'); if (!b) return;
+    state.q = ''; $('#q').value = '';
+    setCat(b.dataset.cat);
+    if (window.matchMedia('(max-width:900px)').matches) b.scrollIntoView({ inline: 'center', block: 'nearest' });
+  });
+  $('#content').addEventListener('click', function (e) {
+    var more = e.target.closest('.more');
+    if (more) { setCat(more.dataset.cat); return; }
+    var act = e.target.closest('[data-act]');
+    if (act) {
+      if (act.dataset.act === 'reset') { state.q = ''; state.pub = 'ALL'; $('#q').value = ''; render(); }
+      if (act.dataset.act === 'reload') loadFeed($('#dateSel').value);
+      return;
+    }
+    var a = e.target.closest('a.t');
+    if (a) { markRead(a.getAttribute('href')); var box = a.closest('.row, .card'); if (box) box.classList.add('read'); }
+  });
+  var qTimer;
+  $('#q').addEventListener('input', function (e) {
+    clearTimeout(qTimer);
+    qTimer = setTimeout(function () { state.q = e.target.value.trim(); state.pub = 'ALL'; render(); }, 120);
+  });
+  $('#qClr').addEventListener('click', function () { state.q = ''; $('#q').value = ''; render(); $('#q').focus(); });
+  $('#pubSel').addEventListener('change', function (e) { state.pub = e.target.value; render(); });
+  $('#viewSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-view]'); if (!b) return;
+    state.view = b.dataset.view; render();
+  });
+  $('#groupSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-group]'); if (!b) return;
+    state.groupBy = b.dataset.group; render();
+  });
+  document.addEventListener('keydown', function (e) {
+    var tag = (document.activeElement && document.activeElement.tagName) || '';
+    if (e.key === '/' && tag !== 'INPUT' && tag !== 'SELECT' && tag !== 'TEXTAREA') { e.preventDefault(); $('#q').focus(); }
+    if (e.key === 'Escape') { closeWx(); if (document.activeElement === $('#q')) $('#q').blur(); }
+  });
+
+  /* 테마 */
+  function applyThemeLabel() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    $('#themeBtn').innerHTML = '<span aria-hidden="true">' + (dark ? '☀' : '☾') + '</span><span class="lbl">' + (dark ? '라이트' : '다크') + '</span>';
+  }
+  $('#themeBtn').addEventListener('click', function () {
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('briefing-theme', next); } catch (e) {}
+    applyThemeLabel();
+  });
+  applyThemeLabel();
+
+  /* ───────── 데이터 불러오기 ───────── */
+  function loadFeed(target) {
+    var url = target === 'latest' ? './data/latest.json' : './data/' + encodeURIComponent(target) + '.json';
+    state.loadError = '';
+    fetch(url + '?t=' + Date.now())
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (data) {
+        state.items = Array.isArray(data.items) ? data.items : [];
+        var u = String(data.updatedAt || '');
+        state.base = DATE_RE.test(u.slice(0, 10)) ? u.slice(0, 10) : kstToday();
+        $('#updatedAt').textContent = '업데이트 ' + (u || '-');
+        state.pub = 'ALL';
+        buildNav();
+        var hashCat = decodeURIComponent((location.hash || '').slice(1));
+        var valid = state.groups.some(function (g) { return g.cats.indexOf(hashCat) !== -1; });
+        if (state.cat !== 'ALL' && !state.groups.some(function (g) { return g.cats.indexOf(state.cat) !== -1; })) state.cat = 'ALL';
+        if (!state.initDone) { state.initDone = true; if (valid) state.cat = hashCat; }
+        render();
       })
-      .catch(() => {});
-  </script>
+      .catch(function () {
+        $('#updatedAt').textContent = '데이터 로드 실패';
+        state.items = []; buildNav();
+        state.loadError = location.protocol === 'file:'
+          ? '파일을 직접 열면 데이터를 읽을 수 없습니다. GitHub Pages 주소나 로컬 서버(python -m http.server)로 열어 주세요.'
+          : '선택한 날짜의 data 파일을 찾을 수 없습니다. 잠시 후 다시 시도하거나 다른 날짜를 선택해 주세요.';
+        render();
+      });
+  }
+  $('#dateSel').addEventListener('change', function (e) { loadFeed(e.target.value); });
+
+  fetch('./data/dates.json?t=' + Date.now())
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (dates) {
+      if (Array.isArray(dates) && dates.length) {
+        $('#dateSel').innerHTML = '<option value="latest">최신 (' + esc(String(dates[0]).slice(5)) + ')</option>' +
+          dates.map(function (d) { return '<option value="' + esc(d) + '">' + esc(d) + '</option>'; }).join('');
+      }
+    })
+    .catch(function () {})
+    .then(function () { loadFeed('latest'); });
+
+  /* ───────── 날씨 (서울, Open-Meteo) ───────── */
+  function wIcon(c) {
+    if (c === 0) return '☀️'; if (c <= 3) return '⛅'; if (c <= 48) return '🌫️';
+    if (c <= 67 || (c >= 80 && c <= 82)) return '🌧️'; if (c <= 77 || (c >= 85 && c <= 86)) return '❄️'; return '⛈️';
+  }
+  function closeWx() { $('#wxPanel').hidden = true; $('#wxBtn').setAttribute('aria-expanded', 'false'); }
+  $('#wxBtn').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var p = $('#wxPanel'); p.hidden = !p.hidden;
+    $('#wxBtn').setAttribute('aria-expanded', String(!p.hidden));
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.wx')) closeWx(); });
+
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul')
+    .then(function (r) { return r.json(); })
+    .then(function (w) {
+      var d = w.daily; if (!d || !d.time) return;
+      var names = ['일', '월', '화', '수', '목', '금', '토'];
+      var rain0 = d.precipitation_probability_max ? d.precipitation_probability_max[0] : 0;
+      $('#wxBtn').innerHTML = '<span>' + wIcon(d.weather_code[0]) + '</span><span>서울 ' + Math.round(d.temperature_2m_min[0]) + '° / ' + Math.round(d.temperature_2m_max[0]) + '°</span>' +
+        (rain0 >= 30 ? '<span style="color:var(--down)">' + rain0 + '%</span>' : '');
+      $('#wxBtn').hidden = false;
+      $('#wxPanel').innerHTML = '<div class="wx-h">서울 7일 예보</div>' + d.time.map(function (dt, k) {
+        var rain = d.precipitation_probability_max ? d.precipitation_probability_max[k] : 0;
+        var dn = k === 0 ? '오늘' : names[new Date(dt + 'T00:00:00+09:00').getDay()];
+        return '<div class="wx-r' + (k === 0 ? ' today' : '') + '"><span class="dn">' + dn + '</span><span>' + wIcon(d.weather_code[k]) + '</span>' +
+          '<span>' + Math.round(d.temperature_2m_min[k]) + '° / ' + Math.round(d.temperature_2m_max[k]) + '°</span>' +
+          '<span class="rain">' + (rain >= 20 ? '강수 ' + rain + '%' : '') + '</span></div>';
+      }).join('');
+    })
+    .catch(function () {});
+
+  /* ───────── 시장 지표 (선택 기능: 불러오지 못한 항목은 자동으로 숨김) ───────── */
+  var fxCache = null;
+  function fmt(n, dec) { return Number(n).toLocaleString('ko-KR', { minimumFractionDigits: dec || 0, maximumFractionDigits: dec || 0 }); }
+  function getJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }); }
+
+  function loadMarket() {
+    var list = [], names = {};
+    function add(x) { if (x && x.name && !names[x.name]) { names[x.name] = 1; list.push(x); } }
+    getJson('./data/market.json?t=' + Date.now()).then(function (j) { (j.items || []).forEach(add); }).catch(function () {})
+      .then(function () {
+        return getJson('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH').then(function (arr) {
+          arr.forEach(function (c) {
+            add({ name: c.market === 'KRW-BTC' ? '비트코인' : '이더리움', value: fmt(c.trade_price) + '원', change: c.signed_change_rate * 100 });
+          });
+        }).catch(function () {});
+      })
+      .then(function () {
+        if (names['원/달러']) return;
+        var p = fxCache ? Promise.resolve(fxCache) : getJson('https://open.er-api.com/v6/latest/USD').then(function (j) { fxCache = j; return j; });
+        return p.then(function (j) { if (j && j.rates && j.rates.KRW) add({ name: '원/달러', value: fmt(j.rates.KRW, 1) + '원' }); }).catch(function () {});
+      })
+      .then(function () {
+        if (!list.length) { $('#market').hidden = true; return; }
+        $('#marketIn').innerHTML = list.map(function (x) {
+          var c = '';
+          if (typeof x.change === 'number' && isFinite(x.change)) {
+            var up = x.change > 0, dn = x.change < 0;
+            c = '<span class="mk-c ' + (up ? 'up' : dn ? 'down' : '') + '">' + (up ? '▲ +' : dn ? '▼ ' : '') + x.change.toFixed(2) + '%</span>';
+          }
+          return '<div class="mk"><span class="mk-n">' + esc(x.name) + '</span><span class="mk-v">' + esc(x.value) + '</span>' + c + '</div>';
+        }).join('');
+        $('#market').hidden = false;
+      });
+  }
+  loadMarket();
+  setInterval(function () { if (!document.hidden) loadMarket(); }, 60000);
+})();
+</script>
 </body>
 </html>
