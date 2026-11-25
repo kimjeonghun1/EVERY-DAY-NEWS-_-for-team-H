@@ -270,6 +270,7 @@
     .badge.gleco { background: rgba(251, 146, 60, 0.16); color: #fdba74; }
     .badge.krstk { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
     .badge.glstk { background: rgba(34, 197, 94, 0.18); color: #86efac; }
+    .badge.coin { background: rgba(234, 179, 8, 0.2); color: #fde047; }
     .pop { color: var(--muted); font-variant-numeric: tabular-nums; }
     .title { font-size: 1.04rem; font-weight: 650; color: #f8fafc; line-height: 1.45; }
     .summary { font-size: 0.9rem; color: #cbd5e1; }
@@ -332,6 +333,7 @@
         <button class="filter-btn" data-cat="해외경제">💹 해외경제</button>
         <button class="filter-btn" data-cat="국내주식">📊 국내주식</button>
         <button class="filter-btn" data-cat="해외주식">💵 해외주식</button>
+        <button class="filter-btn" data-cat="코인">🪙 코인</button>
       </div>
       <div class="search-wrap">
         <input type="search" class="search-box" id="searchInput" placeholder="키워드 검색 (예: 교량, 입찰, 에이전트...)" />
@@ -367,7 +369,8 @@
       if (cat === '국내경제') return 'kreco';
       if (cat === '해외경제') return 'gleco';
       if (cat === '국내주식') return 'krstk';
-      return 'glstk';
+      if (cat === '해외주식') return 'glstk';
+      return 'coin';
     }
 
     function updateCounts() {
