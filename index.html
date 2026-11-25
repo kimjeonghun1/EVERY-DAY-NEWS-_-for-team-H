@@ -304,7 +304,7 @@
   <div class="top-in">
     <div class="brand">
       <h1>우리팀만 보는 데일리 브리핑</h1>
-      <p id="updatedAt">불러오는 중</p>
+      <p><span id="updatedAt">불러오는 중</span><span id="visitStat"></span></p>
     </div>
     <div class="tools">
       <select class="ctl" id="dateSel" aria-label="브리핑 날짜 선택">
@@ -777,6 +777,29 @@
   }
   loadMarket();
   setInterval(function () { if (!document.hidden) loadMarket(); }, 60000);
+
+  /* ───────── 방문자 카운터 (세션당 1회 집계: 오늘 / 누적) ───────── */
+  (function () {
+    var todayKey = 'visits-' + kstToday();
+    var ns = 'kimjeonghun1-daily-briefing';
+    var already = false;
+    try { already = sessionStorage.getItem('briefing-counted') === todayKey; } catch (e) {}
+    var mode = already ? 'get' : 'hit';
+    Promise.all([
+      getJson('https://abacus.jasoncameron.dev/' + mode + '/' + ns + '/' + todayKey).catch(function () { return null; }),
+      getJson('https://abacus.jasoncameron.dev/' + mode + '/' + ns + '/visits').catch(function () { return null; })
+    ]).then(function (res) {
+      if (!already && (res[0] || res[1])) {
+        try { sessionStorage.setItem('briefing-counted', todayKey); } catch (e) {}
+      }
+      var td = res[0] && typeof res[0].value === 'number' ? res[0].value : null;
+      var tot = res[1] && typeof res[1].value === 'number' ? res[1].value : null;
+      var parts = [];
+      if (td !== null) parts.push('오늘 ' + fmt(td));
+      if (tot !== null) parts.push('누적 ' + fmt(tot));
+      if (parts.length) $('#visitStat').textContent = ' · 방문 ' + parts.join(' / ');
+    });
+  })();
 })();
 </script>
 </body>
