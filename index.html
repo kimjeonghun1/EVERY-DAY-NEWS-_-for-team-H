@@ -356,9 +356,34 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
+  /* ───────── 최상단 큰 탭 전환 바 (데일리 브리핑 ↔ 발주 브리핑) ───────── */
+  .hub-bar { background: var(--panel); border-bottom: 1px solid var(--line-2); }
+  .hub-in { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-tab {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    height: 52px; padding: 0 16px; text-decoration: none; color: var(--mute);
+    font-size: 15px; font-weight: 500; border-bottom: 3px solid transparent;
+    transition: color 140ms var(--ease), background-color 140ms var(--ease), border-color 140ms var(--ease);
+  }
+  .hub-tab:hover { color: var(--ink); background: var(--raised); }
+  .hub-tab[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); background: var(--bg); }
+  .hub-tab .hub-sub { font-size: 12px; font-weight: 400; color: var(--mute); }
+  @media (max-width: 900px) { .hub-in { padding: 0 16px; } }
+  @media (max-width: 520px) {
+    .hub-in { padding: 0 8px; gap: 4px; }
+    .hub-tab { height: 46px; font-size: 13px; padding: 0 8px; }
+    .hub-tab .hub-sub { display: none; }
+  }
 </style>
 </head>
 <body>
+
+<nav class="hub-bar" aria-label="브리핑 화면 전환">
+  <div class="hub-in">
+    <a class="hub-tab" href="./index.html" aria-current="page"><span>구조부 데일리 브리핑</span><span class="hub-sub">뉴스 · 시장 · 날씨</span></a>
+    <a class="hub-tab" href="./procurement.html"><span>국내 엔지니어링 발주</span><span class="hub-sub">나라장터 용역 발주현황</span></a>
+  </div>
+</nav>
 
 <header class="top">
   <div class="top-in">

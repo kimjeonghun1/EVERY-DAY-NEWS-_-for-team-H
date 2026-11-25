@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "run_id": "b892d0d4-1111-45d1-afb2-c5ad5b726d39",
+  "generated_at": "2026-11-25T17:39:52+09:00",
+  "last_success_at": null,
+  "status": "not_configured",
+  "is_demo": false,
+  "window": {
+    "from": "2026-10-27T00:00:00+09:00",
+    "to": "2026-11-25T17:39:52+09:00"
+  },
+  "coverage": [
+    {
+      "id": "g2b_plan",
+      "name": "나라장터 용역 발주계획",
+      "last_success_at": null,
+      "records": 0,
+      "status": "not_configured",
+      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+    },
+    {
+      "id": "g2b_contract",
+      "name": "나라장터 용역 계약",
+      "last_success_at": null,
+      "records": 0,
+      "status": "not_configured",
+      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+    },
+    {
+      "id": "g2b_notice",
+      "name": "나라장터 용역 입찰공고",
+      "last_success_at": null,
+      "records": 0,
+      "status": "not_configured",
+      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+    },
+    {
+      "id": "g2b_prespec",
+      "name": "나라장터 용역 사전규격",
+      "last_success_at": null,
+      "records": 0,
+      "status": "not_configured",
+      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+    },
+    {
+      "id": "g2b_award",
+      "name": "나라장터 용역 낙찰",
+      "last_success_at": null,
+      "records": 0,
+      "status": "not_configured",
+      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+    },
+    {
+      "id": "manual_verified",
+      "name": "공식 원문 초기 확인",
+      "status": "ok",
+      "last_success_at": "2026-11-25T15:38:49+09:00",
+      "records": 5,
+      "message": "지자체 3건·공공기관 2건을 직접 확인한 선택 자료입니다. 자동 수집 결과 또는 전국 전체 집계가 아닙니다."
+    },
+    {
+      "id": "independent_portals",
+      "name": "기관 자체 전자조달",
+      "status": "unsupported",
+      "last_success_at": null,
+      "records": 0,
+      "message": "LH·국가철도공단 등 자체 전자조달의 전체 공고 자동수집은 연결되지 않았습니다. 나라장터 수집을 전국 모든 기관의 완전한 집계로 해석하지 마십시오."
+    }
+  ],
+  "items": [
+    {
+      "id": "manual:kr-2026-02-000645-00",
+      "stage": "notice",
+      "notice_no": "2026-02-000645-00",
+      "revision": "",
+      "title": "대구산업선 철도건설 제1공구 건설공사(T/K) 감독권한대행 등 건설사업관리 엔지니어링",
+      "buyer_name": "국가철도공단",
+      "buyer_code": null,
+      "buyer_group": "public",
+      "classification_basis": "기관의 공식 고시·공고 또는 공식 전자조달 페이지에서 발주기관 직접 확인",
+      "region": null,
+      "region_basis": null,
+      "fields": [
+        "철도"
+      ],
+      "work_types": [
+        "CM"
+      ],
+      "posted_at": "2026-11-18",
+      "deadline": "2026-12-28T11:00:00+09:00",
+      "deadline_type": "입찰서 접수 마감",
+      "bid_start": null,
+      "qualification_deadline": "2026-12-24T18:00:00+09:00",
+      "additional_deadlines": [
+        {
+          "kind": "입찰참가자 자격등록 마감",
+          "at": "2026-12-24T18:00:00+09:00"
+        }
+      ],
+      "opening_at": "2027-01-05T14:00:00+09:00",
+      "amount_krw": 12081878600,
+      "amount_type": "설계금액",
+      "budget_krw": null,
+      "amount_vat_included": null,
+      "notice_status": "unknown",
+      "notice_kind": null,
+      "url": "https://ebid.kr.or.kr/krn/krnBidDetail.do?gyErBeonho=2000013078&ggNyeondo=2026&ggGubun=02&ggIrBeonho=000645&ggChasu=00",
+      "attachments": [],
+      "qualification": null,
+      "source_id": "manual_verified",
+      "source_name": "국가철도공단 공식 원문 · 수동 확인",
+      "first_seen_at": "2026-11-25T15:38:49+09:00",
+      "last_seen_at": "2026-11-25T15:38:49+09:00",
+      "review_required": true,
+      "review_reasons": [
+        "초기 원문 확인 자료입니다. 참가자격·정정·취소의 최신 상태를 원문에서 확인하십시오.",
+        "목록의 2027-01-05는 개찰일. 입찰서 마감과 다름.",
+        "확인 당시 목록 상태: 공고게시.",
+        "설계금액의 부가가치세 포함 여부는 확인되지 않아 null."
+      ],
+      "stale": false,
+      "verification_method": "공식 공고 목록과 HTTP로 받은 상세 페이지 본문 확인",
+      "notice_number_system": "국가철도공단 전자조달 입찰공고번호"
+    },
+    {
+      "id": "manual:lh-2603810-01",
+      "stage": "notice",
+      "notice_no": "2603810-01",
+      "revision": "01",
+      "title": "고덕국제화계획지구 택지개발사업 조성공사 3-4공구 시공단계 감독 권한대행 등 건설사업관리엔지니어링",
+      "buyer_name": "한국토지주택공사",
+      "buyer_code": null,
+      "buyer_group": "public",
+      "classification_basis": "기관의 공식 고시·공고 또는 공식 전자조달 페이지에서 발주기관 직접 확인",
+      "region": null,
+      "region_basis": null,
+      "fields": [
+        "도시계획"
+      ],
+      "work_types": [
+        "CM"
+      ],
+      "posted_at": "2026-10-30",
+      "deadline": "2027-01-25T10:00:00+09:00",
+      "deadline_type": "입찰서 접수 마감",
+      "bid_start": "2027-01-14T09:00:00+09:00",
+      "qualification_deadline": "2026-11-27T18:00:00+09:00",
+      "additional_deadlines": [
+        {
+          "kind": "PQ심사신청서 접수기한",
+          "at": "2026-11-27T18:00:00+09:00"
+        },
+        {
+          "kind": "공동수급협정서 접수 마감",
+          "at": "2027-01-24T18:00:00+09:00"
+        }
+      ],
+      "opening_at": null,
+      "amount_krw": 3980561000,
+      "amount_type": "기초금액",
+      "budget_krw": null,
+      "amount_vat_included": true,
+      "notice_status": "active",
+      "notice_kind": "정정공고",
+      "url": "https://ebid.lh.or.kr/ebid.et.tp.cmd.BidsrvcsDetailListCmd.dev?bidDegree=01&bidNum=2603810",
+      "attachments": [],
+      "qualification": null,
+      "source_id": "manual_verified",
+      "source_name": "한국토지주택공사 공식 원문 · 수동 확인",
+      "first_seen_at": "2026-11-25T15:38:49+09:00",
+      "last_seen_at": "2026-11-25T15:38:49+09:00",
+      "review_required": true,
+      "review_reasons": [
+        "초기 원문 확인 자료입니다. 참가자격·정정·취소의 최신 상태를 원문에서 확인하십시오.",
+        "PQ 마감이 입찰서 마감보다 먼저임. 입찰서 마감만으로 참가 가능 여부를 판단하지 않도록 표시 필요.",
+        "확인 당시 공식 상태: 정정공고 (입찰진행중)."
+      ],
+      "stale": false,
+      "verification_method": "LH 공식 전자조달 상세 페이지 본문 확인",
+      "notice_number_system": "LH 전자조달 입찰공고번호"
+    }
+  ],
+  "review_count": 2,
+  "unclassified_count": 0,
+  "warnings": [
+    "나라장터 용역 공개 API 기준이며 기관 자체 전자조달 등 미연계 자료가 있습니다.",
+    "금액은 원 단위입니다. 배정예산·추정가격·낙찰금액·계약금액은 서로 다른 기준입니다.",
+    "기관 소재지역은 검증된 기관자료가 있는 경우만 표시하며 실제 과업 수행지역을 뜻하지 않습니다.",
+    "발주계획은 설정된 게시일 조회구간과 지정 발주월 범위만 수집합니다. 과거 게시계획의 후속 변경 전체 추적은 미지원입니다.",
+    "수동 원문 확인 자료가 포함되어 있으며 개별 확인일 이후 정정·취소는 자동 반영되지 않을 수 있음"
+  ],
+  "collection_summary": {
+    "enabled_sources": 5,
+    "successful_sources": 0,
+    "failed_sources": 0
+  },
+  "scope": "public"
+}
