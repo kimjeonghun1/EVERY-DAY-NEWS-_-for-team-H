@@ -882,9 +882,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T11:34:03+09:00",
@@ -1027,9 +1025,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -1291,7 +1287,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "항만"
       ],
       "work_types": [],
@@ -4089,7 +4084,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -4944,9 +4938,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T11:11:37+09:00",
@@ -5736,9 +5728,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -7580,7 +7570,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로",
         "지반"
       ],
@@ -9651,9 +9640,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T10:50:15+09:00",
@@ -11504,9 +11491,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -13867,7 +13852,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -17273,9 +17257,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T10:05:32+09:00",
@@ -18365,7 +18347,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -18453,9 +18434,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T09:57:22+09:00",
@@ -29901,9 +29880,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T08:12:54+09:00",
@@ -31599,7 +31576,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -32764,9 +32740,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T21:15:39+09:00",
@@ -33630,7 +33604,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -39834,9 +39807,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T18:32:00+09:00",
@@ -43481,9 +43452,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -43964,9 +43933,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T17:50:14+09:00",
@@ -46256,9 +46223,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -46949,9 +46914,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -49208,9 +49171,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -56586,7 +56547,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -58644,9 +58604,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T16:28:36+09:00",
@@ -67853,9 +67811,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T15:40:45+09:00",
@@ -70273,7 +70229,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -70673,9 +70628,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -71886,7 +71839,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -72541,7 +72493,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -72718,9 +72669,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -73218,9 +73167,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T15:13:47+09:00",
@@ -73463,9 +73410,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -82133,9 +82078,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -82400,9 +82343,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -87981,9 +87922,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -88762,9 +88701,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T13:58:06+09:00",
@@ -91138,7 +91075,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -91680,7 +91616,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -94073,9 +94008,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -94507,7 +94440,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -100150,9 +100082,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T12:58:43+09:00",
@@ -103004,9 +102934,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T11:39:13+09:00",
@@ -103473,7 +103401,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로",
         "지반"
       ],
@@ -104732,7 +104659,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -106671,7 +106597,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -106804,9 +106729,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -107902,9 +107825,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -108426,9 +108347,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T11:05:11+09:00",
@@ -109748,9 +109667,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -109792,9 +109709,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -111350,9 +111265,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -113901,7 +113814,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -114874,7 +114786,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "지반"
       ],
       "work_types": [],
@@ -115576,7 +115487,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -120354,7 +120264,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -122643,7 +122552,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -124085,9 +123993,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -124885,9 +124791,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T09:55:35+09:00",
@@ -128822,9 +128726,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T09:32:21+09:00",
@@ -129830,7 +129732,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -130574,9 +130475,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -131457,7 +131356,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "지반"
       ],
       "work_types": [],
@@ -132072,9 +131970,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -132510,9 +132406,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -135404,9 +135298,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -135627,7 +135519,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "측량"
       ],
       "work_types": [
@@ -136671,7 +136562,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로",
         "지반"
       ],
@@ -137812,9 +137702,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T21:14:47+09:00",
@@ -140984,7 +140872,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -143331,7 +143218,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -144385,7 +144271,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -144978,9 +144863,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -145197,9 +145080,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -147826,7 +147707,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -151796,9 +151676,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T17:37:31+09:00",
@@ -154401,7 +154279,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -154446,9 +154323,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -159558,7 +159433,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -161968,9 +161842,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -163656,9 +163528,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T16:36:28+09:00",
@@ -164243,9 +164113,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -165258,9 +165126,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -166698,9 +166564,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -167366,9 +167230,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T16:22:39+09:00",
@@ -168507,7 +168369,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -168770,7 +168631,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -168814,9 +168674,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -169013,9 +168871,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T16:14:44+09:00",
@@ -169809,9 +169665,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T16:11:45+09:00",
@@ -170123,7 +169977,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -170310,9 +170163,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -172863,9 +172714,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T15:53:03+09:00",
@@ -177112,9 +176961,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -178293,7 +178140,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -179097,7 +178943,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -183278,7 +183123,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -185454,9 +185298,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T14:56:22+09:00",
@@ -185703,7 +185545,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -186232,7 +186073,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -186967,9 +186807,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T14:48:24+09:00",
@@ -187457,7 +187295,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -189298,9 +189135,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -193649,9 +193484,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T14:16:22+09:00",
@@ -197921,9 +197754,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -198108,9 +197939,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -198539,9 +198368,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:52:15+09:00",
@@ -198865,9 +198692,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:51:11+09:00",
@@ -199085,9 +198910,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:50:23+09:00",
@@ -199486,9 +199309,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:49:17+09:00",
@@ -199882,9 +199703,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:47:27+09:00",
@@ -202083,9 +201902,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -202217,9 +202034,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:35:03+09:00",
@@ -204140,7 +203955,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -205191,9 +205005,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T13:20:14+09:00",
@@ -206757,7 +206569,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -208737,7 +208548,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -209445,9 +209255,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T11:46:17+09:00",
@@ -212921,9 +212729,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T11:23:18+09:00",
@@ -213908,7 +213714,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -214215,9 +214020,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T11:13:55+09:00",
@@ -215605,9 +215408,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T11:03:13+09:00",
@@ -217148,9 +216949,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T10:56:37+09:00",
@@ -218357,9 +218156,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T10:51:35+09:00",
@@ -219127,9 +218924,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T10:47:33+09:00",
@@ -224380,9 +224175,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T10:22:02+09:00",
@@ -224643,7 +224436,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -225085,9 +224877,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T10:19:09+09:00",
@@ -229027,7 +228817,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -230191,9 +229980,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:57:53+09:00",
@@ -231481,7 +231268,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -232741,7 +232527,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -233270,9 +233055,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:42:56+09:00",
@@ -234227,9 +234010,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:37:01+09:00",
@@ -237636,9 +237417,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:17:11+09:00",
@@ -237900,9 +237679,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:13:39+09:00",
@@ -244143,9 +243920,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T21:52:48+09:00",
@@ -247394,9 +247169,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T20:35:49+09:00",
@@ -252330,7 +252103,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -256021,9 +255793,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -256590,9 +256360,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T17:55:28+09:00",
@@ -257224,9 +256992,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T17:52:16+09:00",
@@ -257575,9 +257341,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -263314,7 +263078,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -266392,9 +266155,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -270565,7 +270326,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -271105,9 +270865,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -271325,9 +271083,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T16:40:29+09:00",
@@ -272237,7 +271993,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -272783,9 +272538,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -275005,9 +274758,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T16:19:49+09:00",
@@ -276496,9 +276247,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -278033,9 +277782,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -278511,9 +278258,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -284160,9 +283905,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T15:31:00+09:00",
@@ -285641,7 +285384,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "지반"
       ],
       "work_types": [],
@@ -287259,7 +287001,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -288185,7 +287926,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -288919,9 +288659,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T15:04:04+09:00",
@@ -291669,9 +291407,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T14:46:28+09:00",
@@ -291887,9 +291623,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T14:45:16+09:00",
@@ -294369,9 +294103,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T14:32:53+09:00",
@@ -294550,7 +294282,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -294683,7 +294414,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -295183,9 +294913,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -296368,9 +296096,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -299089,9 +298815,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T14:06:08+09:00",
@@ -299354,7 +299078,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -299747,9 +299470,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -301791,9 +301512,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:53:56+09:00",
@@ -303395,9 +303114,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:44:57+09:00",
@@ -303880,9 +303597,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:42:35+09:00",
@@ -304928,9 +304643,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:37:20+09:00",
@@ -305702,9 +305415,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:33:53+09:00",
@@ -305935,9 +305646,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:33:15+09:00",
@@ -307422,7 +307131,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "지반"
       ],
       "work_types": [],
@@ -308892,9 +308600,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:23:19+09:00",
@@ -311449,7 +311155,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -311753,9 +311458,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:11:12+09:00",
@@ -312828,9 +312531,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:04:12+09:00",
@@ -313398,9 +313099,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T13:00:11+09:00",
@@ -314681,9 +314380,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -323916,9 +323613,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "CM"
       ],
@@ -328596,9 +328291,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -330599,9 +330292,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T10:22:19+09:00",
@@ -331272,9 +330963,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T10:20:13+09:00",
@@ -331449,9 +331138,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T10:19:53+09:00",
@@ -331844,9 +331531,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T10:17:28+09:00",
@@ -336735,9 +336420,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "CM"
       ],
@@ -343251,9 +342934,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요 (상충어: 폐기물처리)",
       "posted_at": "2026-11-23T09:14:34+09:00",
@@ -343558,9 +343239,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T09:13:10+09:00",
@@ -351810,9 +351489,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -352595,7 +352272,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -353038,7 +352714,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -353567,9 +353242,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -354954,9 +354627,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -364697,9 +364368,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T18:09:55+09:00",
@@ -370099,9 +369768,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T17:25:26+09:00",
@@ -370639,9 +370306,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요 (상충어: 폐기물처리)",
       "posted_at": "2026-11-20T17:23:35+09:00",
@@ -372064,9 +371729,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -374452,9 +374115,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T16:57:52+09:00",
@@ -374892,7 +374553,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -375945,7 +375605,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -380288,7 +379947,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -381495,7 +381153,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -384481,9 +384138,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T15:54:15+09:00",
@@ -385446,7 +385101,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -386917,9 +386571,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -394046,9 +393698,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T14:58:05+09:00",
@@ -400328,9 +399978,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T14:17:22+09:00",
@@ -401550,7 +401198,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리",
         "도로"
       ],
@@ -401679,9 +401326,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T14:06:30+09:00",
@@ -402840,9 +402485,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -403238,7 +402881,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "측량"
       ],
       "work_types": [
@@ -407027,9 +406669,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T13:35:41+09:00",
@@ -408593,9 +408233,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T13:27:01+09:00",
@@ -408816,7 +408454,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -409669,9 +409306,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T13:19:17+09:00",
@@ -411271,9 +410906,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -411606,7 +411239,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -413370,9 +413002,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -413850,7 +413480,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -414115,7 +413744,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -417210,9 +416838,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T11:16:32+09:00",
@@ -419086,9 +418712,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -426044,9 +425668,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T10:23:42+09:00",
@@ -426635,9 +426257,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -427071,9 +426691,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -431558,9 +431176,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -432880,9 +432496,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:49:17+09:00",
@@ -433182,9 +432796,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -433445,9 +433057,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:46:21+09:00",
@@ -434113,9 +433723,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:42:04+09:00",
@@ -434157,9 +433765,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:41:13+09:00",
@@ -435073,9 +434679,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:36:19+09:00",
@@ -435423,9 +435027,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:34:56+09:00",
@@ -439429,9 +439031,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:16:01+09:00",
@@ -442500,9 +442100,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방자치단체",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T08:00:15+09:00",

@@ -3281,9 +3281,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -3325,9 +3323,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방공기업",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -3514,9 +3510,7 @@
       "classification_basis": "공식 API plan 소관구분: 준정부기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T10:46:08+09:00",
@@ -8631,9 +8625,7 @@
       "classification_basis": "공식 API plan 소관구분: 지방공기업",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -11205,9 +11197,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-26T10:06:06+09:00",
@@ -13959,9 +13949,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -19910,9 +19898,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T17:53:13+09:00",
@@ -25450,9 +25436,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T16:25:44+09:00",
@@ -25578,9 +25562,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -25752,9 +25734,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T16:23:49+09:00",
@@ -27608,7 +27588,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -31630,9 +31609,7 @@
       "classification_basis": "공식 API contract 소관구분: 기타공공기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T14:45:40+09:00",
@@ -40341,9 +40318,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T10:54:22+09:00",
@@ -40439,7 +40414,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -41050,9 +41024,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T10:42:07+09:00",
@@ -41681,7 +41653,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -45347,9 +45318,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -47651,9 +47620,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-25T08:58:51+09:00",
@@ -49332,9 +49299,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -53841,7 +53806,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [],
@@ -55319,7 +55283,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -64822,9 +64785,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -64908,9 +64869,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T14:46:18+09:00",
@@ -65385,9 +65344,7 @@
       "classification_basis": "공식 API plan 소관구분: 공기업",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -66286,9 +66243,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -67710,9 +67665,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -69027,9 +68980,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -69754,9 +69705,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -75129,9 +75078,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -79182,7 +79129,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -82010,9 +81956,7 @@
       "classification_basis": "공식 API contract 소관구분: 준정부기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:58:32+09:00",
@@ -82858,9 +82802,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -83228,9 +83170,7 @@
       "classification_basis": "공식 API contract 소관구분: 기타공공기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-24T09:37:01+09:00",
@@ -85659,9 +85599,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -89962,9 +89900,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -91398,7 +91334,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -96259,7 +96194,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -99935,9 +99869,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -101789,7 +101721,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "도로"
       ],
       "work_types": [
@@ -106817,9 +106748,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -107339,9 +107268,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "유지관리"
       ],
@@ -111826,9 +111753,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-23T10:24:07+09:00",
@@ -113079,7 +113004,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -119276,9 +119200,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -119321,7 +119243,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -124115,9 +124036,7 @@
       "classification_basis": "공식 API contract 소관구분: 지방공기업",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -126983,9 +126902,7 @@
       "classification_basis": "공식 API contract 소관구분: 공기업",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -133052,9 +132969,7 @@
       "classification_basis": "공식 API plan 소관구분: 공기업",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "계획·조사"
       ],
@@ -133870,9 +133785,7 @@
       "classification_basis": "공식 API contract 소관구분: 준정부기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -136496,7 +136409,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "감리"
       ],
       "work_types": [
@@ -136727,9 +136639,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -137031,7 +136941,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [],
@@ -137163,9 +137072,7 @@
       "classification_basis": "공식 API plan 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -138086,9 +137993,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -139195,9 +139100,7 @@
       "classification_basis": "공식 API contract 소관구분: 준정부기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계",
         "유지관리"
@@ -139479,9 +139382,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [
         "설계"
       ],
@@ -141070,7 +140971,6 @@
       "region": null,
       "region_basis": null,
       "fields": [
-        "구조",
         "수자원"
       ],
       "work_types": [
@@ -141982,9 +141882,7 @@
       "classification_basis": "공식 API contract 소관구분: 국가기관",
       "region": null,
       "region_basis": null,
-      "fields": [
-        "구조"
-      ],
+      "fields": [],
       "work_types": [],
       "engineering_basis": "관련성은 있으나 토목엔지니어링 범위 확인 필요",
       "posted_at": "2026-11-20T09:15:27+09:00",
