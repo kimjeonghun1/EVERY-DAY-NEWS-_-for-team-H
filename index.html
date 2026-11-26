@@ -448,11 +448,12 @@
           </div>
         </div>
 
-        <!-- 좌측 3: 최저가 쇼핑 검색 -->
+        <!-- 좌측 3: 쿠팡 파트너스 검색 & 5종 최저가 쇼핑 -->
         <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>최저가 쇼핑 검색</h3><span class="badge">낮은가격순</span></div>
+          <div class="card-hd"><h3><span class="bar"></span>최저가 쇼핑 검색</h3><span class="badge">쿠팡·5대몰</span></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
-            <input class="inp" id="shopQ" type="search" placeholder="상품명 입력 (예: 마우스, 커피)..." autocomplete="off" />
+            <iframe src="https://coupa.ng/crqir8" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:7px;overflow:hidden;display:block"></iframe>
+            <input class="inp" id="shopQ" type="search" placeholder="5대몰 최저가 비교 검색..." autocomplete="off" />
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px" id="shopBtns">
               <button type="button" class="ctl primary" data-shop="naver" style="justify-content:center;font-size:12px">네이버 최저가</button>
               <button type="button" class="ctl" data-shop="danawa" style="justify-content:center;font-size:12px">다나와 최저가</button>
@@ -462,6 +463,11 @@
               <button type="button" class="ctl" data-shop="gmarket" style="justify-content:center;font-size:12px">G마켓</button>
               <button type="button" class="ctl" data-shop="auction" style="justify-content:center;font-size:12px">옥션</button>
             </div>
+            <div style="display:flex;justify-content:center;gap:14px;padding-top:6px;border-top:1px solid var(--line);flex-wrap:wrap">
+              <iframe src="https://coupa.ng/crqiuA" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
+              <iframe src="https://coupa.ng/crqiym" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
+            </div>
+            <div style="font-size:10.5px;color:var(--mute);line-height:1.4;text-align:center">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
           </div>
         </div>
 
@@ -540,8 +546,13 @@
           </div>
           <div id="homeSearchList"></div>
         </div>
-        <!-- 평상시: 분야별 2열 카드 그리드 (가독성 최우선) -->
+        <!-- 평상시: 분야별 3열 컴팩트 카드 그리드 -->
         <div class="cat-grid" id="homeCatGrid"></div>
+        <!-- 쿠팡 파트너스 가로 배너 (728x90) -->
+        <div class="card" style="padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px">
+          <a href="https://link.coupang.com/a/iZfOwiSOsK" target="_blank" referrerpolicy="unsafe-url" style="display:block;max-width:100%"><img src="https://ads-partners.coupang.com/banners/1059827?trackingCode=AF1259934&subId=&traceId=V0-301-879dd1202e5c73b2-I1059827&w=728&h=90" alt="쿠팡 추천 배너" style="max-width:100%;height:auto;display:block;border-radius:6px" /></a>
+          <div style="font-size:10.5px;color:var(--mute)">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+        </div>
       </div>
     </div>
   </section>
