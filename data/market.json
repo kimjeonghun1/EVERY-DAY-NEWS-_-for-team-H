@@ -3,8 +3,8 @@
     {
       "name": "금(USD/oz)",
       "symbol": "GC=F",
-      "value": "$3,592.6",
-      "change": 1.61,
+      "value": "$3,595.0",
+      "change": 1.67,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -12,7 +12,7 @@
       "name": "코스피",
       "symbol": "^KS11",
       "value": "4,711.21",
-      "change": 0.29,
+      "change": -5.89,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -20,7 +20,7 @@
       "name": "코스닥",
       "symbol": "^KQ11",
       "value": "655.71",
-      "change": 0.78,
+      "change": -1.53,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -44,7 +44,7 @@
       "name": "닛케이225",
       "symbol": "^N225",
       "value": "57,499.16",
-      "change": 0.86,
+      "change": -1.95,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -59,16 +59,16 @@
     {
       "name": "원/달러",
       "symbol": "KRW=X",
-      "value": "1,343.4원",
-      "change": 0.06,
+      "value": "1,343.7원",
+      "change": 0.08,
       "group": "index",
       "source": "글로벌 지표"
     },
     {
       "name": "WTI유",
       "symbol": "CL=F",
-      "value": "$83.92",
-      "change": 0.29,
+      "value": "$84.92",
+      "change": 1.48,
       "group": "index",
       "source": "글로벌 지표"
     },
