@@ -197,7 +197,7 @@
     <div class="m-card">
       <div class="m-card-hd"><span>실시간 차트</span>
         <div style="display:flex;gap:4px" id="mTvSeg">
-          <button class="m-btn primary" data-msym="KRX:KOSPI">KOSPI</button>
+          <button class="m-btn primary" data-msym="TVC:KOSPI">KOSPI</button>
           <button class="m-btn" data-msym="FX_IDC:USDKRW">환율</button>
           <button class="m-btn" data-msym="UPBIT:BTCKRW">BTC</button>
         </div>
@@ -222,6 +222,7 @@
       <button class="m-chip" data-mb="soon" aria-pressed="false">⚡ 마감임박</button>
       <button class="m-chip" data-mb="local" aria-pressed="false">지자체</button>
       <button class="m-chip" data-mb="public" aria-pressed="false">공공기관</button>
+      <button class="m-chip" data-mb="education" aria-pressed="false">교육청</button>
       <button class="m-chip" data-mb="fav" aria-pressed="false">★ 관심공고</button>
     </div>
     <div id="mBidList"></div>
@@ -348,7 +349,7 @@
     if (curTab === 'market') renderMTv(curSym);
   });
 
-  var curTab = 'home', tvReady = false, curSym = 'KRX:KOSPI';
+  var curTab = 'home', tvReady = false, curSym = 'TVC:KOSPI';
   function setTab(t) {
     var ok = ['home','news','market','procurement','travel','kbo','culture'];
     if (ok.indexOf(t) < 0) t = 'home';
@@ -405,18 +406,28 @@
       };
     }).filter(function (x) { return x.title; });
     $('mhNews').textContent = fmt(news.length) + '건';
+    var mFresh = news.filter(function (x) {
+      if (x.category === '기술사-토목구조' || x.category === '협회 및 유관기관') return false;
+      var h = [x.title, x.publisher, x.link].join(' ').toLowerCase();
+      return h.indexOf('q-net') < 0 && h.indexOf('큐넷') < 0 && h.indexOf('공지사항') < 0;
+    });
     var mBuckets = [
-      { label: '국내 엔지니어링', cats: ['삼보기술단','국내 입찰·용역','엔지니어링 뉴스','기술사-토목구조','협회 및 유관기관'] },
+      { label: '국내 엔지니어링', cats: ['삼보기술단','엔지니어링 뉴스','국내 입찰·용역'] },
       { label: '해외 토목', cats: ['해외 토목사업','해외토목-베트남','해외토목-방글라데시'] },
       { label: '시사·경제', cats: ['오늘의 뉴스 헤드라인','국내경제','해외경제','국내정치','해외정치'] },
       { label: '투자·금융', cats: ['국내주식','해외주식','코인'] },
-      { label: 'AI·신기술', cats: ['AI 활용·신기술 뉴스','GitHub 핫한 AI','HuggingFace 논문·앱'] },
+      { label: 'AI·신기술', cats: ['AI 트렌드','AI 활용·신기술 뉴스','GitHub 핫한 AI','HuggingFace 논문·앱'] },
       { label: '프로야구', cats: ['프로야구 한화 소식','KIA 타이거즈','LG 트윈스','두산 베어스'] }
     ];
     var mPicked = [];
-    mBuckets.forEach(function (b) { var f = news.find(function (x) { return b.cats.indexOf(x.category) >= 0; }); if (f) mPicked.push({ label: b.label, item: f }); });
-    if (mPicked[0]) $('mTicker').textContent = '● 속보 · [' + mPicked[0].label + '] ' + mPicked[0].item.title;
-    else if (news[0]) $('mTicker').textContent = '● 속보 · ' + news[0].title;
+    mBuckets.forEach(function (b) { var f = mFresh.find(function (x) { return b.cats.indexOf(x.category) >= 0; }); if (f) mPicked.push({ label: b.label, item: f }); });
+    var mTickPool = mFresh.filter(function (x) { return ['오늘의 뉴스 헤드라인','엔지니어링 뉴스','국내경제','삼보기술단'].indexOf(x.category) >= 0; }).slice(0, 10);
+    if (!mTickPool.length) mTickPool = mFresh.slice(0, 10);
+    var mTickIdx = 0;
+    if (mTickPool.length) {
+      var showMT = function () { var c = mTickPool[mTickIdx % mTickPool.length]; $('mTicker').textContent = '● 속보 (' + ((mTickIdx % mTickPool.length) + 1) + '/' + mTickPool.length + ') · ' + c.title; mTickIdx++; };
+      showMT(); setInterval(function () { if (!document.hidden) showMT(); }, 5000);
+    }
     $('mHeadlines').innerHTML = mPicked.map(function (p) {
       var u = safeUrl(p.item.link), img = safeUrl(p.item.image);
       return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:10px;align-items:center"' : '') + '>' +
