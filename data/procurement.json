@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "run_id": "b892d0d4-1111-45d1-afb2-c5ad5b726d39",
-  "generated_at": "2026-11-25T17:39:52+09:00",
+  "run_id": "d93ae226-3fad-499c-bc60-98858fa97e0c",
+  "generated_at": "2026-11-26T09:00:55+09:00",
   "last_success_at": null,
-  "status": "not_configured",
+  "status": "error",
   "is_demo": false,
   "window": {
-    "from": "2026-10-27T00:00:00+09:00",
-    "to": "2026-11-25T17:39:52+09:00"
+    "from": "2026-10-28T00:00:00+09:00",
+    "to": "2026-11-26T09:00:55+09:00"
   },
   "coverage": [
     {
@@ -15,40 +15,60 @@
       "name": "나라장터 용역 발주계획",
       "last_success_at": null,
       "records": 0,
-      "status": "not_configured",
-      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+      "window": {
+        "from": "2026-10-28T00:00:00+09:00",
+        "to": "2026-11-26T09:00:55+09:00"
+      },
+      "status": "error",
+      "message": "API HTTP 오류 403. 해당 자료는 이전 결과를 보존했습니다."
     },
     {
       "id": "g2b_contract",
       "name": "나라장터 용역 계약",
       "last_success_at": null,
       "records": 0,
-      "status": "not_configured",
-      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+      "window": {
+        "from": "2026-10-28T00:00:00+09:00",
+        "to": "2026-11-26T09:00:55+09:00"
+      },
+      "status": "error",
+      "message": "API 네트워크 연결 또는 응답시간 초과. 해당 자료는 이전 결과를 보존했습니다."
     },
     {
       "id": "g2b_notice",
       "name": "나라장터 용역 입찰공고",
       "last_success_at": null,
       "records": 0,
-      "status": "not_configured",
-      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+      "window": {
+        "from": "2026-10-28T00:00:00+09:00",
+        "to": "2026-11-26T09:00:55+09:00"
+      },
+      "status": "error",
+      "message": "API HTTP 오류 403. 해당 자료는 이전 결과를 보존했습니다."
     },
     {
       "id": "g2b_prespec",
       "name": "나라장터 용역 사전규격",
       "last_success_at": null,
       "records": 0,
-      "status": "not_configured",
-      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+      "window": {
+        "from": "2026-10-28T00:00:00+09:00",
+        "to": "2026-11-26T09:00:55+09:00"
+      },
+      "status": "error",
+      "message": "API HTTP 오류 403. 해당 자료는 이전 결과를 보존했습니다."
     },
     {
       "id": "g2b_award",
       "name": "나라장터 용역 낙찰",
       "last_success_at": null,
       "records": 0,
-      "status": "not_configured",
-      "message": "DATAGO_SERVICE_KEY 환경변수와 해당 API 활용승인이 필요합니다."
+      "window": {
+        "from": "2026-10-28T00:00:00+09:00",
+        "to": "2026-11-26T09:00:55+09:00"
+      },
+      "status": "error",
+      "message": "API HTTP 오류 403. 해당 자료는 이전 결과를 보존했습니다."
     },
     {
       "id": "manual_verified",
@@ -352,6 +372,6 @@
   "collection_summary": {
     "enabled_sources": 5,
     "successful_sources": 0,
-    "failed_sources": 0
+    "failed_sources": 5
   }
 }
