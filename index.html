@@ -396,6 +396,7 @@
     <span class="pill">뉴스 <b id="statNews">—</b>건</span>
     <span class="pill">발주 <b id="statBids">—</b>건</span>
     <span class="pill">프로야구 <b id="statKbo">—</b>건</span>
+    <span class="pill" id="visitPill">방문 오늘 <b id="visitToday">—</b>명 · 누적 <b id="visitTotal">—</b>명</span>
     <div class="gsearch">
       <span class="icw" data-ic="search"></span>
       <input type="search" id="globalQ" placeholder="기사 · 발주명 · 기관 키워드 검색 ( / )" autocomplete="off" />
@@ -1974,9 +1975,15 @@
     ]).then(function (res) {
       if (!done && (res[0] || res[1])) try { sessionStorage.setItem('briefing-counted', tk); } catch (e) {}
       var p = [];
-      if (res[0] && typeof res[0].value === 'number') p.push('오늘 ' + fmt(res[0].value));
-      if (res[1] && typeof res[1].value === 'number') p.push('누적 ' + fmt(res[1].value));
-      if (p.length) $('visitStat').textContent = ' · 방문 ' + p.join(' / ');
+      if (res[0] && typeof res[0].value === 'number') {
+        p.push('오늘 ' + fmt(res[0].value));
+        if ($('visitToday')) $('visitToday').textContent = fmt(res[0].value);
+      }
+      if (res[1] && typeof res[1].value === 'number') {
+        p.push('누적 ' + fmt(res[1].value));
+        if ($('visitTotal')) $('visitTotal').textContent = fmt(res[1].value);
+      }
+      if (p.length && $('visitStat')) $('visitStat').textContent = ' · 방문 ' + p.join(' / ');
     });
   })();
 

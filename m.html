@@ -136,6 +136,11 @@
       <div class="m-kpi center"><div class="m-kpi-l">수집 뉴스</div><div class="m-kpi-v" style="color:var(--up)" id="mhNews">—</div></div>
       <div class="m-kpi center"><div class="m-kpi-l">발주 공고</div><div class="m-kpi-v" style="color:var(--primary-ink)" id="mhBids">—</div></div>
     </div>
+    <div style="display:flex;justify-content:center;gap:10px;padding:6px 10px;margin-bottom:10px;border-radius:8px;background:var(--panel);border:1px solid var(--line);font-size:11.5px;color:var(--sub)">
+      <span>오늘 방문 <b class="mono" style="color:var(--primary-ink)" id="mVisitToday">—</b>명</span>
+      <span>·</span>
+      <span>누적 방문 <b class="mono" style="color:var(--ink)" id="mVisitTotal">—</b>명</span>
+    </div>
 
     <div class="m-grid2" id="mHomeMk"></div>
 
@@ -689,6 +694,22 @@
     }).join('');
   }
   $('mLottoBtn').addEventListener('click', mLotto); mLotto();
+
+  /* 모바일 방문자 카운터 */
+  (function () {
+    var td = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+    var tk = 'visits-' + td, ns = 'kimjeonghun1-daily-briefing', done = false;
+    try { done = sessionStorage.getItem('briefing-counted') === tk; } catch (e) {}
+    var m = done ? 'get' : 'hit';
+    Promise.all([
+      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/' + tk).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/visits').then(function (r) { return r.json(); }).catch(function () { return null; })
+    ]).then(function (res) {
+      if (!done && (res[0] || res[1])) try { sessionStorage.setItem('briefing-counted', tk); } catch (e) {}
+      if (res[0] && typeof res[0].value === 'number' && $('mVisitToday')) $('mVisitToday').textContent = fmt(res[0].value);
+      if (res[1] && typeof res[1].value === 'number' && $('mVisitTotal')) $('mVisitTotal').textContent = fmt(res[1].value);
+    });
+  })();
 
   var h = location.hash.replace(/^#/, '').split('/')[0];
   if (h) setTab(h);
