@@ -141,16 +141,33 @@
   .mk-c.up { color: var(--up); }
   .mk-c.down { color: var(--down); }
 
-  /* ───────── 휴가용 항공권·기차표 검색 ───────── */
-  .vac-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--raised); color: var(--ink); }
-  .vac-btn[aria-pressed="true"] .icw { color: var(--accent); }
-  .vac-sw { position: relative; width: 28px; height: 16px; border-radius: 999px; background: var(--line-2); transition: background-color 160ms var(--ease); flex: none; }
+  /* ───────── 휴가용 항공권·기차·버스 ───────── */
+  .vac-card {
+    width: 100%; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; padding: 14px 16px;
+    background: var(--panel); border: 1.5px solid var(--accent); border-radius: 12px;
+    box-shadow: var(--shadow-s); text-align: left; color: var(--ink);
+    transition: background-color 140ms var(--ease), border-color 140ms var(--ease), transform 140ms var(--ease), box-shadow 140ms var(--ease);
+  }
+  .vac-card:hover { background: var(--raised); transform: translateY(-1px); }
+  .vac-card:active { transform: scale(0.99); }
+  .vac-card .vac-ic {
+    width: 40px; height: 40px; flex: none; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--accent); color: #fff;
+  }
+  .vac-card .vac-ic .ic { width: 20px; height: 20px; }
+  .vac-card .vac-txt { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .vac-card .vac-title { font-size: 16px; line-height: 20px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+  .vac-card .vac-desc { font-size: 12px; line-height: 16px; color: var(--sub); }
+  .vac-card[aria-pressed="true"] { background: var(--raised); box-shadow: inset 0 0 0 1px var(--accent); }
+  .vac-sw { position: relative; width: 32px; height: 18px; border-radius: 999px; background: var(--line-2); transition: background-color 160ms var(--ease); flex: none; }
   .vac-sw::after {
-    content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px;
+    content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
     border-radius: 50%; background: var(--panel); transition: transform 160ms var(--ease);
   }
-  .vac-btn[aria-pressed="true"] .vac-sw { background: var(--accent); }
-  .vac-btn[aria-pressed="true"] .vac-sw::after { transform: translateX(12px); }
+  .vac-card[aria-pressed="true"] .vac-sw { background: var(--accent); }
+  .vac-card[aria-pressed="true"] .vac-sw::after { transform: translateX(14px); }
 
   .vac-bar { border-bottom: 1px solid var(--line); background: var(--panel); animation: pop 180ms var(--ease); }
   .vac-bar[hidden] { display: none; }
@@ -343,6 +360,12 @@
       display: flex; gap: 8px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--line); scrollbar-width: none;
     }
     .side::-webkit-scrollbar { display: none; }
+    .nav-list { display: contents; }
+    .vac-card { width: auto; flex: none; height: 36px; margin-bottom: 0; padding: 0 12px; gap: 8px; border-radius: 8px; }
+    .vac-card .vac-ic { width: 22px; height: 22px; border-radius: 6px; }
+    .vac-card .vac-ic .ic { width: 14px; height: 14px; }
+    .vac-card .vac-title { font-size: 13px; line-height: 18px; }
+    .vac-card .vac-desc { display: none; }
     .nav-g { display: contents; margin: 0; }
     .nav-gt { display: none; }
     .nav-all, .nav-i { width: auto; flex: none; height: 32px; display: inline-flex; gap: 8px; padding: 0 12px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px; font-size: 13px; }
@@ -379,9 +402,34 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
+  /* ───────── 최상단 큰 탭 전환 바 (데일리 브리핑 ↔ 발주 브리핑) ───────── */
+  .hub-bar { background: var(--panel); border-bottom: 1px solid var(--line-2); }
+  .hub-in { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-tab {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    height: 52px; padding: 0 16px; text-decoration: none; color: var(--mute);
+    font-size: 15px; font-weight: 500; border-bottom: 3px solid transparent;
+    transition: color 140ms var(--ease), background-color 140ms var(--ease), border-color 140ms var(--ease);
+  }
+  .hub-tab:hover { color: var(--ink); background: var(--raised); }
+  .hub-tab[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); background: var(--bg); }
+  .hub-tab .hub-sub { font-size: 12px; font-weight: 400; color: var(--mute); }
+  @media (max-width: 900px) { .hub-in { padding: 0 16px; } }
+  @media (max-width: 520px) {
+    .hub-in { padding: 0 8px; gap: 4px; }
+    .hub-tab { height: 46px; font-size: 13px; padding: 0 8px; }
+    .hub-tab .hub-sub { display: none; }
+  }
 </style>
 </head>
 <body>
+
+<nav class="hub-bar" aria-label="브리핑 화면 전환">
+  <div class="hub-in">
+    <a class="hub-tab" href="./index.html" aria-current="page"><span>구조부 데일리 브리핑</span><span class="hub-sub">뉴스 · 시장 · 날씨</span></a>
+    <a class="hub-tab" href="./procurement.html"><span>국내 엔지니어링 발주</span><span class="hub-sub">나라장터 용역 발주현황</span></a>
+  </div>
+</nav>
 
 <header class="top">
   <div class="top-in">
@@ -399,7 +447,6 @@
       </div>
       <button class="ctl" id="themeBtn" aria-label="화면 모드 전환" title="화면 모드 전환"></button>
       <button class="ctl" id="reqBtn" type="button" title="구조부 김정훈 과장에게 문의 보내기"><span class="icw" data-ic="mail"></span><span>문의사항 - 구조부 김정훈 과장</span></button>
-      <button class="ctl vac-btn" id="vacBtn" aria-pressed="false" aria-expanded="false" aria-controls="vacBar" title="휴가용 항공권·기차표 검색"><span class="icw" data-ic="plane"></span><span>휴가용</span><span class="vac-sw" aria-hidden="true"></span></button>
     </div>
   </div>
 </header>
@@ -411,8 +458,7 @@
     <div class="vac-head">
       <div class="seg" id="vacModeSeg" role="group" aria-label="교통수단 선택">
         <button type="button" data-vac="flight" aria-pressed="true">항공권</button>
-        <button type="button" data-vac="train" aria-pressed="false">기차표</button>
-        <button type="button" data-vac="bus" aria-pressed="false">고속·시외버스</button>
+        <button type="button" data-vac="ground" aria-pressed="false">기차 · 버스</button>
       </div>
     </div>
 
@@ -457,45 +503,13 @@
       </div>
     </div>
 
-    <div class="vac-form" id="vacTrainForm" hidden>
-      <div class="vac-field">
-        <label for="tFrom">출발역</label>
-        <input class="vac-input" id="tFrom" list="trainStations" value="서울" placeholder="서울, 용산, 수서..." style="width:128px" />
-      </div>
-      <button type="button" class="ctl vac-swap" id="tSwap" title="출발·도착역 바꾸기" aria-label="출발역 도착역 바꾸기"><span class="icw" data-ic="swap"></span></button>
-      <div class="vac-field">
-        <label for="tTo">도착역</label>
-        <input class="vac-input" id="tTo" list="trainStations" value="부산" placeholder="부산, 강릉, 여수..." style="width:128px" />
-      </div>
-      <div class="vac-field">
-        <label for="tDep">출발일</label>
-        <input class="vac-input" id="tDep" type="date" />
-      </div>
-      <div class="vac-actions">
-        <button type="button" class="ctl vac-go" id="tGoNaver"><span class="icw" data-ic="train"></span><span>네이버 기차 시간표·예매</span></button>
-        <a class="ctl" href="https://www.korail.com/" target="_blank" rel="noopener">코레일 바로가기</a>
-      </div>
-    </div>
-
-    <div class="vac-form" id="vacBusForm" hidden>
-      <div class="vac-field">
-        <label for="bFrom">출발 터미널</label>
-        <input class="vac-input" id="bFrom" list="busTerminals" value="서울경부" placeholder="서울경부, 센트럴시티, 동서울..." style="width:148px" />
-      </div>
-      <button type="button" class="ctl vac-swap" id="bSwap" title="출발·도착 터미널 바꾸기" aria-label="출발 도착 터미널 바꾸기"><span class="icw" data-ic="swap"></span></button>
-      <div class="vac-field">
-        <label for="bTo">도착 터미널</label>
-        <input class="vac-input" id="bTo" list="busTerminals" value="부산" placeholder="부산, 대전, 광주, 강릉..." style="width:148px" />
-      </div>
-      <div class="vac-field">
-        <label for="bDep">출발일</label>
-        <input class="vac-input" id="bDep" type="date" />
-      </div>
-      <div class="vac-actions">
-        <button type="button" class="ctl vac-go" id="bGoNaver"><span class="icw" data-ic="search"></span><span>네이버 버스 시간표</span></button>
-        <a class="ctl" href="https://www.kobus.co.kr/" target="_blank" rel="noopener">고속버스(코버스)</a>
-        <a class="ctl" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener">시외버스(티머니)</a>
-        <a class="ctl" href="https://www.bustago.or.kr/" target="_blank" rel="noopener">시외버스(버스타고)</a>
+    <div class="vac-form" id="vacGroundForm" style="align-items:center" hidden>
+      <div class="vac-actions" style="margin-left:0">
+        <a class="ctl vac-go" href="https://nol.yanolja.com/" target="_blank" rel="noopener"><span class="icw" data-ic="train"></span><span>NOL (기차·버스 통합)</span></a>
+        <a class="ctl" href="https://www.korail.com/" target="_blank" rel="noopener">코레일 (KTX)</a>
+        <a class="ctl" href="https://www.kobus.co.kr/" target="_blank" rel="noopener">고속버스 (코버스)</a>
+        <a class="ctl" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener">시외버스 (티머니)</a>
+        <a class="ctl" href="https://www.bustago.or.kr/" target="_blank" rel="noopener">시외버스 (버스타고)</a>
       </div>
     </div>
 
@@ -524,53 +538,18 @@
       <option value="HKG">홍콩 (HKG)</option>
       <option value="GUM">괌 (GUM)</option>
     </datalist>
-    <datalist id="trainStations">
-      <option value="서울"></option>
-      <option value="용산"></option>
-      <option value="수서"></option>
-      <option value="광명"></option>
-      <option value="오송"></option>
-      <option value="대전"></option>
-      <option value="전주"></option>
-      <option value="익산"></option>
-      <option value="광주송정"></option>
-      <option value="목포"></option>
-      <option value="여수EXPO"></option>
-      <option value="동대구"></option>
-      <option value="포항"></option>
-      <option value="부산"></option>
-      <option value="강릉"></option>
-    </datalist>
-    <datalist id="busTerminals">
-      <option value="서울경부"></option>
-      <option value="센트럴시티"></option>
-      <option value="동서울"></option>
-      <option value="서울남부"></option>
-      <option value="인천"></option>
-      <option value="수원"></option>
-      <option value="성남"></option>
-      <option value="대전복합"></option>
-      <option value="유성"></option>
-      <option value="청주"></option>
-      <option value="전주"></option>
-      <option value="광주"></option>
-      <option value="목포"></option>
-      <option value="여수"></option>
-      <option value="동대구"></option>
-      <option value="포항"></option>
-      <option value="부산"></option>
-      <option value="부산사상"></option>
-      <option value="울산"></option>
-      <option value="창원"></option>
-      <option value="강릉"></option>
-      <option value="속초"></option>
-      <option value="춘천"></option>
-    </datalist>
   </div>
 </section>
 
 <div class="shell">
-  <nav class="side" id="nav" aria-label="카테고리"></nav>
+  <aside class="side" aria-label="카테고리 및 휴가용">
+    <button type="button" class="vac-card" id="vacBtn" aria-pressed="false" aria-expanded="false" aria-controls="vacBar" title="휴가용 항공권·기차·버스">
+      <span class="vac-ic"><span class="icw" data-ic="plane" style="color:inherit"></span></span>
+      <span class="vac-txt"><span class="vac-title">휴가용</span><span class="vac-desc">항공권 · 기차 · 버스</span></span>
+      <span class="vac-sw" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-list" id="nav" aria-label="카테고리"></nav>
+  </aside>
 
   <main>
     <div class="toolbar is-overview" id="toolbar">
@@ -1201,13 +1180,12 @@
     }
     $('#fDep').value = addDays(1);
     $('#fRet').value = addDays(4);
-    $('#tDep').value = addDays(1);
-    $('#bDep').value = addDays(1);
 
     function setVacOpen(open) {
       $('#vacBar').hidden = !open;
       $('#vacBtn').setAttribute('aria-pressed', String(open));
       $('#vacBtn').setAttribute('aria-expanded', String(open));
+      if (open && window.scrollY > 120) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     $('#vacBtn').addEventListener('click', function () { setVacOpen($('#vacBar').hidden); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#vacBar').hidden) setVacOpen(false); });
@@ -1217,14 +1195,11 @@
       var mode = b.dataset.vac;
       document.querySelectorAll('#vacModeSeg [data-vac]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.vac === mode)); });
       $('#vacFlightForm').hidden = mode !== 'flight';
-      $('#vacTrainForm').hidden = mode !== 'train';
-      $('#vacBusForm').hidden = mode !== 'bus';
+      $('#vacGroundForm').hidden = mode !== 'ground';
     });
 
     $('#fTrip').addEventListener('change', function (e) { $('#fRetWrap').hidden = e.target.value !== 'round'; });
     $('#fSwap').addEventListener('click', function () { var a = $('#fFrom').value; $('#fFrom').value = $('#fTo').value; $('#fTo').value = a; });
-    $('#tSwap').addEventListener('click', function () { var a = $('#tFrom').value; $('#tFrom').value = $('#tTo').value; $('#tTo').value = a; });
-    $('#bSwap').addEventListener('click', function () { var a = $('#bFrom').value; $('#bFrom').value = $('#bTo').value; $('#bTo').value = a; });
 
     function fParams() {
       var trip = $('#fTrip').value;
@@ -1255,18 +1230,6 @@
       var p = fParams();
       var q = 'Flights from ' + p.from + ' to ' + p.to + ' on ' + p.dep + (p.trip === 'round' ? ' through ' + p.ret : '');
       window.open('https://www.google.com/travel/flights?hl=ko&curr=KRW&q=' + encodeURIComponent(q), '_blank', 'noopener');
-    });
-    $('#tGoNaver').addEventListener('click', function () {
-      var from = ($('#tFrom').value || '서울').trim().replace(/역$/, '');
-      var to = ($('#tTo').value || '부산').trim().replace(/역$/, '');
-      var q = from + '역에서 ' + to + '역 KTX 시간표';
-      window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(q), '_blank', 'noopener');
-    });
-    $('#bGoNaver').addEventListener('click', function () {
-      var from = ($('#bFrom').value || '서울경부').trim();
-      var to = ($('#bTo').value || '부산').trim();
-      var q = from + '에서 ' + to + ' 버스 시간표';
-      window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(q), '_blank', 'noopener');
     });
   })();
 
