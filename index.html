@@ -142,32 +142,15 @@
   .mk-c.down { color: var(--down); }
 
   /* ───────── 휴가용 항공권·기차표 검색 ───────── */
-  .vac-card {
-    width: 100%; display: flex; align-items: center; gap: 12px;
-    margin-bottom: 16px; padding: 14px 16px;
-    background: var(--panel); border: 1.5px solid var(--accent); border-radius: 12px;
-    box-shadow: var(--shadow-s); text-align: left; color: var(--ink);
-    transition: background-color 140ms var(--ease), border-color 140ms var(--ease), transform 140ms var(--ease), box-shadow 140ms var(--ease);
-  }
-  .vac-card:hover { background: var(--raised); transform: translateY(-1px); }
-  .vac-card:active { transform: scale(0.99); }
-  .vac-card .vac-ic {
-    width: 38px; height: 38px; flex: none; border-radius: 10px;
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--accent); color: #fff;
-  }
-  .vac-card .vac-ic .ic { width: 20px; height: 20px; }
-  .vac-card .vac-txt { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; }
-  .vac-card .vac-title { font-size: 16px; line-height: 20px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
-  .vac-card .vac-desc { font-size: 12px; line-height: 16px; color: var(--sub); }
-  .vac-card[aria-pressed="true"] { background: var(--raised); box-shadow: inset 0 0 0 1px var(--accent); }
-  .vac-sw { position: relative; width: 32px; height: 18px; border-radius: 999px; background: var(--line-2); transition: background-color 160ms var(--ease); flex: none; }
+  .vac-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--raised); color: var(--ink); }
+  .vac-btn[aria-pressed="true"] .icw { color: var(--accent); }
+  .vac-sw { position: relative; width: 28px; height: 16px; border-radius: 999px; background: var(--line-2); transition: background-color 160ms var(--ease); flex: none; }
   .vac-sw::after {
-    content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
+    content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px;
     border-radius: 50%; background: var(--panel); transition: transform 160ms var(--ease);
   }
-  .vac-card[aria-pressed="true"] .vac-sw { background: var(--accent); }
-  .vac-card[aria-pressed="true"] .vac-sw::after { transform: translateX(14px); }
+  .vac-btn[aria-pressed="true"] .vac-sw { background: var(--accent); }
+  .vac-btn[aria-pressed="true"] .vac-sw::after { transform: translateX(12px); }
 
   .vac-bar { border-bottom: 1px solid var(--line); background: var(--panel); animation: pop 180ms var(--ease); }
   .vac-bar[hidden] { display: none; }
@@ -188,6 +171,29 @@
   .vac-go { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 500; }
   .vac-go:hover { background: var(--accent); filter: brightness(1.08); }
   .vac-go .icw { color: #fff; }
+
+  /* ───────── 문의사항 모달 ───────── */
+  .req-backdrop {
+    position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px;
+    background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px);
+  }
+  .req-backdrop[hidden] { display: none; }
+  .req-modal {
+    width: min(460px, 100%); background: var(--panel); border: 1px solid var(--line-2); border-radius: 12px;
+    box-shadow: var(--shadow-m); overflow: hidden; animation: pop 180ms var(--ease);
+  }
+  .req-hd { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  .req-hd h2 { font-size: 15px; font-weight: 600; }
+  .req-bd { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .req-to { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; background: var(--raised); border-radius: 8px; font-size: 12px; color: var(--sub); }
+  .req-copy { height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--line-2); background: var(--panel); font-size: 11px; color: var(--ink); }
+  .req-copy:hover { background: var(--bg); }
+  .req-bd textarea { width: 100%; min-height: 110px; padding: 10px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px; font: inherit; font-size: 13px; color: var(--ink); resize: vertical; }
+  .req-bd textarea:focus { border-color: var(--accent); outline: none; }
+  .req-status { font-size: 12px; line-height: 18px; min-height: 18px; color: var(--sub); }
+  .req-status.ok { color: var(--accent); }
+  .req-status.err { color: var(--up); }
+  .req-ft { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--line); background: var(--raised); }
 
   /* ───────── 레이아웃 ───────── */
   .shell { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 32px; }
@@ -337,12 +343,6 @@
       display: flex; gap: 8px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--line); scrollbar-width: none;
     }
     .side::-webkit-scrollbar { display: none; }
-    .nav-list { display: contents; }
-    .vac-card { width: auto; flex: none; height: 36px; margin-bottom: 0; padding: 0 12px; gap: 8px; border-radius: 8px; }
-    .vac-card .vac-ic { width: 22px; height: 22px; border-radius: 6px; }
-    .vac-card .vac-ic .ic { width: 14px; height: 14px; }
-    .vac-card .vac-title { font-size: 13px; line-height: 18px; }
-    .vac-card .vac-desc { display: none; }
     .nav-g { display: contents; margin: 0; }
     .nav-gt { display: none; }
     .nav-all, .nav-i { width: auto; flex: none; height: 32px; display: inline-flex; gap: 8px; padding: 0 12px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px; font-size: 13px; }
@@ -379,34 +379,9 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
-  /* ───────── 최상단 큰 탭 전환 바 (데일리 브리핑 ↔ 발주 브리핑) ───────── */
-  .hub-bar { background: var(--panel); border-bottom: 1px solid var(--line-2); }
-  .hub-in { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .hub-tab {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    height: 52px; padding: 0 16px; text-decoration: none; color: var(--mute);
-    font-size: 15px; font-weight: 500; border-bottom: 3px solid transparent;
-    transition: color 140ms var(--ease), background-color 140ms var(--ease), border-color 140ms var(--ease);
-  }
-  .hub-tab:hover { color: var(--ink); background: var(--raised); }
-  .hub-tab[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); background: var(--bg); }
-  .hub-tab .hub-sub { font-size: 12px; font-weight: 400; color: var(--mute); }
-  @media (max-width: 900px) { .hub-in { padding: 0 16px; } }
-  @media (max-width: 520px) {
-    .hub-in { padding: 0 8px; gap: 4px; }
-    .hub-tab { height: 46px; font-size: 13px; padding: 0 8px; }
-    .hub-tab .hub-sub { display: none; }
-  }
 </style>
 </head>
 <body>
-
-<nav class="hub-bar" aria-label="브리핑 화면 전환">
-  <div class="hub-in">
-    <a class="hub-tab" href="./index.html" aria-current="page"><span>구조부 데일리 브리핑</span><span class="hub-sub">뉴스 · 시장 · 날씨</span></a>
-    <a class="hub-tab" href="./procurement.html"><span>국내 엔지니어링 발주</span><span class="hub-sub">나라장터 용역 발주현황</span></a>
-  </div>
-</nav>
 
 <header class="top">
   <div class="top-in">
@@ -423,7 +398,8 @@
         <div class="wx-panel" id="wxPanel" hidden></div>
       </div>
       <button class="ctl" id="themeBtn" aria-label="화면 모드 전환" title="화면 모드 전환"></button>
-      <a class="ctl" id="reqBtn" href="mailto:jaykim@samboeng.co.kr?subject=%5B%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B8%8C%EB%A6%AC%ED%95%91%5D%20%EC%A0%95%EB%B3%B4%20%EC%B6%94%EA%B0%80%20%EC%9A%94%EC%B2%AD&body=%EC%B6%94%EA%B0%80%ED%95%98%EA%B3%A0%20%EC%8B%B6%EC%9D%80%20%ED%83%AD%2F%ED%82%A4%EC%9B%8C%EB%93%9C%2F%EC%96%B8%EB%A1%A0%EC%82%AC%2F%EA%B5%AD%EA%B0%80%EB%A5%BC%20%EC%95%8C%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94%3A%0A%0A-%20%EC%9A%94%EC%B2%AD%20%EB%82%B4%EC%9A%A9%3A%20%0A-%20%EC%B0%B8%EA%B3%A0%20%EC%82%AC%EC%9D%B4%ED%8A%B8%2F%ED%82%A4%EC%9B%8C%EB%93%9C%3A%20" title="jaykim@samboeng.co.kr로 정보 추가 요청 보내기"><span class="icw" data-ic="mail"></span><span>문의사항 - 구조부 김정훈 과장</span></a>
+      <button class="ctl" id="reqBtn" type="button" title="구조부 김정훈 과장에게 문의 보내기"><span class="icw" data-ic="mail"></span><span>문의사항 - 구조부 김정훈 과장</span></button>
+      <button class="ctl vac-btn" id="vacBtn" aria-pressed="false" aria-expanded="false" aria-controls="vacBar" title="휴가용 항공권·기차표 검색"><span class="icw" data-ic="plane"></span><span>휴가용</span><span class="vac-sw" aria-hidden="true"></span></button>
     </div>
   </div>
 </header>
@@ -547,14 +523,7 @@
 </section>
 
 <div class="shell">
-  <aside class="side" aria-label="카테고리 및 휴가용">
-    <button type="button" class="vac-card" id="vacBtn" aria-pressed="false" aria-expanded="false" aria-controls="vacBar" title="휴가용 항공권·기차표 검색">
-      <span class="vac-ic"><span class="icw" data-ic="plane" style="color:inherit"></span></span>
-      <span class="vac-txt"><span class="vac-title">휴가용</span><span class="vac-desc">항공권 · 기차표 검색</span></span>
-      <span class="vac-sw" aria-hidden="true"></span>
-    </button>
-    <nav class="nav-list" id="nav" aria-label="카테고리"></nav>
-  </aside>
+  <nav class="side" id="nav" aria-label="카테고리"></nav>
 
   <main>
     <div class="toolbar is-overview" id="toolbar">
@@ -1172,7 +1141,6 @@
       $('#vacBar').hidden = !open;
       $('#vacBtn').setAttribute('aria-pressed', String(open));
       $('#vacBtn').setAttribute('aria-expanded', String(open));
-      if (open && window.scrollY > 120) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     $('#vacBtn').addEventListener('click', function () { setVacOpen($('#vacBar').hidden); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#vacBar').hidden) setVacOpen(false); });
@@ -1225,6 +1193,92 @@
       var dep = $('#tDep').value || addDays(1);
       var q = from + ' ' + to + ' 기차 시간표 ' + dep;
       window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(q), '_blank', 'noopener');
+    });
+  })();
+
+  /* ───────── 문의사항 모달 & 메일 발송 ───────── */
+  (function () {
+    var modal = document.createElement('div');
+    modal.className = 'req-backdrop';
+    modal.id = 'reqModal';
+    modal.hidden = true;
+    modal.innerHTML =
+      '<div class="req-modal" role="dialog" aria-modal="true" aria-labelledby="reqTitle">' +
+        '<div class="req-hd"><h2 id="reqTitle">문의사항 보내기</h2><button type="button" class="ctl" id="reqClose" style="width:32px;height:32px;padding:0;justify-content:center" aria-label="닫기">' + icon('x') + '</button></div>' +
+        '<form id="reqForm">' +
+          '<div class="req-bd">' +
+            '<div class="req-to"><span>수신: 구조부 김정훈 과장 (<span class="mono">jaykim@samboeng.co.kr</span>)</span><button type="button" class="req-copy" id="reqCopy">주소 복사</button></div>' +
+            '<div class="vac-field"><label for="reqSender">작성자 / 소속 (선택)</label><input class="vac-input" id="reqSender" type="text" placeholder="예: 홍길동 / 구조부" /></div>' +
+            '<div class="vac-field"><label for="reqType">분류</label><select class="vac-input" id="reqType"><option value="정보/탭 추가 요청">정보/탭 추가 요청</option><option value="오류·기사 제외 요청">오류·기사 제외 요청</option><option value="기타 문의">기타 문의</option></select></div>' +
+            '<div class="vac-field"><label for="reqMsg">문의 내용</label><textarea id="reqMsg" required placeholder="추가하고 싶은 탭, 키워드, 언론사 또는 수정 요청 사항을 입력해 주세요."></textarea></div>' +
+            '<div class="req-status" id="reqStatus"></div>' +
+          '</div>' +
+          '<div class="req-ft">' +
+            '<a class="ctl" id="reqMailto" href="mailto:jaykim@samboeng.co.kr?subject=%5B%EA%B5%AC%EC%A1%B0%EB%B6%80%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B8%8C%EB%A6%AC%ED%95%91%5D%20%EB%AC%B8%EC%9D%98%EC%82%AC%ED%95%AD">메일 앱으로 열기</a>' +
+            '<button type="submit" class="ctl vac-go" id="reqSend">메일로 보내기</button>' +
+          '</div>' +
+        '</form>' +
+      '</div>';
+    document.body.appendChild(modal);
+
+    function closeReq() { modal.hidden = true; }
+    $('#reqBtn').addEventListener('click', function () {
+      $('#reqStatus').textContent = '';
+      $('#reqStatus').className = 'req-status';
+      modal.hidden = false;
+      $('#reqMsg').focus();
+    });
+    $('#reqClose').addEventListener('click', closeReq);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeReq(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeReq(); });
+
+    $('#reqCopy').addEventListener('click', function () {
+      var btn = this;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText('jaykim@samboeng.co.kr').then(function () {
+          btn.textContent = '복사됨'; setTimeout(function () { btn.textContent = '주소 복사'; }, 1500);
+        });
+      }
+    });
+
+    $('#reqForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = $('#reqMsg').value.trim();
+      if (!msg) return;
+      var sender = ($('#reqSender').value || '익명').trim();
+      var kind = $('#reqType').value;
+      var status = $('#reqStatus');
+      var sendBtn = $('#reqSend');
+      sendBtn.disabled = true;
+      sendBtn.textContent = '전송 중...';
+      status.className = 'req-status';
+      status.textContent = '메일을 전송하고 있습니다...';
+
+      fetch('https://formsubmit.co/ajax/jaykim@samboeng.co.kr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: '[구조부 데일리 브리핑] ' + kind + ' (' + sender + ')',
+          작성자: sender,
+          분류: kind,
+          내용: msg,
+          _template: 'table'
+        })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function () {
+        status.className = 'req-status ok';
+        status.textContent = '전송되었습니다. 감사합니다!';
+        $('#reqMsg').value = '';
+        setTimeout(closeReq, 1400);
+      }).catch(function () {
+        status.className = 'req-status err';
+        status.textContent = '자동 전송에 실패했습니다. 아래 "메일 앱으로 열기" 또는 주소 복사를 이용해 주세요.';
+      }).finally(function () {
+        sendBtn.disabled = false;
+        sendBtn.textContent = '메일로 보내기';
+      });
     });
   })();
 })();
