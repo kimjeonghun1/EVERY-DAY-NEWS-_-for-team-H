@@ -425,12 +425,12 @@
       </div>
       <div class="vac-field">
         <label for="fFrom">출발지</label>
-        <input class="vac-input" id="fFrom" list="airPorts" value="SEL" placeholder="SEL, ICN..." style="width:128px" />
+        <input class="vac-input" id="fFrom" list="airPorts" value="SEL" placeholder="서울, 인천, 김포, SEL..." style="width:140px" />
       </div>
       <button type="button" class="ctl vac-swap" id="fSwap" title="출발·도착 바꾸기" aria-label="출발지 도착지 바꾸기"><span class="icw" data-ic="swap"></span></button>
       <div class="vac-field">
         <label for="fTo">도착지</label>
-        <input class="vac-input" id="fTo" list="airPorts" value="CJU" placeholder="CJU, NRT, BKK..." style="width:136px" />
+        <input class="vac-input" id="fTo" list="airPorts" value="CJU" placeholder="제주, 도쿄, 다낭, CJU..." style="width:148px" />
       </div>
       <div class="vac-field">
         <label for="fDep">가는 날</label>
@@ -471,9 +471,8 @@
         <input class="vac-input" id="tDep" type="date" />
       </div>
       <div class="vac-actions">
-        <button type="button" class="ctl vac-go" id="tGoNaver"><span class="icw" data-ic="train"></span><span>네이버 기차 시간표</span></button>
-        <a class="ctl" href="https://www.letskorail.com/" target="_blank" rel="noopener">코레일(KTX)</a>
-        <a class="ctl" href="https://etk.srail.kr/" target="_blank" rel="noopener">SRT 예매</a>
+        <button type="button" class="ctl vac-go" id="tGoNaver"><span class="icw" data-ic="train"></span><span>네이버 기차 시간표·예매</span></button>
+        <a class="ctl" href="https://www.korail.com/" target="_blank" rel="noopener">코레일 바로가기</a>
       </div>
     </div>
 
@@ -1129,9 +1128,28 @@
       var d = new Date(Date.now() + 9 * 3600000 + n * 86400000);
       return d.toISOString().slice(0, 10);
     }
+    var KOR_AIRPORT = {
+      '서울': 'SEL', '인천': 'ICN', '김포': 'GMP', '제주': 'CJU', '부산': 'PUS', '김해': 'PUS',
+      '대구': 'TAE', '청주': 'CJJ', '광주': 'KWJ', '여수': 'RSU', '울산': 'USN', '사천': 'HIN',
+      '진주': 'HIN', '양양': 'YNY', '군산': 'KUV', '무안': 'MWX', '포항': 'KPO', '원주': 'WJU',
+      '도쿄': 'TYO', '나리타': 'NRT', '하네다': 'HND', '오사카': 'KIX', '간사이': 'KIX',
+      '후쿠오카': 'FUK', '삿포로': 'CTS', '오키나와': 'OKA', '나고야': 'NGO',
+      '타이베이': 'TPE', '대만': 'TPE', '가오슝': 'KHH', '홍콩': 'HKG', '마카오': 'MFM',
+      '다낭': 'DAD', '나트랑': 'CXR', '하노이': 'HAN', '호치민': 'SGN', '푸꾸옥': 'PQC',
+      '방콕': 'BKK', '치앙마이': 'CNX', '푸켓': 'HKT', '싱가포르': 'SIN', '코타키나발루': 'BKI',
+      '세부': 'CEB', '보홀': 'TAG', '마닐라': 'MNL', '발리': 'DPS', '괌': 'GUM', '사이판': 'SPN',
+      '하와이': 'HNL', '호놀룰루': 'HNL', '시드니': 'SYD', '파리': 'CDG', '런던': 'LHR',
+      '로마': 'FCO', '프라하': 'PRG', '뉴욕': 'JFK', '로스앤젤레스': 'LAX', '샌프란시스코': 'SFO'
+    };
     function codeOf(v, fallback) {
-      var m = String(v || '').trim().toUpperCase().match(/[A-Z]{3}/);
-      return m ? m[0] : fallback;
+      var raw = String(v || '').trim();
+      var m = raw.toUpperCase().match(/[A-Z]{3}/);
+      if (m) return m[0];
+      var keys = Object.keys(KOR_AIRPORT);
+      for (var i = 0; i < keys.length; i++) {
+        if (raw.indexOf(keys[i]) !== -1) return KOR_AIRPORT[keys[i]];
+      }
+      return fallback;
     }
     $('#fDep').value = addDays(1);
     $('#fRet').value = addDays(4);
@@ -1180,7 +1198,7 @@
       var d1 = p.dep.replace(/-/g, ''), d2 = p.ret.replace(/-/g, '');
       var base = 'https://flight.naver.com/flights/' + (dom ? 'domestic' : 'international') + '/';
       var leg = p.from + '-' + p.to + '-' + d1 + (p.trip === 'round' ? '/' + p.to + '-' + p.from + '-' + d2 : '');
-      window.open(base + leg + '?adult=' + p.pax + '&fareType=YC', '_blank', 'noopener');
+      window.open(base + leg + '?adult=' + p.pax + '&fareType=' + (dom ? 'YC' : 'Y'), '_blank', 'noopener');
     });
     $('#fGoGoogle').addEventListener('click', function () {
       var p = fParams();
@@ -1188,10 +1206,9 @@
       window.open('https://www.google.com/travel/flights?hl=ko&curr=KRW&q=' + encodeURIComponent(q), '_blank', 'noopener');
     });
     $('#tGoNaver').addEventListener('click', function () {
-      var from = ($('#tFrom').value || '서울').trim();
-      var to = ($('#tTo').value || '부산').trim();
-      var dep = $('#tDep').value || addDays(1);
-      var q = from + ' ' + to + ' 기차 시간표 ' + dep;
+      var from = ($('#tFrom').value || '서울').trim().replace(/역$/, '');
+      var to = ($('#tTo').value || '부산').trim().replace(/역$/, '');
+      var q = from + '역에서 ' + to + '역 KTX 시간표';
       window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(q), '_blank', 'noopener');
     });
   })();
