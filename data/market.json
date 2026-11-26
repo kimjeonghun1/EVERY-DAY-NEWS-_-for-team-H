@@ -2,38 +2,38 @@
   "items": [
     {
       "name": "금(USD/oz)",
-      "value": "$3,523.8",
-      "change": -1.07
+      "value": "$3,605.4",
+      "change": 1.22
     },
     {
       "name": "코스피",
-      "value": "4,679.27",
-      "change": -6.53
+      "value": "4,697.51",
+      "change": -0.23
     },
     {
       "name": "코스닥",
-      "value": "645.29",
-      "change": -3.09
+      "value": "650.64",
+      "change": 2.39
     },
     {
       "name": "나스닥",
-      "value": "23,733.53",
-      "change": -1.48
+      "value": "23,585.80",
+      "change": -0.62
     },
     {
       "name": "S&P500",
-      "value": "7,201.09",
-      "change": -0.5
+      "value": "7,182.78",
+      "change": -0.25
     },
     {
       "name": "닛케이225",
-      "value": "56,923.54",
-      "change": -2.93
+      "value": "57,011.62",
+      "change": 1.02
     },
     {
       "name": "원/달러",
-      "value": "1,342.3원",
-      "change": 0.1
+      "value": "1,344.5원",
+      "change": 0.26
     }
   ]
 }
