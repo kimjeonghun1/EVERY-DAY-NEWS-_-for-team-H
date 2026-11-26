@@ -497,7 +497,7 @@
           </div>
           <div class="chips" id="newsTabChips">
             <button class="chip" data-ngrp="전체" aria-pressed="true">전체 속보</button>
-            <button class="chip" data-ngrp="삼보기술단" aria-pressed="false">우리 회사</button>
+            <button class="chip" data-ngrp="삼보기술단" aria-pressed="false">삼보기술단</button>
             <button class="chip" data-ngrp="국내 엔지니어링" aria-pressed="false">토목·건설·인프라</button>
             <button class="chip" data-ngrp="해외 토목" aria-pressed="false">해외 토목</button>
             <button class="chip" data-ngrp="AI · 신기술" aria-pressed="false">AI · 신기술</button>
@@ -973,10 +973,10 @@
   /* ───────── 뉴스 데이터 & 카테고리 ───────── */
   var GROUPS = [
     { name: '전체', cats: [] },
-    { name: '우리 회사', cats: ['삼보기술단'] },
+    { name: '삼보기술단', cats: ['삼보기술단'] },
     { name: '국내 엔지니어링', cats: ['국내 입찰·용역', '엔지니어링 뉴스', '협회 및 유관기관', '기술사-토목구조'] },
     { name: '해외 토목', cats: ['해외 토목사업', '해외토목-베트남', '해외토목-방글라데시'] },
-    { name: 'AI · 신기술', cats: ['GitHub 핫한 AI', 'HuggingFace 논문·앱', 'AI 활용·신기술 뉴스'] },
+    { name: 'AI · 신기술', cats: ['AI 트렌드', 'GitHub 핫한 AI', 'HuggingFace 논문·앱', 'AI 활용·신기술 뉴스'] },
     { name: '시사 · 경제', cats: ['국내정치', '해외정치', '국내경제', '해외경제', '오늘의 뉴스 헤드라인', '국내사회'] },
     { name: '투자 · 금융', cats: ['국내주식', '해외주식', '코인'] },
     { name: '프로야구', cats: ['프로야구 한화 소식', 'KIA 타이거즈', 'LG 트윈스', '두산 베어스'] }
@@ -1174,7 +1174,9 @@
 
     var grp = GROUPS.find(function (g) { return g.name === newsTabState.group; }) || GROUPS[0];
     var rows = newsItems.filter(function (x) {
-      if (grp.cats.length && grp.cats.indexOf(x.category) < 0) return false;
+      if (newsTabState.group === '삼보기술단') {
+        if (x.category !== '삼보기술단' && [x.title, x.summary].join(' ').indexOf('삼보기술단') < 0) return false;
+      } else if (grp.cats.length && grp.cats.indexOf(x.category) < 0) return false;
       if (newsTabState.pub !== 'ALL' && x.publisher !== newsTabState.pub) return false;
       if (globalQuery && [x.title, x.summary, x.publisher, x.category].join(' ').toLowerCase().indexOf(globalQuery) < 0) return false;
       return true;
