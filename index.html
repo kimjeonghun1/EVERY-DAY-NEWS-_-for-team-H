@@ -34,7 +34,7 @@
     --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --maxw: 1760px;
+    --maxw: 2240px;
 
     /* Executive Pulse Hub — Light */
     --bg: #f4f6fa;
@@ -179,6 +179,8 @@
   .card-hd .bar { width: 4px; height: 15px; border-radius: 2px; background: var(--primary); display: inline-block; }
   .card-bd { padding: 14px 16px; }
   .grid-main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
+  .home-shell { display: grid; grid-template-columns: 295px minmax(0, 1fr) 340px; gap: 18px; align-items: start; }
+  .home-left { position: sticky; top: 112px; }
   .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 
   /* 금융 지표 카드: 컴팩트 가로 6분할 1줄 슬림 바 */
@@ -328,6 +330,10 @@
   .ftr-in { max-width: var(--maxw); margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--mute); }
 
   /* 반응형 */
+  @media (max-width: 1440px) {
+    .home-shell { grid-template-columns: minmax(0, 1fr) 330px; }
+    .home-left { position: static; order: 3; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  }
   @media (max-width: 1280px) {
     .grid-main { grid-template-columns: minmax(0, 1fr) 330px; }
     .news-shell { grid-template-columns: 200px minmax(0, 1fr); }
@@ -335,7 +341,8 @@
   }
   @media (max-width: 1024px) {
     .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-main, .cat-grid, .news-shell { grid-template-columns: 1fr; }
+    .grid-main, .home-shell, .cat-grid, .news-shell { grid-template-columns: 1fr; }
+    .home-left { grid-template-columns: 1fr; }
     .news-side { position: static; max-height: none; }
     .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bid-kv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -403,7 +410,61 @@
   <!-- ================= 1. 종합 대시보드 (홈) ================= -->
   <section class="page" id="page-home">
     <div class="mk-grid" id="homeMarketGrid"></div>
-    <div class="grid-main">
+    <div class="home-shell">
+      <!-- 좌측 사이드바: 점심·저녁 뽑기 / 로또 6/45 / 최저가 쇼핑 -->
+      <aside class="stack home-left">
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>오늘 뭐 먹지?</h3>
+            <div class="seg" id="mealModeSeg" style="height:26px">
+              <button type="button" data-meal="lunch" aria-pressed="true" style="height:22px;padding:0 8px;font-size:11.5px">점심</button>
+              <button type="button" data-meal="dinner" aria-pressed="false" style="height:22px;padding:0 8px;font-size:11.5px">저녁</button>
+            </div>
+          </div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:9px">
+            <div class="seg" id="lunchCatSeg" style="width:100%;justify-content:space-between">
+              <button type="button" data-lc="all" aria-pressed="true" style="flex:1;padding:0 4px;font-size:11.5px">전체</button>
+              <button type="button" data-lc="kr" aria-pressed="false" style="flex:1;padding:0 4px;font-size:11.5px">한식</button>
+              <button type="button" data-lc="cn" aria-pressed="false" style="flex:1;padding:0 4px;font-size:11.5px">중식</button>
+              <button type="button" data-lc="jp" aria-pressed="false" style="flex:1;padding:0 4px;font-size:11.5px">일식</button>
+              <button type="button" data-lc="etc" aria-pressed="false" style="flex:1;padding:0 4px;font-size:11.5px">양·분</button>
+            </div>
+            <div id="lunchResult" style="padding:12px;border-radius:9px;background:var(--subtle);text-align:center;font-size:17px;font-weight:700;min-height:50px;display:flex;align-items:center;justify-content:center">버튼을 눌러 메뉴 뽑기!</div>
+            <div style="display:grid;grid-template-columns:1fr auto;gap:6px">
+              <button type="button" class="ctl primary" id="lunchRollBtn" style="justify-content:center">메뉴 뽑기</button>
+              <a class="ctl" id="lunchMapBtn" href="https://map.naver.com/p/search/%EB%A7%9B%EC%A7%91" target="_blank" rel="noopener">지도 ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>로또 6/45 생성기</h3>
+            <a class="ctl" href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" rel="noopener" style="height:24px;font-size:11px;padding:0 8px">당첨번호 ↗</a>
+          </div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
+            <div id="lottoBox" style="display:flex;flex-direction:column;gap:5px"></div>
+            <button type="button" class="ctl primary" id="lottoGenBtn" style="justify-content:center">행운 번호 5게임 생성</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>최저가 쇼핑 검색</h3><span class="badge">낮은가격순</span></div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
+            <input class="inp" id="shopQ" type="search" placeholder="상품명 입력 (예: 마우스, 커피)..." autocomplete="off" />
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px" id="shopBtns">
+              <button type="button" class="ctl primary" data-shop="naver" style="justify-content:center;font-size:12px">네이버 최저가</button>
+              <button type="button" class="ctl" data-shop="danawa" style="justify-content:center;font-size:12px">다나와 최저가</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px" id="shopBtns2">
+              <button type="button" class="ctl" data-shop="coupang" style="justify-content:center;font-size:12px">쿠팡</button>
+              <button type="button" class="ctl" data-shop="gmarket" style="justify-content:center;font-size:12px">G마켓</button>
+              <button type="button" class="ctl" data-shop="auction" style="justify-content:center;font-size:12px">옥션</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
       <div class="stack">
         <!-- 검색 중일 때만 표시되는 검색 결과 카드 -->
         <div class="card" id="homeSearchCard" hidden>
@@ -473,24 +534,7 @@
           <div id="homeBidMini"></div>
         </div>
 
-        <!-- 우측 4: 5종 최저가 쇼핑 검색 -->
-        <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>최저가 쇼핑 검색</h3><span class="badge">낮은가격순</span></div>
-          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
-            <input class="inp" id="shopQ" type="search" placeholder="상품명 입력 (예: 로지텍 마우스, 커피)..." autocomplete="off" />
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px" id="shopBtns">
-              <button type="button" class="ctl primary" data-shop="naver" style="justify-content:center">네이버 통합최저가</button>
-              <button type="button" class="ctl" data-shop="danawa" style="justify-content:center">다나와 최저가</button>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px" id="shopBtns2">
-              <button type="button" class="ctl" data-shop="coupang" style="justify-content:center;font-size:12px">쿠팡</button>
-              <button type="button" class="ctl" data-shop="gmarket" style="justify-content:center;font-size:12px">G마켓</button>
-              <button type="button" class="ctl" data-shop="auction" style="justify-content:center;font-size:12px">옥션</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 우측 5: 담당자 안내 -->
+        <!-- 우측 4: 담당자 안내 -->
         <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
@@ -854,31 +898,6 @@
             <span class="mono" id="boxofficeDateBadge" style="font-size:11px;color:var(--mute)">KOBIS</span>
           </div>
           <div id="boxofficeList"></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>오늘 점심 뭐 먹지?</h3><span class="badge ok">랜덤 뽑기</span></div>
-          <div class="card-bd" style="display:flex;flex-direction:column;gap:10px">
-            <div class="seg" id="lunchCatSeg" style="width:100%;justify-content:space-between">
-              <button type="button" data-lc="all" aria-pressed="true" style="flex:1">전체</button>
-              <button type="button" data-lc="kr" aria-pressed="false" style="flex:1">한식</button>
-              <button type="button" data-lc="cn" aria-pressed="false" style="flex:1">중식</button>
-              <button type="button" data-lc="jp" aria-pressed="false" style="flex:1">일식</button>
-              <button type="button" data-lc="etc" aria-pressed="false" style="flex:1">양식·분식</button>
-            </div>
-            <div id="lunchResult" style="padding:14px;border-radius:9px;background:var(--subtle);text-align:center;font-size:18px;font-weight:700;min-height:54px;display:flex;align-items:center;justify-content:center">버튼을 눌러 메뉴를 뽑아보세요!</div>
-            <div style="display:grid;grid-template-columns:1fr auto;gap:6px">
-              <button type="button" class="ctl primary" id="lunchRollBtn" style="justify-content:center">메뉴 뽑기</button>
-              <a class="ctl" id="lunchMapBtn" href="https://map.naver.com/p/search/%EB%A7%9B%EC%A7%91" target="_blank" rel="noopener">지도 검색 ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>로또 6/45 번호 생성기</h3><a class="ctl" href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" rel="noopener" style="height:24px;font-size:11px;padding:0 8px">당첨번호 ↗</a></div>
-          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
-            <div id="lottoBox" style="display:flex;flex-direction:column;gap:6px"></div>
-            <button type="button" class="ctl primary" id="lottoGenBtn" style="justify-content:center">행운 번호 5게임 생성</button>
-          </div>
         </div>
 
         <div class="card">
@@ -1941,21 +1960,41 @@
     });
   })();
 
-  /* ───────── 점심 메뉴 뽑기 & 로또 6/45 생성기 ───────── */
-  var LUNCH_MENUS = {
-    kr: ['김치찌개','된장찌개','순대국','설렁탕','제육볶음','비빔밥','칼국수','냉면','삼계탕','갈비탕','뼈해장국','육개장','고등어구이','부대찌개','닭갈비'],
-    cn: ['짜장면','짬뽕','볶음밥','마라탕','탕수육 세트','잡채밥','마파두부덮밥','탄탄면'],
-    jp: ['돈까스','초밥','라멘','규동','카레라이스','우동·소바','회덮밥','알밥'],
-    etc: ['파스타','햄버거','쌀국수','샌드위치·샐러드','떡볶이·순대','김밥·라면','부리또·타코','피자']
+  /* ───────── 점심·저녁 메뉴 뽑기 & 로또 6/45 생성기 ───────── */
+  var MEAL_MENUS = {
+    lunch: {
+      kr: ['김치찌개','된장찌개','순대국','설렁탕','제육볶음','비빔밥','칼국수','냉면','삼계탕','갈비탕','뼈해장국','육개장','고등어구이','부대찌개','닭갈비'],
+      cn: ['짜장면','짬뽕','볶음밥','마라탕','탕수육 세트','잡채밥','마파두부덮밥','탄탄면'],
+      jp: ['돈까스','초밥','라멘','규동','카레라이스','우동·소바','회덮밥','알밥'],
+      etc: ['파스타','햄버거','쌀국수','샌드위치·샐러드','떡볶이·순대','김밥·라면','부리또·타코','피자']
+    },
+    dinner: {
+      kr: ['삼겹살·소주','한우·소갈비','족발·보쌈','감자탕','곱창·막창','닭발·주먹밥','찜닭','아구찜','부대찌개','닭한마리','낙곱새','오징어볶음','육회·연어'],
+      cn: ['양꼬치·칭따오','훠궈','마라샹궈','꿔바로우·짬뽕','깐풍기·유린기','고추잡채'],
+      jp: ['모둠회·매운탕','이자카야·꼬치','스시·사시미','샤브샤브·스키야키','오코노미야키','장어덮밥'],
+      etc: ['치킨·맥주','화덕피자·파스타','스테이크','타코·파히타','수제버거·감자튀김','태국음식·팟타이','인도 커리·난']
+    }
   };
+  var mealMode = (new Date(Date.now() + 9 * 3600000).getUTCHours() >= 14) ? 'dinner' : 'lunch';
   var lunchCat = 'all';
+  function syncMealUi() {
+    document.querySelectorAll('#mealModeSeg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.meal === mealMode)); });
+    $('lunchRollBtn').textContent = (mealMode === 'dinner' ? '저녁' : '점심') + ' 메뉴 뽑기';
+  }
+  syncMealUi();
+  $('mealModeSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-meal]'); if (!b) return;
+    mealMode = b.dataset.meal;
+    syncMealUi();
+  });
   $('lunchCatSeg').addEventListener('click', function (e) {
     var b = e.target.closest('[data-lc]'); if (!b) return;
     lunchCat = b.dataset.lc;
     document.querySelectorAll('#lunchCatSeg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
   });
   $('lunchRollBtn').addEventListener('click', function () {
-    var pool = lunchCat === 'all' ? LUNCH_MENUS.kr.concat(LUNCH_MENUS.cn, LUNCH_MENUS.jp, LUNCH_MENUS.etc) : (LUNCH_MENUS[lunchCat] || LUNCH_MENUS.kr);
+    var src = MEAL_MENUS[mealMode] || MEAL_MENUS.lunch;
+    var pool = lunchCat === 'all' ? src.kr.concat(src.cn, src.jp, src.etc) : (src[lunchCat] || src.kr);
     var ticks = 0, pick = pool[0];
     var iv = setInterval(function () {
       pick = pool[Math.floor(Math.random() * pool.length)];

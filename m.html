@@ -164,6 +164,20 @@
       <div class="m-card-hd"><span>나라장터 발주 속보</span><button type="button" class="m-btn" data-mgo="procurement" style="height:24px;font-size:11px">전체 →</button></div>
       <div id="mHomeBids"></div>
     </div>
+
+    <div class="m-card">
+      <div class="m-card-hd"><span>점심·저녁 뭐 먹지? &amp; 로또 6/45</span><a class="m-btn" href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" rel="noopener" style="height:24px;font-size:11px">당첨번호 ↗</a></div>
+      <div class="m-card-bd" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:6px;align-items:center">
+          <button type="button" class="m-btn primary" id="mMealToggle" style="height:36px;padding:0 10px">점심</button>
+          <div id="mLunchOut" style="flex:1;padding:8px 10px;border-radius:8px;background:var(--subtle);font-weight:700;text-align:center">오늘 메뉴는?</div>
+          <button type="button" class="m-btn primary" id="mLunchBtn" style="height:36px">뽑기</button>
+          <a class="m-btn" id="mLunchMap" href="https://map.naver.com/p/search/%EB%A7%9B%EC%A7%91" target="_blank" rel="noopener" style="height:36px">지도↗</a>
+        </div>
+        <div id="mLottoOut" style="display:flex;justify-content:center;gap:6px;padding:6px 0"></div>
+        <button type="button" class="m-btn" id="mLottoBtn" style="width:100%;height:34px;justify-content:center">로또 1게임 새로 뽑기</button>
+      </div>
+    </div>
   </section>
 
   <!-- 2. 종합 뉴스 (_11 시안) -->
@@ -302,17 +316,6 @@
           <a class="m-btn" style="background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.3);color:#fff" href="https://www.youtube.com/watch?v=jfKfPfyJRdk" target="_blank" rel="noopener">▶ Lo-Fi 라디오</a>
           <a class="m-btn" style="background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.3);color:#fff" href="https://www.youtube.com/watch?v=Dx5qFachd3A" target="_blank" rel="noopener">▶ 카페 재즈</a>
         </div>
-      </div>
-    </div>
-    <div class="m-card">
-      <div class="m-card-hd"><span>점심 메뉴 뽑기 &amp; 로또 6/45</span><a class="m-btn" href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" rel="noopener" style="height:24px;font-size:11px">당첨번호 ↗</a></div>
-      <div class="m-card-bd" style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;gap:6px;align-items:center">
-          <div id="mLunchOut" style="flex:1;padding:8px 10px;border-radius:8px;background:var(--subtle);font-weight:700;text-align:center">오늘 점심 메뉴는?</div>
-          <button type="button" class="m-btn primary" id="mLunchBtn" style="height:36px">뽑기</button>
-        </div>
-        <div id="mLottoOut" style="display:flex;justify-content:center;gap:6px;padding:6px 0"></div>
-        <button type="button" class="m-btn" id="mLottoBtn" style="width:100%;height:34px;justify-content:center">로또 1게임 새로 뽑기</button>
       </div>
     </div>
     <div class="m-card">
@@ -651,10 +654,20 @@
   document.querySelectorAll('[data-mshop]').forEach(function (b) { b.addEventListener('click', function () { openMShop(b.dataset.mshop); }); });
   $('mShopQ').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); openMShop('naver'); } });
 
-  /* 모바일 점심 뽑기 & 로또 */
-  var mMenus = ['김치찌개','된장찌개','순대국','제육볶음','칼국수','돈까스','초밥','라멘','짜장면','짬뽕','마라탕','파스타','햄버거','쌀국수','부대찌개','갈비탕','비빔밥'];
+  /* 모바일 점심·저녁 뽑기 & 로또 */
+  var mLunchList = ['김치찌개','된장찌개','순대국','제육볶음','칼국수','돈까스','초밥','라멘','짜장면','짬뽕','마라탕','파스타','햄버거','쌀국수','부대찌개','갈비탕','비빔밥'];
+  var mDinnerList = ['삼겹살·소주','치킨·맥주','족발·보쌈','감자탕','곱창·막창','모둠회·매운탕','양꼬치','훠궈','샤브샤브','화덕피자·파스타','찜닭','아구찜','낙곱새','이자카야'];
+  var mMeal = (new Date(Date.now() + 9 * 3600000).getUTCHours() >= 14) ? 'dinner' : 'lunch';
+  $('mMealToggle').textContent = mMeal === 'dinner' ? '저녁' : '점심';
+  $('mMealToggle').addEventListener('click', function () {
+    mMeal = mMeal === 'lunch' ? 'dinner' : 'lunch';
+    $('mMealToggle').textContent = mMeal === 'dinner' ? '저녁' : '점심';
+  });
   $('mLunchBtn').addEventListener('click', function () {
-    $('mLunchOut').textContent = mMenus[Math.floor(Math.random() * mMenus.length)];
+    var list = mMeal === 'dinner' ? mDinnerList : mLunchList;
+    var pick = list[Math.floor(Math.random() * list.length)];
+    $('mLunchOut').textContent = pick;
+    $('mLunchMap').href = 'https://map.naver.com/p/search/' + encodeURIComponent(pick);
   });
   function mLotto() {
     var ns = []; while (ns.length < 6) { var r = Math.floor(Math.random() * 45) + 1; if (ns.indexOf(r) < 0) ns.push(r); }
