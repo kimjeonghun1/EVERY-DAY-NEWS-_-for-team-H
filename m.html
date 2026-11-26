@@ -400,7 +400,8 @@
         publisher: src || x['구분'] || '',
         title: x['한글제목'] || x['제목'] || x.title || x['원제목'] || '',
         summary: x['핵심요약'] || x['요약'] || x.summary || '',
-        link: x['링크'] || x.link || x.url || ''
+        link: x['링크'] || x.link || x.url || '',
+        image: x['이미지'] || x.image || ''
       };
     }).filter(function (x) { return x.title; });
     $('mhNews').textContent = fmt(news.length) + '건';
@@ -417,8 +418,10 @@
     if (mPicked[0]) $('mTicker').textContent = '● 속보 · [' + mPicked[0].label + '] ' + mPicked[0].item.title;
     else if (news[0]) $('mTicker').textContent = '● 속보 · ' + news[0].title;
     $('mHeadlines').innerHTML = mPicked.map(function (p) {
-      var u = safeUrl(p.item.link);
-      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(p.label) + '</span><span>' + esc(p.item.publisher || '') + '</span></div><div class="m-ititle">' + esc(p.item.title) + '</div></a>';
+      var u = safeUrl(p.item.link), img = safeUrl(p.item.image);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:10px;align-items:center"' : '') + '>' +
+        '<div><div class="m-meta"><span class="m-badge">' + esc(p.label) + '</span><span>' + esc(p.item.publisher || '') + '</span></div><div class="m-ititle">' + esc(p.item.title) + '</div></div>' +
+        (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:72px;height:52px;border-radius:6px;object-fit:cover" />' : '') + '</a>';
     }).join('');
     var cats = Array.from(new Set(news.map(function (x) { return x.category; }))).filter(Boolean);
     $('mNewsChips').innerHTML = '<button class="m-chip" data-nc="ALL" aria-pressed="true">전체 (' + news.length + ')</button>' +
