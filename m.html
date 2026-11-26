@@ -336,7 +336,20 @@
     }).join('') || '<div style="padding:30px;text-align:center;color:var(--mute)">수집된 야구 소식이 없습니다.</div>';
   }
   fetch('./data/latest.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (j) {
-    news = Array.isArray(j) ? j : (j.items || []);
+    var raw = Array.isArray(j) ? j : (j.items || []);
+    news = raw.map(function (x) {
+      var src = x['출처'] || x.publisher || x.source || '';
+      var cat = String(x['카테고리'] || x.category || x.cat || '').trim();
+      if (src === 'GitHub Trending' || cat === 'GitHub Trending') cat = 'GitHub 핫한 AI';
+      else if (src === 'HuggingFace' || cat === 'HuggingFace') cat = 'HuggingFace 논문·앱';
+      return {
+        category: cat || '기타',
+        publisher: src || x['구분'] || '',
+        title: x['한글제목'] || x['제목'] || x.title || x['원제목'] || '',
+        summary: x['핵심요약'] || x['요약'] || x.summary || '',
+        link: x['링크'] || x.link || x.url || ''
+      };
+    }).filter(function (x) { return x.title; });
     var cats = Array.from(new Set(news.map(function (x) { return x.category; }))).filter(Boolean);
     $('mNewsChips').innerHTML = '<button class="m-chip" data-nc="ALL" aria-pressed="true">전체 (' + news.length + ')</button>' +
       cats.map(function (c) { return '<button class="m-chip" data-nc="' + esc(c) + '" aria-pressed="false">' + esc(c) + '</button>'; }).join('');

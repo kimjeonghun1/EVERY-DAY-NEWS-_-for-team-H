@@ -888,11 +888,29 @@
   var homeState = { group: '전체', cat: 'ALL', pub: 'ALL', page: 1, pageSize: 15 };
   var kboTeam = 'ALL';
 
-  function normCat(c) {
+  function normCat(c, src) {
     var s = String(c || '').trim();
-    if (s === 'GitHub Trending') return 'GitHub 핫한 AI';
-    if (s === 'HuggingFace') return 'HuggingFace 논문·앱';
-    return s;
+    var p = String(src || '').trim();
+    if (p === 'GitHub Trending' || s === 'GitHub Trending') return 'GitHub 핫한 AI';
+    if (p === 'HuggingFace' || s === 'HuggingFace') return 'HuggingFace 논문·앱';
+    return s || '기타';
+  }
+  function normNewsItem(x) {
+    var src = x['출처'] || x.publisher || x.source || '';
+    var cat = normCat(x['카테고리'] || x.category || x.cat, src);
+    var title = x['한글제목'] || x['제목'] || x.title || x['원제목'] || '';
+    var orig = x['원제목'] || x.originalTitle || '';
+    if (orig === title) orig = '';
+    return {
+      category: cat,
+      publisher: src || x['구분'] || '',
+      title: title,
+      summary: x['핵심요약'] || x['요약'] || x.summary || '',
+      originalTitle: orig,
+      link: x['링크'] || x.link || x.url || '',
+      pubDate: x['발행일'] || x['수집일'] || x.pubDate || x.date || '',
+      popularity: x['인기도'] || ''
+    };
   }
 
   function renderNewsSelectors() {
@@ -1012,9 +1030,7 @@
     var url = './data/' + (dateKey === 'latest' ? 'latest' : dateKey) + '.json?t=' + Date.now();
     fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
       var raw = Array.isArray(j) ? j : (j.items || j.articles || []);
-      newsItems = raw.map(function (x) {
-        return Object.assign({}, x, { category: normCat(x.category || x.cat) });
-      });
+      newsItems = raw.map(normNewsItem).filter(function (x) { return x.title; });
       $('statNews').textContent = fmt(newsItems.length);
       var upd = (j && (j.updatedAt || j.generated_at || j.date)) || kstToday();
       $('updatedAt').textContent = '갱신 ' + String(upd).slice(0, 16).replace('T', ' ');
