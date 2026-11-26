@@ -654,22 +654,6 @@
     }).join('');
   }).catch(function () {});
 
-  /* 5종 최저가 쇼핑 검색 */
-  function openMShop(mall) {
-    var q = ($('mShopQ').value || '').trim(); if (!q) { $('mShopQ').focus(); return; }
-    var enc = encodeURIComponent(q);
-    var u = {
-      naver: 'https://search.shopping.naver.com/search/all?sort=price_asc&query=' + enc,
-      danawa: 'https://search.danawa.com/dsearch.php?k1=' + enc + '&sort=priceASC',
-      coupang: 'https://www.coupang.com/np/search?q=' + enc + '&sorter=salePriceAsc',
-      gmarket: 'https://browse.gmarket.co.kr/search?keyword=' + enc + '&s=1',
-      auction: 'https://browse.auction.co.kr/search?keyword=' + enc + '&s=1'
-    }[mall];
-    if (u) window.open(u, '_blank', 'noopener');
-  }
-  document.querySelectorAll('[data-mshop]').forEach(function (b) { b.addEventListener('click', function () { openMShop(b.dataset.mshop); }); });
-  $('mShopQ').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); openMShop('naver'); } });
-
   /* 모바일 점심·저녁 뽑기 & 로또 */
   var mLunchList = ['김치찌개','된장찌개','순대국','제육볶음','칼국수','돈까스','초밥','라멘','짜장면','짬뽕','마라탕','파스타','햄버거','쌀국수','부대찌개','갈비탕','비빔밥'];
   var mDinnerList = ['삼겹살·소주','치킨·맥주','족발·보쌈','감자탕','곱창·막창','모둠회·매운탕','양꼬치','훠궈','샤브샤브','화덕피자·파스타','찜닭','아구찜','낙곱새','이자카야'];
@@ -695,20 +679,31 @@
   }
   $('mLottoBtn').addEventListener('click', mLotto); mLotto();
 
-  /* 모바일 방문자 카운터 */
+  /* 모바일 방문자 카운터 (visitorbadge.io 고속 API) */
   (function () {
     var td = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
-    var tk = 'visits-' + td, ns = 'kimjeonghun1-daily-briefing', done = false;
-    try { done = sessionStorage.getItem('briefing-counted') === tk; } catch (e) {}
-    var m = done ? 'get' : 'hit';
-    Promise.all([
-      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/' + tk).then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/visits').then(function (r) { return r.json(); }).catch(function () { return null; })
-    ]).then(function (res) {
-      if (!done && (res[0] || res[1])) try { sessionStorage.setItem('briefing-counted', tk); } catch (e) {}
-      if (res[0] && typeof res[0].value === 'number' && $('mVisitToday')) $('mVisitToday').textContent = fmt(res[0].value);
-      if (res[1] && typeof res[1].value === 'number' && $('mVisitTotal')) $('mVisitTotal').textContent = fmt(res[1].value);
-    });
+    var sk = 'briefing-vb-' + td;
+    function showMVisits(today, total) {
+      if ($('mVisitToday')) $('mVisitToday').textContent = fmt(today);
+      if ($('mVisitTotal')) $('mVisitTotal').textContent = fmt(total);
+    }
+    try {
+      var cached = JSON.parse(sessionStorage.getItem(sk) || 'null');
+      if (cached && typeof cached.today === 'number' && typeof cached.total === 'number') { showMVisits(cached.today, cached.total); return; }
+      var last = JSON.parse(localStorage.getItem('briefing-vb-last') || 'null');
+      if (last && typeof last.today === 'number' && typeof last.total === 'number') showMVisits(last.today, last.total);
+    } catch (e) {}
+    fetch('https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fkimjeonghun1.github.io%2FEVERY-DAY-NEWS-_-for-team-H%2F&label=visit', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+      .then(function (svg) {
+        var m = svg.match(/(\d[\d,]*)\s*\/\s*(\d[\d,]*)/);
+        if (!m) return;
+        var today = Number(m[1].replace(/,/g, '')), total = Number(m[2].replace(/,/g, ''));
+        if (!isFinite(today) || !isFinite(total)) return;
+        showMVisits(today, total);
+        var val = JSON.stringify({ today: today, total: total });
+        try { sessionStorage.setItem(sk, val); localStorage.setItem('briefing-vb-last', val); } catch (e) {}
+      }).catch(function () {});
   })();
 
   var h = location.hash.replace(/^#/, '').split('/')[0];

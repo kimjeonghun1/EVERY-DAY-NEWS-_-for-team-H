@@ -1952,27 +1952,34 @@
     }).finally(function () { $('reqSend').disabled = false; $('reqSend').textContent = '문의 보내기'; });
   });
 
-  /* ───────── 방문자 카운터 ───────── */
+  /* ───────── 방문자 카운터 (visitorbadge.io 고속 API + 세션 중복방지) ───────── */
   (function () {
-    var tk = 'visits-' + kstToday(), ns = 'kimjeonghun1-daily-briefing', done = false;
-    try { done = sessionStorage.getItem('briefing-counted') === tk; } catch (e) {}
-    var m = done ? 'get' : 'hit';
-    Promise.all([
-      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/' + tk).then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/visits').then(function (r) { return r.json(); }).catch(function () { return null; })
-    ]).then(function (res) {
-      if (!done && (res[0] || res[1])) try { sessionStorage.setItem('briefing-counted', tk); } catch (e) {}
-      var p = [];
-      if (res[0] && typeof res[0].value === 'number') {
-        p.push('오늘 ' + fmt(res[0].value));
-        if ($('visitToday')) $('visitToday').textContent = fmt(res[0].value);
+    var sk = 'briefing-vb-' + kstToday();
+    function showVisits(today, total) {
+      if ($('visitToday')) $('visitToday').textContent = fmt(today);
+      if ($('visitTotal')) $('visitTotal').textContent = fmt(total);
+      if ($('visitStat')) $('visitStat').textContent = ' · 방문 오늘 ' + fmt(today) + ' / 누적 ' + fmt(total);
+    }
+    try {
+      var cached = JSON.parse(sessionStorage.getItem(sk) || 'null');
+      if (cached && typeof cached.today === 'number' && typeof cached.total === 'number') {
+        showVisits(cached.today, cached.total);
+        return;
       }
-      if (res[1] && typeof res[1].value === 'number') {
-        p.push('누적 ' + fmt(res[1].value));
-        if ($('visitTotal')) $('visitTotal').textContent = fmt(res[1].value);
-      }
-      if (p.length && $('visitStat')) $('visitStat').textContent = ' · 방문 ' + p.join(' / ');
-    });
+      var last = JSON.parse(localStorage.getItem('briefing-vb-last') || 'null');
+      if (last && typeof last.today === 'number' && typeof last.total === 'number') showVisits(last.today, last.total);
+    } catch (e) {}
+    fetch('https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fkimjeonghun1.github.io%2FEVERY-DAY-NEWS-_-for-team-H%2F&label=visit', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+      .then(function (svg) {
+        var m = svg.match(/(\d[\d,]*)\s*\/\s*(\d[\d,]*)/);
+        if (!m) return;
+        var today = Number(m[1].replace(/,/g, '')), total = Number(m[2].replace(/,/g, ''));
+        if (!isFinite(today) || !isFinite(total)) return;
+        showVisits(today, total);
+        var val = JSON.stringify({ today: today, total: total });
+        try { sessionStorage.setItem(sk, val); localStorage.setItem('briefing-vb-last', val); } catch (e) {}
+      }).catch(function () {});
   })();
 
   /* ───────── 점심·저녁 메뉴 뽑기 & 로또 6/45 생성기 ───────── */
