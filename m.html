@@ -181,6 +181,10 @@
     </div>
     <div class="m-chips" id="mNewsChips"></div>
     <div class="m-card">
+      <div class="m-card-hd"><span>분야별 대표 헤드라인</span><span class="m-badge">각 분야 1선</span></div>
+      <div id="mHeadlines"></div>
+    </div>
+    <div class="m-card">
       <div class="m-card-hd"><span>오늘의 주요 키워드 TOP 5</span><span class="m-badge ok">자동 집계</span></div>
       <div class="m-card-bd" id="mKwBox" style="display:flex;flex-wrap:wrap;gap:6px"></div>
     </div>
@@ -400,7 +404,22 @@
       };
     }).filter(function (x) { return x.title; });
     $('mhNews').textContent = fmt(news.length) + '건';
-    if (news[0]) $('mTicker').textContent = '● 속보 · ' + news[0].title;
+    var mBuckets = [
+      { label: '국내 엔지니어링', cats: ['삼보기술단','국내 입찰·용역','엔지니어링 뉴스','기술사-토목구조','협회 및 유관기관'] },
+      { label: '해외 토목', cats: ['해외 토목사업','해외토목-베트남','해외토목-방글라데시'] },
+      { label: '시사·경제', cats: ['오늘의 뉴스 헤드라인','국내경제','해외경제','국내정치','해외정치'] },
+      { label: '투자·금융', cats: ['국내주식','해외주식','코인'] },
+      { label: 'AI·신기술', cats: ['AI 활용·신기술 뉴스','GitHub 핫한 AI','HuggingFace 논문·앱'] },
+      { label: '프로야구', cats: ['프로야구 한화 소식','KIA 타이거즈','LG 트윈스','두산 베어스'] }
+    ];
+    var mPicked = [];
+    mBuckets.forEach(function (b) { var f = news.find(function (x) { return b.cats.indexOf(x.category) >= 0; }); if (f) mPicked.push({ label: b.label, item: f }); });
+    if (mPicked[0]) $('mTicker').textContent = '● 속보 · [' + mPicked[0].label + '] ' + mPicked[0].item.title;
+    else if (news[0]) $('mTicker').textContent = '● 속보 · ' + news[0].title;
+    $('mHeadlines').innerHTML = mPicked.map(function (p) {
+      var u = safeUrl(p.item.link);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(p.label) + '</span><span>' + esc(p.item.publisher || '') + '</span></div><div class="m-ititle">' + esc(p.item.title) + '</div></a>';
+    }).join('');
     var cats = Array.from(new Set(news.map(function (x) { return x.category; }))).filter(Boolean);
     $('mNewsChips').innerHTML = '<button class="m-chip" data-nc="ALL" aria-pressed="true">전체 (' + news.length + ')</button>' +
       cats.map(function (c) { return '<button class="m-chip" data-nc="' + esc(c) + '" aria-pressed="false">' + esc(c) + '</button>'; }).join('');
