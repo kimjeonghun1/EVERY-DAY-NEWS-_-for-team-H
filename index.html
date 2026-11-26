@@ -341,6 +341,7 @@
   <div class="tabs-wrap">
     <nav class="tabs" id="mainTabs" role="tablist" aria-label="포털 메뉴">
       <button class="tab-btn" role="tab" data-tab="home" aria-selected="true">종합 대시보드 (홈)</button>
+      <button class="tab-btn" role="tab" data-tab="news" aria-selected="false">종합 뉴스</button>
       <button class="tab-btn" role="tab" data-tab="market" aria-selected="false">실시간 금융·시장</button>
       <button class="tab-btn" role="tab" data-tab="procurement" aria-selected="false">국내 발주 속보</button>
       <button class="tab-btn" role="tab" data-tab="travel" aria-selected="false">항공·교통 예매</button>
@@ -469,6 +470,70 @@
     </div>
   </section>
 
+  <!-- ================= 1-B. 종합 뉴스 (전용 탭) ================= -->
+  <section class="page" id="page-news" hidden>
+    <div id="newsTicker" style="margin-bottom:14px;padding:10px 14px;border-radius:9px;background:var(--up-soft);color:var(--up);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
+      <span id="newsTickerText">● 속보 불러오는 중...</span>
+      <div style="display:flex;gap:6px">
+        <button type="button" class="ctl" id="ttsNewsBtn" style="height:28px;font-size:12px">▶ 출근길 음성 브리핑</button>
+        <button type="button" class="ctl" id="printNewsBtn" style="height:28px;font-size:12px">PDF / 인쇄</button>
+      </div>
+    </div>
+
+    <div class="grid-main">
+      <div class="stack">
+        <div class="card">
+          <div class="card-hd">
+            <h2><span class="bar"></span>헤드라인 핵심 브리핑 TOP 3</h2>
+            <span class="badge">TOP PRIORITY</span>
+          </div>
+          <div id="newsTop3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px 16px"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd">
+            <h2><span class="bar"></span>분야별 종합 뉴스 <span class="badge" id="newsTabCount">0건</span></h2>
+            <select class="ctl" id="newsTabPubSel" aria-label="언론사 선택"></select>
+          </div>
+          <div class="chips" id="newsTabChips">
+            <button class="chip" data-ngrp="전체" aria-pressed="true">전체 속보</button>
+            <button class="chip" data-ngrp="우리 회사" aria-pressed="false">우리 회사</button>
+            <button class="chip" data-ngrp="국내 엔지니어링" aria-pressed="false">토목·건설·인프라</button>
+            <button class="chip" data-ngrp="해외 토목" aria-pressed="false">해외 토목</button>
+            <button class="chip" data-ngrp="AI · 신기술" aria-pressed="false">AI · 신기술</button>
+            <button class="chip" data-ngrp="시사 · 경제" aria-pressed="false">경제·시사</button>
+            <button class="chip" data-ngrp="투자 · 금융" aria-pressed="false">투자·금융</button>
+          </div>
+          <div id="newsTabList"></div>
+          <div class="feed-foot">
+            <span id="newsTabPageInfo">—</span>
+            <div style="display:flex;gap:6px">
+              <button class="ctl" id="newsTabPrev" type="button">이전</button>
+              <button class="ctl" id="newsTabNext" type="button">다음</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>오늘의 키워드 랭킹 TOP 10</h3><span class="badge ok">자동 집계</span></div>
+          <div id="newsKeywordsBox"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>사내 회람 스크랩 보관함</h3>
+            <div style="display:flex;gap:6px;align-items:center">
+              <span class="badge" id="scrapCount">0건</span>
+              <button type="button" class="ctl" id="copyScrapBtn" style="height:24px;font-size:11px;padding:0 8px">복사</button>
+            </div>
+          </div>
+          <div id="scrapListBox"></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
   <!-- ================= 2. 실시간 금융·시장 ================= -->
   <section class="page" id="page-market" hidden>
     <div class="mk-grid" id="marketTopGrid"></div>
@@ -559,6 +624,14 @@
 
       <aside class="stack">
         <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>발주처별 공고 현황 및 통계</h3><span class="badge">실시간 집계</span></div>
+          <div class="card-bd" id="bidBuyerStats" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>마감 임박 공고 TOP 5</h3><span class="badge up">D-7 이내</span></div>
+          <div id="bidUrgentTop5"></div>
+        </div>
+        <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>관심공고 북마크</h3><span class="badge" id="favCount">0건</span></div>
           <div id="bidFavList"></div>
         </div>
@@ -614,6 +687,20 @@
               <button type="button" class="chip" data-route="인천,오사카">인천↔오사카</button>
               <button type="button" class="chip" data-route="인천,다낭">인천↔다낭</button>
               <button type="button" class="chip" data-route="인천,방콕">인천↔방콕</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h2><span class="bar"></span>인기 출장·휴가 노선 원클릭 런처</h2><span class="badge">공식 딥링크</span></div>
+          <div class="card-bd">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px" id="quickRouteCards">
+              <div class="link-box" style="gap:8px"><div><b>서울 ↔ 제주 (GMP/CJU)</b><span>국내선 최다 노선 · 1시간 10분</span></div><div style="display:flex;gap:6px"><button type="button" class="ctl primary" data-qfly="sky,서울,제주" style="height:26px;font-size:11.5px;flex:1;justify-content:center">스카이스캐너</button><button type="button" class="ctl" data-qfly="naver,서울,제주" style="height:26px;font-size:11.5px;flex:1;justify-content:center">네이버항공</button></div></div>
+              <div class="link-box" style="gap:8px"><div><b>인천 ↔ 도쿄 (ICN/NRT)</b><span>일본 출장·휴가 · 2시간 15분</span></div><div style="display:flex;gap:6px"><button type="button" class="ctl primary" data-qfly="sky,인천,도쿄" style="height:26px;font-size:11.5px;flex:1;justify-content:center">스카이스캐너</button><button type="button" class="ctl" data-qfly="naver,인천,도쿄" style="height:26px;font-size:11.5px;flex:1;justify-content:center">네이버항공</button></div></div>
+              <div class="link-box" style="gap:8px"><div><b>인천 ↔ 오사카 (ICN/KIX)</b><span>간사이 직항 · 1시간 45분</span></div><div style="display:flex;gap:6px"><button type="button" class="ctl primary" data-qfly="sky,인천,오사카" style="height:26px;font-size:11.5px;flex:1;justify-content:center">스카이스캐너</button><button type="button" class="ctl" data-qfly="naver,인천,오사카" style="height:26px;font-size:11.5px;flex:1;justify-content:center">네이버항공</button></div></div>
+              <div class="link-box" style="gap:8px"><div><b>인천 ↔ 다낭 (ICN/DAD)</b><span>동남아 인기 · 4시간 40분</span></div><div style="display:flex;gap:6px"><button type="button" class="ctl primary" data-qfly="sky,인천,다낭" style="height:26px;font-size:11.5px;flex:1;justify-content:center">스카이스캐너</button><button type="button" class="ctl" data-qfly="naver,인천,다낭" style="height:26px;font-size:11.5px;flex:1;justify-content:center">네이버항공</button></div></div>
+              <div class="link-box" style="gap:8px"><div><b>인천 ↔ 방콕 (ICN/BKK)</b><span>태국 직항 · 5시간 40분</span></div><div style="display:flex;gap:6px"><button type="button" class="ctl primary" data-qfly="sky,인천,방콕" style="height:26px;font-size:11.5px;flex:1;justify-content:center">스카이스캐너</button><button type="button" class="ctl" data-qfly="naver,인천,방콕" style="height:26px;font-size:11.5px;flex:1;justify-content:center">네이버항공</button></div></div>
+              <div class="link-box" style="gap:8px"><div><b>서울 ↔ 부산 · 대전 (철도·버스)</b><span>KTX · 고속버스 통합</span></div><div style="display:flex;gap:6px"><a class="ctl primary" href="https://nol.yanolja.com/" target="_blank" rel="noopener" style="height:26px;font-size:11.5px;flex:1;justify-content:center">NOL 통합</a><a class="ctl" href="https://www.korail.com/" target="_blank" rel="noopener" style="height:26px;font-size:11.5px;flex:1;justify-content:center">코레일</a></div></div>
             </div>
           </div>
         </div>
@@ -841,7 +928,7 @@
   var tvLoaded = false;
   var currentTvSym = 'KRX:KOSPI';
   function setTab(tab) {
-    var valid = ['home', 'market', 'procurement', 'travel', 'kbo', 'culture'];
+    var valid = ['home', 'news', 'market', 'procurement', 'travel', 'kbo', 'culture'];
     if (valid.indexOf(tab) < 0) tab = 'home';
     activeTab = tab;
     document.querySelectorAll('#mainTabs .tab-btn').forEach(function (b) {
@@ -867,14 +954,14 @@
     clearTimeout(searchTimer);
     searchTimer = setTimeout(function () {
       globalQuery = e.target.value.trim().toLowerCase();
-      homeState.page = 1; bidState.page = 1;
-      renderHomeFeed(); renderBids(); renderKboFeed();
+      homeState.page = 1; bidState.page = 1; newsTabState.page = 1;
+      renderHomeFeed(); renderNewsTab(); renderBids(); renderKboFeed();
     }, 120);
   });
   $('globalClr').addEventListener('click', function () {
     $('globalQ').value = ''; $('globalClr').hidden = true; globalQuery = '';
-    homeState.page = 1; bidState.page = 1;
-    renderHomeFeed(); renderBids(); renderKboFeed();
+    homeState.page = 1; bidState.page = 1; newsTabState.page = 1;
+    renderHomeFeed(); renderNewsTab(); renderBids(); renderKboFeed();
   });
   document.addEventListener('keydown', function (e) {
     var tag = (document.activeElement && document.activeElement.tagName) || '';
@@ -906,7 +993,11 @@
 
   var newsItems = [];
   var homeState = { group: '전체', cat: 'ALL', pub: 'ALL', page: 1, pageSize: 15 };
+  var newsTabState = { group: '전체', pub: 'ALL', page: 1, pageSize: 12 };
   var kboTeam = 'ALL';
+  var scrapMap = new Map();
+  try { JSON.parse(localStorage.getItem('briefing-scraps') || '[]').forEach(function (s) { if (s && s.url) scrapMap.set(s.url, s); }); } catch (e) {}
+  function saveScraps() { try { localStorage.setItem('briefing-scraps', JSON.stringify(Array.from(scrapMap.values()).slice(-50))); } catch (e) {} }
 
   function normCat(c, src) {
     var s = String(c || '').trim();
@@ -978,7 +1069,7 @@
       (x.summary ? '<p class="feed-sum">' + esc(x.summary) + '</p>' : '') +
       (x.originalTitle ? '<p class="feed-orig">' + esc(x.originalTitle) + '</p>' : '') +
       '</div>' +
-      (url ? '<a class="ctl" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">원문 ↗</a>' : '') +
+      (url ? '<div style="display:flex;gap:6px;align-items:center"><button type="button" class="star-btn" data-scrap="' + esc(url) + '" aria-pressed="' + String(scrapMap.has(url)) + '" title="사내 회람 스크랩">' + icon('star') + '</button><a class="ctl" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">원문 ↗</a></div>' : '') +
       '</article>';
   }
 
@@ -1006,6 +1097,115 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest('[data-read-url]');
     if (a) { markRead(a.dataset.readUrl); var row = a.closest('.feed-item'); if (row) row.classList.add('read'); }
+    var sc = e.target.closest('[data-scrap]');
+    if (sc) {
+      var u = sc.dataset.scrap;
+      if (scrapMap.has(u)) scrapMap.delete(u);
+      else {
+        var found = newsItems.find(function (x) { return safeUrl(x.link || x.url) === u; });
+        if (found) scrapMap.set(u, { url: u, title: found.title, category: found.category, publisher: found.publisher });
+      }
+      saveScraps(); renderHomeFeed(); renderNewsTab(); renderScrapBox();
+    }
+    var delSc = e.target.closest('[data-del-scrap]');
+    if (delSc) { scrapMap.delete(delSc.dataset.delScrap); saveScraps(); renderHomeFeed(); renderNewsTab(); renderScrapBox(); }
+  });
+
+  /* ───────── 종합 뉴스 탭 (TOP 3 · 키워드 랭킹 · 스크랩 · TTS · PDF) ───────── */
+  function renderScrapBox() {
+    var arr = Array.from(scrapMap.values());
+    $('scrapCount').textContent = arr.length + '건';
+    $('scrapListBox').innerHTML = arr.length ? arr.map(function (s) {
+      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:start">' +
+        '<div style="min-width:0"><a href="' + esc(s.url) + '" target="_blank" rel="noopener" style="font-size:12.5px;font-weight:600;text-decoration:none;display:block">' + esc(s.title) + '</a><span style="font-size:11px;color:var(--mute)">' + esc(catLabel(s.category)) + ' · ' + esc(s.publisher || '') + '</span></div>' +
+        '<button type="button" class="ctl" data-del-scrap="' + esc(s.url) + '" style="width:24px;height:24px;padding:0;justify-content:center;flex:none">×</button></div>';
+    }).join('') : '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12px">기사 옆 별표(★)를 눌러 회람할 기사를 스크랩하세요.</div>';
+  }
+  function renderNewsTab() {
+    if (!newsItems.length) return;
+    $('newsTickerText').textContent = '● 최신 속보 · [' + catLabel(newsItems[0].category) + '] ' + newsItems[0].title;
+    var top3 = newsItems.slice(0, 3);
+    $('newsTop3').innerHTML = top3.map(function (x, idx) {
+      var u = safeUrl(x.link || x.url);
+      return '<a href="' + esc(u || '#') + '" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:9px;border:1px solid var(--line);background:var(--subtle);text-decoration:none">' +
+        '<div style="display:flex;gap:6px;align-items:center"><span class="badge ' + (idx === 0 ? 'up' : '') + '">' + (idx + 1) + '위 FOCUS</span><span class="badge">' + esc(catLabel(x.category)) + '</span></div>' +
+        '<div style="font-size:14px;font-weight:700;line-height:1.4;color:var(--ink)">' + esc(x.title) + '</div>' +
+        '<div style="font-size:12px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + esc(x.summary || '') + '</div>' +
+        '<div style="margin-top:auto;font-size:11px;color:var(--mute)">' + esc(x.publisher || '') + '</div></a>';
+    }).join('');
+
+    /* 키워드 랭킹 TOP 10 자동 집계 */
+    var stop = { '있다':1,'한다':1,'위한':1,'대한':1,'통해':1,'관련':1,'최신':1,'뉴스':1,'소식':1,'오늘':1,'국내':1,'해외':1,'한국':1,'기반':1,'추진':1,'계획':1,'발표':1,'개최':1,'진행':1,'사업':1,'건설':1,'설계':1,'기술':1 };
+    var freq = {};
+    newsItems.forEach(function (x) {
+      (x.title.match(/[가-힣A-Za-z0-9]{2,}/g) || []).forEach(function (w) {
+        if (stop[w] || /^\d+$/.test(w)) return;
+        freq[w] = (freq[w] || 0) + 1;
+      });
+    });
+    var topKw = Object.keys(freq).sort(function (a, b) { return freq[b] - freq[a]; }).slice(0, 10);
+    $('newsKeywordsBox').innerHTML = topKw.map(function (kw, i) {
+      return '<button type="button" data-kw="' + esc(kw) + '" style="width:100%;padding:9px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;text-align:left">' +
+        '<span><b class="mono" style="color:' + (i < 3 ? 'var(--primary-ink)' : 'var(--mute)') + ';margin-right:8px">' + String(i + 1).padStart(2, '0') + '</b>' + esc(kw) + '</span>' +
+        '<span class="mono" style="font-size:11.5px;color:var(--mute)">' + freq[kw] + '건</span></button>';
+    }).join('');
+
+    var pubs = {};
+    newsItems.forEach(function (x) { if (x.publisher) pubs[x.publisher] = (pubs[x.publisher] || 0) + 1; });
+    var plist = Object.keys(pubs).sort(function (a, b) { return pubs[b] - pubs[a]; });
+    $('newsTabPubSel').innerHTML = '<option value="ALL">전체 언론사</option>' + plist.map(function (p) {
+      return '<option value="' + esc(p) + '"' + (newsTabState.pub === p ? ' selected' : '') + '>' + esc(p) + ' (' + pubs[p] + ')</option>';
+    }).join('');
+
+    var grp = GROUPS.find(function (g) { return g.name === newsTabState.group; }) || GROUPS[0];
+    var rows = newsItems.filter(function (x) {
+      if (grp.cats.length && grp.cats.indexOf(x.category) < 0) return false;
+      if (newsTabState.pub !== 'ALL' && x.publisher !== newsTabState.pub) return false;
+      if (globalQuery && [x.title, x.summary, x.publisher, x.category].join(' ').toLowerCase().indexOf(globalQuery) < 0) return false;
+      return true;
+    });
+    $('newsTabCount').textContent = fmt(rows.length) + '건';
+    var pages = Math.max(1, Math.ceil(rows.length / newsTabState.pageSize));
+    newsTabState.page = Math.max(1, Math.min(newsTabState.page, pages));
+    var st = (newsTabState.page - 1) * newsTabState.pageSize;
+    var sl = rows.slice(st, st + newsTabState.pageSize);
+    $('newsTabList').innerHTML = sl.length ? sl.map(newsRowHtml).join('') : '<div style="padding:36px;text-align:center;color:var(--mute)">조건에 맞는 기사가 없습니다.</div>';
+    $('newsTabPageInfo').textContent = rows.length ? (fmt(st + 1) + '–' + fmt(st + sl.length) + ' / ' + fmt(rows.length) + '건') : '0건';
+    $('newsTabPrev').disabled = newsTabState.page <= 1;
+    $('newsTabNext').disabled = newsTabState.page >= pages;
+    renderScrapBox();
+  }
+  $('newsTabChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ngrp]'); if (!b) return;
+    newsTabState.group = b.dataset.ngrp; newsTabState.page = 1;
+    document.querySelectorAll('#newsTabChips .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    renderNewsTab();
+  });
+  $('newsTabPubSel').addEventListener('change', function (e) { newsTabState.pub = e.target.value; newsTabState.page = 1; renderNewsTab(); });
+  $('newsTabPrev').addEventListener('click', function () { if (newsTabState.page > 1) { newsTabState.page--; renderNewsTab(); } });
+  $('newsTabNext').addEventListener('click', function () { newsTabState.page++; renderNewsTab(); });
+  $('newsKeywordsBox').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-kw]'); if (!b) return;
+    $('globalQ').value = b.dataset.kw; $('globalClr').hidden = false; globalQuery = b.dataset.kw.toLowerCase();
+    newsTabState.page = 1; renderNewsTab();
+  });
+  $('copyScrapBtn').addEventListener('click', function () {
+    var arr = Array.from(scrapMap.values()); if (!arr.length) return;
+    var txt = '[구조부 데일리 브리핑 회람]\n' + arr.map(function (s, i) { return (i + 1) + '. [' + catLabel(s.category) + '] ' + s.title + '\n   ' + s.url; }).join('\n');
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(function () { $('copyScrapBtn').textContent = '복사됨'; setTimeout(function () { $('copyScrapBtn').textContent = '복사'; }, 1500); });
+  });
+  $('printNewsBtn').addEventListener('click', function () { window.print(); });
+  var ttsSpeaking = false;
+  $('ttsNewsBtn').addEventListener('click', function () {
+    if (!('speechSynthesis' in window)) { alert('이 브라우저는 음성 브리핑을 지원하지 않습니다.'); return; }
+    if (ttsSpeaking) { window.speechSynthesis.cancel(); ttsSpeaking = false; $('ttsNewsBtn').textContent = '▶ 출근길 음성 브리핑'; return; }
+    var top5 = newsItems.slice(0, 5).map(function (x, i) { return (i + 1) + '번. ' + x.title; }).join('. ');
+    if (!top5) return;
+    var u = new SpeechSynthesisUtterance('오늘의 구조부 주요 뉴스 브리핑입니다. ' + top5);
+    u.lang = 'ko-KR'; u.rate = 1.05;
+    u.onend = function () { ttsSpeaking = false; $('ttsNewsBtn').textContent = '▶ 출근길 음성 브리핑'; };
+    ttsSpeaking = true; $('ttsNewsBtn').textContent = '■ 음성 중지';
+    window.speechSynthesis.speak(u);
   });
 
   function renderMarketNews() {
@@ -1055,7 +1255,7 @@
       var upd = (j && (j.updatedAt || j.generated_at || j.date)) || kstToday();
       $('updatedAt').textContent = '갱신 ' + String(upd).slice(0, 16).replace('T', ' ');
       $('stripDate').textContent = (dateKey === 'latest' ? kstToday() : dateKey) + ' 브리핑';
-      renderNewsSelectors(); renderHomeFeed(); renderMarketNews(); renderKboFeed();
+      renderNewsSelectors(); renderHomeFeed(); renderNewsTab(); renderMarketNews(); renderKboFeed();
     }).catch(function () {
       $('homeFeedList').innerHTML = '<div style="padding:36px;text-align:center;color:var(--mute)">뉴스 데이터를 불러오지 못했습니다.</div>';
     });
@@ -1283,6 +1483,22 @@
         (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="display:block;font-size:13px;font-weight:600;text-decoration:none;line-height:1.35">' + esc(i.title) + '</a>' : '') + '</div>';
     }).join('') || '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12.5px">수집된 발주 공고가 없습니다.</div>';
 
+    /* 발주처별 통계 & 마감임박 TOP 5 */
+    var byBuyer = {};
+    items.forEach(function (i) { var k = i.buyer_name || '기타 기관'; byBuyer[k] = (byBuyer[k] || 0) + 1; });
+    var topBuyers = Object.keys(byBuyer).sort(function (a, b) { return byBuyer[b] - byBuyer[a]; }).slice(0, 6);
+    $('bidBuyerStats').innerHTML = topBuyers.map(function (b) {
+      var pct = items.length ? Math.round((byBuyer[b] / items.length) * 100) : 0;
+      return '<div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(b) + '</span><b class="mono">' + byBuyer[b] + '건 (' + pct + '%)</b></div><div style="height:5px;border-radius:999px;background:var(--subtle);overflow:hidden"><div style="height:100%;width:' + pct + '%;background:var(--primary)"></div></div></div>';
+    }).join('') || '<div style="color:var(--mute)">집계 데이터 없음</div>';
+
+    var urgent = items.filter(function (i) { var s = bidStatusOf(i); return s.key === 'open' && s.days <= 7; })
+      .sort(function (a, b) { return (parseKst(a.deadline) || Infinity) - (parseKst(b.deadline) || Infinity); }).slice(0, 5);
+    $('bidUrgentTop5').innerHTML = urgent.length ? urgent.map(function (i) {
+      var u = safeUrl(i.url), s = bidStatusOf(i);
+      return '<a href="' + esc(u || '#') + '" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);text-decoration:none"><div style="min-width:0"><div style="font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + esc(i.title) + '</div><div style="font-size:11px;color:var(--mute)">' + esc(i.buyer_name || '') + ' · ' + esc(fmtWon(i.amount_krw)) + '</div></div><span class="badge up" style="flex:none">' + esc(s.label) + '</span></a>';
+    }).join('') : '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12px">7일 이내 마감 임박 공고가 없습니다.</div>';
+
     var favItems = items.filter(function (i) { return bidFavs.has(i.id); });
     $('favCount').textContent = favItems.length + '건';
     $('bidFavList').innerHTML = favItems.length ? favItems.map(function (i) {
@@ -1408,6 +1624,9 @@
   $('trGoGoogle').addEventListener('click', function () { openFlight('google', $('trFrom').value, $('trTo').value, $('trDep').value, $('trRet').value, trTrip, $('trPax').value); });
   document.querySelectorAll('[data-route]').forEach(function (b) {
     b.addEventListener('click', function () { var p = b.dataset.route.split(','); $('trFrom').value = p[0]; $('trTo').value = p[1]; });
+  });
+  document.querySelectorAll('[data-qfly]').forEach(function (b) {
+    b.addEventListener('click', function () { var p = b.dataset.qfly.split(','); openFlight(p[0], p[1], p[2], $('trDep').value, $('trRet').value, trTrip, $('trPax').value); });
   });
 
   /* ───────── Lo-Fi 플레이어 ───────── */
