@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-26T10:40:35+09:00",
+  "updatedAt": "2026-11-26T14:00:04+09:00",
   "musicSource": "Apple Music 대한민국 TOP 50",
-  "musicUpdated": "Thu, 26 Nov 2026 01:40:45 +0000",
+  "musicUpdated": "Thu, 26 Nov 2026 05:00:17 +0000",
   "music": [
     {
       "rank": 1,
@@ -105,22 +105,22 @@
     },
     {
       "rank": 11,
-      "title": "RUDE!",
-      "artist": "Hearts2Hearts",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/78/b9/fb/78b9fb30-169a-eab0-38e9-8df725f8f2d6/888735954603.png/100x100bb.jpg",
-      "releaseDate": "2026-02-20",
-      "url": "https://music.apple.com/kr/album/rude/1875146814?i=1875146815",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=Hearts2Hearts%20RUDE%21",
-      "genre": "K-Pop"
-    },
-    {
-      "rank": 12,
       "title": "기립 (GiiiRIP)",
       "artist": "BIGBANG",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/13/29/40/132940f6-6b2d-7625-46be-2f22590c0bb3/8809519881573_cover.jpg/100x100bb.jpg",
       "releaseDate": "2026-11-20",
       "url": "https://music.apple.com/kr/album/%EA%B8%B0%EB%A6%BD-giiirip/6834436962?i=6834436963",
       "youtubeUrl": "https://www.youtube.com/results?search_query=BIGBANG%20%EA%B8%B0%EB%A6%BD%20%28GiiiRIP%29",
+      "genre": "K-Pop"
+    },
+    {
+      "rank": 12,
+      "title": "RUDE!",
+      "artist": "Hearts2Hearts",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/78/b9/fb/78b9fb30-169a-eab0-38e9-8df725f8f2d6/888735954603.png/100x100bb.jpg",
+      "releaseDate": "2026-02-20",
+      "url": "https://music.apple.com/kr/album/rude/1875146814?i=1875146815",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=Hearts2Hearts%20RUDE%21",
       "genre": "K-Pop"
     },
     {
@@ -225,16 +225,6 @@
     },
     {
       "rank": 23,
-      "title": "Magnetic",
-      "artist": "아일릿",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3e/49/1e/3e491e43-4961-21ab-2abe-37fb1c0feb40/196922879227_Cover.jpg/100x100bb.jpg",
-      "releaseDate": "2024-03-25",
-      "url": "https://music.apple.com/kr/album/magnetic/1734500886?i=1734500896",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%95%84%EC%9D%BC%EB%A6%BF%20Magnetic",
-      "genre": "K-Pop"
-    },
-    {
-      "rank": 24,
       "title": "생각을 멈추다 보면",
       "artist": "최유리",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/32/97/bc/3297bccf-d292-f9de-04ef-58d346cde6cf/191953315522.jpg/100x100bb.jpg",
@@ -242,6 +232,16 @@
       "url": "https://music.apple.com/kr/album/%EC%83%9D%EA%B0%81%EC%9D%84-%EB%A9%88%EC%B6%94%EB%8B%A4-%EB%B3%B4%EB%A9%B4/1717383448?i=1717383449",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%B5%9C%EC%9C%A0%EB%A6%AC%20%EC%83%9D%EA%B0%81%EC%9D%84%20%EB%A9%88%EC%B6%94%EB%8B%A4%20%EB%B3%B4%EB%A9%B4",
       "genre": "음악"
+    },
+    {
+      "rank": 24,
+      "title": "Magnetic",
+      "artist": "아일릿",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3e/49/1e/3e491e43-4961-21ab-2abe-37fb1c0feb40/196922879227_Cover.jpg/100x100bb.jpg",
+      "releaseDate": "2024-03-25",
+      "url": "https://music.apple.com/kr/album/magnetic/1734500886?i=1734500896",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%95%84%EC%9D%BC%EB%A6%BF%20Magnetic",
+      "genre": "K-Pop"
     },
     {
       "rank": 25,
@@ -265,6 +265,16 @@
     },
     {
       "rank": 27,
+      "title": "영원은 그렇듯",
+      "artist": "리도어",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a1/4d/ec/a14dec1c-aacc-3c49-fa83-300f25f2cab0/8809764938435_Cover.jpg/100x100bb.jpg",
+      "releaseDate": "2021-01-09",
+      "url": "https://music.apple.com/kr/album/%EC%98%81%EC%9B%90%EC%9D%80-%EA%B7%B8%EB%A0%87%EB%93%AF/1733432313?i=1733432325",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=%EB%A6%AC%EB%8F%84%EC%96%B4%20%EC%98%81%EC%9B%90%EC%9D%80%20%EA%B7%B8%EB%A0%87%EB%93%AF",
+      "genre": "음악"
+    },
+    {
+      "rank": 28,
       "title": "CRASH",
       "artist": "ALLDAY PROJECT",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/6c/4e/ca6c4e31-23b8-4ce9-da0a-ecb0581074c7/8800388635953_cover.png/100x100bb.jpg",
@@ -274,7 +284,7 @@
       "genre": "댄스"
     },
     {
-      "rank": 28,
+      "rank": 29,
       "title": "노스탈지아",
       "artist": "BIG Naughty",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/e1/62/d9e162a7-7125-6cd0-2df5-a4a3c909c285/cover_KM0025140_1.jpg/100x100bb.jpg",
@@ -282,16 +292,6 @@
       "url": "https://music.apple.com/kr/album/%EB%85%B8%EC%8A%A4%ED%83%88%EC%A7%80%EC%95%84/6805367597?i=6805367598",
       "youtubeUrl": "https://www.youtube.com/results?search_query=BIG%20Naughty%20%EB%85%B8%EC%8A%A4%ED%83%88%EC%A7%80%EC%95%84",
       "genre": "K-Pop"
-    },
-    {
-      "rank": 29,
-      "title": "영원은 그렇듯",
-      "artist": "리도어",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a1/4d/ec/a14dec1c-aacc-3c49-fa83-300f25f2cab0/8809764938435_Cover.jpg/100x100bb.jpg",
-      "releaseDate": "2021-01-09",
-      "url": "https://music.apple.com/kr/album/%EC%98%81%EC%9B%90%EC%9D%80-%EA%B7%B8%EB%A0%87%EB%93%AF/1733432313?i=1733432325",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=%EB%A6%AC%EB%8F%84%EC%96%B4%20%EC%98%81%EC%9B%90%EC%9D%80%20%EA%B7%B8%EB%A0%87%EB%93%AF",
-      "genre": "음악"
     },
     {
       "rank": 30,
@@ -315,16 +315,6 @@
     },
     {
       "rank": 32,
-      "title": "Nicole Kidman",
-      "artist": "ADÉLA",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/77/7b/5d777b87-e796-0b3e-cef6-d37d993dd8fe/26UMGIM82371.rgb.jpg/100x100bb.jpg",
-      "releaseDate": "2026-09-04",
-      "url": "https://music.apple.com/kr/album/nicole-kidman/6792883860?i=6792884088",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=AD%C3%89LA%20Nicole%20Kidman",
-      "genre": "팝"
-    },
-    {
-      "rank": 33,
       "title": "한시 오분 (1:05)",
       "artist": "검정치마",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/be/ce/5c/bece5cff-2caf-6d8a-9c21-3035537d2a4d/Album_cover_1400X1400.jpg/100x100bb.jpg",
@@ -332,6 +322,16 @@
       "url": "https://music.apple.com/kr/album/%ED%95%9C%EC%8B%9C-%EC%98%A4%EB%B6%84-1-05/1242154383?i=1242155573",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%EA%B2%80%EC%A0%95%EC%B9%98%EB%A7%88%20%ED%95%9C%EC%8B%9C%20%EC%98%A4%EB%B6%84%20%281%3A05%29",
       "genre": "음악"
+    },
+    {
+      "rank": 33,
+      "title": "Nicole Kidman",
+      "artist": "ADÉLA",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/77/7b/5d777b87-e796-0b3e-cef6-d37d993dd8fe/26UMGIM82371.rgb.jpg/100x100bb.jpg",
+      "releaseDate": "2026-09-04",
+      "url": "https://music.apple.com/kr/album/nicole-kidman/6792883860?i=6792884088",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=AD%C3%89LA%20Nicole%20Kidman",
+      "genre": "팝"
     },
     {
       "rank": 34,
@@ -375,16 +375,6 @@
     },
     {
       "rank": 38,
-      "title": "Last Christmas (Single Version)",
-      "artist": "Wham!",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/eb/4a/f9/eb4af984-fc68-56ab-7b89-1d070c04e1dd/5099765318524.jpg/100x100bb.jpg",
-      "releaseDate": "1984-12-01",
-      "url": "https://music.apple.com/kr/album/last-christmas-single-version/202117886?i=202117984",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=Wham%21%20Last%20Christmas%20%28Single%20Version%29",
-      "genre": "홀리데이"
-    },
-    {
-      "rank": 39,
       "title": "사랑은 왜 해",
       "artist": "최정철",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/df/9e/9edf9ef0-d932-36f2-9e49-d7ec24788769/8809527316081_cover.jpg/100x100bb.jpg",
@@ -392,6 +382,16 @@
       "url": "https://music.apple.com/kr/album/%EC%82%AC%EB%9E%91%EC%9D%80-%EC%99%9C-%ED%95%B4/1751254743?i=1751254745",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%B5%9C%EC%A0%95%EC%B2%A0%20%EC%82%AC%EB%9E%91%EC%9D%80%20%EC%99%9C%20%ED%95%B4",
       "genre": "K-Pop"
+    },
+    {
+      "rank": 39,
+      "title": "Last Christmas (Single Version)",
+      "artist": "Wham!",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/eb/4a/f9/eb4af984-fc68-56ab-7b89-1d070c04e1dd/5099765318524.jpg/100x100bb.jpg",
+      "releaseDate": "1984-12-01",
+      "url": "https://music.apple.com/kr/album/last-christmas-single-version/202117886?i=202117984",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=Wham%21%20Last%20Christmas%20%28Single%20Version%29",
+      "genre": "홀리데이"
     },
     {
       "rank": 40,
@@ -405,16 +405,6 @@
     },
     {
       "rank": 41,
-      "title": "404 (New Era)",
-      "artist": "키키",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/43/f5/1b43f5d0-0a3b-d1e1-bc0a-e572e92e0455/199806885123.jpg/100x100bb.jpg",
-      "releaseDate": "2026-01-26",
-      "url": "https://music.apple.com/kr/album/404-new-era/1868617345?i=1868617347",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%82%A4%ED%82%A4%20404%20%28New%20Era%29",
-      "genre": "K-Pop"
-    },
-    {
-      "rank": 42,
       "title": "사랑하게 될 거야",
       "artist": "한로로",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c2/ef/87/c2ef8779-f3bb-5a1c-ef6f-c27185e62446/8809936067307.jpg/100x100bb.jpg",
@@ -422,6 +412,16 @@
       "url": "https://music.apple.com/kr/album/%EC%82%AC%EB%9E%91%ED%95%98%EA%B2%8C-%EB%90%A0-%EA%B1%B0%EC%95%BC/1703196819?i=1703196825",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%95%9C%EB%A1%9C%EB%A1%9C%20%EC%82%AC%EB%9E%91%ED%95%98%EA%B2%8C%20%EB%90%A0%20%EA%B1%B0%EC%95%BC",
       "genre": "록"
+    },
+    {
+      "rank": 42,
+      "title": "404 (New Era)",
+      "artist": "키키",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/43/f5/1b43f5d0-0a3b-d1e1-bc0a-e572e92e0455/199806885123.jpg/100x100bb.jpg",
+      "releaseDate": "2026-01-26",
+      "url": "https://music.apple.com/kr/album/404-new-era/1868617345?i=1868617347",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%82%A4%ED%82%A4%20404%20%28New%20Era%29",
+      "genre": "K-Pop"
     },
     {
       "rank": 43,
@@ -513,8 +513,8 @@
       "delta": "-",
       "openDate": "2026-11-18",
       "salesShare": "21.9%",
-      "dailyAudi": "43,877",
-      "totalAudi": "543,625",
+      "dailyAudi": "43,866",
+      "totalAudi": "543,614",
       "naverUrl": "https://search.naver.com/search.naver?query=%EC%98%81%ED%99%94%20%ED%8F%AD%EC%84%A4"
     },
     {
@@ -523,8 +523,8 @@
       "delta": "NEW",
       "openDate": "2026-11-25",
       "salesShare": "15.8%",
-      "dailyAudi": "31,496",
-      "totalAudi": "33,513",
+      "dailyAudi": "31,495",
+      "totalAudi": "33,512",
       "naverUrl": "https://search.naver.com/search.naver?query=%EC%98%81%ED%99%94%20%EC%8A%AC%ED%94%88%20%EC%97%B4%EB%8C%80"
     },
     {
