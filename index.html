@@ -412,6 +412,7 @@
       <div class="seg" id="vacModeSeg" role="group" aria-label="교통수단 선택">
         <button type="button" data-vac="flight" aria-pressed="true">항공권</button>
         <button type="button" data-vac="train" aria-pressed="false">기차표</button>
+        <button type="button" data-vac="bus" aria-pressed="false">고속·시외버스</button>
       </div>
     </div>
 
@@ -476,6 +477,28 @@
       </div>
     </div>
 
+    <div class="vac-form" id="vacBusForm" hidden>
+      <div class="vac-field">
+        <label for="bFrom">출발 터미널</label>
+        <input class="vac-input" id="bFrom" list="busTerminals" value="서울경부" placeholder="서울경부, 센트럴시티, 동서울..." style="width:148px" />
+      </div>
+      <button type="button" class="ctl vac-swap" id="bSwap" title="출발·도착 터미널 바꾸기" aria-label="출발 도착 터미널 바꾸기"><span class="icw" data-ic="swap"></span></button>
+      <div class="vac-field">
+        <label for="bTo">도착 터미널</label>
+        <input class="vac-input" id="bTo" list="busTerminals" value="부산" placeholder="부산, 대전, 광주, 강릉..." style="width:148px" />
+      </div>
+      <div class="vac-field">
+        <label for="bDep">출발일</label>
+        <input class="vac-input" id="bDep" type="date" />
+      </div>
+      <div class="vac-actions">
+        <button type="button" class="ctl vac-go" id="bGoNaver"><span class="icw" data-ic="search"></span><span>네이버 버스 시간표</span></button>
+        <a class="ctl" href="https://www.kobus.co.kr/" target="_blank" rel="noopener">고속버스(코버스)</a>
+        <a class="ctl" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener">시외버스(티머니)</a>
+        <a class="ctl" href="https://www.bustago.or.kr/" target="_blank" rel="noopener">시외버스(버스타고)</a>
+      </div>
+    </div>
+
     <datalist id="airPorts">
       <option value="SEL">서울 전체 (인천·김포)</option>
       <option value="ICN">인천 (ICN)</option>
@@ -517,6 +540,31 @@
       <option value="포항"></option>
       <option value="부산"></option>
       <option value="강릉"></option>
+    </datalist>
+    <datalist id="busTerminals">
+      <option value="서울경부"></option>
+      <option value="센트럴시티"></option>
+      <option value="동서울"></option>
+      <option value="서울남부"></option>
+      <option value="인천"></option>
+      <option value="수원"></option>
+      <option value="성남"></option>
+      <option value="대전복합"></option>
+      <option value="유성"></option>
+      <option value="청주"></option>
+      <option value="전주"></option>
+      <option value="광주"></option>
+      <option value="목포"></option>
+      <option value="여수"></option>
+      <option value="동대구"></option>
+      <option value="포항"></option>
+      <option value="부산"></option>
+      <option value="부산사상"></option>
+      <option value="울산"></option>
+      <option value="창원"></option>
+      <option value="강릉"></option>
+      <option value="속초"></option>
+      <option value="춘천"></option>
     </datalist>
   </div>
 </section>
@@ -1154,6 +1202,7 @@
     $('#fDep').value = addDays(1);
     $('#fRet').value = addDays(4);
     $('#tDep').value = addDays(1);
+    $('#bDep').value = addDays(1);
 
     function setVacOpen(open) {
       $('#vacBar').hidden = !open;
@@ -1169,11 +1218,13 @@
       document.querySelectorAll('#vacModeSeg [data-vac]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.vac === mode)); });
       $('#vacFlightForm').hidden = mode !== 'flight';
       $('#vacTrainForm').hidden = mode !== 'train';
+      $('#vacBusForm').hidden = mode !== 'bus';
     });
 
     $('#fTrip').addEventListener('change', function (e) { $('#fRetWrap').hidden = e.target.value !== 'round'; });
     $('#fSwap').addEventListener('click', function () { var a = $('#fFrom').value; $('#fFrom').value = $('#fTo').value; $('#fTo').value = a; });
     $('#tSwap').addEventListener('click', function () { var a = $('#tFrom').value; $('#tFrom').value = $('#tTo').value; $('#tTo').value = a; });
+    $('#bSwap').addEventListener('click', function () { var a = $('#bFrom').value; $('#bFrom').value = $('#bTo').value; $('#bTo').value = a; });
 
     function fParams() {
       var trip = $('#fTrip').value;
@@ -1209,6 +1260,12 @@
       var from = ($('#tFrom').value || '서울').trim().replace(/역$/, '');
       var to = ($('#tTo').value || '부산').trim().replace(/역$/, '');
       var q = from + '역에서 ' + to + '역 KTX 시간표';
+      window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(q), '_blank', 'noopener');
+    });
+    $('#bGoNaver').addEventListener('click', function () {
+      var from = ($('#bFrom').value || '서울경부').trim();
+      var to = ($('#bTo').value || '부산').trim();
+      var q = from + '에서 ' + to + ' 버스 시간표';
       window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(q), '_blank', 'noopener');
     });
   })();
