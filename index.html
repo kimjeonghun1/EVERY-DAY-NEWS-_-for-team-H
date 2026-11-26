@@ -617,9 +617,10 @@
     <div class="mk-grid" id="marketTopGrid"></div>
     <div class="card" style="margin-bottom:16px">
       <div class="card-hd">
-        <h2><span class="bar"></span>실시간 인터랙티브 차트 (TradingView)</h2>
+        <h2><span class="bar"></span>실시간 인터랙티브 차트</h2>
         <div class="seg" id="tvSymSeg">
-          <button type="button" data-sym="TVC:KOSPI" aria-pressed="true">KOSPI</button>
+          <button type="button" data-sym="NAVER:005930" aria-pressed="true">삼성전자</button>
+          <button type="button" data-sym="NAVER:000660" aria-pressed="false">SK하이닉스</button>
           <button type="button" data-sym="FOREXCOM:NSXUSD" aria-pressed="false">나스닥 100</button>
           <button type="button" data-sym="FX_IDC:USDKRW" aria-pressed="false">원/달러</button>
           <button type="button" data-sym="UPBIT:BTCKRW" aria-pressed="false">비트코인</button>
@@ -1023,7 +1024,7 @@
   /* ───────── 6개 탭 전환 ───────── */
   var activeTab = 'home';
   var tvLoaded = false;
-  var currentTvSym = 'TVC:KOSPI';
+  var currentTvSym = 'NAVER:005930';
   function setTab(tab) {
     var valid = ['home', 'news', 'market', 'procurement', 'travel', 'kbo', 'culture'];
     if (valid.indexOf(tab) < 0) tab = 'home';
@@ -1479,11 +1480,46 @@
   loadMarket();
   setInterval(function () { if (!document.hidden) loadMarket(); }, 60000);
 
-  function renderTvChart(sym) {
+  function renderTvChart(sym, naverPeriod) {
     currentTvSym = sym;
-    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
     var host = $('tvChartHost');
     host.innerHTML = '';
+    if (sym.indexOf('NAVER:') === 0) {
+      var code = sym.split(':')[1];
+      var name = code === '005930' ? '삼성전자 (005930)' : code === '000660' ? 'SK하이닉스 (000660)' : code;
+      var period = naverPeriod || 'candle/day';
+      var periods = [
+        { k: 'area/day', l: '1일 분봉' },
+        { k: 'candle/day', l: '일봉' },
+        { k: 'candle/week', l: '주봉' },
+        { k: 'candle/month', l: '월봉' }
+      ];
+      host.innerHTML =
+        '<div style="height:100%;display:flex;flex-direction:column;padding:14px 16px;gap:10px">' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">' +
+            '<div style="display:flex;align-items:center;gap:8px">' +
+              '<b style="font-size:15px">' + esc(name) + '</b>' +
+              '<span class="badge ok">KRX 실시간 차트</span>' +
+              '<div class="seg" id="nvPeriodSeg">' + periods.map(function (p) {
+                return '<button type="button" data-nvp="' + p.k + '" aria-pressed="' + String(p.k === period) + '">' + p.l + '</button>';
+              }).join('') + '</div>' +
+            '</div>' +
+            '<div style="display:flex;gap:6px">' +
+              '<a class="ctl" href="https://finance.naver.com/item/main.naver?code=' + code + '" target="_blank" rel="noopener" style="height:28px;font-size:12px">네이버 증권 상세 ↗</a>' +
+              '<a class="ctl" href="https://kr.tradingview.com/chart/?symbol=KRX%3A' + code + '" target="_blank" rel="noopener" style="height:28px;font-size:12px">TradingView ↗</a>' +
+            '</div>' +
+          '</div>' +
+          '<div style="flex:1;min-height:0;background:#fff;border:1px solid var(--line);border-radius:9px;display:flex;align-items:center;justify-content:center;padding:10px;overflow:hidden">' +
+            '<img src="https://ssl.pstatic.net/imgfinance/chart/item/' + period + '/' + code + '.png?t=' + Date.now() + '" alt="' + esc(name) + ' 실시간 차트" style="max-width:100%;max-height:100%;object-fit:contain" />' +
+          '</div>' +
+        '</div>';
+      $('nvPeriodSeg').addEventListener('click', function (e) {
+        var b = e.target.closest('[data-nvp]');
+        if (b) renderTvChart(sym, b.dataset.nvp);
+      });
+      return;
+    }
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
     var box = document.createElement('div');
     box.className = 'tradingview-widget-container';
     box.style.height = '100%'; box.style.width = '100%';

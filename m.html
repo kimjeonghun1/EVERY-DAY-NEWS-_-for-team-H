@@ -223,8 +223,9 @@
     <div class="m-grid2" id="mMarketGrid"></div>
     <div class="m-card">
       <div class="m-card-hd"><span>실시간 차트</span>
-        <div style="display:flex;gap:4px" id="mTvSeg">
-          <button class="m-btn primary" data-msym="TVC:KOSPI">KOSPI</button>
+        <div style="display:flex;gap:4px;flex-wrap:wrap" id="mTvSeg">
+          <button class="m-btn primary" data-msym="NAVER:005930">삼성전자</button>
+          <button class="m-btn" data-msym="NAVER:000660">SK하이닉스</button>
           <button class="m-btn" data-msym="FX_IDC:USDKRW">환율</button>
           <button class="m-btn" data-msym="UPBIT:BTCKRW">BTC</button>
         </div>
@@ -394,7 +395,7 @@
     if (curTab === 'market') renderMTv(curSym);
   });
 
-  var curTab = 'home', tvReady = false, curSym = 'TVC:KOSPI';
+  var curTab = 'home', tvReady = false, curSym = 'NAVER:005930';
   function setTab(t) {
     var ok = ['home','news','market','procurement','travel','kbo','culture'];
     if (ok.indexOf(t) < 0) t = 'home';
@@ -554,8 +555,16 @@
 
   function renderMTv(sym) {
     curSym = sym;
-    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
     var host = $('mTvHost'); host.innerHTML = '';
+    if (sym.indexOf('NAVER:') === 0) {
+      var code = sym.split(':')[1];
+      var nm = code === '005930' ? '삼성전자' : 'SK하이닉스';
+      host.innerHTML = '<div style="height:100%;display:flex;flex-direction:column;padding:10px;gap:6px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px"><b>' + nm + ' (' + code + ') 일봉</b><a class="m-btn" href="https://m.stock.naver.com/domestic/stock/' + code + '/total" target="_blank" rel="noopener" style="height:24px;font-size:11px">네이버증권 ↗</a></div>' +
+        '<div style="flex:1;min-height:0;background:#fff;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:6px"><img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/day/' + code + '.png?t=' + Date.now() + '" alt="' + nm + ' 차트" style="max-width:100%;max-height:100%;object-fit:contain" /></div></div>';
+      return;
+    }
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
     var box = document.createElement('div'); box.className = 'tradingview-widget-container'; box.style.height = '100%'; box.style.width = '100%';
     var inner = document.createElement('div'); inner.className = 'tradingview-widget-container__widget'; inner.style.height = '100%'; inner.style.width = '100%';
     var sc = document.createElement('script'); sc.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'; sc.async = true;
