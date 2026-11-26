@@ -1151,12 +1151,15 @@
 
   function skimItemHtml(x) {
     var url = safeUrl(x.link || x.url);
+    var img = safeUrl(x.image);
     var isRead = url && readSet.has(url);
     var dt = (x.pubDate || '').slice(5, 10);
-    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">' +
-      '<div class="skim-t">' + esc(x.title) + '</div>' +
+    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:10px;align-items:center"' : '') + '>' +
+      '<div style="min-width:0"><div class="skim-t">' + esc(x.title) + '</div>' +
       (x.summary ? '<div class="skim-s">' + esc(x.summary) + '</div>' : '') +
-      '<div class="skim-m"><span class="pub">' + esc(x.publisher || catLabel(x.category)) + '</span>' + (dt ? '<span class="dot mono">' + esc(dt) + '</span>' : '') + '</div></a>';
+      '<div class="skim-m"><span class="pub">' + esc(x.publisher || catLabel(x.category)) + '</span>' + (dt ? '<span class="dot mono">' + esc(dt) + '</span>' : '') + '</div></div>' +
+      (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:64px;height:46px;border-radius:6px;object-fit:cover;border:1px solid var(--line)" />' : '') +
+      '</a>';
   }
 
   function newsRowHtml(x) {
