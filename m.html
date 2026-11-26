@@ -305,6 +305,21 @@
       </div>
     </div>
     <div class="m-card">
+      <div class="m-card-hd"><span>최저가 쇼핑 검색</span><span class="m-badge">낮은가격순</span></div>
+      <div class="m-card-bd" style="display:flex;flex-direction:column;gap:8px">
+        <input class="m-inp" id="mShopQ" type="search" placeholder="상품명 입력 (엔터 시 네이버 최저가)..." autocomplete="off" />
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <button type="button" class="m-btn primary" data-mshop="naver" style="height:36px;justify-content:center">네이버 통합최저가</button>
+          <button type="button" class="m-btn" data-mshop="danawa" style="height:36px;justify-content:center">다나와 최저가</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+          <button type="button" class="m-btn" data-mshop="coupang" style="height:34px;justify-content:center">쿠팡</button>
+          <button type="button" class="m-btn" data-mshop="gmarket" style="height:34px;justify-content:center">G마켓</button>
+          <button type="button" class="m-btn" data-mshop="auction" style="height:34px;justify-content:center">옥션</button>
+        </div>
+      </div>
+    </div>
+    <div class="m-card">
       <div class="m-card-hd"><span>실시간 음원 차트 TOP 20</span><span class="mono" style="font-size:11px;color:var(--mute)">Apple Music KR</span></div>
       <div id="mMusicList"></div>
     </div>
@@ -602,6 +617,22 @@
       return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div style="display:flex;justify-content:space-between;align-items:center;gap:6px"><div><span class="m-badge" style="margin-right:6px">' + m.rank + '</span><b>' + esc(m.title) + '</b></div><span class="mono" style="font-size:12px;color:var(--primary-ink);font-weight:700">' + esc(m.salesShare) + '</span></div><div class="mono" style="font-size:11px;color:var(--mute);margin-top:4px">일일 ' + esc(m.dailyAudi) + '명 · 누적 ' + esc(m.totalAudi) + '명</div></a>';
     }).join('');
   }).catch(function () {});
+
+  /* 5종 최저가 쇼핑 검색 */
+  function openMShop(mall) {
+    var q = ($('mShopQ').value || '').trim(); if (!q) { $('mShopQ').focus(); return; }
+    var enc = encodeURIComponent(q);
+    var u = {
+      naver: 'https://search.shopping.naver.com/search/all?sort=price_asc&query=' + enc,
+      danawa: 'https://search.danawa.com/dsearch.php?k1=' + enc + '&sort=priceASC',
+      coupang: 'https://www.coupang.com/np/search?q=' + enc + '&sorter=salePriceAsc',
+      gmarket: 'https://browse.gmarket.co.kr/search?keyword=' + enc + '&s=1',
+      auction: 'https://browse.auction.co.kr/search?keyword=' + enc + '&s=1'
+    }[mall];
+    if (u) window.open(u, '_blank', 'noopener');
+  }
+  document.querySelectorAll('[data-mshop]').forEach(function (b) { b.addEventListener('click', function () { openMShop(b.dataset.mshop); }); });
+  $('mShopQ').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); openMShop('naver'); } });
 
   var h = location.hash.replace(/^#/, '').split('/')[0];
   if (h) setTab(h);

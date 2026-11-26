@@ -473,7 +473,24 @@
           <div id="homeBidMini"></div>
         </div>
 
-        <!-- 우측 4: 담당자 안내 -->
+        <!-- 우측 4: 5종 최저가 쇼핑 검색 -->
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>최저가 쇼핑 검색</h3><span class="badge">낮은가격순</span></div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
+            <input class="inp" id="shopQ" type="search" placeholder="상품명 입력 (예: 로지텍 마우스, 커피)..." autocomplete="off" />
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px" id="shopBtns">
+              <button type="button" class="ctl primary" data-shop="naver" style="justify-content:center">네이버 통합최저가</button>
+              <button type="button" class="ctl" data-shop="danawa" style="justify-content:center">다나와 최저가</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px" id="shopBtns2">
+              <button type="button" class="ctl" data-shop="coupang" style="justify-content:center;font-size:12px">쿠팡</button>
+              <button type="button" class="ctl" data-shop="gmarket" style="justify-content:center;font-size:12px">G마켓</button>
+              <button type="button" class="ctl" data-shop="auction" style="justify-content:center;font-size:12px">옥션</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측 5: 담당자 안내 -->
         <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
@@ -1714,6 +1731,25 @@
   document.querySelectorAll('[data-qfly]').forEach(function (b) {
     b.addEventListener('click', function () { var p = b.dataset.qfly.split(','); openFlight(p[0], p[1], p[2], $('trDep').value, $('trRet').value, trTrip, $('trPax').value); });
   });
+
+  /* ───────── 5종 최저가 쇼핑 검색 ───────── */
+  function openShop(mall) {
+    var q = ($('shopQ').value || '').trim();
+    if (!q) { $('shopQ').focus(); return; }
+    var enc = encodeURIComponent(q);
+    var urls = {
+      naver: 'https://search.shopping.naver.com/search/all?sort=price_asc&query=' + enc,
+      danawa: 'https://search.danawa.com/dsearch.php?k1=' + enc + '&sort=priceASC',
+      coupang: 'https://www.coupang.com/np/search?q=' + enc + '&sorter=salePriceAsc',
+      gmarket: 'https://browse.gmarket.co.kr/search?keyword=' + enc + '&s=1',
+      auction: 'https://browse.auction.co.kr/search?keyword=' + enc + '&s=1'
+    };
+    if (urls[mall]) window.open(urls[mall], '_blank', 'noopener');
+  }
+  document.querySelectorAll('[data-shop]').forEach(function (b) {
+    b.addEventListener('click', function () { openShop(b.dataset.shop); });
+  });
+  $('shopQ').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); openShop('naver'); } });
 
   /* ───────── Lo-Fi 플레이어 ───────── */
   document.querySelectorAll('[data-lofi]').forEach(function (b) {
