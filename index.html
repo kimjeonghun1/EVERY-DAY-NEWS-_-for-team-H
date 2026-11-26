@@ -34,7 +34,7 @@
     --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --maxw: 2240px;
+    --maxw: 1680px;
 
     /* Executive Pulse Hub — Light */
     --bg: #f4f6fa;
@@ -179,7 +179,11 @@
   .card-hd .bar { width: 4px; height: 15px; border-radius: 2px; background: var(--primary); display: inline-block; }
   .card-bd { padding: 14px 16px; }
   .grid-main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
-  .home-shell { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 18px; align-items: start; }
+  .home-shell { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
+  .urgent-strip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .urgent-items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; flex: 1; min-width: 280px; }
+  .urgent-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 7px; background: var(--subtle); text-decoration: none; min-width: 0; transition: background-color 120ms; }
+  .urgent-item:hover { background: var(--primary-soft); }
   .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 
   /* 금융 지표 카드: 컴팩트 가로 6분할 1줄 슬림 바 */
@@ -194,22 +198,22 @@
   .mk-chg.down { background: var(--down-soft); color: var(--down); }
   .mk-chg.flat { background: var(--subtle); color: var(--mute); }
 
-  /* 홈 대시보드: 분야별 3열 컴팩트 카드 그리드 */
-  .cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-  .cat-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; }
-  .cat-box-hd { padding: 9px 12px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-  .cat-box-hd h3 { font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
-  .cat-box-hd .bar { width: 3px; height: 13px; border-radius: 2px; background: var(--primary); display: inline-block; }
-  .cat-box-hd .more-btn { font-size: 11.5px; font-weight: 600; color: var(--primary-ink); padding: 2px 6px; border-radius: 5px; }
-  .cat-box-hd .more-btn:hover { background: var(--primary-soft); }
-  .skim-item { display: block; padding: 8px 12px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background-color 120ms; }
-  .skim-item:last-child { border-bottom: 0; }
+  /* 홈 대시보드: 분야별 2x3 에디토리얼 카드 그리드 */
+  .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .cat-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; padding: 12px; gap: 4px; }
+  .cat-box-hd { padding: 7px 10px; background: var(--subtle); border-radius: 7px; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .cat-box-hd h3 { font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+  .cat-box-hd .bar { width: 3.5px; height: 14px; border-radius: 2px; background: var(--primary); display: inline-block; }
+  .cat-box-hd .more-btn { font-size: 11.5px; font-weight: 600; color: var(--mute); padding: 2px 6px; border-radius: 5px; }
+  .cat-box-hd .more-btn:hover { color: var(--primary-ink); background: var(--primary-soft); }
+  .skim-item { display: block; padding: 7px 8px; border-radius: 6px; text-decoration: none; transition: background-color 120ms; }
   .skim-item:hover { background: var(--subtle); }
   .skim-item.read .skim-t { color: var(--mute); font-weight: 500; }
-  .skim-t { font-size: 12.8px; font-weight: 600; line-height: 1.38; color: var(--ink); word-break: keep-all; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .skim-t { font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .skim-item:hover .skim-t { color: var(--primary-ink); }
   .skim-s { margin-top: 2px; font-size: 11.5px; line-height: 1.38; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .skim-m { margin-top: 3px; display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--mute); }
+  .skim-m { margin-top: 3px; display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--mute); }
+  .skim-m .pub { color: var(--primary-ink); font-weight: 600; }
   .skim-m .dot::before { content: "·"; margin-right: 6px; }
 
   /* 종합 뉴스 좌측 세로 카테고리 메뉴 */
@@ -329,18 +333,14 @@
   .ftr-in { max-width: var(--maxw); margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--mute); }
 
   /* 반응형 */
-  @media (max-width: 1480px) {
-    .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
   @media (max-width: 1280px) {
-    .grid-main { grid-template-columns: minmax(0, 1fr) 330px; }
-    .home-shell { grid-template-columns: 320px minmax(0, 1fr); }
+    .grid-main, .home-shell { grid-template-columns: minmax(0, 1fr) 330px; }
     .news-shell { grid-template-columns: 200px minmax(0, 1fr); }
     .news-shell > aside { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   }
   @media (max-width: 1024px) {
     .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-main, .home-shell, .cat-grid, .news-shell { grid-template-columns: 1fr; }
+    .grid-main, .home-shell, .cat-grid, .news-shell, .urgent-items { grid-template-columns: 1fr; }
     .news-side { position: static; max-height: none; }
     .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bid-kv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -408,10 +408,58 @@
   <!-- ================= 1. 종합 대시보드 (홈) ================= -->
   <section class="page" id="page-home">
     <div class="mk-grid" id="homeMarketGrid"></div>
+
+    <!-- 긴급 발주 속보 하이라이트 바 -->
+    <div class="urgent-strip">
+      <div style="display:flex;align-items:center;gap:8px;flex:none">
+        <span class="badge up" style="padding:3px 8px;font-size:11.5px">🔔 긴급 발주 속보</span>
+        <span style="font-size:12.5px;font-weight:700;color:var(--ink)">나라장터 토목구조</span>
+      </div>
+      <div class="urgent-items" id="homeUrgentItems">
+        <div style="font-size:12px;color:var(--mute);padding:4px 8px">긴급 발주 공고 불러오는 중...</div>
+      </div>
+      <button type="button" class="ctl" data-go-tab="procurement" style="height:28px;font-size:12px;color:var(--primary-ink);border-color:var(--primary-soft)">발주 전체보기 →</button>
+    </div>
+
     <div class="home-shell">
-      <!-- 좌측 사이드바: 유틸·생활·교통·음원·발주 전체 통합 -->
+      <!-- 좌측 70%: 분야별 주요 브리핑 (2x3) + 하단 쿠팡 검색 위젯 -->
+      <div class="stack">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:0 2px">
+          <div style="display:flex;align-items:center;gap:7px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block"></span>
+            <h2 style="font-size:15px;font-weight:700;letter-spacing:-0.015em">분야별 주요 브리핑 한눈에 보기</h2>
+          </div>
+          <div class="mono" style="font-size:11.5px;color:var(--mute)">총 <b id="homeNewsTotal" style="color:var(--primary-ink)">0</b>건 모니터링 · <span id="homeNewsUpd">—</span></div>
+        </div>
+
+        <!-- 검색 중일 때만 표시되는 검색 결과 카드 -->
+        <div class="card" id="homeSearchCard" hidden>
+          <div class="card-hd">
+            <h2><span class="bar"></span>통합 검색 결과 <span class="badge" id="homeSearchCount">0건</span></h2>
+            <button type="button" class="ctl" id="homeSearchReset" style="height:26px;font-size:11.5px">검색 초기화</button>
+          </div>
+          <div id="homeSearchList"></div>
+        </div>
+
+        <!-- 평상시: 분야별 2x3 에디토리얼 카드 그리드 -->
+        <div class="cat-grid" id="homeCatGrid"></div>
+
+        <!-- 좌측 하단: 쿠팡 로켓배송 최저가 검색 위젯 -->
+        <div class="card">
+          <div class="card-hd">
+            <h3><span style="background:#dc2626;color:#fff;font-size:11px;font-weight:800;padding:2px 6px;border-radius:4px">Coupang</span> 쿠팡 로켓배송 최저가 검색 <span class="badge up">파트너스 특가</span></h3>
+            <span style="font-size:11.5px;color:var(--mute)">실시간 로켓배송 &amp; 최저가 탐색</span>
+          </div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:6px">
+            <iframe src="https://coupa.ng/crqir8" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:7px;overflow:hidden;display:block"></iframe>
+            <div style="font-size:10.5px;color:var(--mute)">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우측 30%: 스마트 유틸리티 사이드바 -->
       <aside class="stack">
-        <!-- 좌측 1: 오늘 뭐 먹지? -->
+        <!-- 우측 1: 오늘 뭐 먹지? -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>오늘 뭐 먹지?</h3>
@@ -428,7 +476,7 @@
               <button type="button" data-lc="jp" aria-pressed="false" style="flex:1;padding:0 4px;font-size:11.5px">일식</button>
               <button type="button" data-lc="etc" aria-pressed="false" style="flex:1;padding:0 4px;font-size:11.5px">양·분</button>
             </div>
-            <div id="lunchResult" style="padding:12px;border-radius:9px;background:var(--subtle);text-align:center;font-size:17px;font-weight:700;min-height:50px;display:flex;align-items:center;justify-content:center">버튼을 눌러 메뉴 뽑기!</div>
+            <div id="lunchResult" style="padding:14px;border-radius:9px;background:var(--subtle);text-align:center;font-size:17px;font-weight:700;min-height:54px;display:flex;align-items:center;justify-content:center">버튼을 눌러 메뉴 뽑기!</div>
             <div style="display:grid;grid-template-columns:1fr auto;gap:6px">
               <button type="button" class="ctl primary" id="lunchRollBtn" style="justify-content:center">메뉴 뽑기</button>
               <a class="ctl" id="lunchMapBtn" href="https://map.naver.com/p/search/%EB%A7%9B%EC%A7%91" target="_blank" rel="noopener">지도 ↗</a>
@@ -436,7 +484,7 @@
           </div>
         </div>
 
-        <!-- 좌측 2: 로또 6/45 생성기 -->
+        <!-- 우측 2: 로또 6/45 생성기 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>로또 6/45 생성기</h3>
@@ -448,31 +496,16 @@
           </div>
         </div>
 
-        <!-- 좌측 3: 쿠팡 파트너스 쇼핑 검색 & 추천 -->
-        <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>쿠팡 쇼핑 검색 &amp; 추천</h3><span class="badge">파트너스</span></div>
-          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
-            <iframe src="https://coupa.ng/crqir8" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:7px;overflow:hidden;display:block"></iframe>
-            <div style="display:grid;grid-template-columns:repeat(2,120px);justify-content:center;gap:12px;padding-top:6px;border-top:1px solid var(--line)">
-              <iframe src="https://coupa.ng/crqiuA" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
-              <iframe src="https://coupa.ng/crqiym" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
-              <iframe src="https://coupa.ng/crqjcw" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
-              <iframe src="https://coupa.ng/crqi82" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
-            </div>
-            <div style="font-size:10.5px;color:var(--mute);line-height:1.4;text-align:center">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
-          </div>
-        </div>
-
-        <!-- 좌측 4: 항공·교통 원스톱 간편 예매 -->
+        <!-- 우측 3: 항공·교통 원스톱 예매 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>항공·교통 원스톱 예매</h3>
             <button class="ctl" type="button" data-go-tab="travel" style="height:26px;font-size:11.5px">전체 보기 →</button>
           </div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:10px">
-            <div class="seg" id="miniVacSeg">
-              <button type="button" data-mv="flight" aria-pressed="true">항공권</button>
-              <button type="button" data-mv="ground" aria-pressed="false">기차 · 버스</button>
+            <div class="seg" id="miniVacSeg" style="width:100%">
+              <button type="button" data-mv="flight" aria-pressed="true" style="flex:1">항공권</button>
+              <button type="button" data-mv="ground" aria-pressed="false" style="flex:1">기차 · 버스</button>
             </div>
             <div id="miniFlightBox" style="display:flex;flex-direction:column;gap:8px">
               <div style="display:grid;grid-template-columns:1fr 34px 1fr;gap:6px;align-items:end">
@@ -488,6 +521,11 @@
                 <button type="button" class="ctl primary" id="mfGoSky" style="justify-content:center">스카이스캐너 조회</button>
                 <button type="button" class="ctl" id="mfGoNaver" style="justify-content:center">네이버 항공권</button>
               </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-top:4px;border-top:1px solid var(--line)">
+                <a class="link-box" href="https://nol.yanolja.com/" target="_blank" rel="noopener" style="padding:7px 6px;text-align:center"><b style="font-size:11.5px">NOL 통합</b><span style="font-size:10px">기차·버스</span></a>
+                <a class="link-box" href="https://www.korail.com/" target="_blank" rel="noopener" style="padding:7px 6px;text-align:center"><b style="font-size:11.5px">코레일 KTX</b><span style="font-size:10px">승차권</span></a>
+                <a class="link-box" href="https://www.kobus.co.kr/" target="_blank" rel="noopener" style="padding:7px 6px;text-align:center"><b style="font-size:11.5px">고속버스</b><span style="font-size:10px">코버스</span></a>
+              </div>
             </div>
             <div id="miniGroundBox" hidden>
               <div class="link-grid">
@@ -500,7 +538,7 @@
           </div>
         </div>
 
-        <!-- 좌측 5: 실시간 음원 차트 TOP 5 -->
+        <!-- 우측 4: 실시간 음원 차트 TOP 5 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>실시간 음원 차트 TOP 5</h3>
@@ -509,16 +547,7 @@
           <div id="homeMusicMini"></div>
         </div>
 
-        <!-- 좌측 6: 발주 속보 요약 -->
-        <div class="card">
-          <div class="card-hd">
-            <h3><span class="bar"></span>발주 속보 요약</h3>
-            <button class="ctl" type="button" data-go-tab="procurement" style="height:26px;font-size:11.5px">발주 전체 →</button>
-          </div>
-          <div id="homeBidMini"></div>
-        </div>
-
-        <!-- 좌측 7: 담당자 안내 -->
+        <!-- 우측 5: 담당자 안내 -->
         <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
@@ -527,25 +556,6 @@
           </div>
         </div>
       </aside>
-
-      <!-- 우측 메인: 분야별 종합 뉴스 그리드 -->
-      <div class="stack">
-        <!-- 검색 중일 때만 표시되는 검색 결과 카드 -->
-        <div class="card" id="homeSearchCard" hidden>
-          <div class="card-hd">
-            <h2><span class="bar"></span>통합 검색 결과 <span class="badge" id="homeSearchCount">0건</span></h2>
-            <button type="button" class="ctl" id="homeSearchReset" style="height:26px;font-size:11.5px">검색 초기화</button>
-          </div>
-          <div id="homeSearchList"></div>
-        </div>
-        <!-- 평상시: 분야별 3열 컴팩트 카드 그리드 -->
-        <div class="cat-grid" id="homeCatGrid"></div>
-        <!-- 쿠팡 파트너스 가로 배너 (728x90) -->
-        <div class="card" style="padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px">
-          <a href="https://link.coupang.com/a/iZfOwiSOsK" target="_blank" referrerpolicy="unsafe-url" style="display:block;max-width:100%"><img src="https://ads-partners.coupang.com/banners/1059827?trackingCode=AF1259934&subId=&traceId=V0-301-879dd1202e5c73b2-I1059827&w=728&h=90" alt="쿠팡 추천 배너" style="max-width:100%;height:auto;display:block;border-radius:6px" /></a>
-          <div style="font-size:10.5px;color:var(--mute)">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -904,6 +914,19 @@
         </div>
 
         <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>추천 상품 (쿠팡 파트너스)</h3><span class="badge">특가</span></div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:grid;grid-template-columns:repeat(2,120px);justify-content:center;gap:12px">
+              <iframe src="https://coupa.ng/crqiuA" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
+              <iframe src="https://coupa.ng/crqiym" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
+              <iframe src="https://coupa.ng/crqjcw" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
+              <iframe src="https://coupa.ng/crqi82" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" style="border-radius:6px;overflow:hidden"></iframe>
+            </div>
+            <div style="font-size:10.5px;color:var(--mute);line-height:1.4;text-align:center">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+          </div>
+        </div>
+
+        <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>영화 예매 바로가기</h3></div>
           <div class="card-bd">
             <div class="link-grid">
@@ -917,6 +940,12 @@
       </aside>
     </div>
   </section>
+
+  <!-- 전체 탭 공통 하단: 쿠팡 오늘의 특가 가로 배너 (728x90) -->
+  <div class="card" style="margin-top:18px;padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px">
+    <a href="https://link.coupang.com/a/iZfOwiSOsK" target="_blank" referrerpolicy="unsafe-url" style="display:block;max-width:100%"><img src="https://ads-partners.coupang.com/banners/1059827?trackingCode=AF1259934&subId=&traceId=V0-301-879dd1202e5c73b2-I1059827&w=728&h=90" alt="쿠팡 오늘의 특가 배너" style="max-width:100%;height:auto;display:block;border-radius:6px" /></a>
+    <div style="font-size:10.5px;color:var(--mute)">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+  </div>
 </div>
 
 <datalist id="airPorts">
@@ -1132,15 +1161,12 @@
 
   function skimItemHtml(x) {
     var url = safeUrl(x.link || x.url);
-    var img = safeUrl(x.image);
     var isRead = url && readSet.has(url);
-    var dt = (x.pubDate || '').slice(5, 16);
-    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:9px;align-items:center"' : '') + '>' +
-      '<div style="min-width:0"><div class="skim-t">' + esc(x.title) + '</div>' +
+    var dt = (x.pubDate || '').slice(5, 10);
+    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">' +
+      '<div class="skim-t">' + esc(x.title) + '</div>' +
       (x.summary ? '<div class="skim-s">' + esc(x.summary) + '</div>' : '') +
-      '<div class="skim-m"><span>' + esc(x.publisher || catLabel(x.category)) + '</span>' + (dt ? '<span class="dot mono">' + esc(dt) + '</span>' : '') + '</div></div>' +
-      (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:58px;height:42px;border-radius:5px;object-fit:cover;border:1px solid var(--line)" />' : '') +
-      '</a>';
+      '<div class="skim-m"><span class="pub">' + esc(x.publisher || catLabel(x.category)) + '</span>' + (dt ? '<span class="dot mono">' + esc(dt) + '</span>' : '') + '</div></a>';
   }
 
   function newsRowHtml(x) {
@@ -1172,15 +1198,17 @@
     }
     $('homeSearchCard').hidden = true;
     $('homeCatGrid').hidden = false;
+    if ($('homeNewsTotal')) $('homeNewsTotal').textContent = fmt(newsItems.length);
+    if ($('homeNewsUpd')) $('homeNewsUpd').textContent = ($('updatedAt').textContent || kstToday());
     $('homeCatGrid').innerHTML = HOME_CARDS.map(function (card) {
       var list = newsItems.filter(function (x) {
         if (card.matchWord) return x.category === card.matchWord || [x.title, x.summary].join(' ').indexOf(card.matchWord) >= 0;
         return card.cats.indexOf(x.category) >= 0;
       });
-      var top3 = list.slice(0, 3);
-      return '<section class="cat-box"><div class="cat-box-hd"><h3><span class="bar"></span>' + esc(card.title) + ' <span class="mono" style="font-size:11.5px;color:var(--mute);font-weight:500">' + fmt(list.length) + '</span></h3>' +
-        '<button type="button" class="more-btn" data-jump-group="' + esc(card.key) + '">더보기 →</button></div>' +
-        (top3.length ? top3.map(skimItemHtml).join('') : '<div style="padding:20px 12px;text-align:center;color:var(--mute);font-size:12px">오늘 수집된 기사가 없습니다.</div>') +
+      var top4 = list.slice(0, 4);
+      return '<section class="cat-box"><div class="cat-box-hd"><h3><span class="bar"></span>' + esc(card.title) + ' <span class="mono" style="font-size:11.5px;color:var(--primary-ink);font-weight:700">' + fmt(list.length) + '</span></h3>' +
+        '<button type="button" class="more-btn" data-jump-group="' + esc(card.key) + '">더보기 ›</button></div>' +
+        (top4.length ? top4.map(skimItemHtml).join('') : '<div style="padding:20px 12px;text-align:center;color:var(--mute);font-size:12px">오늘 수집된 기사가 없습니다.</div>') +
         '</section>';
     }).join('');
   }
@@ -1627,12 +1655,20 @@
     $('bidNext').disabled = bidState.page >= pages;
     $('bidDemo').textContent = d.is_demo ? '실자료 보기' : '예시 보기';
 
-    /* 홈 요약 & 북마크 & 출처 상태 */
-    $('homeBidMini').innerHTML = items.slice(0, 5).map(function (i) {
-      var st = bidStatusOf(i), u = safeUrl(i.url);
-      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line)"><div class="feed-meta"><span class="badge">' + esc(STAGES[i.stage] || '') + '</span><span class="badge warn">' + esc(st.label) + '</span><span class="mono">' + esc(fmtWon(i.amount_krw)) + '</span></div>' +
-        (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="display:block;font-size:13px;font-weight:600;text-decoration:none;line-height:1.35">' + esc(i.title) + '</a>' : '') + '</div>';
-    }).join('') || '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12.5px">수집된 발주 공고가 없습니다.</div>';
+    /* 홈 긴급 발주 하이라이트 스트립 */
+    var urgentHome = items.filter(function (i) { var s = bidStatusOf(i); return s.key === 'open' && s.days <= 7; })
+      .sort(function (a, b) { return (parseKst(a.deadline) || Infinity) - (parseKst(b.deadline) || Infinity); }).slice(0, 2);
+    if (!urgentHome.length) urgentHome = items.slice(0, 2);
+    if ($('homeUrgentItems')) {
+      $('homeUrgentItems').innerHTML = urgentHome.map(function (i) {
+        var st = bidStatusOf(i), u = safeUrl(i.url), dl = (i.deadline || '').slice(5, 10);
+        return '<a class="urgent-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener">' +
+          '<div style="display:flex;align-items:center;gap:6px;min-width:0">' +
+          '<span class="badge ' + (st.days <= 3 ? 'up' : 'warn') + '" style="flex:none">' + esc(st.label) + '</span>' +
+          '<span style="font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">[' + esc(i.buyer_name || '조달청') + '] ' + esc(i.title) + '</span></div>' +
+          '<span class="mono" style="font-size:11px;color:var(--mute);flex:none">' + (dl ? '~' + esc(dl) : '') + '</span></a>';
+      }).join('') || '<div style="font-size:12px;color:var(--mute);padding:4px 8px">수집된 발주 공고가 없습니다.</div>';
+    }
 
     /* 발주처별 통계 & 마감임박 TOP 5 */
     var byBuyer = {};
