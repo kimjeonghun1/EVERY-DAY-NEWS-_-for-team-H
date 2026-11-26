@@ -305,6 +305,17 @@
       </div>
     </div>
     <div class="m-card">
+      <div class="m-card-hd"><span>점심 메뉴 뽑기 &amp; 로또 6/45</span><a class="m-btn" href="https://dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" rel="noopener" style="height:24px;font-size:11px">당첨번호 ↗</a></div>
+      <div class="m-card-bd" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:6px;align-items:center">
+          <div id="mLunchOut" style="flex:1;padding:8px 10px;border-radius:8px;background:var(--subtle);font-weight:700;text-align:center">오늘 점심 메뉴는?</div>
+          <button type="button" class="m-btn primary" id="mLunchBtn" style="height:36px">뽑기</button>
+        </div>
+        <div id="mLottoOut" style="display:flex;justify-content:center;gap:6px;padding:6px 0"></div>
+        <button type="button" class="m-btn" id="mLottoBtn" style="width:100%;height:34px;justify-content:center">로또 1게임 새로 뽑기</button>
+      </div>
+    </div>
+    <div class="m-card">
       <div class="m-card-hd"><span>최저가 쇼핑 검색</span><span class="m-badge">낮은가격순</span></div>
       <div class="m-card-bd" style="display:flex;flex-direction:column;gap:8px">
         <input class="m-inp" id="mShopQ" type="search" placeholder="상품명 입력 (엔터 시 네이버 최저가)..." autocomplete="off" />
@@ -378,10 +389,16 @@
   $('mNav').addEventListener('click', function (e) { var b = e.target.closest('[data-mtab]'); if (b) setTab(b.dataset.mtab); });
   document.addEventListener('click', function (e) { var g = e.target.closest('[data-mgo]'); if (g) setTab(g.dataset.mgo); });
 
-  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.978&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul')
-    .then(function (r) { return r.json(); }).then(function (w) {
-      if (w && w.daily) $('mSub').textContent = '서울 ' + Math.round(w.daily.temperature_2m_min[0]) + '°/' + Math.round(w.daily.temperature_2m_max[0]) + '° · LIVE';
-    }).catch(function () { $('mSub').textContent = 'Team-H LIVE'; });
+  Promise.all([
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.978&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul').then(function (r) { return r.json(); }).catch(function () { return null; }),
+    fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.978&current=pm2_5&timezone=Asia%2FSeoul').then(function (r) { return r.json(); }).catch(function () { return null; })
+  ]).then(function (res) {
+    var w = res[0], aq = res[1];
+    var pm = aq && aq.current && typeof aq.current.pm2_5 === 'number' ? aq.current.pm2_5 : null;
+    var g = pm === null ? '' : (pm <= 15 ? ' · 미세 좋음' : pm <= 35 ? ' · 미세 보통' : pm <= 75 ? ' · 미세 나쁨' : ' · 매우나쁨');
+    if (w && w.daily) $('mSub').textContent = '서울 ' + Math.round(w.daily.temperature_2m_min[0]) + '°/' + Math.round(w.daily.temperature_2m_max[0]) + '°' + g;
+    else $('mSub').textContent = 'Team-H LIVE';
+  });
 
   /* 뉴스 & 키워드 & TTS & KBO */
   var news = [], nCat = 'ALL', nQ = '', kboTeam = 'ALL', ttsOn = false;
@@ -633,6 +650,21 @@
   }
   document.querySelectorAll('[data-mshop]').forEach(function (b) { b.addEventListener('click', function () { openMShop(b.dataset.mshop); }); });
   $('mShopQ').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); openMShop('naver'); } });
+
+  /* 모바일 점심 뽑기 & 로또 */
+  var mMenus = ['김치찌개','된장찌개','순대국','제육볶음','칼국수','돈까스','초밥','라멘','짜장면','짬뽕','마라탕','파스타','햄버거','쌀국수','부대찌개','갈비탕','비빔밥'];
+  $('mLunchBtn').addEventListener('click', function () {
+    $('mLunchOut').textContent = mMenus[Math.floor(Math.random() * mMenus.length)];
+  });
+  function mLotto() {
+    var ns = []; while (ns.length < 6) { var r = Math.floor(Math.random() * 45) + 1; if (ns.indexOf(r) < 0) ns.push(r); }
+    ns.sort(function (a, b) { return a - b; });
+    var col = function (n) { return n <= 10 ? '#eab308' : n <= 20 ? '#3b82f6' : n <= 30 ? '#ef4444' : n <= 40 ? '#64748b' : '#22c55e'; };
+    $('mLottoOut').innerHTML = ns.map(function (n) {
+      return '<span class="mono" style="width:30px;height:30px;border-radius:50%;background:' + col(n) + ';color:#fff;font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">' + n + '</span>';
+    }).join('');
+  }
+  $('mLottoBtn').addEventListener('click', mLotto); mLotto();
 
   var h = location.hash.replace(/^#/, '').split('/')[0];
   if (h) setTab(h);
