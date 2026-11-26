@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="theme-color" content="#00477f" />
+<title>구조부 데일리 브리핑 · 모바일</title>
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('briefing-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root {
+    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --bg: #f4f6fa; --panel: #ffffff; --subtle: #f1f5f9;
+    --ink: #0f172a; --sub: #475569; --mute: #64748b;
+    --line: #e2e8f0; --line-2: #cbd5e1;
+    --primary: #00477f; --primary-soft: #e8f1fb; --primary-ink: #00477f;
+    --up: #dc2626; --up-soft: #fee2e2; --down: #1d4ed8; --down-soft: #dbeafe;
+    --warn: #b45309; --warn-soft: #fef3c7; --ok: #15803d; --ok-soft: #dcfce7;
+  }
+  [data-theme="dark"] {
+    --bg: #0c1118; --panel: #131a24; --subtle: #1a2332;
+    --ink: #f1f5f9; --sub: #cbd5e1; --mute: #94a3b8;
+    --line: #233044; --line-2: #334561;
+    --primary: #3b82f6; --primary-soft: rgba(59,130,246,0.16); --primary-ink: #93c5fd;
+    --up: #f87171; --up-soft: rgba(248,113,113,0.15); --down: #60a5fa; --down-soft: rgba(96,165,250,0.15);
+    --warn: #fbbf24; --warn-soft: rgba(251,191,36,0.15); --ok: #4ade80; --ok-soft: rgba(74,222,128,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { color-scheme: light; }
+  html[data-theme="dark"] { color-scheme: dark; }
+  body { font-family: var(--font); font-size: 14px; line-height: 1.45; background: var(--bg); color: var(--ink); padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  a { color: inherit; text-decoration: none; }
+  button, select, input { font: inherit; color: inherit; }
+  button { background: none; border: 0; cursor: pointer; }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 모바일 상단 앱 바 */
+  .m-hdr { position: sticky; top: 0; z-index: 40; background: var(--panel); border-bottom: 1px solid var(--line); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .m-brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .m-logo { width: 30px; height: 30px; border-radius: 8px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex: none; }
+  .m-title { font-size: 14.5px; font-weight: 700; line-height: 1.2; }
+  .m-sub { font-size: 11px; color: var(--mute); font-family: var(--mono); }
+  .m-tools { display: flex; align-items: center; gap: 6px; }
+  .m-btn { height: 32px; padding: 0 9px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--panel); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .m-btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+  /* 본문 */
+  .m-wrap { max-width: 560px; margin: 0 auto; padding: 12px 12px 24px; }
+  .m-page[hidden] { display: none !important; }
+  .m-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+  .m-card-hd { padding: 11px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; font-weight: 700; }
+  .m-card-bd { padding: 12px 14px; }
+
+  /* 2x2 지표 / KPI 그리드 */
+  .m-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .m-kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 11px; padding: 11px 12px; }
+  .m-kpi.accent { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .m-kpi.accent .m-kpi-l, .m-kpi.accent .m-kpi-s { color: rgba(255,255,255,0.8); }
+  .m-kpi-l { font-size: 11px; color: var(--mute); font-weight: 600; }
+  .m-kpi-v { margin-top: 4px; font-family: var(--mono); font-size: 18px; font-weight: 700; }
+  .m-kpi-s { margin-top: 2px; font-size: 11px; color: var(--sub); }
+
+  /* 가로 스크롤 칩 */
+  .m-chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none; }
+  .m-chips::-webkit-scrollbar { display: none; }
+  .m-chip { flex: none; height: 30px; padding: 0 12px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--panel); border: 1px solid var(--line-2); color: var(--sub); }
+  .m-chip[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+  /* 검색창 */
+  .m-search { position: relative; margin-bottom: 10px; }
+  .m-search input { width: 100%; height: 38px; padding: 0 12px 0 36px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--panel); font-size: 13.5px; }
+  .m-search .ic { position: absolute; left: 11px; top: 10px; color: var(--mute); }
+
+  /* 피드 & 발주 아이템 */
+  .m-item { padding: 12px 14px; border-bottom: 1px solid var(--line); display: block; }
+  .m-item:last-child { border-bottom: 0; }
+  .m-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 11px; color: var(--mute); margin-bottom: 4px; }
+  .m-badge { display: inline-flex; padding: 1px 6px; border-radius: 4px; font-size: 10.5px; font-weight: 700; background: var(--primary-soft); color: var(--primary-ink); }
+  .m-badge.up { background: var(--up-soft); color: var(--up); }
+  .m-badge.down { background: var(--down-soft); color: var(--down); }
+  .m-badge.warn { background: var(--warn-soft); color: var(--warn); }
+  .m-badge.ok { background: var(--ok-soft); color: var(--ok); }
+  .m-ititle { font-size: 14.5px; font-weight: 700; line-height: 1.38; word-break: keep-all; }
+  .m-isum { margin-top: 4px; font-size: 12.5px; color: var(--sub); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .m-kv { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: var(--subtle); display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 12px; }
+  .m-kv span { display: block; font-size: 10.5px; color: var(--mute); }
+  .m-kv b { font-family: var(--mono); }
+
+  /* 입력 & 링크 */
+  .m-inp { width: 100%; height: 38px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--bg); font-size: 13.5px; }
+  .m-link { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--line); font-weight: 600; font-size: 13.5px; }
+  .m-link:last-child { border-bottom: 0; }
+  .m-link small { display: block; font-size: 11px; font-weight: 400; color: var(--mute); }
+
+  /* 하단 고정 앱 탭바 (6개) */
+  .m-nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: var(--panel); border-top: 1px solid var(--line);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    display: grid; grid-template-columns: repeat(6, 1fr);
+  }
+  .m-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 10px; font-weight: 600; color: var(--mute); padding: 4px 0; }
+  .m-tab[aria-selected="true"] { color: var(--primary-ink); }
+  .m-tab[aria-selected="true"] .ic { stroke-width: 2.2; }
+</style>
+</head>
+<body>
+
+<header class="m-hdr">
+  <div class="m-brand">
+    <div class="m-logo">H</div>
+    <div>
+      <div class="m-title">구조부 데일리 브리핑</div>
+      <div class="m-sub" id="mSub">불러오는 중...</div>
+    </div>
+  </div>
+  <div class="m-tools">
+    <button type="button" class="m-btn" id="mThemeBtn" aria-label="다크모드 전환"></button>
+    <a class="m-btn" href="./index.html?view=pc">PC</a>
+  </div>
+</header>
+
+<main class="m-wrap">
+  <!-- 1. 홈 / 뉴스 -->
+  <section class="m-page" id="mp-home">
+    <div class="m-search">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="mNewsQ" placeholder="뉴스 키워드 검색..." autocomplete="off" />
+    </div>
+    <div class="m-grid2" id="mHomeMk"></div>
+    <div class="m-chips" id="mNewsChips"></div>
+    <div class="m-card" id="mNewsList"></div>
+  </section>
+
+  <!-- 2. 금융·시장 -->
+  <section class="m-page" id="mp-market" hidden>
+    <div class="m-grid2" id="mMarketGrid"></div>
+    <div class="m-card">
+      <div class="m-card-hd"><span>실시간 차트 (TradingView)</span>
+        <div style="display:flex;gap:4px" id="mTvSeg">
+          <button class="m-btn primary" data-msym="KRX:KOSPI">KOSPI</button>
+          <button class="m-btn" data-msym="FX_IDC:USDKRW">환율</button>
+          <button class="m-btn" data-msym="UPBIT:BTCKRW">BTC</button>
+        </div>
+      </div>
+      <div id="mTvHost" style="height:300px;width:100%"></div>
+    </div>
+    <div class="m-card">
+      <div class="m-card-hd"><span>경제·투자 브리핑</span></div>
+      <div id="mMarketNews"></div>
+    </div>
+  </section>
+
+  <!-- 3. 발주 속보 -->
+  <section class="m-page" id="mp-procurement" hidden>
+    <div class="m-grid2" id="mBidKpis"></div>
+    <div class="m-search">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="mBidQ" placeholder="공고명 · 발주기관 검색..." autocomplete="off" />
+    </div>
+    <div class="m-chips" id="mBidChips">
+      <button class="m-chip" data-mb="all" aria-pressed="true">전체</button>
+      <button class="m-chip" data-mb="local" aria-pressed="false">지자체</button>
+      <button class="m-chip" data-mb="public" aria-pressed="false">공공기관</button>
+      <button class="m-chip" data-mb="fav" aria-pressed="false">★ 관심공고</button>
+    </div>
+    <div id="mBidList"></div>
+  </section>
+
+  <!-- 4. 항공·교통 -->
+  <section class="m-page" id="mp-travel" hidden>
+    <div class="m-card">
+      <div class="m-card-hd"><span>항공권 최저가 검색</span></div>
+      <div class="m-card-bd" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:grid;grid-template-columns:1fr 34px 1fr;gap:6px;align-items:center">
+          <input class="m-inp" id="mtFrom" value="서울" placeholder="출발(서울/인천)" />
+          <button type="button" class="m-btn" id="mtSwap" style="height:38px;justify-content:center;padding:0">⇄</button>
+          <input class="m-inp" id="mtTo" value="제주" placeholder="도착(제주/도쿄)" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <input class="m-inp mono" id="mtDep" type="date" />
+          <input class="m-inp mono" id="mtRet" type="date" />
+        </div>
+        <div class="m-chips" style="margin-bottom:2px">
+          <button type="button" class="m-chip" data-mroute="서울,제주">서울↔제주</button>
+          <button type="button" class="m-chip" data-mroute="인천,도쿄">인천↔도쿄</button>
+          <button type="button" class="m-chip" data-mroute="인천,오사카">인천↔오사카</button>
+          <button type="button" class="m-chip" data-mroute="인천,다낭">인천↔다낭</button>
+          <button type="button" class="m-chip" data-mroute="인천,방콕">인천↔방콕</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <button type="button" class="m-btn primary" id="mtSky" style="height:40px;justify-content:center">스카이스캐너</button>
+          <button type="button" class="m-btn" id="mtNaver" style="height:40px;justify-content:center">네이버 항공권</button>
+        </div>
+      </div>
+    </div>
+    <div class="m-card">
+      <div class="m-card-hd"><span>기차 · 고속버스 · 시외버스 바로가기</span></div>
+      <a class="m-link" href="https://nol.yanolja.com/" target="_blank" rel="noopener"><div>NOL 통합예매<small>KTX · 고속버스 · 시외버스 한곳에서</small></div><span>↗</span></a>
+      <a class="m-link" href="https://www.korail.com/" target="_blank" rel="noopener"><div>코레일 (KTX)<small>한국철도공사 공식 예매</small></div><span>↗</span></a>
+      <a class="m-link" href="https://www.kobus.co.kr/" target="_blank" rel="noopener"><div>고속버스 (코버스)<small>전국 고속버스 예매</small></div><span>↗</span></a>
+      <a class="m-link" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener"><div>시외버스 (티머니)<small>전국 시외버스 예매</small></div><span>↗</span></a>
+      <a class="m-link" href="https://www.bustago.or.kr/" target="_blank" rel="noopener"><div>시외버스 (버스타고)<small>지방 시외 노선</small></div><span>↗</span></a>
+      <a class="m-link" href="https://www.airport.kr/ap_ko/974/subview.do" target="_blank" rel="noopener"><div>인천공항 출국장 혼잡도<small>실시간 대기시간 확인</small></div><span>↗</span></a>
+    </div>
+  </section>
+
+  <!-- 5. 프로야구 (KBO) -->
+  <section class="m-page" id="mp-kbo" hidden>
+    <div class="m-chips" id="mKboChips">
+      <button class="m-chip" data-mkbo="ALL" aria-pressed="true">전체</button>
+      <button class="m-chip" data-mkbo="프로야구 한화 소식" aria-pressed="false">한화</button>
+      <button class="m-chip" data-mkbo="KIA 타이거즈" aria-pressed="false">KIA</button>
+      <button class="m-chip" data-mkbo="LG 트윈스" aria-pressed="false">LG</button>
+      <button class="m-chip" data-mkbo="두산 베어스" aria-pressed="false">두산</button>
+    </div>
+    <div class="m-card">
+      <div class="m-card-hd"><span>KBO 바로가기</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px">
+        <a class="m-btn" style="justify-content:center;height:36px" href="https://sports.news.naver.com/kbaseball/record/index?category=kbo" target="_blank" rel="noopener">팀 순위표 ↗</a>
+        <a class="m-btn" style="justify-content:center;height:36px" href="https://sports.news.naver.com/kbaseball/schedule/index" target="_blank" rel="noopener">경기 일정 ↗</a>
+      </div>
+    </div>
+    <div class="m-card" id="mKboList"></div>
+  </section>
+
+  <!-- 6. 음원·문화 -->
+  <section class="m-page" id="mp-culture" hidden>
+    <div class="m-card" style="background:linear-gradient(135deg,#003561,#005294);color:#fff;border:0">
+      <div class="m-card-bd">
+        <div style="font-size:10.5px;opacity:0.8;font-family:var(--mono)">TEAM-H WORK RADIO</div>
+        <div style="font-size:15px;font-weight:700;margin:3px 0 10px">노동요 Lo-Fi / 카페 재즈</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <a class="m-btn" style="background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.3);color:#fff" href="https://www.youtube.com/watch?v=jfKfPfyJRdk" target="_blank" rel="noopener">▶ Lo-Fi 라디오</a>
+          <a class="m-btn" style="background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.3);color:#fff" href="https://www.youtube.com/watch?v=Dx5qFachd3A" target="_blank" rel="noopener">▶ 카페 재즈</a>
+        </div>
+      </div>
+    </div>
+    <div class="m-card">
+      <div class="m-card-hd"><span>실시간 음원 차트 &amp; 영화</span></div>
+      <a class="m-link" href="https://www.melon.com/chart/index.htm" target="_blank" rel="noopener"><div>멜론 TOP 100<small>실시간 인기 차트</small></div><span>↗</span></a>
+      <a class="m-link" href="https://charts.youtube.com/charts/TopSongs/kr" target="_blank" rel="noopener"><div>유튜브 뮤직 한국 인기곡<small>주간 급상승 차트</small></div><span>↗</span></a>
+      <a class="m-link" href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do" target="_blank" rel="noopener"><div>KOBIS 주간 박스오피스<small>영화진흥위원회 공식 순위</small></div><span>↗</span></a>
+      <a class="m-link" href="https://www.cgv.co.kr/" target="_blank" rel="noopener"><div>CGV / 영화 예매<small>상영시간표 확인</small></div><span>↗</span></a>
+    </div>
+  </section>
+</main>
+
+<nav class="m-nav" id="mNav" role="tablist" aria-label="모바일 하단 메뉴">
+  <button class="m-tab" data-mtab="home" aria-selected="true"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>홈</span></button>
+  <button class="m-tab" data-mtab="market" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg><span>금융</span></button>
+  <button class="m-tab" data-mtab="procurement" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg><span>발주</span></button>
+  <button class="m-tab" data-mtab="travel" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg><span>교통</span></button>
+  <button class="m-tab" data-mtab="kbo" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 6.5c2 2.5 2 8.5 0 11"/><path d="M16.5 6.5c-2 2.5-2 8.5 0 11"/></svg><span>야구</span></button>
+  <button class="m-tab" data-mtab="culture" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span>문화</span></button>
+</nav>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+  function safeUrl(v) { try { var u = new URL(String(v || '')); return u.protocol === 'https:' || u.protocol === 'http:' ? u.href : ''; } catch (e) { return ''; } }
+  function fmt(n, d) { return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: d || 0 }); }
+  function addDays(n) { return new Date(Date.now() + 9 * 3600000 + n * 86400000).toISOString().slice(0, 10); }
+
+  /* 테마 */
+  function syncTheme() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    $('mThemeBtn').textContent = dark ? '☀ 라이트' : '☾ 다크';
+  }
+  syncTheme();
+  $('mThemeBtn').addEventListener('click', function () {
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('briefing-theme', next); localStorage.setItem('procurement-theme', next); } catch (e) {}
+    syncTheme();
+    if (curTab === 'market') renderMTv(curSym);
+  });
+
+  /* 하단 탭 전환 */
+  var curTab = 'home', tvReady = false, curSym = 'KRX:KOSPI';
+  function setTab(t) {
+    var ok = ['home','market','procurement','travel','kbo','culture'];
+    if (ok.indexOf(t) < 0) t = 'home';
+    curTab = t;
+    document.querySelectorAll('#mNav .m-tab').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.mtab === t)); });
+    ok.forEach(function (k) { $('mp-' + k).hidden = k !== t; });
+    try { history.replaceState(null, '', '#' + t); } catch (e) {}
+    if (t === 'market' && !tvReady) { tvReady = true; renderMTv(curSym); }
+    window.scrollTo({ top: 0 });
+  }
+  $('mNav').addEventListener('click', function (e) { var b = e.target.closest('[data-mtab]'); if (b) setTab(b.dataset.mtab); });
+
+  /* 날씨 간단 표시 */
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.978&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul')
+    .then(function (r) { return r.json(); }).then(function (w) {
+      if (w && w.daily) $('mSub').textContent = '서울 ' + Math.round(w.daily.temperature_2m_min[0]) + '°/' + Math.round(w.daily.temperature_2m_max[0]) + '° · LIVE';
+    }).catch(function () { $('mSub').textContent = 'Team-H LIVE'; });
+
+  /* 뉴스 & KBO */
+  var news = [], nCat = 'ALL', nQ = '', kboTeam = 'ALL';
+  function renderNews() {
+    var list = news.filter(function (x) {
+      if (nCat !== 'ALL' && x.category !== nCat) return false;
+      if (nQ && [x.title, x.summary, x.publisher, x.category].join(' ').toLowerCase().indexOf(nQ) < 0) return false;
+      return true;
+    }).slice(0, 40);
+    $('mNewsList').innerHTML = list.map(function (x) {
+      var u = safeUrl(x.link || x.url);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div><div class="m-ititle">' + esc(x.title) + '</div>' + (x.summary ? '<div class="m-isum">' + esc(x.summary) + '</div>' : '') + '</a>';
+    }).join('') || '<div style="padding:30px;text-align:center;color:var(--mute)">기사가 없습니다.</div>';
+  }
+  function renderKbo() {
+    var teams = ['프로야구 한화 소식','KIA 타이거즈','LG 트윈스','두산 베어스'];
+    var list = news.filter(function (x) { return teams.indexOf(x.category) >= 0 && (kboTeam === 'ALL' || x.category === kboTeam); }).slice(0, 30);
+    $('mKboList').innerHTML = list.map(function (x) {
+      var u = safeUrl(x.link || x.url);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(x.category === '프로야구 한화 소식' ? '한화 이글스' : x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div><div class="m-ititle">' + esc(x.title) + '</div></a>';
+    }).join('') || '<div style="padding:30px;text-align:center;color:var(--mute)">수집된 야구 소식이 없습니다.</div>';
+  }
+  fetch('./data/latest.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (j) {
+    news = Array.isArray(j) ? j : (j.items || []);
+    var cats = Array.from(new Set(news.map(function (x) { return x.category; }))).filter(Boolean);
+    $('mNewsChips').innerHTML = '<button class="m-chip" data-nc="ALL" aria-pressed="true">전체 (' + news.length + ')</button>' +
+      cats.map(function (c) { return '<button class="m-chip" data-nc="' + esc(c) + '" aria-pressed="false">' + esc(c) + '</button>'; }).join('');
+    var mNews = news.filter(function (x) { return ['국내경제','해외경제','국내주식','해외주식','코인'].indexOf(x.category) >= 0; }).slice(0, 8);
+    $('mMarketNews').innerHTML = mNews.map(function (x) {
+      var u = safeUrl(x.link || x.url);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(x.category) + '</span></div><div class="m-ititle">' + esc(x.title) + '</div></a>';
+    }).join('');
+    renderNews(); renderKbo();
+  }).catch(function () {});
+  $('mNewsChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-nc]'); if (!b) return;
+    nCat = b.dataset.nc;
+    document.querySelectorAll('#mNewsChips .m-chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    renderNews();
+  });
+  $('mNewsQ').addEventListener('input', function (e) { nQ = e.target.value.trim().toLowerCase(); renderNews(); });
+  $('mKboChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-mkbo]'); if (!b) return;
+    kboTeam = b.dataset.mkbo;
+    document.querySelectorAll('#mKboChips .m-chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    renderKbo();
+  });
+
+  /* 금융 */
+  function loadMarket() {
+    var list = [], seen = {};
+    function add(x) { if (x && x.name && !seen[x.name]) { seen[x.name] = 1; list.push(x); } }
+    fetch('./data/market.json?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) { (j.items || []).forEach(add); }).catch(function () {})
+      .then(function () { return fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH').then(function (r) { return r.json(); }).then(function (arr) {
+        arr.forEach(function (c) { add({ name: c.market === 'KRW-BTC' ? '비트코인' : '이더리움', value: fmt(c.trade_price) + '원', change: c.signed_change_rate * 100 }); });
+      }).catch(function () {}); })
+      .then(function () {
+        if (seen['원/달러']) return;
+        return fetch('https://open.er-api.com/v6/latest/USD').then(function (r) { return r.json(); }).then(function (j) { if (j && j.rates && j.rates.KRW) add({ name: '원/달러', value: fmt(j.rates.KRW, 1) + '원' }); }).catch(function () {});
+      }).then(function () {
+        var html = list.slice(0, 4).map(function (x) {
+          var b = typeof x.change === 'number' && isFinite(x.change)
+            ? '<span class="m-badge ' + (x.change > 0 ? 'up' : 'down') + '">' + (x.change > 0 ? '+' : '') + x.change.toFixed(2) + '%</span>' : '';
+          return '<div class="m-kpi"><div class="m-kpi-l">' + esc(x.name) + '</div><div class="m-kpi-v" style="font-size:15px">' + esc(x.value) + '</div><div class="m-kpi-s">' + b + '</div></div>';
+        }).join('');
+        $('mHomeMk').innerHTML = html; $('mMarketGrid').innerHTML = html;
+      });
+  }
+  loadMarket();
+
+  function renderMTv(sym) {
+    curSym = sym;
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var host = $('mTvHost'); host.innerHTML = '';
+    var box = document.createElement('div'); box.className = 'tradingview-widget-container'; box.style.height = '100%'; box.style.width = '100%';
+    var inner = document.createElement('div'); inner.className = 'tradingview-widget-container__widget'; inner.style.height = '100%'; inner.style.width = '100%';
+    var sc = document.createElement('script'); sc.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'; sc.async = true;
+    sc.textContent = JSON.stringify({ autosize: true, symbol: sym, interval: 'D', timezone: 'Asia/Seoul', theme: dark ? 'dark' : 'light', style: '2', locale: 'kr', hide_top_toolbar: true, support_host: 'https://www.tradingview.com' });
+    box.appendChild(inner); box.appendChild(sc); host.appendChild(box);
+  }
+  $('mTvSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-msym]'); if (!b) return;
+    document.querySelectorAll('#mTvSeg button').forEach(function (x) { x.classList.toggle('primary', x === b); });
+    renderMTv(b.dataset.msym);
+  });
+
+  /* 발주 */
+  var bids = [], bScope = 'all', bQ = '', bFavs = new Set();
+  try { JSON.parse(localStorage.getItem('procurement-favorites') || '[]').forEach(function (x) { bFavs.add(x); }); } catch (e) {}
+  function renderBids() {
+    var rows = bids.filter(function (i) {
+      if (bScope === 'fav' && !bFavs.has(i.id)) return false;
+      if (bScope !== 'all' && bScope !== 'fav' && i.buyer_group !== bScope) return false;
+      if (bQ && [i.title, i.buyer_name, i.notice_no].join(' ').toLowerCase().indexOf(bQ) < 0) return false;
+      return true;
+    });
+    $('mBidKpis').innerHTML =
+      '<div class="m-kpi"><div class="m-kpi-l">전체 공고</div><div class="m-kpi-v">' + fmt(bids.length) + '건</div></div>' +
+      '<div class="m-kpi accent"><div class="m-kpi-l">관심공고</div><div class="m-kpi-v">' + fmt(bFavs.size) + '건</div></div>';
+    $('mBidList').innerHTML = rows.slice(0, 40).map(function (i) {
+      var u = safeUrl(i.url), fav = bFavs.has(i.id);
+      return '<div class="m-card"><div class="m-card-bd">' +
+        '<div class="m-meta"><span class="m-badge">' + esc(i.buyer_name || '발주기관') + '</span><span class="mono">' + esc(i.notice_no || '') + '</span><button type="button" data-mfav="' + esc(i.id) + '" style="margin-left:auto;font-size:16px;color:' + (fav ? '#f59e0b' : 'var(--mute)') + '">' + (fav ? '★' : '☆') + '</button></div>' +
+        '<div class="m-ititle">' + esc(i.title) + '</div>' +
+        '<div class="m-kv"><div><span>금액</span><b>' + (typeof i.amount_krw === 'number' ? fmt(i.amount_krw) + '원' : '미제공') + '</b></div><div><span>마감</span><b>' + esc(String(i.deadline || '미제공').slice(0, 16)) + '</b></div></div>' +
+        (u ? '<a class="m-btn primary" style="width:100%;justify-content:center;margin-top:8px;height:36px" href="' + esc(u) + '" target="_blank" rel="noopener">나라장터 원문 보기 ↗</a>' : '') +
+        '</div></div>';
+    }).join('') || '<div style="padding:30px;text-align:center;color:var(--mute)">조건에 맞는 공고가 없습니다.</div>';
+  }
+  fetch('./data/procurement.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (d) { bids = d.items || []; renderBids(); }).catch(function () {});
+  $('mBidChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-mb]'); if (!b) return;
+    bScope = b.dataset.mb;
+    document.querySelectorAll('#mBidChips .m-chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    renderBids();
+  });
+  $('mBidQ').addEventListener('input', function (e) { bQ = e.target.value.trim().toLowerCase(); renderBids(); });
+  $('mBidList').addEventListener('click', function (e) {
+    var f = e.target.closest('[data-mfav]'); if (!f) return;
+    var id = f.dataset.mfav; if (bFavs.has(id)) bFavs.delete(id); else bFavs.add(id);
+    try { localStorage.setItem('procurement-favorites', JSON.stringify(Array.from(bFavs))); } catch (err) {}
+    renderBids();
+  });
+
+  /* 항공 */
+  var KOR_AIR = { '서울':'SEL','인천':'ICN','김포':'GMP','제주':'CJU','부산':'PUS','도쿄':'TYO','오사카':'KIX','후쿠오카':'FUK','다낭':'DAD','방콕':'BKK','타이베이':'TPE','괌':'GUM' };
+  var DOM = { SEL:1, ICN:1, GMP:1, CJU:1, PUS:1 };
+  function ac(v, fb) { var r = String(v || '').trim(), m = r.toUpperCase().match(/[A-Z]{3}/); if (m) return m[0]; for (var k in KOR_AIR) { if (r.indexOf(k) !== -1) return KOR_AIR[k]; } return fb; }
+  $('mtDep').value = addDays(1); $('mtRet').value = addDays(4);
+  $('mtSwap').addEventListener('click', function () { var a = $('mtFrom').value; $('mtFrom').value = $('mtTo').value; $('mtTo').value = a; });
+  document.querySelectorAll('[data-mroute]').forEach(function (b) { b.addEventListener('click', function () { var p = b.dataset.mroute.split(','); $('mtFrom').value = p[0]; $('mtTo').value = p[1]; }); });
+  $('mtSky').addEventListener('click', function () {
+    var f = ac($('mtFrom').value, 'SEL').toLowerCase(), t = ac($('mtTo').value, 'CJU').toLowerCase();
+    window.open('https://www.skyscanner.co.kr/transport/flights/' + f + '/' + t + '/' + $('mtDep').value.replace(/-/g, '').slice(2) + '/' + $('mtRet').value.replace(/-/g, '').slice(2) + '/?adults=1', '_blank', 'noopener');
+  });
+  $('mtNaver').addEventListener('click', function () {
+    var f = ac($('mtFrom').value, 'SEL'), t = ac($('mtTo').value, 'CJU'), dom = DOM[f] && DOM[t];
+    var d1 = $('mtDep').value.replace(/-/g, ''), d2 = $('mtRet').value.replace(/-/g, '');
+    window.open('https://flight.naver.com/flights/' + (dom ? 'domestic' : 'international') + '/' + f + '-' + t + '-' + d1 + '/' + t + '-' + f + '-' + d2 + '?adult=1&fareType=' + (dom ? 'YC' : 'Y'), '_blank', 'noopener');
+  });
+
+  var h = location.hash.replace(/^#/, '').split('/')[0];
+  if (h) setTab(h);
+})();
+</script>
+</body>
+</html>

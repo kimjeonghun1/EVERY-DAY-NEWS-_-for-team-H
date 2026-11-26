@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<!-- Redesign pass based on unslop by Damir Sokolovsky (@heydamir), CC BY 4.0 -->
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>구조부 데일리 브리핑</title>
+<title>구조부 데일리 브리핑 (for team-H)</title>
 <script>
-  /* 첫 화면 깜빡임 방지: 저장된 테마 또는 시스템 설정을 먼저 적용 */
   (function () {
+    /* 모바일 기기 자동 분기 (?view=pc 시 PC 유지) */
+    try {
+      var qs = new URLSearchParams(location.search);
+      if (qs.get('view') === 'pc') sessionStorage.setItem('briefing-force-pc', '1');
+      var isMobile = window.innerWidth <= 700 && /Mobi|Android|iPhone|iPod/i.test(navigator.userAgent || '');
+      if (isMobile && !sessionStorage.getItem('briefing-force-pc') && !location.pathname.endsWith('/m.html')) {
+        location.replace('./m.html' + location.hash);
+        return;
+      }
+    } catch (e) {}
+    /* 첫 화면 깜빡임 방지: 저장된 테마 우선 적용 */
     var t = null;
     try { t = localStorage.getItem('briefing-theme'); } catch (e) {}
     if (t !== 'light' && t !== 'dark') {
@@ -18,1006 +27,1368 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <style>
-  /* ───────── 토큰: 그라파이트 중립 램프 + 블루 강조 하나 ───────── */
   :root {
-    --hh: 60px;
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
     --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Pretendard Variable", Pretendard, monospace;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --maxw: 1760px;
 
-    --bg: #fafafa;
+    /* Executive Pulse Hub — Light */
+    --bg: #f4f6fa;
     --panel: #ffffff;
-    --raised: #f4f4f5;
-    --raised-2: #ffffff;
-    --ink: #171717;
-    --sub: #525252;
-    --mute: #6e6e6e;
-    --ink-rgb: 23 23 23;
-    --line: rgb(var(--ink-rgb) / 0.08);
-    --line-2: rgb(var(--ink-rgb) / 0.14);
+    --subtle: #f1f5f9;
+    --raised: #e8eef5;
+    --ink: #0f172a;
+    --sub: #475569;
+    --mute: #64748b;
+    --line: #e2e8f0;
+    --line-2: #cbd5e1;
 
-    --accent: #1f5f9e;
-    --up: #c2413c;
-    --down: #2d63b3;
-    --warn: #a15c07;
-
-    --bar-a: #d8d8db;
-    --bar-b: #c6c6ca;
-    --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-m: 0 8px 24px rgba(0, 0, 0, 0.06);
+    --primary: #00477f;
+    --primary-hover: #003561;
+    --primary-soft: #e8f1fb;
+    --primary-ink: #00477f;
+    --up: #dc2626;
+    --up-soft: #fee2e2;
+    --down: #1d4ed8;
+    --down-soft: #dbeafe;
+    --warn: #b45309;
+    --warn-soft: #fef3c7;
+    --ok: #15803d;
+    --ok-soft: #dcfce7;
+    --shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    --shadow-m: 0 10px 28px rgba(15, 23, 42, 0.10);
   }
   [data-theme="dark"] {
-    --bg: #141415;
-    --panel: #19191b;
-    --raised: #232325;
-    --raised-2: #2c2c2f;
-    --ink: #ededed;
-    --sub: #a1a1a6;
-    --mute: #85858b;
-    --ink-rgb: 237 237 237;
+    --bg: #0c1118;
+    --panel: #131a24;
+    --subtle: #1a2332;
+    --raised: #222e42;
+    --ink: #f1f5f9;
+    --sub: #cbd5e1;
+    --mute: #94a3b8;
+    --line: #233044;
+    --line-2: #334561;
 
-    --accent: #7db4ea;
-    --up: #ff7b76;
-    --down: #78a8ff;
-    --warn: #e2ad5e;
-
-    --bar-a: #3a3a3e;
-    --bar-b: #2c2c2f;
-    --shadow-s: none;
-    --shadow-m: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --primary-soft: rgba(59, 130, 246, 0.16);
+    --primary-ink: #93c5fd;
+    --up: #f87171;
+    --up-soft: rgba(248, 113, 113, 0.15);
+    --down: #60a5fa;
+    --down-soft: rgba(96, 165, 250, 0.15);
+    --warn: #fbbf24;
+    --warn-soft: rgba(251, 191, 36, 0.15);
+    --ok: #4ade80;
+    --ok-soft: rgba(74, 222, 128, 0.15);
+    --shadow: none;
+    --shadow-m: 0 12px 32px rgba(0, 0, 0, 0.55);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { color-scheme: light; scroll-padding-top: 124px; }
+  html { color-scheme: light; }
   html[data-theme="dark"] { color-scheme: dark; }
   body {
-    font-family: var(--font);
-    font-size: 14px;
-    line-height: 20px;
+    font-family: var(--font); font-size: 14px; line-height: 1.5;
     font-variant-numeric: tabular-nums;
-    background: var(--bg);
-    color: var(--ink);
+    background: var(--bg); color: var(--ink);
     -webkit-font-smoothing: antialiased;
   }
-  button, select, input { font: inherit; color: inherit; }
+  a { color: inherit; }
+  button, select, input, textarea { font: inherit; color: inherit; }
   button { cursor: pointer; background: none; border: 0; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 6px; }
+  .mono { font-family: var(--mono); }
+  .ic { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .icw { display: inline-flex; align-items: center; }
 
-  .ic { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .icw { display: inline-flex; color: var(--mute); }
-  .n, .d, .mono { font-family: var(--mono); }
+  /* ───────── 상단 헤더 & 6개 포털 탭 ───────── */
+  .hdr { position: sticky; top: 0; z-index: 50; background: var(--panel); border-bottom: 1px solid var(--line); }
+  .hdr-top { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .brand-logo { width: 30px; height: 30px; border-radius: 7px; background: var(--primary); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex: none; }
+  .brand h1 { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+  .brand-sub { font-size: 12px; color: var(--mute); font-family: var(--mono); white-space: nowrap; }
+  .live-dot { display: inline-flex; align-items: center; gap: 5px; padding: 2px 7px; border-radius: 999px; background: var(--up-soft); color: var(--up); font-size: 11px; font-weight: 700; font-family: var(--mono); }
+  .live-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--up); }
 
-  /* ───────── 상단 바 ───────── */
-  .top { position: sticky; top: 0; z-index: 40; height: var(--hh); background: var(--bg); border-bottom: 1px solid var(--line); }
-  .top-in { max-width: 1440px; height: 100%; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .brand { min-width: 0; }
-  .brand h1 { font-size: 16px; line-height: 20px; font-weight: 500; white-space: nowrap; }
-  .brand p { margin-top: 2px; font-family: var(--mono); font-size: 12px; line-height: 16px; color: var(--mute); }
-  .tools { display: flex; align-items: center; gap: 8px; }
+  .tools { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
   .ctl {
-    height: 36px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px;
-    background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px;
-    font-size: 13px; line-height: 20px; white-space: nowrap; color: var(--ink); text-decoration: none;
-    transition: background-color 140ms var(--ease), border-color 140ms var(--ease), transform 140ms var(--ease);
+    height: 34px; padding: 0 11px; display: inline-flex; align-items: center; gap: 6px;
+    background: var(--panel); border: 1px solid var(--line-2); border-radius: 7px;
+    font-size: 12.5px; font-weight: 500; white-space: nowrap; text-decoration: none; color: var(--ink);
+    transition: background-color 140ms var(--ease), border-color 140ms var(--ease);
   }
-  .ctl:hover { background: var(--raised); }
-  .ctl:active { transform: scale(0.98); }
+  .ctl:hover { background: var(--subtle); }
+  .ctl.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .ctl.primary:hover { background: var(--primary-hover); }
   .ctl[hidden] { display: none; }
+  .ctl:disabled { opacity: 0.45; cursor: default; }
   select.ctl { padding-right: 8px; cursor: pointer; }
-  .ctl .rain { font-family: var(--mono); font-size: 12px; color: var(--down); }
 
   .wx { position: relative; }
   .wx-panel {
-    position: absolute; right: 0; top: 44px; z-index: 50; width: 280px; padding: 8px;
-    background: var(--panel); border: 1px solid var(--line-2); border-radius: 12px; box-shadow: var(--shadow-m);
-    animation: pop 180ms var(--ease);
+    position: absolute; right: 0; top: 42px; z-index: 60; width: 280px; padding: 10px;
+    background: var(--panel); border: 1px solid var(--line-2); border-radius: 10px; box-shadow: var(--shadow-m);
   }
   .wx-panel[hidden] { display: none; }
-  @keyframes pop { from { opacity: 0; transform: translateY(6px); } }
   .wx-cities { display: flex; flex-wrap: wrap; gap: 4px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
-  .wx-c { height: 28px; padding: 0 8px; border-radius: 4px; font-size: 12px; color: var(--sub); transition: background-color 140ms var(--ease), color 140ms var(--ease); }
-  .wx-c:hover { background: var(--raised); color: var(--ink); }
-  .wx-c[aria-pressed="true"] { background: var(--raised); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
-  .wx-h { padding: 0 8px 4px; font-size: 12px; line-height: 16px; color: var(--mute); }
-  .wx-r { display: grid; grid-template-columns: 40px 24px 1fr auto; align-items: center; height: 32px; padding: 0 8px; border-radius: 4px; font-size: 13px; }
-  .wx-r.today { background: var(--raised); }
-  .wx-r .dn { color: var(--sub); }
-  .wx-r.today .dn { color: var(--ink); }
+  .wx-c { height: 26px; padding: 0 8px; border-radius: 5px; font-size: 12px; color: var(--sub); }
+  .wx-c:hover, .wx-c[aria-pressed="true"] { background: var(--primary-soft); color: var(--primary-ink); font-weight: 600; }
+  .wx-r { display: grid; grid-template-columns: 38px 24px 1fr auto; align-items: center; height: 30px; padding: 0 6px; border-radius: 5px; font-size: 12.5px; }
+  .wx-r.today { background: var(--subtle); font-weight: 600; }
   .wx-r .tp, .wx-r .rn { font-family: var(--mono); font-size: 12px; }
-  .wx-r .rn { min-width: 56px; text-align: right; color: var(--down); }
+  .wx-r .rn { color: var(--down); text-align: right; }
 
-  /* ───────── 시장 지표 ───────── */
-  .market { border-bottom: 1px solid var(--line); }
-  .market[hidden] { display: none; }
-  .market-in { max-width: 1440px; height: 40px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 32px; overflow-x: auto; scrollbar-width: none; }
-  .market-in::-webkit-scrollbar { display: none; }
-  .mk { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; font-size: 12px; line-height: 16px; }
-  .mk-n { color: var(--mute); }
-  .mk-v { font-family: var(--mono); font-size: 13px; color: var(--ink); }
-  .mk-c { font-family: var(--mono); }
-  .mk-c.up { color: var(--up); }
-  .mk-c.down { color: var(--down); }
-
-  /* ───────── 휴가용 항공권·기차·버스 ───────── */
-  .vac-card {
-    width: 100%; display: flex; align-items: center; gap: 12px;
-    margin-bottom: 16px; padding: 14px 16px;
-    background: var(--panel); border: 1.5px solid var(--accent); border-radius: 12px;
-    box-shadow: var(--shadow-s); text-align: left; color: var(--ink);
-    transition: background-color 140ms var(--ease), border-color 140ms var(--ease), transform 140ms var(--ease), box-shadow 140ms var(--ease);
-  }
-  .vac-card:hover { background: var(--raised); transform: translateY(-1px); }
-  .vac-card:active { transform: scale(0.99); }
-  .vac-card .vac-ic {
-    width: 40px; height: 40px; flex: none; border-radius: 10px;
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--accent); color: #fff;
-  }
-  .vac-card .vac-ic .ic { width: 20px; height: 20px; }
-  .vac-card .vac-txt { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; }
-  .vac-card .vac-title { font-size: 16px; line-height: 20px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
-  .vac-card .vac-desc { font-size: 12px; line-height: 16px; color: var(--sub); }
-  .vac-card[aria-pressed="true"] { background: var(--raised); box-shadow: inset 0 0 0 1px var(--accent); }
-  .vac-sw { position: relative; width: 32px; height: 18px; border-radius: 999px; background: var(--line-2); transition: background-color 160ms var(--ease); flex: none; }
-  .vac-sw::after {
-    content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
-    border-radius: 50%; background: var(--panel); transition: transform 160ms var(--ease);
-  }
-  .vac-card[aria-pressed="true"] .vac-sw { background: var(--accent); }
-  .vac-card[aria-pressed="true"] .vac-sw::after { transform: translateX(14px); }
-
-  .vac-bar { border-bottom: 1px solid var(--line); background: var(--panel); animation: pop 180ms var(--ease); }
-  .vac-bar[hidden] { display: none; }
-  .vac-in { max-width: 1440px; margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; }
-  .vac-head { display: flex; align-items: center; gap: 10px; margin-right: 4px; }
-  .vac-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; flex: 1 1 auto; }
-  .vac-form[hidden] { display: none; }
-  .vac-field { display: flex; flex-direction: column; gap: 4px; }
-  .vac-field label { font-size: 11px; line-height: 14px; color: var(--mute); }
-  .vac-input {
-    height: 36px; padding: 0 10px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px;
-    font-size: 13px; color: var(--ink); min-width: 120px; transition: border-color 140ms var(--ease);
-  }
-  .vac-input:focus { border-color: var(--accent); outline: none; }
-  .vac-input[type="date"] { font-family: var(--mono); font-size: 12px; min-width: 136px; }
-  .vac-swap { width: 36px; height: 36px; padding: 0; justify-content: center; flex: none; }
-  .vac-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; }
-  .vac-go { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 500; }
-  .vac-go:hover { background: var(--accent); filter: brightness(1.08); }
-  .vac-go .icw { color: #fff; }
-
-  /* ───────── 문의사항 모달 ───────── */
-  .req-backdrop {
-    position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px;
-    background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px);
-  }
-  .req-backdrop[hidden] { display: none; }
-  .req-modal {
-    width: min(460px, 100%); background: var(--panel); border: 1px solid var(--line-2); border-radius: 12px;
-    box-shadow: var(--shadow-m); overflow: hidden; animation: pop 180ms var(--ease);
-  }
-  .req-hd { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
-  .req-hd h2 { font-size: 15px; font-weight: 600; }
-  .req-bd { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
-  .req-to { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; background: var(--raised); border-radius: 8px; font-size: 12px; color: var(--sub); }
-  .req-copy { height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--line-2); background: var(--panel); font-size: 11px; color: var(--ink); }
-  .req-copy:hover { background: var(--bg); }
-  .req-bd textarea { width: 100%; min-height: 110px; padding: 10px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px; font: inherit; font-size: 13px; color: var(--ink); resize: vertical; }
-  .req-bd textarea:focus { border-color: var(--accent); outline: none; }
-  .req-status { font-size: 12px; line-height: 18px; min-height: 18px; color: var(--sub); }
-  .req-status.ok { color: var(--accent); }
-  .req-status.err { color: var(--up); }
-  .req-ft { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--line); background: var(--raised); }
-
-  /* ───────── 레이아웃 ───────── */
-  .shell { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 32px; }
-
-  /* 내비게이션 */
-  .side { position: sticky; top: var(--hh); align-self: start; max-height: calc(100vh - var(--hh)); overflow-y: auto; padding: 24px 0 32px; scrollbar-width: thin; }
-  .nav-all, .nav-i {
-    width: 100%; height: 32px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px;
-    padding: 0 12px; border-radius: 8px; font-size: 14px; line-height: 20px; text-align: left; color: var(--sub);
+  /* 메인 6개 탭 바 */
+  .tabs-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 46px; display: flex; align-items: center; justify-content: space-between; gap: 16px; overflow-x: auto; scrollbar-width: none; }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tabs { display: flex; align-items: center; gap: 6px; }
+  .tab-btn {
+    height: 34px; padding: 0 14px; border-radius: 7px; font-size: 13.5px; font-weight: 600;
+    color: var(--sub); white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
     transition: background-color 140ms var(--ease), color 140ms var(--ease);
   }
-  .nav-all { height: 36px; font-weight: 500; color: var(--ink); }
-  .nav-i + .nav-i { margin-top: 2px; }
-  .nav-all .nm, .nav-i .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .nav-all .n, .nav-i .n { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-family: var(--mono); font-size: 12px; color: var(--mute); text-align: right; }
-  .nav-new { color: var(--accent); font-size: 11px; font-weight: 600; }
-  .nav-all:hover, .nav-i:hover { background: var(--raised); color: var(--ink); }
-  .nav-all[aria-current="true"], .nav-i[aria-current="true"] { background: var(--raised); color: var(--ink); font-weight: 500; box-shadow: inset 0 0 0 1px var(--line); }
-  .nav-g { margin-top: 24px; }
-  .nav-gt { margin-bottom: 8px; padding: 0 12px; font-size: 12px; line-height: 16px; color: var(--mute); }
+  .tab-btn:hover { background: var(--subtle); color: var(--ink); }
+  .tab-btn[aria-selected="true"] { background: var(--primary); color: #fff; }
+  .tab-meta { font-size: 12px; color: var(--mute); font-family: var(--mono); white-space: nowrap; }
 
-  main { min-width: 0; padding: 24px 0 64px; }
+  /* 상태 스트립 */
+  .strip { background: var(--subtle); border-bottom: 1px solid var(--line); }
+  .strip-in { max-width: var(--maxw); margin: 0 auto; padding: 8px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--sub); white-space: nowrap; }
+  .pill b { color: var(--ink); font-family: var(--mono); }
+  .pill.accent { padding: 2px 9px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-ink); font-weight: 600; }
+  .gsearch { margin-left: auto; position: relative; width: 320px; max-width: 100%; }
+  .gsearch input { width: 100%; height: 32px; padding: 0 32px 0 32px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 7px; font-size: 13px; }
+  .gsearch input:focus { border-color: var(--primary); outline: none; }
+  .gsearch .icw { position: absolute; left: 10px; top: 8px; color: var(--mute); pointer-events: none; }
+  .gsearch .clr { position: absolute; right: 6px; top: 5px; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; color: var(--mute); }
+  .gsearch .clr[hidden] { display: none; }
 
-  /* 도구줄 */
-  .toolbar { position: sticky; top: var(--hh); z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 0; margin-bottom: 12px; background: var(--bg); }
-  .search { position: relative; flex: 1 1 240px; max-width: 400px; }
-  .search input { width: 100%; height: 36px; padding: 0 40px 0 36px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px; font-size: 14px; transition: border-color 140ms var(--ease); }
-  .search input::placeholder { color: var(--mute); }
-  .search input:focus { border-color: var(--accent); }
-  .search .icw { position: absolute; left: 12px; top: 10px; pointer-events: none; }
-  .search kbd { position: absolute; right: 8px; top: 8px; height: 20px; min-width: 20px; padding: 0 6px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--mute); border: 1px solid var(--line-2); border-radius: 4px; pointer-events: none; }
-  .search kbd[hidden] { display: none; }
-  .search .clr { position: absolute; right: 4px; top: 4px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; transition: background-color 140ms var(--ease); }
-  .search .clr[hidden] { display: none; }
-  .search .clr:hover { background: var(--raised); }
-  .spacer { flex: 1; }
-  .toolbar.is-overview .only-list { display: none; }
-  .seg { display: inline-flex; height: 36px; padding: 4px; background: var(--raised); border-radius: 8px; box-shadow: inset 0 0 0 1px var(--line); }
-  .seg button { height: 28px; padding: 0 12px; border-radius: 4px; font-size: 13px; color: var(--sub); transition: background-color 140ms var(--ease), color 140ms var(--ease); }
-  .seg button:hover { color: var(--ink); }
-  .seg button[aria-pressed="true"] { background: var(--raised-2); color: var(--ink); font-weight: 500; box-shadow: var(--shadow-s), inset 0 0 0 1px var(--line); }
+  /* ───────── 공통 컨테이너 & 카드 ───────── */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 18px 24px 48px; }
+  .page[hidden] { display: none !important; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+  .card-hd { padding: 12px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .card-hd h2, .card-hd h3 { font-size: 14.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+  .card-hd .bar { width: 4px; height: 15px; border-radius: 2px; background: var(--primary); display: inline-block; }
+  .card-bd { padding: 14px 16px; }
+  .grid-main { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 18px; align-items: start; }
+  .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 
-  /* ───────── 표제란 (페이지 머리) ───────── */
-  .pt { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); margin-bottom: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  .pt-c { min-width: 0; padding: 16px 24px; }
-  .pt-c + .pt-c { border-left: 1px solid var(--line); }
-  .pt-l { font-size: 12px; line-height: 16px; color: var(--mute); }
-  .pt-t h2 { margin-top: 8px; font-size: 28px; line-height: 32px; font-weight: 500; overflow-wrap: anywhere; }
-  .pt-sub { margin-top: 4px; font-size: 13px; line-height: 20px; color: var(--sub); }
-  .pt-v { margin-top: 8px; font-family: var(--mono); font-size: 24px; line-height: 32px; font-weight: 500; white-space: nowrap; }
-  .pt-v small { margin-left: 4px; font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--mute); }
-  .pt-bar { grid-column: 1 / -1; padding: 16px 24px 20px; border-top: 1px solid var(--line); }
-  .dist-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 13px; line-height: 20px; }
-  .dist-h .l { color: var(--sub); }
-  .dist-h .v { font-family: var(--mono); font-size: 12px; color: var(--mute); }
-  .bar { display: flex; gap: 2px; height: 16px; margin-top: 12px; }
-  .bar button { min-width: 4px; height: 16px; border-radius: 4px; background: var(--bar-a); transition: background-color 140ms var(--ease); }
-  .bar button:nth-child(even) { background: var(--bar-b); }
-  .bar button.lead, .bar button:hover { background: var(--accent); }
-  .legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 12px; }
-  .legend button { display: inline-flex; align-items: baseline; gap: 8px; font-size: 13px; line-height: 20px; color: var(--sub); border-radius: 4px; transition: color 140ms var(--ease); }
-  .legend button:hover { color: var(--ink); }
-  .legend .n { font-size: 12px; color: var(--mute); }
-  .legend .lead .n { color: var(--accent); }
-  .dist-none { margin-top: 8px; font-size: 13px; color: var(--mute); }
+  /* 금융 지표 카드 6열 */
+  .mk-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .mk-card { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px; }
+  .mk-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--sub); font-weight: 600; }
+  .mk-sym { font-family: var(--mono); font-size: 10.5px; color: var(--mute); font-weight: 500; }
+  .mk-val { font-family: var(--mono); font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+  .mk-chg { font-family: var(--mono); font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 4px; width: fit-content; }
+  .mk-chg.up { background: var(--up-soft); color: var(--up); }
+  .mk-chg.down { background: var(--down-soft); color: var(--down); }
+  .mk-chg.flat { background: var(--subtle); color: var(--mute); }
 
-  /* ───────── 한눈에 보기 ───────── */
-  .grp { margin-top: 40px; }
-  .pt + .grp { margin-top: 32px; }
-  .grp > h3 { margin-bottom: 12px; font-size: 13px; line-height: 16px; font-weight: 500; color: var(--sub); }
-  .blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; }
-  .blk { min-width: 0; padding: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
-  .blk-h { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 8px; }
-  .blk-h h4 { font-size: 14px; line-height: 20px; font-weight: 500; }
-  .blk-h .n { font-size: 12px; color: var(--mute); }
-  .blk-h .more { height: 28px; margin-left: auto; padding: 0 8px; border-radius: 4px; font-size: 12px; color: var(--sub); transition: background-color 140ms var(--ease), color 140ms var(--ease); }
-  .blk-h .more:hover { background: var(--raised); color: var(--ink); }
-  .blk .none { padding: 12px 8px 16px; font-size: 13px; color: var(--mute); }
-
-  /* ───────── 기사 한 줄 ───────── */
-  .row { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 12px; padding: 12px 8px; border-radius: 8px; transition: background-color 140ms var(--ease); }
-  .row:hover { background: var(--raised); }
-  .d { font-size: 12px; line-height: 22px; color: var(--mute); }
-  .d.is-today { color: var(--ink); }
-  .t { font-size: 15px; line-height: 22px; font-weight: 500; text-decoration: none; word-break: keep-all; overflow-wrap: anywhere; transition: color 140ms var(--ease); }
-  .t:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
-  .row.read .t, .card.read .t { color: var(--mute); font-weight: 400; }
-  .m { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; margin-top: 4px; }
-  .mi { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: var(--mute); }
-  .mi + .mi::before { content: ""; width: 1px; height: 12px; background: var(--line-2); }
-  .mi.pub { color: var(--sub); }
-  .mi.warn { color: var(--warn); }
-  .sum { margin-top: 4px; font-size: 13px; line-height: 20px; color: var(--sub); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .orig { margin-top: 4px; font-size: 12px; line-height: 16px; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  /* 목록 보기 (넓은 화면: 날짜 · 제목 · 출처를 세 열로 정렬) */
-  .list { max-width: 1200px; }
-  .gh { display: flex; align-items: baseline; gap: 8px; margin: 32px 0 4px; padding: 0 8px 8px; border-bottom: 1px solid var(--line); }
-  .gh:first-child { margin-top: 0; }
-  .gh .gl { font-size: 13px; line-height: 20px; font-weight: 500; }
-  .gh.today .gl { color: var(--accent); }
-  .gh .gn { font-family: var(--mono); font-size: 12px; color: var(--mute); }
-  @media (min-width: 1200px) {
-    .list .row { grid-template-columns: 48px minmax(0, 1fr) 208px; column-gap: 16px; }
-    .list .row .b { display: contents; }
-    .list .row .d { grid-column: 1; grid-row: 1; }
-    .list .row .t { grid-column: 2; grid-row: 1; }
-    .list .row .sum { grid-column: 2; grid-row: 2; }
-    .list .row .orig { grid-column: 2; grid-row: 3; }
-    .list .row .m { grid-column: 3; grid-row: 1 / span 3; flex-direction: column; align-items: flex-start; row-gap: 2px; margin-top: 3px; }
-    .list .row .mi + .mi::before { display: none; }
+  /* 필터 칩 */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--subtle); }
+  .chip {
+    height: 28px; padding: 0 11px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    color: var(--sub); background: var(--panel); border: 1px solid var(--line-2);
+    display: inline-flex; align-items: center; gap: 5px; transition: all 120ms var(--ease);
   }
+  .chip:hover { border-color: var(--primary); color: var(--ink); }
+  .chip[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .chip .cnt { font-family: var(--mono); font-size: 11px; opacity: 0.8; }
 
-  /* 고정 안내 */
-  .pins { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px; }
-  .pin { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 12px; padding: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; transition: background-color 140ms var(--ease), border-color 140ms var(--ease); }
-  .pin:hover { background: var(--raised); border-color: var(--line-2); }
-  .pin .icw { margin-top: 2px; }
-  .pin b { display: block; font-size: 14px; line-height: 20px; font-weight: 500; }
-  .pin span.s { display: -webkit-box; margin-top: 4px; font-size: 13px; line-height: 20px; color: var(--sub); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  /* 뉴스 피드 아이템 */
+  .feed-item { padding: 14px 16px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: start; transition: background-color 120ms; }
+  .feed-item:last-child { border-bottom: 0; }
+  .feed-item:hover { background: var(--subtle); }
+  .feed-item.read .feed-title { color: var(--mute); font-weight: 500; }
+  .feed-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; font-size: 11.5px; color: var(--mute); }
+  .badge { display: inline-flex; align-items: center; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; background: var(--primary-soft); color: var(--primary-ink); }
+  .badge.warn { background: var(--warn-soft); color: var(--warn); }
+  .badge.up { background: var(--up-soft); color: var(--up); }
+  .badge.ok { background: var(--ok-soft); color: var(--ok); }
+  .feed-title { display: block; font-size: 15px; font-weight: 700; line-height: 1.4; text-decoration: none; color: var(--ink); word-break: keep-all; }
+  .feed-title:hover { color: var(--primary-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .feed-sum { margin-top: 5px; font-size: 13px; color: var(--sub); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .feed-orig { margin-top: 4px; font-size: 11.5px; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .feed-foot { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--line); font-size: 12px; color: var(--mute); }
 
-  /* 카드 보기 */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-  .card { display: flex; flex-direction: column; gap: 8px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; transition: border-color 140ms var(--ease); }
-  .card:hover { border-color: var(--line-2); }
-  .card .m { order: -1; margin: 0; }
-  .card .sum, .card .orig { margin: 0; }
-  .card .sum { -webkit-line-clamp: 3; }
-  .card .foot { margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--mute); }
+  /* KPI 4열 (발주 속보) */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .kpi-l { font-size: 12px; color: var(--mute); font-weight: 600; }
+  .kpi-v { margin-top: 6px; font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--ink); }
+  .kpi-v small { font-family: var(--font); font-size: 13px; font-weight: 500; color: var(--mute); margin-left: 3px; }
+  .kpi-s { margin-top: 4px; font-size: 11.5px; color: var(--sub); }
 
-  /* 빈 화면·오류·로딩 */
-  .state { padding: 64px 16px; text-align: center; }
-  .state b { display: block; margin-bottom: 8px; font-size: 16px; line-height: 24px; font-weight: 500; }
-  .state p { max-width: 420px; margin: 0 auto; font-size: 13px; line-height: 20px; color: var(--sub); }
-  .state .ctl { margin-top: 24px; }
-  .skel { height: 72px; margin-bottom: 12px; border-radius: 12px; background: var(--raised); }
-  #content.enter { animation: rise 360ms var(--ease) both; }
-  @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+  /* 발주 카드 */
+  .bid-card { padding: 16px; border-bottom: 1px solid var(--line); transition: background-color 120ms; }
+  .bid-card:last-child { border-bottom: 0; }
+  .bid-card:hover { background: var(--subtle); }
+  .bid-card.cancelled .bid-t { text-decoration: line-through; color: var(--mute); }
+  .bid-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .bid-t { font-size: 15.5px; font-weight: 700; line-height: 1.4; text-decoration: none; color: var(--ink); }
+  .bid-t:hover { color: var(--primary-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .bid-kv { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: var(--subtle); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .bid-kv dt { font-size: 11px; color: var(--mute); }
+  .bid-kv dd { font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .bid-actions { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .bid-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .bid-tag { font-size: 11px; padding: 2px 7px; border-radius: 4px; background: var(--subtle); color: var(--sub); border: 1px solid var(--line); }
+  .bid-detail { margin-top: 12px; padding: 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); font-size: 12.5px; display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 6px 12px; }
+  .bid-detail[hidden] { display: none; }
+  .bid-detail dt { color: var(--mute); }
+  .bid-detail dd { overflow-wrap: anywhere; }
+  .star-btn { width: 30px; height: 30px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; color: var(--mute); border: 1px solid var(--line); }
+  .star-btn[aria-pressed="true"] { color: #f59e0b; border-color: #f59e0b; background: var(--warn-soft); }
 
-  /* ───────── 좁은 창 ───────── */
-  @media (max-width: 900px) {
-    :root { --hh: 56px; }
-    .top-in, .market-in, .vac-in { padding-left: 16px; padding-right: 16px; }
-    .shell { display: block; padding: 0; }
-    .side {
-      position: sticky; top: var(--hh); z-index: 35; max-height: none; overflow-x: auto; overflow-y: hidden;
-      display: flex; gap: 8px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--line); scrollbar-width: none;
-    }
-    .side::-webkit-scrollbar { display: none; }
-    .nav-list { display: contents; }
-    .vac-card { width: auto; flex: none; height: 36px; margin-bottom: 0; padding: 0 12px; gap: 8px; border-radius: 8px; }
-    .vac-card .vac-ic { width: 22px; height: 22px; border-radius: 6px; }
-    .vac-card .vac-ic .ic { width: 14px; height: 14px; }
-    .vac-card .vac-title { font-size: 13px; line-height: 18px; }
-    .vac-card .vac-desc { display: none; }
-    .nav-g { display: contents; margin: 0; }
-    .nav-gt { display: none; }
-    .nav-all, .nav-i { width: auto; flex: none; height: 32px; display: inline-flex; gap: 8px; padding: 0 12px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px; font-size: 13px; }
-    .nav-i + .nav-i { margin-top: 0; }
-    .nav-all .n, .nav-i .n { text-align: left; }
-    main { padding: 16px 16px 48px; }
-    .toolbar { position: static; padding-top: 0; }
-    .brand p { display: none; }
-    .blocks { grid-template-columns: 1fr; }
-    .pt { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .pt-t { grid-column: 1 / -1; border-bottom: 1px solid var(--line); }
-    .pt-t + .pt-c { border-left: 0; }
-    .pt-c { padding: 12px 16px; }
-    .pt-v { font-size: 20px; line-height: 28px; }
-    .pt-v .y { display: none; }
-    .pt-bar { padding: 16px; }
-    html { scroll-padding-top: 120px; }
+  /* 폼 & 교통 위젯 */
+  .seg { display: inline-flex; padding: 3px; border-radius: 8px; background: var(--subtle); border: 1px solid var(--line); gap: 2px; }
+  .seg button { height: 28px; padding: 0 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; color: var(--sub); }
+  .seg button[aria-pressed="true"] { background: var(--panel); color: var(--ink); box-shadow: var(--shadow); }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 11px; color: var(--mute); font-weight: 600; }
+  .inp { height: 36px; padding: 0 10px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 7px; font-size: 13px; width: 100%; }
+  .inp:focus { border-color: var(--primary); outline: none; }
+  .link-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .link-box {
+    display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--subtle); text-decoration: none;
+    transition: border-color 140ms, background-color 140ms;
   }
-  @media (max-width: 520px) {
-    :root { --hh: 0px; }
-    .top { position: static; height: auto; padding: 12px 0; }
-    .top-in { flex-wrap: wrap; gap: 12px; }
-    .brand { flex: 1 1 100%; }
-    .tools { width: 100%; flex-wrap: wrap; }
-    #dateSel { max-width: 120px; }
-    .wx-panel { left: 0; right: auto; width: min(280px, calc(100vw - 32px)); }
-    #themeBtn .lbl { display: none; }
-    .row { grid-template-columns: 40px minmax(0, 1fr); gap: 8px; }
-    .t { font-size: 15px; }
-    .search { max-width: none; flex-basis: 100%; }
-    .blk { padding: 4px; }
-    .pt-t h2 { font-size: 24px; line-height: 28px; }
+  .link-box:hover { border-color: var(--primary); background: var(--primary-soft); }
+  .link-box b { font-size: 13px; color: var(--ink); }
+  .link-box span { font-size: 11px; color: var(--mute); }
+
+  /* 금융 테이블 & 차트 */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th { text-align: left; padding: 9px 12px; font-size: 11.5px; color: var(--mute); background: var(--subtle); border-bottom: 1px solid var(--line); font-weight: 600; }
+  .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl .num { text-align: right; font-family: var(--mono); font-weight: 600; }
+
+  /* 음원/플레이어 */
+  .lofi-bar { background: linear-gradient(135deg, #003561, #005294); color: #fff; border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+  .lofi-bar .ctl { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.28); color: #fff; }
+  .lofi-bar .ctl:hover, .lofi-bar .ctl[aria-pressed="true"] { background: #fff; color: #003561; }
+  .yt-wrap { position: relative; padding-bottom: 34%; height: 0; overflow: hidden; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 16px; background: #000; }
+  .yt-wrap[hidden] { display: none; }
+  .yt-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* 문의 모달 */
+  .modal-bg { position: fixed; inset: 0; z-index: 100; background: rgba(15, 23, 42, 0.55); display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .modal-bg[hidden] { display: none; }
+  .modal { width: 100%; max-width: 480px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 12px; box-shadow: var(--shadow-m); overflow: hidden; }
+  .modal-hd { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+  .modal-bd { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+  .modal-ft { padding: 12px 18px; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; gap: 8px; }
+  textarea.inp { height: 110px; padding: 10px; resize: vertical; }
+  .req-status { font-size: 12px; min-height: 16px; color: var(--mute); }
+  .req-status.ok { color: var(--ok); font-weight: 600; }
+  .req-status.err { color: var(--up); font-weight: 600; }
+
+  /* 푸터 */
+  .ftr { border-top: 1px solid var(--line); background: var(--panel); margin-top: 24px; }
+  .ftr-in { max-width: var(--maxw); margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--mute); }
+
+  /* 반응형 */
+  @media (max-width: 1280px) {
+    .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-main { grid-template-columns: minmax(0, 1fr) 340px; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
+  @media (max-width: 1024px) {
+    .grid-main { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bid-kv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  /* ───────── 최상단 큰 탭 전환 바 (데일리 브리핑 ↔ 발주 브리핑) ───────── */
-  .hub-bar { background: var(--panel); border-bottom: 1px solid var(--line-2); }
-  .hub-in { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .hub-tab {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    height: 52px; padding: 0 16px; text-decoration: none; color: var(--mute);
-    font-size: 15px; font-weight: 500; border-bottom: 3px solid transparent;
-    transition: color 140ms var(--ease), background-color 140ms var(--ease), border-color 140ms var(--ease);
-  }
-  .hub-tab:hover { color: var(--ink); background: var(--raised); }
-  .hub-tab[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); background: var(--bg); }
-  .hub-tab .hub-sub { font-size: 12px; font-weight: 400; color: var(--mute); }
-  @media (max-width: 900px) { .hub-in { padding: 0 16px; } }
-  @media (max-width: 520px) {
-    .hub-in { padding: 0 8px; gap: 4px; }
-    .hub-tab { height: 46px; font-size: 13px; padding: 0 8px; }
-    .hub-tab .hub-sub { display: none; }
+  @media (max-width: 680px) {
+    .hdr-top, .tabs-wrap, .strip-in, .wrap { padding-left: 14px; padding-right: 14px; }
+    .brand-sub, #visitStat { display: none; }
+    .mk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gsearch { width: 100%; margin-left: 0; }
   }
 </style>
 </head>
 <body>
 
-<nav class="hub-bar" aria-label="브리핑 화면 전환">
-  <div class="hub-in">
-    <a class="hub-tab" href="./index.html" aria-current="page"><span>구조부 데일리 브리핑</span><span class="hub-sub">뉴스 · 시장 · 날씨</span></a>
-    <a class="hub-tab" href="./procurement.html"><span>국내 엔지니어링 발주</span><span class="hub-sub">나라장터 용역 발주현황</span></a>
-  </div>
-</nav>
-
-<header class="top">
-  <div class="top-in">
+<header class="hdr">
+  <div class="hdr-top">
     <div class="brand">
+      <div class="brand-logo">H</div>
       <h1>구조부 데일리 브리핑</h1>
-      <p><span id="updatedAt">불러오는 중</span><span id="visitStat"></span></p>
+      <span class="brand-sub">for team-H</span>
+      <span class="live-dot">LIVE</span>
     </div>
     <div class="tools">
       <select class="ctl" id="dateSel" aria-label="브리핑 날짜 선택">
         <option value="latest">최신 브리핑</option>
       </select>
       <div class="wx">
-        <button class="ctl" id="wxBtn" aria-expanded="false" aria-controls="wxPanel" aria-label="날씨 예보" hidden></button>
+        <button class="ctl" id="wxBtn" type="button" aria-expanded="false" hidden></button>
         <div class="wx-panel" id="wxPanel" hidden></div>
       </div>
-      <button class="ctl" id="themeBtn" aria-label="화면 모드 전환" title="화면 모드 전환"></button>
-      <button class="ctl" id="reqBtn" type="button" title="구조부 김정훈 과장에게 문의 보내기"><span class="icw" data-ic="mail"></span><span>문의사항 - 구조부 김정훈 과장</span></button>
+      <button class="ctl" id="themeBtn" type="button" title="라이트/다크 전환"></button>
+      <button class="ctl" id="reqBtn" type="button" title="구조부 김정훈 과장에게 문의"><span class="icw" data-ic="mail"></span><span>문의사항</span></button>
+      <a class="ctl" href="./m.html" title="모바일 전용 화면으로 이동"><span class="icw" data-ic="phone"></span><span>모바일</span></a>
     </div>
+  </div>
+  <div class="tabs-wrap">
+    <nav class="tabs" id="mainTabs" role="tablist" aria-label="포털 메뉴">
+      <button class="tab-btn" role="tab" data-tab="home" aria-selected="true">종합 대시보드 (홈)</button>
+      <button class="tab-btn" role="tab" data-tab="market" aria-selected="false">실시간 금융·시장</button>
+      <button class="tab-btn" role="tab" data-tab="procurement" aria-selected="false">국내 발주 속보</button>
+      <button class="tab-btn" role="tab" data-tab="travel" aria-selected="false">항공·교통 예매</button>
+      <button class="tab-btn" role="tab" data-tab="kbo" aria-selected="false">프로야구 (KBO)</button>
+      <button class="tab-btn" role="tab" data-tab="culture" aria-selected="false">음원·문화 트렌드</button>
+    </nav>
+    <div class="tab-meta"><span id="updatedAt">불러오는 중</span><span id="visitStat"></span></div>
   </div>
 </header>
 
-<div class="market" id="market" hidden><div class="market-in" id="marketIn" aria-label="주요 시장 지표"></div></div>
-
-<section class="vac-bar" id="vacBar" aria-label="휴가용 교통편 검색" hidden>
-  <div class="vac-in">
-    <div class="vac-head">
-      <div class="seg" id="vacModeSeg" role="group" aria-label="교통수단 선택">
-        <button type="button" data-vac="flight" aria-pressed="true">항공권</button>
-        <button type="button" data-vac="ground" aria-pressed="false">기차 · 버스</button>
-      </div>
+<div class="strip">
+  <div class="strip-in">
+    <span class="pill accent" id="stripDate">오늘의 브리핑</span>
+    <span class="pill">뉴스 <b id="statNews">—</b>건</span>
+    <span class="pill">발주 <b id="statBids">—</b>건</span>
+    <span class="pill">프로야구 <b id="statKbo">—</b>건</span>
+    <div class="gsearch">
+      <span class="icw" data-ic="search"></span>
+      <input type="search" id="globalQ" placeholder="기사 · 발주명 · 기관 키워드 검색 ( / )" autocomplete="off" />
+      <button type="button" class="clr" id="globalClr" hidden aria-label="지우기"><span class="icw" data-ic="x"></span></button>
     </div>
-
-    <div class="vac-form" id="vacFlightForm">
-      <div class="vac-field">
-        <label for="fTrip">여정</label>
-        <select class="vac-input" id="fTrip" style="min-width:78px">
-          <option value="round">왕복</option>
-          <option value="oneway">편도</option>
-        </select>
-      </div>
-      <div class="vac-field">
-        <label for="fFrom">출발지</label>
-        <input class="vac-input" id="fFrom" list="airPorts" value="SEL" placeholder="서울, 인천, 김포, SEL..." style="width:140px" />
-      </div>
-      <button type="button" class="ctl vac-swap" id="fSwap" title="출발·도착 바꾸기" aria-label="출발지 도착지 바꾸기"><span class="icw" data-ic="swap"></span></button>
-      <div class="vac-field">
-        <label for="fTo">도착지</label>
-        <input class="vac-input" id="fTo" list="airPorts" value="CJU" placeholder="제주, 도쿄, 다낭, CJU..." style="width:148px" />
-      </div>
-      <div class="vac-field">
-        <label for="fDep">가는 날</label>
-        <input class="vac-input" id="fDep" type="date" />
-      </div>
-      <div class="vac-field" id="fRetWrap">
-        <label for="fRet">오는 날</label>
-        <input class="vac-input" id="fRet" type="date" />
-      </div>
-      <div class="vac-field">
-        <label for="fPax">인원</label>
-        <select class="vac-input" id="fPax" style="min-width:84px">
-          <option value="1">성인 1명</option>
-          <option value="2">성인 2명</option>
-          <option value="3">성인 3명</option>
-          <option value="4">성인 4명</option>
-        </select>
-      </div>
-      <div class="vac-actions">
-        <button type="button" class="ctl vac-go" id="fGoSky"><span class="icw" data-ic="search"></span><span>스카이스캐너</span></button>
-        <button type="button" class="ctl" id="fGoNaver">네이버 항공권</button>
-        <button type="button" class="ctl" id="fGoGoogle">구글 플라이트</button>
-      </div>
-    </div>
-
-    <div class="vac-form" id="vacGroundForm" style="align-items:center" hidden>
-      <div class="vac-actions" style="margin-left:0">
-        <a class="ctl vac-go" href="https://nol.yanolja.com/" target="_blank" rel="noopener"><span class="icw" data-ic="train"></span><span>NOL (기차·버스 통합)</span></a>
-        <a class="ctl" href="https://www.korail.com/" target="_blank" rel="noopener">코레일 (KTX)</a>
-        <a class="ctl" href="https://www.kobus.co.kr/" target="_blank" rel="noopener">고속버스 (코버스)</a>
-        <a class="ctl" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener">시외버스 (티머니)</a>
-        <a class="ctl" href="https://www.bustago.or.kr/" target="_blank" rel="noopener">시외버스 (버스타고)</a>
-      </div>
-    </div>
-
-    <datalist id="airPorts">
-      <option value="SEL">서울 전체 (인천·김포)</option>
-      <option value="ICN">인천 (ICN)</option>
-      <option value="GMP">김포 (GMP)</option>
-      <option value="CJU">제주 (CJU)</option>
-      <option value="PUS">부산 김해 (PUS)</option>
-      <option value="TAE">대구 (TAE)</option>
-      <option value="CJJ">청주 (CJJ)</option>
-      <option value="KWJ">광주 (KWJ)</option>
-      <option value="NRT">도쿄 나리타 (NRT)</option>
-      <option value="HND">도쿄 하네다 (HND)</option>
-      <option value="KIX">오사카 간사이 (KIX)</option>
-      <option value="FUK">후쿠오카 (FUK)</option>
-      <option value="CTS">삿포로 (CTS)</option>
-      <option value="OKA">오키나와 (OKA)</option>
-      <option value="TPE">타이베이 (TPE)</option>
-      <option value="DAD">다낭 (DAD)</option>
-      <option value="CXR">나트랑 (CXR)</option>
-      <option value="HAN">하노이 (HAN)</option>
-      <option value="SGN">호치민 (SGN)</option>
-      <option value="BKK">방콕 (BKK)</option>
-      <option value="SIN">싱가포르 (SIN)</option>
-      <option value="HKG">홍콩 (HKG)</option>
-      <option value="GUM">괌 (GUM)</option>
-    </datalist>
   </div>
-</section>
+</div>
 
-<div class="shell">
-  <aside class="side" aria-label="카테고리 및 휴가용">
-    <button type="button" class="vac-card" id="vacBtn" aria-pressed="false" aria-expanded="false" aria-controls="vacBar" title="휴가용 항공권·기차·버스">
-      <span class="vac-ic"><span class="icw" data-ic="plane" style="color:inherit"></span></span>
-      <span class="vac-txt"><span class="vac-title">휴가용</span><span class="vac-desc">항공권 · 기차 · 버스</span></span>
-      <span class="vac-sw" aria-hidden="true"></span>
-    </button>
-    <nav class="nav-list" id="nav" aria-label="카테고리"></nav>
-  </aside>
+<div class="wrap">
+  <!-- ================= 1. 종합 대시보드 (홈) ================= -->
+  <section class="page" id="page-home">
+    <div class="mk-grid" id="homeMarketGrid"></div>
+    <div class="grid-main">
+      <div class="stack">
+        <div class="card">
+          <div class="card-hd">
+            <h2><span class="bar"></span>주요 브리핑 &amp; 뉴스 피드 <span class="badge" id="homeCount">0건</span></h2>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <select class="ctl" id="homeGroupSel" aria-label="대분류 선택"></select>
+              <select class="ctl" id="homePubSel" aria-label="언론사 선택"></select>
+            </div>
+          </div>
+          <div class="chips" id="homeCatChips"></div>
+          <div id="homeFeedList"></div>
+          <div class="feed-foot">
+            <span id="homePageInfo">—</span>
+            <div style="display:flex;gap:6px">
+              <button class="ctl" id="homePrev" type="button">이전</button>
+              <button class="ctl" id="homeNext" type="button">다음</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <main>
-    <div class="toolbar is-overview" id="toolbar">
-      <div class="search">
-        <span class="icw" data-ic="search"></span>
-        <input type="search" id="q" placeholder="검색" aria-label="키워드 검색" autocomplete="off" />
-        <kbd id="qKbd">/</kbd>
-        <button class="clr" id="qClr" aria-label="검색어 지우기" hidden><span class="icw" data-ic="x"></span></button>
+      <aside class="stack">
+        <!-- 우측 1: 항공·교통 원스톱 간편 예매 -->
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>항공·교통 원스톱 예매</h3>
+            <button class="ctl" type="button" data-go-tab="travel" style="height:26px;font-size:11.5px">전체 보기 →</button>
+          </div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:10px">
+            <div class="seg" id="miniVacSeg">
+              <button type="button" data-mv="flight" aria-pressed="true">항공권</button>
+              <button type="button" data-mv="ground" aria-pressed="false">기차 · 버스</button>
+            </div>
+            <div id="miniFlightBox" style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:grid;grid-template-columns:1fr 34px 1fr;gap:6px;align-items:end">
+                <div class="field"><label for="mfFrom">출발</label><input class="inp" id="mfFrom" list="airPorts" value="서울" /></div>
+                <button type="button" class="ctl" id="mfSwap" style="height:36px;padding:0;justify-content:center" title="바꾸기"><span class="icw" data-ic="swap"></span></button>
+                <div class="field"><label for="mfTo">도착</label><input class="inp" id="mfTo" list="airPorts" value="제주" /></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <div class="field"><label for="mfDep">가는 날</label><input class="inp mono" id="mfDep" type="date" /></div>
+                <div class="field"><label for="mfRet">오는 날</label><input class="inp mono" id="mfRet" type="date" /></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <button type="button" class="ctl primary" id="mfGoSky" style="justify-content:center">스카이스캐너 조회</button>
+                <button type="button" class="ctl" id="mfGoNaver" style="justify-content:center">네이버 항공권</button>
+              </div>
+            </div>
+            <div id="miniGroundBox" hidden>
+              <div class="link-grid">
+                <a class="link-box" href="https://nol.yanolja.com/" target="_blank" rel="noopener"><b>NOL 통합예매</b><span>기차·고속·시외</span></a>
+                <a class="link-box" href="https://www.korail.com/" target="_blank" rel="noopener"><b>코레일 (KTX)</b><span>공식 승차권</span></a>
+                <a class="link-box" href="https://www.kobus.co.kr/" target="_blank" rel="noopener"><b>고속버스 (코버스)</b><span>전국 고속버스</span></a>
+                <a class="link-box" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener"><b>시외버스 (티머니)</b><span>시외·버스타고</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측 2: 마감 임박 발주 TOP 5 -->
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>발주 속보 요약</h3>
+            <button class="ctl" type="button" data-go-tab="procurement" style="height:26px;font-size:11.5px">발주 전체 →</button>
+          </div>
+          <div id="homeBidMini"></div>
+        </div>
+
+        <!-- 우측 3: 프로야구 최신 소식 -->
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>프로야구 최신 소식</h3>
+            <button class="ctl" type="button" data-go-tab="kbo" style="height:26px;font-size:11.5px">KBO 탭 →</button>
+          </div>
+          <div id="homeKboMini"></div>
+        </div>
+
+        <!-- 우측 4: 담당자 안내 -->
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
+            <div>담당자: <b style="color:var(--ink)">구조부 김정훈 과장</b> (<span class="mono">jaykim@samboeng.co.kr</span>)</div>
+            <div>추가하고 싶은 키워드·언론사·기능이 있으면 언제든 문의해 주세요.</div>
+            <button type="button" class="ctl primary" id="sideReqBtn" style="justify-content:center">문의·추가 요청 보내기</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 2. 실시간 금융·시장 ================= -->
+  <section class="page" id="page-market" hidden>
+    <div class="mk-grid" id="marketTopGrid"></div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-hd">
+        <h2><span class="bar"></span>실시간 인터랙티브 차트 (TradingView)</h2>
+        <div class="seg" id="tvSymSeg">
+          <button type="button" data-sym="KRX:KOSPI" aria-pressed="true">KOSPI</button>
+          <button type="button" data-sym="NASDAQ:IXIC" aria-pressed="false">나스닥</button>
+          <button type="button" data-sym="FX_IDC:USDKRW" aria-pressed="false">원/달러</button>
+          <button type="button" data-sym="UPBIT:BTCKRW" aria-pressed="false">비트코인</button>
+          <button type="button" data-sym="OANDA:XAUUSD" aria-pressed="false">국제 금</button>
+        </div>
       </div>
-      <select class="ctl only-list" id="pubSel" aria-label="언론사 선택"></select>
-      <span class="spacer"></span>
-      <div class="seg only-list" id="groupSeg" role="group" aria-label="정렬 묶음 방식">
-        <button data-group="date" aria-pressed="true">날짜별</button>
-        <button data-group="pub" aria-pressed="false">언론사별</button>
+      <div id="tvChartHost" style="height:440px;width:100%"></div>
+    </div>
+
+    <div class="grid-main">
+      <div class="card">
+        <div class="card-hd"><h2><span class="bar"></span>종합 시세표 (실시간 연동)</h2><span class="mono" style="font-size:11.5px;color:var(--mute)">60초 자동 갱신</span></div>
+        <div style="overflow-x:auto">
+          <table class="tbl">
+            <thead><tr><th>자산 / 지표명</th><th class="num">현재가</th><th class="num">전일대비</th><th>출처</th></tr></thead>
+            <tbody id="marketTableBody"></tbody>
+          </table>
+        </div>
       </div>
-      <div class="seg only-list" id="viewSeg" role="group" aria-label="보기 방식">
-        <button data-view="list" aria-pressed="true">목록</button>
-        <button data-view="card" aria-pressed="false">카드</button>
+      <div class="stack">
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>실시간 시장·투자 뉴스</h3></div>
+          <div id="marketNewsList"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>주요 거시경제 캘린더</h3></div>
+          <div id="tvCalHost" style="height:380px;width:100%"></div>
+        </div>
       </div>
     </div>
-    <div id="content" aria-live="polite"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-  </main>
+  </section>
+
+  <!-- ================= 3. 국내 발주 속보 ================= -->
+  <section class="page" id="page-procurement" hidden>
+    <div class="kpi-grid" id="bidKpis"></div>
+    <div class="grid-main">
+      <div class="card">
+        <div class="card-hd">
+          <h2><span class="bar"></span>나라장터 토목엔지니어링 발주현황</h2>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="ctl" id="bidRefresh" type="button">새로고침</button>
+            <button class="ctl" id="bidImport" type="button">JSON 열기</button>
+            <input type="file" id="bidFile" accept="application/json,.json" hidden />
+            <button class="ctl" id="bidDemo" type="button">예시 보기</button>
+            <button class="ctl primary" id="bidExport" type="button" disabled>CSV 저장</button>
+          </div>
+        </div>
+        <div class="chips" id="bidScopeChips">
+          <button class="chip" data-bscope="all" aria-pressed="true">전체 발주</button>
+          <button class="chip" data-bscope="local" aria-pressed="false">전국 지자체</button>
+          <button class="chip" data-bscope="public" aria-pressed="false">공공·중앙기관</button>
+          <button class="chip" data-bscope="unclassified" aria-pressed="false">기관 분류대기</button>
+        </div>
+        <div style="padding:12px 16px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px" id="bidFilterBar">
+          <select class="ctl" id="bidStage"><option value="all">진행단계 전체</option></select>
+          <select class="ctl" id="bidField"><option value="all">전문분야 전체</option></select>
+          <select class="ctl" id="bidStatus">
+            <option value="all">입찰상태 전체</option>
+            <option value="soon">7일 이내 마감</option>
+            <option value="open">접수중·마감 전</option>
+            <option value="closed">마감 지남</option>
+          </select>
+          <select class="ctl" id="bidSort">
+            <option value="deadline">마감 임박순</option>
+            <option value="latest">최신 게시순</option>
+            <option value="amount">표시 금액순</option>
+          </select>
+          <label class="ctl" style="cursor:pointer;justify-content:center"><input type="checkbox" id="bidFavOnly" /> 관심공고만</label>
+        </div>
+        <div id="bidStatusBanner"></div>
+        <div id="bidList"></div>
+        <div class="feed-foot">
+          <span id="bidPageInfo">—</span>
+          <div style="display:flex;gap:6px">
+            <button class="ctl" id="bidPrev" type="button">이전</button>
+            <button class="ctl" id="bidNext" type="button">다음</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>관심공고 북마크</h3><span class="badge" id="favCount">0건</span></div>
+          <div id="bidFavList"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>주요 발주기관 포털 바로가기</h3></div>
+          <div class="card-bd">
+            <div class="link-grid">
+              <a class="link-box" href="https://www.g2b.go.kr/" target="_blank" rel="noopener"><b>나라장터 (G2B)</b><span>조달청 통합</span></a>
+              <a class="link-box" href="https://ebid.ex.co.kr/" target="_blank" rel="noopener"><b>한국도로공사</b><span>Hi-G2B 전자조달</span></a>
+              <a class="link-box" href="https://ebid.kr.or.kr/" target="_blank" rel="noopener"><b>국가철도공단</b><span>KR 전자조달</span></a>
+              <a class="link-box" href="https://ebid.lh.or.kr/" target="_blank" rel="noopener"><b>한국토지주택공사</b><span>LH e-Bid</span></a>
+              <a class="link-box" href="https://ebid.kwater.or.kr/" target="_blank" rel="noopener"><b>한국수자원공사</b><span>K-water 전자조달</span></a>
+              <a class="link-box" href="https://contract.seoul.go.kr/" target="_blank" rel="noopener"><b>서울시 계약마당</b><span>지자체 발주</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>수집 출처별 상태</h3></div>
+          <div class="card-bd" id="bidCoverageBox" style="font-size:12px;color:var(--sub)"></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 4. 항공·교통 예매 ================= -->
+  <section class="page" id="page-travel" hidden>
+    <div class="grid-main">
+      <div class="stack">
+        <div class="card">
+          <div class="card-hd">
+            <h2><span class="bar"></span>임직원 출장·휴가 항공권 통합 검색</h2>
+            <div class="seg" id="trTripSeg">
+              <button type="button" data-trip="round" aria-pressed="true">왕복</button>
+              <button type="button" data-trip="oneway" aria-pressed="false">편도</button>
+            </div>
+          </div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:grid;grid-template-columns:1fr 38px 1fr 150px 150px 110px;gap:8px;align-items:end">
+              <div class="field"><label for="trFrom">출발지 (한글/공항코드)</label><input class="inp" id="trFrom" list="airPorts" value="서울" /></div>
+              <button type="button" class="ctl" id="trSwap" style="height:36px;padding:0;justify-content:center" title="바꾸기"><span class="icw" data-ic="swap"></span></button>
+              <div class="field"><label for="trTo">도착지 (한글/공항코드)</label><input class="inp" id="trTo" list="airPorts" value="제주" /></div>
+              <div class="field"><label for="trDep">가는 날</label><input class="inp mono" id="trDep" type="date" /></div>
+              <div class="field" id="trRetWrap"><label for="trRet">오는 날</label><input class="inp mono" id="trRet" type="date" /></div>
+              <div class="field"><label for="trPax">인원</label><select class="inp" id="trPax"><option value="1">성인 1명</option><option value="2">성인 2명</option><option value="3">성인 3명</option><option value="4">성인 4명</option></select></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <button type="button" class="ctl primary" id="trGoSky">스카이스캐너 최저가 조회</button>
+              <button type="button" class="ctl" id="trGoNaver">네이버 항공권 조회</button>
+              <button type="button" class="ctl" id="trGoGoogle">구글 플라이트 조회</button>
+              <span style="margin-left:auto;font-size:12px;color:var(--mute)">빠른 노선:</span>
+              <button type="button" class="chip" data-route="서울,제주">서울↔제주</button>
+              <button type="button" class="chip" data-route="인천,도쿄">인천↔도쿄</button>
+              <button type="button" class="chip" data-route="인천,오사카">인천↔오사카</button>
+              <button type="button" class="chip" data-route="인천,다낭">인천↔다낭</button>
+              <button type="button" class="chip" data-route="인천,방콕">인천↔방콕</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h2><span class="bar"></span>기차 · 고속버스 · 시외버스 공식 예매 바로가기</h2></div>
+          <div class="card-bd">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+              <a class="link-box" href="https://nol.yanolja.com/" target="_blank" rel="noopener" style="border-color:var(--primary);background:var(--primary-soft)"><b>NOL (야놀자) 통합예매 ↗</b><span>KTX · 고속버스 · 시외버스 · 숙소 한곳에서</span></a>
+              <a class="link-box" href="https://www.korail.com/" target="_blank" rel="noopener"><b>코레일 (KTX) ↗</b><span>한국철도공사 공식 승차권 예매</span></a>
+              <a class="link-box" href="https://www.kobus.co.kr/" target="_blank" rel="noopener"><b>고속버스 (코버스) ↗</b><span>전국 고속버스 통합 예매</span></a>
+              <a class="link-box" href="https://txbus.t-money.co.kr/" target="_blank" rel="noopener"><b>시외버스 (티머니) ↗</b><span>전국 시외버스 예매</span></a>
+              <a class="link-box" href="https://www.bustago.or.kr/" target="_blank" rel="noopener"><b>시외버스 (버스타고) ↗</b><span>지방·시외 노선 예매</span></a>
+              <a class="link-box" href="https://www.airport.kr/ap_ko/974/subview.do" target="_blank" rel="noopener"><b>인천공항 출국장 혼잡도 ↗</b><span>T1·T2 실시간 대기시간 확인</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>항공·철도 이용 팁</h3></div>
+          <div class="card-bd" style="display:flex;flex-direction:column;gap:10px;font-size:12.5px;color:var(--sub)">
+            <div>• <b>항공권</b>: 출발·도착지에 <span class="mono">인천, 김포, 제주, 도쿄, 다낭</span> 등 한글이나 IATA 코드를 그대로 입력하면 최저가 비교 사이트로 즉시 연결됩니다.</div>
+            <div>• <b>KTX·버스</b>: 매크로 방지로 외부 자동 입력이 차단되어 있어, <b>NOL 통합예매</b>나 각 공식 사이트에서 잔여석 확인 후 바로 예매하시는 게 가장 빠릅니다.</div>
+            <div>• <b>공항 혼잡도</b>: 해외 출장·휴가 출발 전 인천공항 실시간 출국장 대기시간을 미리 체크하세요.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 5. 프로야구 (KBO) ================= -->
+  <section class="page" id="page-kbo" hidden>
+    <div class="grid-main">
+      <div class="card">
+        <div class="card-hd">
+          <h2><span class="bar"></span>KBO 프로야구 최신 뉴스 피드 <span class="badge" id="kboCount">0건</span></h2>
+          <span style="font-size:12px;color:var(--mute)">매일 자동 수집 (n8n)</span>
+        </div>
+        <div class="chips" id="kboTeamChips">
+          <button class="chip" data-kbo="ALL" aria-pressed="true">전체 구단</button>
+          <button class="chip" data-kbo="프로야구 한화 소식" aria-pressed="false">한화 이글스</button>
+          <button class="chip" data-kbo="KIA 타이거즈" aria-pressed="false">KIA 타이거즈</button>
+          <button class="chip" data-kbo="LG 트윈스" aria-pressed="false">LG 트윈스</button>
+          <button class="chip" data-kbo="두산 베어스" aria-pressed="false">두산 베어스</button>
+        </div>
+        <div id="kboFeedList"></div>
+      </div>
+
+      <aside class="stack">
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>KBO 공식 센터 바로가기</h3></div>
+          <div class="card-bd">
+            <div class="link-grid">
+              <a class="link-box" href="https://sports.news.naver.com/kbaseball/record/index?category=kbo" target="_blank" rel="noopener"><b>팀 순위표 ↗</b><span>네이버 스포츠 KBO</span></a>
+              <a class="link-box" href="https://sports.news.naver.com/kbaseball/schedule/index" target="_blank" rel="noopener"><b>경기 일정·결과 ↗</b><span>실시간 문자중계</span></a>
+              <a class="link-box" href="https://www.tving.com/kbo" target="_blank" rel="noopener"><b>TVING 생중계 ↗</b><span>KBO 공식 중계</span></a>
+              <a class="link-box" href="https://www.koreabaseball.com/" target="_blank" rel="noopener"><b>KBO 공식 사이트 ↗</b><span>기록실·공지</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>구단별 수집 현황</h3></div>
+          <div class="card-bd" id="kboStatsBox" style="display:flex;flex-direction:column;gap:8px"></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 6. 음원·문화 트렌드 ================= -->
+  <section class="page" id="page-culture" hidden>
+    <div class="lofi-bar">
+      <div>
+        <div style="font-size:11px;opacity:0.8;font-family:var(--mono)">NOW STREAMING · TEAM-H WORK RADIO</div>
+        <div style="font-size:16px;font-weight:700;margin-top:2px" id="lofiTitle">구조계산·설계 집중용 Lo-Fi 라디오</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button type="button" class="ctl" data-lofi="jfKfPfyJRdk" data-label="Lofi Girl — 24/7 집중용 Lo-Fi 비트" aria-pressed="false">Lo-Fi 비트</button>
+        <button type="button" class="ctl" data-lofi="Dx5qFachd3A" data-label="Relaxing Jazz — 카페 재즈 피아노" aria-pressed="false">카페 재즈</button>
+        <button type="button" class="ctl" data-lofi="4xDzrJKXOOY" data-label="Synthwave Radio — 야근·집중 신스웨이브" aria-pressed="false">신스웨이브</button>
+        <button type="button" class="ctl" id="lofiClose" hidden>플레이어 닫기</button>
+      </div>
+    </div>
+    <div class="yt-wrap" id="lofiPlayerWrap" hidden><iframe id="lofiFrame" allow="autoplay; encrypted-media" allowfullscreen title="노동요 플레이어"></iframe></div>
+
+    <div class="grid-main">
+      <div class="stack">
+        <div class="card">
+          <div class="card-hd"><h2><span class="bar"></span>실시간 음원 차트 바로가기</h2></div>
+          <div class="card-bd">
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+              <a class="link-box" href="https://www.melon.com/chart/index.htm" target="_blank" rel="noopener"><b>멜론 TOP 100 ↗</b><span>실시간 국내 가요 차트</span></a>
+              <a class="link-box" href="https://www.genie.co.kr/chart/top200" target="_blank" rel="noopener"><b>지니뮤직 TOP 200 ↗</b><span>실시간·일간 인기곡</span></a>
+              <a class="link-box" href="https://charts.youtube.com/charts/TopSongs/kr" target="_blank" rel="noopener"><b>유튜브 뮤직 한국 인기곡 ↗</b><span>주간 급상승·뮤직비디오</span></a>
+              <a class="link-box" href="https://www.billboard.com/charts/hot-100/" target="_blank" rel="noopener"><b>빌보드 HOT 100 ↗</b><span>글로벌 팝 트렌드</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h2><span class="bar"></span>직장인 유튜브 큐레이션</h2></div>
+          <div class="card-bd">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+              <a class="link-box" href="https://www.youtube.com/results?search_query=%EB%85%B8%EB%8F%99%EC%9A%94+%ED%94%8C%EB%A0%88%EC%9D%B4%EB%A6%AC%EC%8A%A4%ED%8A%B8" target="_blank" rel="noopener"><b>노동요 플레이리스트 ↗</b><span>도면·계산서 작업용 BGM</span></a>
+              <a class="link-box" href="https://www.youtube.com/results?search_query=%ED%87%B4%EA%B7%BC%EA%B8%B8+%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C+%ED%94%8C%EB%A0%88%EC%9D%B4%EB%A6%AC%EC%8A%A4%ED%8A%B8" target="_blank" rel="noopener"><b>퇴근길 드라이브 ↗</b><span>시티팝 · R&amp;B · 발라드</span></a>
+              <a class="link-box" href="https://www.youtube.com/feed/trending" target="_blank" rel="noopener"><b>유튜브 인기 급상승 ↗</b><span>오늘 화제 영상 모아보기</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+        <div class="card">
+          <div class="card-hd"><h3><span class="bar"></span>박스오피스 &amp; 영화 예매</h3></div>
+          <div class="card-bd">
+            <div class="link-grid">
+              <a class="link-box" href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do" target="_blank" rel="noopener"><b>KOBIS 박스오피스 ↗</b><span>영화진흥위원회 공식 순위</span></a>
+              <a class="link-box" href="https://www.cgv.co.kr/" target="_blank" rel="noopener"><b>CGV 예매 ↗</b><span>상영시간표·예매</span></a>
+              <a class="link-box" href="https://www.lottecinema.co.kr/" target="_blank" rel="noopener"><b>롯데시네마 ↗</b><span>상영시간표·예매</span></a>
+              <a class="link-box" href="https://www.megabox.co.kr/" target="_blank" rel="noopener"><b>메가박스 ↗</b><span>돌비시네마·예매</span></a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
 </div>
+
+<datalist id="airPorts">
+  <option value="서울">서울 전체 (SEL)</option><option value="인천">인천 (ICN)</option><option value="김포">김포 (GMP)</option>
+  <option value="제주">제주 (CJU)</option><option value="부산">부산 김해 (PUS)</option><option value="대구">대구 (TAE)</option>
+  <option value="청주">청주 (CJJ)</option><option value="광주">광주 (KWJ)</option><option value="도쿄">도쿄 (TYO)</option>
+  <option value="오사카">오사카 (KIX)</option><option value="후쿠오카">후쿠오카 (FUK)</option><option value="삿포로">삿포로 (CTS)</option>
+  <option value="오키나와">오키나와 (OKA)</option><option value="타이베이">타이베이 (TPE)</option><option value="다낭">다낭 (DAD)</option>
+  <option value="나트랑">나트랑 (CXR)</option><option value="방콕">방콕 (BKK)</option><option value="싱가포르">싱가포르 (SIN)</option>
+  <option value="홍콩">홍콩 (HKG)</option><option value="괌">괌 (GUM)</option>
+</datalist>
+
+<!-- 문의사항 모달 -->
+<div class="modal-bg" id="reqModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="reqTitle">
+    <div class="modal-hd">
+      <h3 id="reqTitle" style="font-size:15px;font-weight:700">문의사항 보내기</h3>
+      <button type="button" class="ctl" id="reqClose" style="width:30px;height:30px;padding:0;justify-content:center" aria-label="닫기"><span class="icw" data-ic="x"></span></button>
+    </div>
+    <form id="reqForm">
+      <div class="modal-bd">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--sub);background:var(--subtle);padding:8px 10px;border-radius:7px">
+          <span>수신: 구조부 김정훈 과장 (<span class="mono">jaykim@samboeng.co.kr</span>)</span>
+          <button type="button" class="ctl" id="reqCopy" style="height:24px;font-size:11px;padding:0 8px">복사</button>
+        </div>
+        <div class="field"><label for="reqSender">작성자 / 소속 (선택)</label><input class="inp" id="reqSender" placeholder="예: 홍길동 / 구조부" /></div>
+        <div class="field"><label for="reqType">분류</label><select class="inp" id="reqType"><option value="정보/탭 추가 요청">정보/탭 추가 요청</option><option value="오류·기사 제외 요청">오류·기사 제외 요청</option><option value="기타 문의">기타 문의</option></select></div>
+        <div class="field"><label for="reqMsg">문의 내용</label><textarea class="inp" id="reqMsg" required placeholder="추가하고 싶은 탭, 키워드, 언론사 또는 수정 요청 사항을 입력해 주세요."></textarea></div>
+        <div class="req-status" id="reqStatus"></div>
+      </div>
+      <div class="modal-ft">
+        <a class="ctl" href="mailto:jaykim@samboeng.co.kr?subject=%5B%EA%B5%AC%EC%A1%B0%EB%B6%80%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B8%8C%EB%A6%AC%ED%95%91%5D%20%EB%AC%B8%EC%9D%98%EC%82%AC%ED%95%AD">메일 앱 열기</a>
+        <button type="submit" class="ctl primary" id="reqSend">메일로 보내기</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer class="ftr">
+  <div class="ftr-in">
+    <span><b>구조부 일일 업무·정보 통합 포털 (Team-H)</b> · 운영담당: 구조부 김정훈 과장</span>
+    <span class="mono">DATA: n8n News · G2B OpenAPI · Market/Upbit · Open-Meteo · TradingView</span>
+  </div>
+</footer>
 
 <script>
 (function () {
   'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function safeUrl(v) { try { var u = new URL(String(v || '')); return u.protocol === 'https:' || u.protocol === 'http:' ? u.href : ''; } catch (e) { return ''; } }
+  function fmt(n, d) { return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: d || 0 }); }
+  function kstToday() { return new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10); }
+  function addDays(n) { return new Date(Date.now() + (9 * 3600000) + n * 86400000).toISOString().slice(0, 10); }
 
-  /* ───────── 카테고리 구성 (대그룹 → 중·소 메뉴) ───────── */
-  var GROUPS = [
-    { name: '우리 회사', cats: ['삼보기술단'] },
-    { name: '국내', cats: ['국내 입찰·용역', '엔지니어링 뉴스', '협회 및 유관기관', '기술사-토목구조'] },
-    { name: '해외', cats: ['해외 토목사업', '해외토목-베트남', '해외토목-방글라데시'] },
-    { name: 'AI', cats: ['GitHub 핫한 AI', 'HuggingFace 논문·앱', 'AI 활용·신기술 뉴스'] },
-    { name: '시사·경제', cats: ['국내정치', '해외정치', '국내경제', '해외경제'] },
-    { name: '투자', cats: ['국내주식', '해외주식', '코인'] },
-    { name: '오늘의 뉴스 헤드라인', cats: ['오늘의 뉴스 헤드라인'] },
-    { name: '국내 이모저모', cats: ['국내사회'] },
-    { name: '프로야구', cats: ['프로야구 한화 소식', 'KIA 타이거즈', 'LG 트윈스', '두산 베어스'] }
-  ];
-  var CAT_LABEL = {
-    '국내 입찰·용역': '국내 입찰 및 공고',
-    '해외토목-베트남': '베트남 현지 기사 번역',
-    '해외토목-방글라데시': '방글라데시 현지 기사 번역',
-    '프로야구 한화 소식': '한화 이글스'
-  };
-  function catLabel(c) { return CAT_LABEL[c] || c; }
-  var OVERVIEW_LIMIT = 4;
-
-  /* ───────── 아이콘 (lucide, 24 격자, 선 1.5) ───────── */
   var IC = {
-    'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-    'x': '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
-    'mail': '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
-    'sun': '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
-    'moon': '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
-    'cloud': '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-    'cloud-sun': '<path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/>',
-    'cloud-fog': '<path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 17H7"/><path d="M17 21H9"/>',
-    'cloud-rain': '<path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/>',
-    'cloud-lightning': '<path d="M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973"/><path d="m13 12-3 5h4l-3 5"/>',
-    'snowflake': '<path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/>',
-    'pin': '<path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>',
-    'plane': '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
-    'train': '<rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><path d="M8 15h.01"/><path d="M16 15h.01"/>',
-    'swap': '<path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>'
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+    phone: '<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+    moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    swap: '<path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>',
+    star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/>',
+    cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+    rain: '<path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"/><path d="M16 14v6M8 14v6M12 16v6"/>'
   };
   function icon(n) { return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">' + (IC[n] || '') + '</svg>'; }
   document.querySelectorAll('[data-ic]').forEach(function (el) { el.innerHTML = icon(el.dataset.ic); });
 
-  var $ = function (s) { return document.querySelector(s); };
-  var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-  var state = { items: [], base: '', cat: 'ALL', q: '', pub: 'ALL', view: 'list', groupBy: 'date', groups: GROUPS, loadError: '' };
-
-  function esc(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
+  /* ───────── 테마 전환 ───────── */
+  function syncThemeBtn() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    $('themeBtn').innerHTML = icon(dark ? 'sun' : 'moon') + '<span>' + (dark ? '라이트' : '다크') + '</span>';
   }
-  /* 제목 앞뒤의 이모지는 화면에 내보내지 않음 (데이터는 그대로) */
-  function clean(s) {
-    return String(s == null ? '' : s).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F\u200D]/gu, '').replace(/\s{2,}/g, ' ').trim();
-  }
-  function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : '#'; }
-  function catOf(i) {
-    var c = i.카테고리 || 'AI 트렌드';
-    if (c === 'AI 트렌드') {
-      var s = i.출처 || '';
-      if (s === 'GitHub Trending') return 'GitHub 핫한 AI';
-      if (s === 'HuggingFace Papers' || s === 'HuggingFace Spaces') return 'HuggingFace 논문·앱';
-      if (s === 'AI 뉴스') return 'AI 활용·신기술 뉴스';
-    }
-    return c;
-  }
-  function isPinned(i) { return (i.인기도 || '') === '상시'; }
-  function itemDate(i) { return DATE_RE.test(i.인기도 || '') ? i.인기도 : (i.수집일 || ''); }
-  function byDateDesc(a, b) { return itemDate(b).localeCompare(itemDate(a)); }
-  function dayMs(s) { return Date.parse(s + 'T00:00:00Z'); }
-  function kstToday() { return new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); }
-  function fmt(n, dec) { return Number(n).toLocaleString('ko-KR', { minimumFractionDigits: dec || 0, maximumFractionDigits: dec || 0 }); }
-  function hasSummary(i) {
-    var s = i.핵심요약 || '';
-    return s && !/원문(\s*링크)?에서 상세 내용을 확인하세요\.$/.test(s);
-  }
-
-  /* 구글 RSS 링크는 기존 방식 그대로 검색 결과로 연결 */
-  function target(i) {
-    var link = i.링크 || '', url = safeUrl(link), hint = '';
-    if (link.indexOf('news.google.com') !== -1) {
-      if (!/[가-힣]/.test(i.원제목 || '')) {
-        url = 'https://www.bing.com/search?q=' + encodeURIComponent(i.원제목 || i.한글제목 || '');
-        hint = '현지 기사 검색으로 이동';
-      } else {
-        url = 'https://search.naver.com/search.naver?where=news&query=' + encodeURIComponent(i.한글제목 || i.원제목 || '');
-        hint = '네이버 뉴스 검색으로 이동';
-      }
-    }
-    return { url: url, hint: hint };
-  }
-
-  /* ───────── 읽음 표시 ───────── */
-  var readSet = new Set();
-  try { JSON.parse(localStorage.getItem('briefing-read') || '[]').forEach(function (k) { readSet.add(k); }); } catch (e) {}
-  function markRead(url) {
-    if (!url || url === '#') return;
-    readSet.add(url);
-    try { localStorage.setItem('briefing-read', JSON.stringify(Array.from(readSet).slice(-2000))); } catch (e) {}
-  }
-
-  /* ───────── 기사 한 줄/카드 ───────── */
-  function metaHtml(i, opt) {
-    var pub = i.구분 || i.출처 || catLabel(catOf(i));
-    var h = '<span class="mi pub">' + esc(pub) + '</span>';
-    if (opt.cat) h += '<span class="mi">' + esc(catLabel(catOf(i))) + '</span>';
-    if (i.사건종류 && i.사건종류 !== 'AI자료' && i.사건종류 !== '공식바로가기') h += '<span class="mi">' + esc(i.사건종류) + '</span>';
-    if (i.인기도 && !DATE_RE.test(i.인기도) && !isPinned(i)) h += '<span class="mi mono">' + esc(i.인기도) + '</span>';
-    if (i.데이터상태) h += '<span class="mi warn" title="' + esc(i.데이터상태) + '">이전 데이터</span>';
-    return '<div class="m">' + h + '</div>';
-  }
-  function linkHtml(i, t) {
-    var title = clean(i.한글제목 || i.원제목) || '(제목 없음)';
-    return '<a class="t" href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer"' + (t.hint ? ' title="' + esc(t.hint) + '"' : '') + '>' + esc(title) + '</a>';
-  }
-  function rowHtml(i, opt) {
-    var t = target(i), d = itemDate(i);
-    var showOrig = opt.summary && i.원제목 && i.원제목 !== i.한글제목;
-    return '<article class="row' + (readSet.has(t.url) ? ' read' : '') + '">' +
-      '<time class="d' + (d === state.base ? ' is-today' : '') + '" datetime="' + esc(d) + '">' + esc(d.slice(5)) + '</time>' +
-      '<div class="b">' + linkHtml(i, t) + metaHtml(i, opt) +
-        (opt.summary && hasSummary(i) ? '<p class="sum">' + esc(i.핵심요약) + '</p>' : '') +
-        (showOrig ? '<p class="orig" title="' + esc(i.원제목) + '">원제 ' + esc(i.원제목) + '</p>' : '') +
-      '</div></article>';
-  }
-  function cardHtml(i, opt) {
-    var t = target(i), d = itemDate(i);
-    var showOrig = i.원제목 && i.원제목 !== i.한글제목;
-    return '<article class="card' + (readSet.has(t.url) ? ' read' : '') + '">' +
-      metaHtml(i, opt) + linkHtml(i, t) +
-      (hasSummary(i) ? '<p class="sum">' + esc(i.핵심요약) + '</p>' : '') +
-      (showOrig ? '<p class="orig" title="' + esc(i.원제목) + '">원제 ' + esc(i.원제목) + '</p>' : '') +
-      '<div class="foot">' + esc(d) + '</div></article>';
-  }
-
-  /* ───────── 날짜 묶음 ───────── */
-  function bucket(i) {
-    var d = itemDate(i) || state.base;
-    var diff = Math.floor((dayMs(state.base) - dayMs(d)) / 86400000);
-    if (diff <= 0) return { key: 'today', label: '오늘 ' + d.slice(5) };
-    if (diff === 1) return { key: 'yest', label: '어제 ' + d.slice(5) };
-    if (diff <= 7) return { key: 'week', label: '최근 7일' };
-    return { key: 'old', label: '8일 이전' };
-  }
-
-  /* ───────── 내비게이션 ───────── */
-  function buildNav() {
-    var counts = {}, fresh = {}, total = 0, totalFresh = 0;
-    state.items.forEach(function (i) {
-      if (isPinned(i)) return;
-      var c = catOf(i);
-      counts[c] = (counts[c] || 0) + 1; total++;
-      if (bucket(i).key === 'today') { fresh[c] = (fresh[c] || 0) + 1; totalFresh++; }
-    });
-    var known = {};
-    GROUPS.forEach(function (g) { g.cats.forEach(function (c) { known[c] = 1; }); });
-    var extra = Object.keys(counts).filter(function (c) { return !known[c]; });
-    state.groups = extra.length ? GROUPS.concat([{ name: '기타', cats: extra }]) : GROUPS;
-
-    var h = '<button class="nav-all" data-cat="ALL"><span class="nm">전체 브리핑</span><span class="n">' +
-      (totalFresh ? '<span class="nav-new">+' + fmt(totalFresh) + '</span>' : '') + fmt(total) + '</span></button>';
-    state.groups.forEach(function (g) {
-      h += '<div class="nav-g"><div class="nav-gt">' + esc(g.name) + '</div>';
-      g.cats.forEach(function (c) {
-        h += '<button class="nav-i" data-cat="' + esc(c) + '" title="' + esc(catLabel(c)) + '"><span class="nm">' + esc(catLabel(c)) + '</span>' +
-          '<span class="n">' + (fresh[c] ? '<span class="nav-new">+' + fmt(fresh[c]) + '</span>' : '') + fmt(counts[c] || 0) + '</span></button>';
-      });
-      h += '</div>';
-    });
-    $('#nav').innerHTML = h;
-    markNav();
-  }
-  function markNav() {
-    document.querySelectorAll('#nav [data-cat]').forEach(function (b) {
-      b.setAttribute('aria-current', String(b.dataset.cat === state.cat));
-    });
-  }
-
-  /* ───────── 표제란 ───────── */
-  function ptHtml(o) {
-    var project = $('.brand h1').textContent;
-    return '<section class="pt"><div class="pt-c pt-t"><div class="pt-l">' + esc(project) + '</div><h2>' + esc(o.title) + '</h2>' +
-      (o.sub ? '<p class="pt-sub">' + esc(o.sub) + '</p>' : '') + '</div>' +
-      o.cells.map(function (c) { return '<div class="pt-c"><div class="pt-l">' + esc(c.l) + '</div><div class="pt-v">' + c.v + '</div></div>'; }).join('') +
-      (o.bar || '') + '</section>';
-  }
-  function cnt(n) { return fmt(n) + '<small>건</small>'; }
-  function dateFig(d) { return d ? '<span class="y">' + esc(d.slice(0, 5)) + '</span>' + esc(d.slice(5)) : '-'; }
-
-  /* 오늘 새 소식이 어느 카테고리에서 나왔는지: 한 줄 막대, 가장 많은 곳만 강조 */
-  function distHtml(dated) {
-    var by = {}, tot = 0;
-    dated.forEach(function (i) {
-      if (itemDate(i) !== state.base) return;
-      var c = catOf(i); by[c] = (by[c] || 0) + 1; tot++;
-    });
-    if (!tot) return '<div class="pt-bar"><div class="dist-h"><span class="l">오늘 새 소식 분포</span></div><p class="dist-none">기준일에 새로 수집된 기사가 없습니다.</p></div>';
-    var arr = Object.keys(by).map(function (c) { return { c: c, n: by[c] }; })
-      .sort(function (a, b) { return b.n - a.n || a.c.localeCompare(b.c, 'ko'); });
-    var bar = arr.map(function (x, k) {
-      var label = catLabel(x.c) + ' ' + x.n + '건';
-      return '<button class="' + (k === 0 ? 'lead' : '') + '" style="flex:' + x.n + ' 1 0" data-cat="' + esc(x.c) + '" aria-label="' + esc(label) + '" title="' + esc(label) + '"></button>';
-    }).join('');
-    var legend = arr.slice(0, 5).map(function (x, k) {
-      return '<button class="' + (k === 0 ? 'lead' : '') + '" data-cat="' + esc(x.c) + '"><span>' + esc(catLabel(x.c)) + '</span><span class="n">' + fmt(x.n) + '</span></button>';
-    }).join('');
-    return '<div class="pt-bar"><div class="dist-h"><span class="l">오늘 새 소식 분포</span><span class="v">' + fmt(arr.length) + '개 카테고리</span></div>' +
-      '<div class="bar">' + bar + '</div><div class="legend">' + legend + '</div></div>';
-  }
-
-  /* ───────── 화면 그리기 ───────── */
-  function matchQ(i) {
-    if (!state.q) return true;
-    var text = [i.한글제목, i.핵심요약, i.원제목, i.출처, i.구분, i.카테고리].join(' ').toLowerCase();
-    return text.indexOf(state.q.toLowerCase()) !== -1;
-  }
-
-  function overviewHtml() {
-    var dated = state.items.filter(function (i) { return !isPinned(i); });
-    var nNew = dated.filter(function (i) { return itemDate(i) === state.base; }).length;
-    var h = ptHtml({
-      title: '전체 브리핑',
-      cells: [{ l: '기준일', v: dateFig(state.base) }, { l: '새 소식', v: cnt(nNew) }, { l: '전체', v: cnt(dated.length) }],
-      bar: distHtml(dated)
-    });
-    state.groups.forEach(function (g) {
-      h += '<section class="grp"><h3>' + esc(g.name) + '</h3><div class="blocks">';
-      g.cats.forEach(function (c) {
-        var list = dated.filter(function (i) { return catOf(i) === c; }).sort(byDateDesc);
-        h += '<div class="blk"><div class="blk-h"><h4>' + esc(catLabel(c)) + '</h4><span class="n">' + fmt(list.length) + '</span>' +
-          (list.length ? '<button class="more" data-cat="' + esc(c) + '">전체 보기</button>' : '') + '</div>';
-        if (!list.length) h += '<p class="none">이번 브리핑에 수집된 기사가 없습니다.</p>';
-        else h += list.slice(0, OVERVIEW_LIMIT).map(function (i) { return rowHtml(i, { summary: false }); }).join('');
-        h += '</div>';
-      });
-      h += '</div></section>';
-    });
-    return h;
-  }
-
-  function listHtml() {
-    var inCat = state.cat !== 'ALL';
-    var scope = state.items.filter(function (i) { return (!inCat || catOf(i) === state.cat) && matchQ(i); });
-    var pins = (inCat && !state.q) ? scope.filter(isPinned) : [];
-    var news = scope.filter(function (i) { return pins.indexOf(i) === -1; });
-
-    /* 언론사 드롭다운: 현재 범위의 언론사별 건수 */
-    var pc = {};
-    news.forEach(function (i) { var p = i.구분 || i.출처 || '기타'; pc[p] = (pc[p] || 0) + 1; });
-    var pubs = Object.keys(pc).sort(function (a, b) { return pc[b] - pc[a] || a.localeCompare(b, 'ko'); });
-    if (state.pub !== 'ALL' && !pc[state.pub]) state.pub = 'ALL';
-    $('#pubSel').innerHTML = '<option value="ALL">언론사 전체 (' + fmt(news.length) + ')</option>' +
-      pubs.map(function (p) { return '<option value="' + esc(p) + '"' + (p === state.pub ? ' selected' : '') + '>' + esc(p) + ' (' + fmt(pc[p]) + ')</option>'; }).join('');
-    if (state.pub !== 'ALL') news = news.filter(function (i) { return (i.구분 || i.출처 || '기타') === state.pub; });
-    news.sort(byDateDesc);
-
-    var title = state.q && !inCat ? '“' + state.q + '” 검색 결과' : (state.q ? catLabel(state.cat) + ' 안에서 “' + state.q + '” 검색' : catLabel(state.cat));
-    var nNew = news.filter(function (i) { return itemDate(i) === state.base; }).length;
-    var h = ptHtml({
-      title: title,
-      sub: state.pub !== 'ALL' ? state.pub : '',
-      cells: [{ l: '기준일', v: dateFig(state.base) }, { l: '새 소식', v: cnt(nNew) }, { l: '기사', v: cnt(news.length) }]
-    });
-
-    if (pins.length) {
-      h += '<div class="pins">' + pins.map(function (i) {
-        var t = target(i);
-        return '<a class="pin" href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer"><span class="icw">' + icon('pin') + '</span>' +
-          '<span><b>' + esc(clean(i.한글제목 || i.원제목)) + '</b>' + (i.핵심요약 ? '<span class="s">' + esc(i.핵심요약) + '</span>' : '') + '</span></a>';
-      }).join('') + '</div>';
-    }
-
-    if (!news.length) {
-      return h + '<div class="state"><b>조건에 맞는 기사가 없습니다</b><p>검색어를 바꾸거나 언론사 선택을 해제해 보세요.</p>' +
-        '<button class="ctl" data-act="reset">필터 초기화</button></div>';
-    }
-
-    var opt = { summary: true, cat: !inCat };
-    if (state.view === 'card') {
-      if (state.groupBy === 'pub') {
-        var byPubCard = {};
-        news.forEach(function (i) { var p = i.구분 || i.출처 || '기타'; (byPubCard[p] = byPubCard[p] || []).push(i); });
-        var pubOrderCard = Object.keys(byPubCard).sort(function (a, b) { return byPubCard[b].length - byPubCard[a].length || a.localeCompare(b, 'ko'); });
-        pubOrderCard.forEach(function (p) {
-          h += '<div class="gh"><span class="gl">' + esc(p) + '</span><span class="gn">' + fmt(byPubCard[p].length) + '</span></div>';
-          h += '<div class="cards">' + byPubCard[p].map(function (i) { return cardHtml(i, opt); }).join('') + '</div>';
-        });
-        return h;
-      }
-      return h + '<div class="cards">' + news.map(function (i) { return cardHtml(i, opt); }).join('') + '</div>';
-    }
-    if (state.groupBy === 'pub') {
-      var byPub = {};
-      news.forEach(function (i) { var p = i.구분 || i.출처 || '기타'; (byPub[p] = byPub[p] || []).push(i); });
-      var pubOrder = Object.keys(byPub).sort(function (a, b) { return byPub[b].length - byPub[a].length || a.localeCompare(b, 'ko'); });
-      h += '<div class="list">';
-      pubOrder.forEach(function (p) {
-        h += '<div class="gh"><span class="gl">' + esc(p) + '</span><span class="gn">' + fmt(byPub[p].length) + '</span></div>';
-        byPub[p].forEach(function (i) { h += rowHtml(i, opt); });
-      });
-      return h + '</div>';
-    }
-    var counts = {};
-    news.forEach(function (i) { var k = bucket(i).label; counts[k] = (counts[k] || 0) + 1; });
-    var last = '';
-    h += '<div class="list">';
-    news.forEach(function (i) {
-      var b = bucket(i), key = b.key + '|' + b.label;
-      if (key !== last) {
-        last = key;
-        h += '<div class="gh ' + b.key + '"><span class="gl">' + esc(b.label) + '</span><span class="gn">' + fmt(counts[b.label]) + '</span></div>';
-      }
-      h += rowHtml(i, opt);
-    });
-    return h + '</div>';
-  }
-
-  function render() {
-    if (state.loadError) {
-      $('#content').innerHTML = '<div class="state"><b>데이터를 불러오지 못했습니다</b><p>' + esc(state.loadError) + '</p>' +
-        '<button class="ctl" data-act="reload">다시 불러오기</button></div>';
-      return;
-    }
-    var overview = state.cat === 'ALL' && !state.q;
-    $('#toolbar').classList.toggle('is-overview', overview);
-    $('#content').innerHTML = overview ? overviewHtml() : listHtml();
-    $('#qClr').hidden = !state.q;
-    $('#qKbd').hidden = !!state.q;
-    document.querySelectorAll('#viewSeg [data-view]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === state.view)); });
-    document.querySelectorAll('#groupSeg [data-group]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.group === state.groupBy)); });
-    markNav();
-  }
-
-  function setCat(cat, noScroll) {
-    state.cat = cat; state.pub = 'ALL';
-    try { history.replaceState(null, '', cat === 'ALL' ? location.pathname + location.search : '#' + encodeURIComponent(cat)); } catch (e) {}
-    render();
-    if (!noScroll) window.scrollTo({ top: 0 });
-  }
-
-  /* ───────── 이벤트 ───────── */
-  $('#nav').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-cat]'); if (!b) return;
-    state.q = ''; $('#q').value = '';
-    setCat(b.dataset.cat);
-    if (window.matchMedia('(max-width:900px)').matches) b.scrollIntoView({ inline: 'center', block: 'nearest' });
+  syncThemeBtn();
+  $('themeBtn').addEventListener('click', function () {
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('briefing-theme', next); localStorage.setItem('procurement-theme', next); } catch (e) {}
+    syncThemeBtn();
+    if (activeTab === 'market') { renderTvChart(currentTvSym); renderTvCal(); }
   });
-  $('#content').addEventListener('click', function (e) {
-    var go = e.target.closest('[data-cat]');
-    if (go) { setCat(go.dataset.cat); return; }
-    var act = e.target.closest('[data-act]');
-    if (act) {
-      if (act.dataset.act === 'reset') { state.q = ''; state.pub = 'ALL'; $('#q').value = ''; render(); }
-      if (act.dataset.act === 'reload') loadFeed($('#dateSel').value);
-      return;
-    }
-    var a = e.target.closest('a.t');
-    if (a) { markRead(a.getAttribute('href')); var box = a.closest('.row, .card'); if (box) box.classList.add('read'); }
+
+  /* ───────── 6개 탭 전환 ───────── */
+  var activeTab = 'home';
+  var tvLoaded = false;
+  var currentTvSym = 'KRX:KOSPI';
+  function setTab(tab) {
+    var valid = ['home', 'market', 'procurement', 'travel', 'kbo', 'culture'];
+    if (valid.indexOf(tab) < 0) tab = 'home';
+    activeTab = tab;
+    document.querySelectorAll('#mainTabs .tab-btn').forEach(function (b) {
+      b.setAttribute('aria-selected', String(b.dataset.tab === tab));
+    });
+    valid.forEach(function (t) { $('page-' + t).hidden = t !== tab; });
+    try { history.replaceState(null, '', '#' + tab); } catch (e) {}
+    if (tab === 'market' && !tvLoaded) { tvLoaded = true; renderTvChart(currentTvSym); renderTvCal(); }
+    window.scrollTo({ top: 0 });
+  }
+  $('mainTabs').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-tab]'); if (b) setTab(b.dataset.tab);
   });
-  var qTimer;
-  $('#q').addEventListener('input', function (e) {
-    clearTimeout(qTimer);
-    qTimer = setTimeout(function () { state.q = e.target.value.trim(); state.pub = 'ALL'; render(); }, 120);
+  document.addEventListener('click', function (e) {
+    var go = e.target.closest('[data-go-tab]'); if (go) setTab(go.dataset.goTab);
   });
-  $('#qClr').addEventListener('click', function () { state.q = ''; $('#q').value = ''; render(); $('#q').focus(); });
-  $('#pubSel').addEventListener('change', function (e) { state.pub = e.target.value; render(); });
-  $('#viewSeg').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-view]'); if (!b) return;
-    state.view = b.dataset.view; render();
+
+  /* ───────── 전역 검색 ───────── */
+  var globalQuery = '';
+  var searchTimer;
+  $('globalQ').addEventListener('input', function (e) {
+    $('globalClr').hidden = !e.target.value;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () {
+      globalQuery = e.target.value.trim().toLowerCase();
+      homeState.page = 1; bidState.page = 1;
+      renderHomeFeed(); renderBids(); renderKboFeed();
+    }, 120);
   });
-  $('#groupSeg').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-group]'); if (!b) return;
-    state.groupBy = b.dataset.group; render();
+  $('globalClr').addEventListener('click', function () {
+    $('globalQ').value = ''; $('globalClr').hidden = true; globalQuery = '';
+    homeState.page = 1; bidState.page = 1;
+    renderHomeFeed(); renderBids(); renderKboFeed();
   });
   document.addEventListener('keydown', function (e) {
     var tag = (document.activeElement && document.activeElement.tagName) || '';
-    if (e.key === '/' && tag !== 'INPUT' && tag !== 'SELECT' && tag !== 'TEXTAREA') { e.preventDefault(); $('#q').focus(); }
-    if (e.key === 'Escape') { closeWx(); if (document.activeElement === $('#q')) $('#q').blur(); }
+    if ((e.key === '/' || (e.ctrlKey && e.key.toLowerCase() === 'k')) && tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
+      e.preventDefault(); $('globalQ').focus();
+    }
   });
 
-  /* 테마 */
-  function applyThemeLabel() {
-    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    $('#themeBtn').innerHTML = '<span class="icw">' + icon(dark ? 'sun' : 'moon') + '</span><span class="lbl">' + (dark ? '라이트' : '다크') + '</span>';
+  /* ───────── 뉴스 데이터 & 카테고리 ───────── */
+  var GROUPS = [
+    { name: '전체', cats: [] },
+    { name: '우리 회사', cats: ['삼보기술단'] },
+    { name: '국내 엔지니어링', cats: ['국내 입찰·용역', '엔지니어링 뉴스', '협회 및 유관기관', '기술사-토목구조'] },
+    { name: '해외 토목', cats: ['해외 토목사업', '해외토목-베트남', '해외토목-방글라데시'] },
+    { name: 'AI · 신기술', cats: ['GitHub 핫한 AI', 'HuggingFace 논문·앱', 'AI 활용·신기술 뉴스'] },
+    { name: '시사 · 경제', cats: ['국내정치', '해외정치', '국내경제', '해외경제', '오늘의 뉴스 헤드라인', '국내사회'] },
+    { name: '투자 · 금융', cats: ['국내주식', '해외주식', '코인'] },
+    { name: '프로야구', cats: ['프로야구 한화 소식', 'KIA 타이거즈', 'LG 트윈스', '두산 베어스'] }
+  ];
+  var CAT_LABEL = { '국내 입찰·용역': '국내 입찰·공고', '해외토목-베트남': '베트남 번역', '해외토목-방글라데시': '방글라데시 번역', '프로야구 한화 소식': '한화 이글스' };
+  function catLabel(c) { return CAT_LABEL[c] || c; }
+  var readSet = new Set();
+  try { JSON.parse(localStorage.getItem('briefing-read') || '[]').forEach(function (k) { readSet.add(k); }); } catch (e) {}
+  function markRead(url) {
+    if (!url) return;
+    readSet.add(url);
+    try { localStorage.setItem('briefing-read', JSON.stringify(Array.from(readSet).slice(-1500))); } catch (e) {}
   }
-  $('#themeBtn').addEventListener('click', function () {
-    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('briefing-theme', next); } catch (e) {}
-    applyThemeLabel();
-  });
-  applyThemeLabel();
 
-  /* ───────── 데이터 불러오기 ───────── */
-  function loadFeed(target) {
-    var url = target === 'latest' ? './data/latest.json' : './data/' + encodeURIComponent(target) + '.json';
-    state.loadError = '';
-    fetch(url + '?t=' + Date.now())
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (data) {
-        state.items = Array.isArray(data.items) ? data.items : [];
-        var u = String(data.updatedAt || '');
-        state.base = DATE_RE.test(u.slice(0, 10)) ? u.slice(0, 10) : kstToday();
-        $('#updatedAt').textContent = '업데이트 ' + (u || '-');
-        state.pub = 'ALL';
-        buildNav();
-        var hashCat = decodeURIComponent((location.hash || '').slice(1));
-        var valid = state.groups.some(function (g) { return g.cats.indexOf(hashCat) !== -1; });
-        if (state.cat !== 'ALL' && !state.groups.some(function (g) { return g.cats.indexOf(state.cat) !== -1; })) state.cat = 'ALL';
-        if (!state.initDone) { state.initDone = true; if (valid) state.cat = hashCat; }
-        render();
-        if (!state.entered) {
-          state.entered = true;
-          var c = $('#content'); c.classList.add('enter');
-          c.addEventListener('animationend', function () { c.classList.remove('enter'); }, { once: true });
-        }
-      })
-      .catch(function () {
-        $('#updatedAt').textContent = '데이터 로드 실패';
-        state.items = []; buildNav();
-        state.loadError = location.protocol === 'file:'
-          ? '파일을 직접 열면 데이터를 읽을 수 없습니다. GitHub Pages 주소나 로컬 서버(python -m http.server)로 열어 주세요.'
-          : '선택한 날짜의 data 파일을 찾을 수 없습니다. 잠시 후 다시 시도하거나 다른 날짜를 선택해 주세요.';
-        render();
-      });
+  var newsItems = [];
+  var homeState = { group: '전체', cat: 'ALL', pub: 'ALL', page: 1, pageSize: 15 };
+  var kboTeam = 'ALL';
+
+  function normCat(c) {
+    var s = String(c || '').trim();
+    if (s === 'GitHub Trending') return 'GitHub 핫한 AI';
+    if (s === 'HuggingFace') return 'HuggingFace 논문·앱';
+    return s;
   }
-  $('#dateSel').addEventListener('change', function (e) { loadFeed(e.target.value); });
 
-  fetch('./data/dates.json?t=' + Date.now())
-    .then(function (r) { return r.ok ? r.json() : []; })
-    .then(function (dates) {
-      if (Array.isArray(dates) && dates.length) {
-        $('#dateSel').innerHTML = '<option value="latest">최신 (' + esc(String(dates[0]).slice(5)) + ')</option>' +
-          dates.map(function (d) { return '<option value="' + esc(d) + '">' + esc(d) + '</option>'; }).join('');
+  function renderNewsSelectors() {
+    $('homeGroupSel').innerHTML = GROUPS.map(function (g) {
+      return '<option value="' + esc(g.name) + '"' + (homeState.group === g.name ? ' selected' : '') + '>' + esc(g.name) + '</option>';
+    }).join('');
+    var pubs = {};
+    newsItems.forEach(function (x) { if (x.publisher) pubs[x.publisher] = (pubs[x.publisher] || 0) + 1; });
+    var plist = Object.keys(pubs).sort(function (a, b) { return pubs[b] - pubs[a]; });
+    $('homePubSel').innerHTML = '<option value="ALL">언론사 전체</option>' + plist.map(function (p) {
+      return '<option value="' + esc(p) + '"' + (homeState.pub === p ? ' selected' : '') + '>' + esc(p) + ' (' + pubs[p] + ')</option>';
+    }).join('');
+    var grp = GROUPS.find(function (g) { return g.name === homeState.group; }) || GROUPS[0];
+    var cats = grp.cats.length ? grp.cats : Array.from(new Set(newsItems.map(function (x) { return x.category; }))).filter(Boolean);
+    var html = '<button class="chip" data-hcat="ALL" aria-pressed="' + String(homeState.cat === 'ALL') + '">전체 <span class="cnt">' + fmt(filterHomeNews('ALL').length) + '</span></button>';
+    cats.forEach(function (c) {
+      var n = newsItems.filter(function (x) { return x.category === c; }).length;
+      if (!n && homeState.group === '전체') return;
+      html += '<button class="chip" data-hcat="' + esc(c) + '" aria-pressed="' + String(homeState.cat === c) + '">' + esc(catLabel(c)) + ' <span class="cnt">' + n + '</span></button>';
+    });
+    $('homeCatChips').innerHTML = html;
+  }
+
+  function filterHomeNews(overrideCat) {
+    var grp = GROUPS.find(function (g) { return g.name === homeState.group; }) || GROUPS[0];
+    var targetCat = overrideCat || homeState.cat;
+    return newsItems.filter(function (x) {
+      if (grp.cats.length && grp.cats.indexOf(x.category) < 0) return false;
+      if (targetCat !== 'ALL' && x.category !== targetCat) return false;
+      if (homeState.pub !== 'ALL' && x.publisher !== homeState.pub) return false;
+      if (globalQuery) {
+        var hay = [x.title, x.summary, x.publisher, x.category, x.originalTitle].join(' ').toLowerCase();
+        if (hay.indexOf(globalQuery) < 0) return false;
       }
-    })
-    .catch(function () {})
-    .then(function () { loadFeed('latest'); });
+      return true;
+    });
+  }
 
-  /* ───────── 날씨 (서울·청주·전주·광주·창원, Open-Meteo) ───────── */
+  function newsRowHtml(x) {
+    var url = safeUrl(x.link || x.url);
+    var isRead = url && readSet.has(url);
+    return '<article class="feed-item' + (isRead ? ' read' : '') + '">' +
+      '<div><div class="feed-meta"><span class="badge">' + esc(catLabel(x.category)) + '</span><span>' + esc(x.publisher || '출처 미표기') + '</span><span class="mono">' + esc((x.pubDate || x.date || '').slice(0, 16)) + '</span></div>' +
+      (url ? '<a class="feed-title" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">' + esc(x.title) + '</a>' : '<div class="feed-title">' + esc(x.title) + '</div>') +
+      (x.summary ? '<p class="feed-sum">' + esc(x.summary) + '</p>' : '') +
+      (x.originalTitle ? '<p class="feed-orig">' + esc(x.originalTitle) + '</p>' : '') +
+      '</div>' +
+      (url ? '<a class="ctl" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">원문 ↗</a>' : '') +
+      '</article>';
+  }
+
+  function renderHomeFeed() {
+    var rows = filterHomeNews();
+    $('homeCount').textContent = fmt(rows.length) + '건';
+    var pages = Math.max(1, Math.ceil(rows.length / homeState.pageSize));
+    homeState.page = Math.max(1, Math.min(homeState.page, pages));
+    var start = (homeState.page - 1) * homeState.pageSize;
+    var slice = rows.slice(start, start + homeState.pageSize);
+    $('homeFeedList').innerHTML = slice.length ? slice.map(newsRowHtml).join('') : '<div style="padding:40px;text-align:center;color:var(--mute)">조건에 맞는 기사가 없습니다.</div>';
+    $('homePageInfo').textContent = rows.length ? (fmt(start + 1) + '–' + fmt(start + slice.length) + ' / ' + fmt(rows.length) + '건 (' + homeState.page + ' / ' + pages + ' 페이지)') : '0건';
+    $('homePrev').disabled = homeState.page <= 1;
+    $('homeNext').disabled = homeState.page >= pages;
+  }
+
+  $('homeGroupSel').addEventListener('change', function (e) { homeState.group = e.target.value; homeState.cat = 'ALL'; homeState.page = 1; renderNewsSelectors(); renderHomeFeed(); });
+  $('homePubSel').addEventListener('change', function (e) { homeState.pub = e.target.value; homeState.page = 1; renderHomeFeed(); });
+  $('homeCatChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-hcat]'); if (!b) return;
+    homeState.cat = b.dataset.hcat; homeState.page = 1; renderNewsSelectors(); renderHomeFeed();
+  });
+  $('homePrev').addEventListener('click', function () { if (homeState.page > 1) { homeState.page--; renderHomeFeed(); } });
+  $('homeNext').addEventListener('click', function () { homeState.page++; renderHomeFeed(); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-read-url]');
+    if (a) { markRead(a.dataset.readUrl); var row = a.closest('.feed-item'); if (row) row.classList.add('read'); }
+  });
+
+  function renderMarketNews() {
+    var cats = ['국내경제', '해외경제', '국내주식', '해외주식', '코인'];
+    var list = newsItems.filter(function (x) { return cats.indexOf(x.category) >= 0; }).slice(0, 8);
+    $('marketNewsList').innerHTML = list.length ? list.map(function (x) {
+      var u = safeUrl(x.link || x.url);
+      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line)"><div class="feed-meta"><span class="badge">' + esc(x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div>' +
+        (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;text-decoration:none;display:block;line-height:1.4">' + esc(x.title) + '</a>' : '<div style="font-size:13px;font-weight:600">' + esc(x.title) + '</div>') + '</div>';
+    }).join('') : '<div style="padding:20px;text-align:center;color:var(--mute);font-size:12.5px">수집된 경제·투자 기사가 없습니다.</div>';
+  }
+
+  function renderKboFeed() {
+    var teams = ['프로야구 한화 소식', 'KIA 타이거즈', 'LG 트윈스', '두산 베어스'];
+    var allKbo = newsItems.filter(function (x) { return teams.indexOf(x.category) >= 0; });
+    $('statKbo').textContent = fmt(allKbo.length);
+    var filtered = allKbo.filter(function (x) {
+      if (kboTeam !== 'ALL' && x.category !== kboTeam) return false;
+      if (globalQuery && [x.title, x.summary, x.publisher, x.category].join(' ').toLowerCase().indexOf(globalQuery) < 0) return false;
+      return true;
+    });
+    $('kboCount').textContent = fmt(filtered.length) + '건';
+    $('kboFeedList').innerHTML = filtered.length ? filtered.map(newsRowHtml).join('') : '<div style="padding:40px;text-align:center;color:var(--mute)">해당 구단의 수집된 프로야구 뉴스가 없습니다.</div>';
+    $('homeKboMini').innerHTML = allKbo.slice(0, 4).map(function (x) {
+      var u = safeUrl(x.link || x.url);
+      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line)"><span class="badge" style="margin-bottom:4px">' + esc(catLabel(x.category)) + '</span>' +
+        (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="display:block;font-size:13px;font-weight:600;text-decoration:none;line-height:1.35">' + esc(x.title) + '</a>' : '') + '</div>';
+    }).join('') || '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12.5px">수집된 프로야구 소식이 없습니다.</div>';
+    $('kboStatsBox').innerHTML = teams.map(function (t) {
+      var c = allKbo.filter(function (x) { return x.category === t; }).length;
+      return '<div style="display:flex;justify-content:space-between;font-size:13px"><span>' + esc(catLabel(t)) + '</span><b class="mono">' + c + '건</b></div>';
+    }).join('');
+  }
+  $('kboTeamChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-kbo]'); if (!b) return;
+    kboTeam = b.dataset.kbo;
+    document.querySelectorAll('#kboTeamChips .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.kbo === kboTeam)); });
+    renderKboFeed();
+  });
+
+  function loadNews(dateKey) {
+    var url = './data/' + (dateKey === 'latest' ? 'latest' : dateKey) + '.json?t=' + Date.now();
+    fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+      var raw = Array.isArray(j) ? j : (j.items || j.articles || []);
+      newsItems = raw.map(function (x) {
+        return Object.assign({}, x, { category: normCat(x.category || x.cat) });
+      });
+      $('statNews').textContent = fmt(newsItems.length);
+      var upd = (j && (j.updatedAt || j.generated_at || j.date)) || kstToday();
+      $('updatedAt').textContent = '갱신 ' + String(upd).slice(0, 16).replace('T', ' ');
+      $('stripDate').textContent = (dateKey === 'latest' ? kstToday() : dateKey) + ' 브리핑';
+      renderNewsSelectors(); renderHomeFeed(); renderMarketNews(); renderKboFeed();
+    }).catch(function () {
+      $('homeFeedList').innerHTML = '<div style="padding:36px;text-align:center;color:var(--mute)">뉴스 데이터를 불러오지 못했습니다.</div>';
+    });
+  }
+  $('dateSel').addEventListener('change', function (e) { loadNews(e.target.value); });
+  fetch('./data/dates.json?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : []; }).then(function (dates) {
+    if (Array.isArray(dates) && dates.length) {
+      $('dateSel').innerHTML = '<option value="latest">최신 (' + esc(String(dates[0]).slice(5)) + ')</option>' +
+        dates.map(function (d) { return '<option value="' + esc(d) + '">' + esc(d) + '</option>'; }).join('');
+    }
+  }).catch(function () {}).then(function () { loadNews('latest'); });
+
+  /* ───────── 금융 지표 & TradingView ───────── */
+  function loadMarket() {
+    var list = [], seen = {};
+    function add(x) { if (x && x.name && !seen[x.name]) { seen[x.name] = 1; list.push(x); } }
+    fetch('./data/market.json?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) {
+      (j.items || []).forEach(function (x) { add(Object.assign({ source: 'market.json' }, x)); });
+    }).catch(function () {}).then(function () {
+      return fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH,KRW-XRP').then(function (r) { return r.json(); }).then(function (arr) {
+        arr.forEach(function (c) {
+          var nm = c.market === 'KRW-BTC' ? '비트코인' : c.market === 'KRW-ETH' ? '이더리움' : '리플 (XRP)';
+          add({ name: nm, symbol: c.market, value: fmt(c.trade_price) + '원', change: c.signed_change_rate * 100, source: 'Upbit 실시간' });
+        });
+      }).catch(function () {});
+    }).then(function () {
+      if (seen['원/달러']) return;
+      return fetch('https://open.er-api.com/v6/latest/USD').then(function (r) { return r.json(); }).then(function (j) {
+        if (j && j.rates && j.rates.KRW) add({ name: '원/달러', symbol: 'USD/KRW', value: fmt(j.rates.KRW, 1) + '원', source: 'ExchangeRate' });
+      }).catch(function () {});
+    }).then(function () {
+      var cards = list.slice(0, 6).map(function (x) {
+        var chg = '';
+        if (typeof x.change === 'number' && isFinite(x.change)) {
+          var cls = x.change > 0 ? 'up' : x.change < 0 ? 'down' : 'flat';
+          chg = '<span class="mk-chg ' + cls + '">' + (x.change > 0 ? '▲ +' : x.change < 0 ? '▼ ' : '') + x.change.toFixed(2) + '%</span>';
+        } else chg = '<span class="mk-chg flat">실시간</span>';
+        return '<div class="mk-card"><div class="mk-top"><span>' + esc(x.name) + '</span><span class="mk-sym">' + esc(x.symbol || '') + '</span></div><div class="mk-val">' + esc(x.value) + '</div>' + chg + '</div>';
+      }).join('');
+      $('homeMarketGrid').innerHTML = cards;
+      $('marketTopGrid').innerHTML = cards;
+      $('marketTableBody').innerHTML = list.map(function (x) {
+        var c = typeof x.change === 'number' && isFinite(x.change)
+          ? '<span class="mk-chg ' + (x.change > 0 ? 'up' : x.change < 0 ? 'down' : 'flat') + '">' + (x.change > 0 ? '+' : '') + x.change.toFixed(2) + '%</span>' : '—';
+        return '<tr><td><b>' + esc(x.name) + '</b> <span class="mono" style="font-size:11px;color:var(--mute)">' + esc(x.symbol || '') + '</span></td><td class="num">' + esc(x.value) + '</td><td class="num">' + c + '</td><td style="font-size:12px;color:var(--mute)">' + esc(x.source || '시장지표') + '</td></tr>';
+      }).join('');
+    });
+  }
+  loadMarket();
+  setInterval(function () { if (!document.hidden) loadMarket(); }, 60000);
+
+  function renderTvChart(sym) {
+    currentTvSym = sym;
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var host = $('tvChartHost');
+    host.innerHTML = '';
+    var box = document.createElement('div');
+    box.className = 'tradingview-widget-container';
+    box.style.height = '100%'; box.style.width = '100%';
+    var inner = document.createElement('div');
+    inner.className = 'tradingview-widget-container__widget';
+    inner.style.height = '100%'; inner.style.width = '100%';
+    var sc = document.createElement('script');
+    sc.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    sc.async = true;
+    sc.textContent = JSON.stringify({
+      autosize: true, symbol: sym, interval: 'D', timezone: 'Asia/Seoul',
+      theme: dark ? 'dark' : 'light', style: '1', locale: 'kr',
+      allow_symbol_change: true, calendar: false, support_host: 'https://www.tradingview.com'
+    });
+    box.appendChild(inner); box.appendChild(sc); host.appendChild(box);
+  }
+  function renderTvCal() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var host = $('tvCalHost');
+    host.innerHTML = '';
+    var box = document.createElement('div');
+    box.className = 'tradingview-widget-container';
+    box.style.height = '100%'; box.style.width = '100%';
+    var sc = document.createElement('script');
+    sc.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
+    sc.async = true;
+    sc.textContent = JSON.stringify({
+      colorTheme: dark ? 'dark' : 'light', isTransparent: true, width: '100%', height: '100%',
+      locale: 'kr', importanceFilter: '0,1', countryFilter: 'us,kr,jp,eu'
+    });
+    box.appendChild(sc); host.appendChild(box);
+  }
+  $('tvSymSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-sym]'); if (!b) return;
+    document.querySelectorAll('#tvSymSeg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    renderTvChart(b.dataset.sym);
+  });
+
+  /* ───────── 나라장터 발주현황 (procurement.json 연동) ───────── */
+  var STAGES = { plan: '발주계획', prespec: '사전규격', notice: '입찰공고', award: '낙찰결과', contract: '계약' };
+  var GROUPS_BID = { local: '지자체', public: '공공·중앙기관', unclassified: '분류대기' };
+  var bidFavs = new Set();
+  try { JSON.parse(localStorage.getItem('procurement-favorites') || '[]').forEach(function (x) { bidFavs.add(x); }); } catch (e) {}
+  var bidState = { data: null, scope: 'all', stage: 'all', field: 'all', status: 'all', sort: 'deadline', favOnly: false, page: 1, pageSize: 20, expanded: new Set() };
+
+  function parseKst(v) {
+    if (typeof v !== 'string' || !v.trim()) return null;
+    var s = v.trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) s += 'T00:00:00+09:00';
+    else { s = s.replace(' ', 'T'); if (!/(Z|[+-]\d{2}:?\d{2})$/.test(s)) s += '+09:00'; }
+    var t = Date.parse(s);
+    return isFinite(t) ? t : null;
+  }
+  function fmtWon(n) { return typeof n === 'number' && isFinite(n) ? fmt(n) + '원' : '미제공'; }
+  function compactWon(n) {
+    if (typeof n !== 'number' || !isFinite(n)) return '—';
+    if (n >= 1e12) return fmt(n / 1e12, 1) + '<small>조 원</small>';
+    if (n >= 1e8) return fmt(n / 1e8, 1) + '<small>억 원</small>';
+    if (n >= 1e4) return fmt(n / 1e4, 0) + '<small>만 원</small>';
+    return fmt(n) + '<small>원</small>';
+  }
+  function bidStatusOf(i) {
+    if (i.notice_status === 'cancelled') return { key: 'cancelled', label: '취소' };
+    if (i.stage !== 'notice') return { key: i.stage, label: STAGES[i.stage] || i.stage };
+    var dl = parseKst(i.deadline);
+    if (dl === null) return { key: 'unknown', label: '마감 미확인' };
+    if (dl <= Date.now()) return { key: 'closed', label: '마감 지남' };
+    var diff = Math.ceil((dl - Date.now()) / 86400000);
+    return { key: 'open', label: diff <= 0 ? '오늘 마감' : 'D-' + diff, days: diff };
+  }
+  function filterBids() {
+    if (!bidState.data) return [];
+    var now = Date.now();
+    var rows = (bidState.data.items || []).filter(function (i) {
+      if (bidState.scope !== 'all' && i.buyer_group !== bidState.scope) return false;
+      if (bidState.stage !== 'all' && i.stage !== bidState.stage) return false;
+      if (bidState.field !== 'all' && (i.fields || []).indexOf(bidState.field) < 0) return false;
+      if (bidState.favOnly && !bidFavs.has(i.id)) return false;
+      var st = bidStatusOf(i);
+      if (bidState.status === 'soon' && !(st.key === 'open' && st.days <= 7)) return false;
+      if (bidState.status === 'open' && st.key !== 'open') return false;
+      if (bidState.status === 'closed' && st.key !== 'closed') return false;
+      if (globalQuery) {
+        var hay = [i.title, i.buyer_name, i.notice_no, (i.fields || []).join(' '), (i.work_types || []).join(' ')].join(' ').toLowerCase();
+        if (hay.indexOf(globalQuery) < 0) return false;
+      }
+      return true;
+    });
+    rows.sort(function (a, b) {
+      if (bidState.sort === 'amount') return (b.amount_krw || -1) - (a.amount_krw || -1);
+      if (bidState.sort === 'latest') return (parseKst(b.posted_at) || 0) - (parseKst(a.posted_at) || 0);
+      var sa = bidStatusOf(a), sb = bidStatusOf(b);
+      var oa = sa.key === 'open' ? 0 : 1, ob = sb.key === 'open' ? 0 : 1;
+      if (oa !== ob) return oa - ob;
+      return (parseKst(a.deadline) || Infinity) - (parseKst(b.deadline) || Infinity);
+    });
+    return rows;
+  }
+
+  function renderBids() {
+    var d = bidState.data;
+    if (!d) return;
+    var items = d.items || [];
+    $('statBids').textContent = fmt(items.length);
+    var fields = Array.from(new Set(items.reduce(function (a, i) { return a.concat(i.fields || []); }, []))).sort();
+    $('bidStage').innerHTML = '<option value="all">진행단계 전체</option>' + Object.keys(STAGES).map(function (k) {
+      return '<option value="' + k + '"' + (bidState.stage === k ? ' selected' : '') + '>' + STAGES[k] + '</option>';
+    }).join('');
+    $('bidField').innerHTML = '<option value="all">전문분야 전체</option>' + fields.map(function (f) {
+      return '<option value="' + esc(f) + '"' + (bidState.field === f ? ' selected' : '') + '>' + esc(f) + '</option>';
+    }).join('');
+
+    var rows = filterBids();
+    var soonCnt = rows.filter(function (i) { var s = bidStatusOf(i); return s.key === 'open' && s.days <= 7; }).length;
+    var preCnt = rows.filter(function (i) { return i.stage === 'prespec' || i.stage === 'plan'; }).length;
+    var sumB = 0, sumN = 0;
+    rows.forEach(function (i) { if (i.stage === 'notice' && i.notice_status !== 'cancelled' && typeof i.budget_krw === 'number') { sumB += i.budget_krw; sumN++; } });
+    $('bidKpis').innerHTML =
+      '<div class="kpi"><div class="kpi-l">현재 조건 발주 공고</div><div class="kpi-v">' + fmt(rows.length) + '<small>건</small></div><div class="kpi-s">' + (d.is_demo ? '화면 확인용 가상자료' : '나라장터 용역 기준') + '</div></div>' +
+      '<div class="kpi"><div class="kpi-l">마감 임박 (7일 이내)</div><div class="kpi-v" style="color:var(--up)">' + fmt(soonCnt) + '<small>건</small></div><div class="kpi-s">접수 진행중 입찰공고</div></div>' +
+      '<div class="kpi"><div class="kpi-l">발주계획 · 사전규격</div><div class="kpi-v">' + fmt(preCnt) + '<small>건</small></div><div class="kpi-s">본공고 예정 모니터링</div></div>' +
+      '<div class="kpi"><div class="kpi-l">공고 배정예산 (확인분)</div><div class="kpi-v">' + compactWon(sumN ? sumB : null) + '</div><div class="kpi-s">' + fmt(sumN) + '건 합계</div></div>';
+
+    var banner = '';
+    if (d.is_demo) banner += '<div style="padding:10px 16px;background:var(--primary-soft);color:var(--primary-ink);font-size:12.5px;border-bottom:1px solid var(--line)"><b>예시 가상자료 표시 중</b> · 실제 공고가 아닙니다.</div>';
+    else if (d.status !== 'ok') banner += '<div style="padding:10px 16px;background:var(--warn-soft);color:var(--warn);font-size:12.5px;border-bottom:1px solid var(--line)"><b>수집 상태: ' + esc(d.status) + '</b> · 일부 출처가 대기/오류 상태일 수 있습니다. 우측 수집 출처 상태를 확인하세요.</div>';
+    $('bidStatusBanner').innerHTML = banner;
+
+    var pages = Math.max(1, Math.ceil(rows.length / bidState.pageSize));
+    bidState.page = Math.max(1, Math.min(bidState.page, pages));
+    var start = (bidState.page - 1) * bidState.pageSize;
+    var slice = rows.slice(start, start + bidState.pageSize);
+    $('bidExport').disabled = !rows.length;
+
+    $('bidList').innerHTML = slice.length ? slice.map(function (i) {
+      var st = bidStatusOf(i);
+      var url = safeUrl(i.url);
+      var exp = bidState.expanded.has(i.id);
+      var fav = bidFavs.has(i.id);
+      return '<div class="bid-card' + (st.key === 'cancelled' ? ' cancelled' : '') + '">' +
+        '<div class="bid-top"><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">' +
+          '<span class="badge">' + esc(STAGES[i.stage] || i.stage) + '</span>' +
+          '<span class="badge ' + (st.key === 'open' && st.days <= 3 ? 'up' : st.key === 'open' ? 'ok' : 'warn') + '">' + esc(st.label) + '</span>' +
+          '<span class="mono" style="font-size:11.5px;color:var(--mute)">' + esc(i.notice_no || '') + '</span>' +
+        '</div><button type="button" class="star-btn" data-bfav="' + esc(i.id) + '" aria-pressed="' + String(fav) + '" title="관심공고">' + icon('star') + '</button></div>' +
+        (url ? '<a class="bid-t" href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(i.title) + '</a>' : '<div class="bid-t">' + esc(i.title) + '</div>') +
+        '<dl class="bid-kv"><div><dt>발주기관</dt><dd>' + esc(i.buyer_name || '미제공') + '</dd></div>' +
+        '<div><dt>' + esc(i.amount_type || '표시 금액') + '</dt><dd class="mono">' + esc(fmtWon(i.amount_krw)) + '</dd></div>' +
+        '<div><dt>게시일</dt><dd class="mono">' + esc(String(i.posted_at || '미제공').slice(0, 16)) + '</dd></div>' +
+        '<div><dt>입찰마감</dt><dd class="mono" style="color:' + (st.key === 'open' && st.days <= 3 ? 'var(--up)' : 'inherit') + '">' + esc(String(i.deadline || '미제공').slice(0, 16)) + '</dd></div></dl>' +
+        '<div class="bid-actions"><div class="bid-tags">' + (i.fields || []).concat(i.work_types || []).map(function (t) { return '<span class="bid-tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
+        '<div style="display:flex;gap:6px"><button type="button" class="ctl" data-bdet="' + esc(i.id) + '">' + (exp ? '상세 접기' : '상세 보기') + '</button>' +
+        (url ? '<a class="ctl primary" href="' + esc(url) + '" target="_blank" rel="noopener">나라장터 원문 ↗</a>' : '') + '</div></div>' +
+        '<dl class="bid-detail"' + (exp ? '' : ' hidden') + '><dt>기관 구분</dt><dd>' + esc(GROUPS_BID[i.buyer_group] || '분류대기') + ' · ' + esc(i.region || '소재지 미확인') + '</dd>' +
+        '<dt>공고 배정예산</dt><dd class="mono">' + esc(fmtWon(i.budget_krw)) + '</dd>' +
+        '<dt>참가자격</dt><dd>' + esc(i.qualification || '원문 및 첨부파일 확인 필요') + '</dd>' +
+        '<dt>출처</dt><dd>' + esc(i.source_name || '나라장터') + '</dd></dl></div>';
+    }).join('') : '<div style="padding:40px;text-align:center;color:var(--mute)">조건에 맞는 발주 공고가 없습니다.</div>';
+
+    $('bidPageInfo').textContent = rows.length ? (fmt(start + 1) + '–' + fmt(start + slice.length) + ' / ' + fmt(rows.length) + '건') : '0건';
+    $('bidPrev').disabled = bidState.page <= 1;
+    $('bidNext').disabled = bidState.page >= pages;
+    $('bidDemo').textContent = d.is_demo ? '실자료 보기' : '예시 보기';
+
+    /* 홈 요약 & 북마크 & 출처 상태 */
+    $('homeBidMini').innerHTML = items.slice(0, 5).map(function (i) {
+      var st = bidStatusOf(i), u = safeUrl(i.url);
+      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line)"><div class="feed-meta"><span class="badge">' + esc(STAGES[i.stage] || '') + '</span><span class="badge warn">' + esc(st.label) + '</span><span class="mono">' + esc(fmtWon(i.amount_krw)) + '</span></div>' +
+        (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="display:block;font-size:13px;font-weight:600;text-decoration:none;line-height:1.35">' + esc(i.title) + '</a>' : '') + '</div>';
+    }).join('') || '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12.5px">수집된 발주 공고가 없습니다.</div>';
+
+    var favItems = items.filter(function (i) { return bidFavs.has(i.id); });
+    $('favCount').textContent = favItems.length + '건';
+    $('bidFavList').innerHTML = favItems.length ? favItems.map(function (i) {
+      var u = safeUrl(i.url);
+      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px"><a href="' + esc(u || '#') + '" target="_blank" rel="noopener" style="font-weight:600;text-decoration:none;display:block">' + esc(i.title) + '</a><span class="mono" style="font-size:11px;color:var(--mute)">' + esc(i.buyer_name || '') + ' · ' + esc(bidStatusOf(i).label) + '</span></div>';
+    }).join('') : '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12px">별표(★)를 눌러 관심 공고를 저장하세요.</div>';
+
+    $('bidCoverageBox').innerHTML = (d.coverage || []).map(function (c) {
+      return '<div style="padding:5px 0;border-bottom:1px solid var(--line)"><b>' + esc(c.name) + '</b> · <span class="mono">' + esc(c.status) + '</span> (' + fmt(c.records || 0) + '건)<div style="font-size:11px;color:var(--mute)">' + esc(c.message || '') + '</div></div>';
+    }).join('') || '상태 정보 없음';
+  }
+
+  function loadBids(demo) {
+    var path = demo ? './data/procurement.demo.json' : './data/procurement.json';
+    fetch(path + '?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+      bidState.data = d; bidState.page = 1; renderBids();
+    }).catch(function () {
+      $('bidList').innerHTML = '<div style="padding:36px;text-align:center;color:var(--mute)">발주 데이터를 불러오지 못했습니다.</div>';
+    });
+  }
+  loadBids(false);
+
+  $('bidScopeChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-bscope]'); if (!b) return;
+    bidState.scope = b.dataset.bscope; bidState.page = 1;
+    document.querySelectorAll('#bidScopeChips .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    renderBids();
+  });
+  ['bidStage', 'bidField', 'bidStatus', 'bidSort'].forEach(function (id) {
+    $(id).addEventListener('change', function (e) {
+      var k = id === 'bidStage' ? 'stage' : id === 'bidField' ? 'field' : id === 'bidStatus' ? 'status' : 'sort';
+      bidState[k] = e.target.value; bidState.page = 1; renderBids();
+    });
+  });
+  $('bidFavOnly').addEventListener('change', function (e) { bidState.favOnly = e.target.checked; bidState.page = 1; renderBids(); });
+  $('bidPrev').addEventListener('click', function () { if (bidState.page > 1) { bidState.page--; renderBids(); } });
+  $('bidNext').addEventListener('click', function () { bidState.page++; renderBids(); });
+  $('bidRefresh').addEventListener('click', function () { loadBids(false); });
+  $('bidDemo').addEventListener('click', function () { loadBids(!(bidState.data && bidState.data.is_demo)); });
+  $('bidImport').addEventListener('click', function () { $('bidFile').click(); });
+  $('bidFile').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0]; if (!f) return;
+    f.text().then(function (raw) { bidState.data = JSON.parse(raw.replace(/^\uFEFF/, '')); bidState.page = 1; renderBids(); }).catch(function () { alert('유효한 JSON 파일이 아닙니다.'); });
+    e.target.value = '';
+  });
+  $('bidList').addEventListener('click', function (e) {
+    var fav = e.target.closest('[data-bfav]');
+    if (fav) {
+      var id = fav.dataset.bfav;
+      if (bidFavs.has(id)) bidFavs.delete(id); else bidFavs.add(id);
+      try { localStorage.setItem('procurement-favorites', JSON.stringify(Array.from(bidFavs))); } catch (err) {}
+      renderBids(); return;
+    }
+    var det = e.target.closest('[data-bdet]');
+    if (det) {
+      var k = det.dataset.bdet;
+      if (bidState.expanded.has(k)) bidState.expanded.delete(k); else bidState.expanded.add(k);
+      renderBids();
+    }
+  });
+  $('bidExport').addEventListener('click', function () {
+    var rows = filterBids(); if (!rows.length) return;
+    var cell = function (v) { var s = String(v == null ? '' : v); if (/^\s*[=+\-@]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+    var lines = [['단계','공고번호','발주명','발주기관','금액(원)','게시일','입찰마감','원문'].map(cell).join(',')];
+    rows.forEach(function (i) { lines.push([STAGES[i.stage], i.notice_no, i.title, i.buyer_name, i.amount_krw, i.posted_at, i.deadline, safeUrl(i.url)].map(cell).join(',')); });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'civil_procurement_' + kstToday() + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  /* ───────── 항공·교통 예매 연동 ───────── */
+  var KOR_AIR = {
+    '서울':'SEL','인천':'ICN','김포':'GMP','제주':'CJU','부산':'PUS','김해':'PUS','대구':'TAE','청주':'CJJ','광주':'KWJ',
+    '도쿄':'TYO','나리타':'NRT','하네다':'HND','오사카':'KIX','후쿠오카':'FUK','삿포로':'CTS','오키나와':'OKA',
+    '타이베이':'TPE','홍콩':'HKG','다낭':'DAD','나트랑':'CXR','하노이':'HAN','호치민':'SGN','방콕':'BKK','싱가포르':'SIN','괌':'GUM','사이판':'SPN'
+  };
+  var DOM_CODES = { SEL:1, ICN:1, GMP:1, CJU:1, PUS:1, TAE:1, CJJ:1, KWJ:1 };
+  function airCode(v, fb) {
+    var raw = String(v || '').trim();
+    var m = raw.toUpperCase().match(/[A-Z]{3}/);
+    if (m) return m[0];
+    for (var k in KOR_AIR) { if (raw.indexOf(k) !== -1) return KOR_AIR[k]; }
+    return fb;
+  }
+  function openFlight(vendor, from, to, dep, ret, trip, pax) {
+    var f = airCode(from, 'SEL'), t = airCode(to, 'CJU');
+    if (vendor === 'sky') {
+      var d1 = dep.replace(/-/g, '').slice(2), d2 = trip === 'round' ? '/' + ret.replace(/-/g, '').slice(2) : '';
+      window.open('https://www.skyscanner.co.kr/transport/flights/' + f.toLowerCase() + '/' + t.toLowerCase() + '/' + d1 + d2 + '/?adults=' + pax, '_blank', 'noopener');
+    } else if (vendor === 'naver') {
+      var dom = DOM_CODES[f] && DOM_CODES[t];
+      var n1 = dep.replace(/-/g, ''), n2 = ret.replace(/-/g, '');
+      var leg = f + '-' + t + '-' + n1 + (trip === 'round' ? '/' + t + '-' + f + '-' + n2 : '');
+      window.open('https://flight.naver.com/flights/' + (dom ? 'domestic' : 'international') + '/' + leg + '?adult=' + pax + '&fareType=' + (dom ? 'YC' : 'Y'), '_blank', 'noopener');
+    } else {
+      var q = 'Flights from ' + f + ' to ' + t + ' on ' + dep + (trip === 'round' ? ' through ' + ret : '');
+      window.open('https://www.google.com/travel/flights?hl=ko&curr=KRW&q=' + encodeURIComponent(q), '_blank', 'noopener');
+    }
+  }
+  $('mfDep').value = addDays(1); $('mfRet').value = addDays(4);
+  $('trDep').value = addDays(1); $('trRet').value = addDays(4);
+  $('miniVacSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-mv]'); if (!b) return;
+    var m = b.dataset.mv;
+    document.querySelectorAll('#miniVacSeg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    $('miniFlightBox').hidden = m !== 'flight'; $('miniGroundBox').hidden = m !== 'ground';
+  });
+  $('mfSwap').addEventListener('click', function () { var a = $('mfFrom').value; $('mfFrom').value = $('mfTo').value; $('mfTo').value = a; });
+  $('mfGoSky').addEventListener('click', function () { openFlight('sky', $('mfFrom').value, $('mfTo').value, $('mfDep').value, $('mfRet').value, 'round', '1'); });
+  $('mfGoNaver').addEventListener('click', function () { openFlight('naver', $('mfFrom').value, $('mfTo').value, $('mfDep').value, $('mfRet').value, 'round', '1'); });
+
+  var trTrip = 'round';
+  $('trTripSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-trip]'); if (!b) return;
+    trTrip = b.dataset.trip;
+    document.querySelectorAll('#trTripSeg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    $('trRetWrap').hidden = trTrip !== 'round';
+  });
+  $('trSwap').addEventListener('click', function () { var a = $('trFrom').value; $('trFrom').value = $('trTo').value; $('trTo').value = a; });
+  $('trGoSky').addEventListener('click', function () { openFlight('sky', $('trFrom').value, $('trTo').value, $('trDep').value, $('trRet').value, trTrip, $('trPax').value); });
+  $('trGoNaver').addEventListener('click', function () { openFlight('naver', $('trFrom').value, $('trTo').value, $('trDep').value, $('trRet').value, trTrip, $('trPax').value); });
+  $('trGoGoogle').addEventListener('click', function () { openFlight('google', $('trFrom').value, $('trTo').value, $('trDep').value, $('trRet').value, trTrip, $('trPax').value); });
+  document.querySelectorAll('[data-route]').forEach(function (b) {
+    b.addEventListener('click', function () { var p = b.dataset.route.split(','); $('trFrom').value = p[0]; $('trTo').value = p[1]; });
+  });
+
+  /* ───────── Lo-Fi 플레이어 ───────── */
+  document.querySelectorAll('[data-lofi]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-lofi]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      $('lofiTitle').textContent = b.dataset.label;
+      $('lofiFrame').src = 'https://www.youtube.com/embed/' + b.dataset.lofi + '?autoplay=1';
+      $('lofiPlayerWrap').hidden = false; $('lofiClose').hidden = false;
+    });
+  });
+  $('lofiClose').addEventListener('click', function () {
+    $('lofiFrame').src = ''; $('lofiPlayerWrap').hidden = true; $('lofiClose').hidden = true;
+    document.querySelectorAll('[data-lofi]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+  });
+
+  /* ───────── 날씨 (Open-Meteo 5개 도시) ───────── */
   var WX_CITIES = [
     { id: 'seoul', name: '서울', lat: 37.5665, lon: 126.9780 },
     { id: 'cheongju', name: '청주', lat: 36.6424, lon: 127.4890 },
@@ -1025,299 +1396,79 @@
     { id: 'gwangju', name: '광주', lat: 35.1595, lon: 126.8526 },
     { id: 'changwon', name: '창원', lat: 35.2279, lon: 128.6811 }
   ];
-  var wxCache = {};
-  var wxCityId = 'seoul';
-  try {
-    var savedCity = localStorage.getItem('briefing-city');
-    if (WX_CITIES.some(function (c) { return c.id === savedCity; })) wxCityId = savedCity;
-  } catch (e) {}
-
-  function wIcon(c) {
-    if (c === 0) return 'sun';
-    if (c <= 2) return 'cloud-sun';
-    if (c === 3) return 'cloud';
-    if (c <= 48) return 'cloud-fog';
-    if (c <= 67 || (c >= 80 && c <= 82)) return 'cloud-rain';
-    if (c <= 77 || (c >= 85 && c <= 86)) return 'snowflake';
-    return 'cloud-lightning';
-  }
-  function closeWx() { $('#wxPanel').hidden = true; $('#wxBtn').setAttribute('aria-expanded', 'false'); }
-  $('#wxBtn').addEventListener('click', function (e) {
-    e.stopPropagation();
-    var p = $('#wxPanel'); p.hidden = !p.hidden;
-    $('#wxBtn').setAttribute('aria-expanded', String(!p.hidden));
-  });
-  $('#wxPanel').addEventListener('click', function (e) {
-    var btn = e.target.closest('.wx-c');
-    if (!btn) return;
-    e.stopPropagation();
-    wxCityId = btn.dataset.city;
-    try { localStorage.setItem('briefing-city', wxCityId); } catch (err) {}
-    loadWeather(wxCityId);
-  });
-  document.addEventListener('click', function (e) { if (!e.target.closest('.wx')) closeWx(); });
-
-  function renderWeather(city, d) {
-    var names = ['일', '월', '화', '수', '목', '금', '토'];
-    var rain0 = d.precipitation_probability_max ? d.precipitation_probability_max[0] : 0;
-    $('#wxBtn').setAttribute('aria-label', city.name + ' 날씨 예보');
-    $('#wxBtn').innerHTML = '<span class="icw">' + icon(wIcon(d.weather_code[0])) + '</span><span>' + city.name + ' ' + Math.round(d.temperature_2m_min[0]) + '° / ' + Math.round(d.temperature_2m_max[0]) + '°</span>' +
-      (rain0 >= 30 ? '<span class="rain">' + rain0 + '%</span>' : '');
-    $('#wxBtn').hidden = false;
-    var cityTabs = '<div class="wx-cities">' + WX_CITIES.map(function (c) {
+  var wxCache = {}, wxCity = 'seoul';
+  try { var sc = localStorage.getItem('briefing-city'); if (WX_CITIES.some(function (c) { return c.id === sc; })) wxCity = sc; } catch (e) {}
+  function wIc(c) { return c === 0 ? 'sun' : (c >= 51 ? 'rain' : 'cloud'); }
+  function renderWx(city, d) {
+    var days = ['일','월','화','수','목','금','토'];
+    $('wxBtn').innerHTML = icon(wIc(d.weather_code[0])) + '<span>' + city.name + ' ' + Math.round(d.temperature_2m_min[0]) + '°/' + Math.round(d.temperature_2m_max[0]) + '°</span>';
+    $('wxBtn').hidden = false;
+    $('wxPanel').innerHTML = '<div class="wx-cities">' + WX_CITIES.map(function (c) {
       return '<button class="wx-c" data-city="' + c.id + '" aria-pressed="' + String(c.id === city.id) + '">' + c.name + '</button>';
-    }).join('') + '</div>';
-    $('#wxPanel').innerHTML = cityTabs + '<div class="wx-h">' + city.name + ' 7일 예보</div>' + d.time.map(function (dt, k) {
-      var rain = d.precipitation_probability_max ? d.precipitation_probability_max[k] : 0;
-      var dn = k === 0 ? '오늘' : names[new Date(dt + 'T00:00:00+09:00').getDay()];
-      return '<div class="wx-r' + (k === 0 ? ' today' : '') + '"><span class="dn">' + dn + '</span><span class="icw">' + icon(wIcon(d.weather_code[k])) + '</span>' +
-        '<span class="tp">' + Math.round(d.temperature_2m_min[k]) + '° / ' + Math.round(d.temperature_2m_max[k]) + '°</span>' +
-        '<span class="rn">' + (rain >= 20 ? '강수 ' + rain + '%' : '') + '</span></div>';
+    }).join('') + '</div>' + d.time.map(function (dt, k) {
+      var rn = d.precipitation_probability_max ? d.precipitation_probability_max[k] : 0;
+      var dn = k === 0 ? '오늘' : days[new Date(dt + 'T00:00:00+09:00').getDay()];
+      return '<div class="wx-r' + (k === 0 ? ' today' : '') + '"><span>' + dn + '</span><span>' + icon(wIc(d.weather_code[k])) + '</span><span class="tp">' + Math.round(d.temperature_2m_min[k]) + '° / ' + Math.round(d.temperature_2m_max[k]) + '°</span><span class="rn">' + (rn >= 20 ? rn + '%' : '') + '</span></div>';
     }).join('');
   }
-
-  function loadWeather(cityId) {
-    var city = WX_CITIES.find(function (c) { return c.id === cityId; }) || WX_CITIES[0];
-    if (wxCache[city.id]) { renderWeather(city, wxCache[city.id]); return; }
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + city.lat + '&longitude=' + city.lon + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul')
-      .then(function (r) { return r.json(); })
-      .then(function (w) {
-        if (!w || !w.daily || !w.daily.time) return;
-        wxCache[city.id] = w.daily;
-        renderWeather(city, w.daily);
-      })
-      .catch(function () {});
+  function loadWx(id) {
+    var c = WX_CITIES.find(function (x) { return x.id === id; }) || WX_CITIES[0];
+    if (wxCache[c.id]) { renderWx(c, wxCache[c.id]); return; }
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + c.lat + '&longitude=' + c.lon + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul')
+      .then(function (r) { return r.json(); }).then(function (w) { if (w && w.daily) { wxCache[c.id] = w.daily; renderWx(c, w.daily); } }).catch(function () {});
   }
-  loadWeather(wxCityId);
+  $('wxBtn').addEventListener('click', function (e) { e.stopPropagation(); $('wxPanel').hidden = !$('wxPanel').hidden; $('wxBtn').setAttribute('aria-expanded', String(!$('wxPanel').hidden)); });
+  $('wxPanel').addEventListener('click', function (e) {
+    var b = e.target.closest('.wx-c'); if (!b) return;
+    e.stopPropagation(); wxCity = b.dataset.city; try { localStorage.setItem('briefing-city', wxCity); } catch (err) {} loadWx(wxCity);
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.wx')) $('wxPanel').hidden = true; });
+  loadWx(wxCity);
 
-  /* ───────── 시장 지표 (선택 기능: 불러오지 못한 항목은 자동으로 숨김) ───────── */
-  var fxCache = null;
-  function getJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }); }
+  /* ───────── 문의사항 모달 (FormSubmit) ───────── */
+  function openReq() { $('reqStatus').textContent = ''; $('reqStatus').className = 'req-status'; $('reqModal').hidden = false; $('reqMsg').focus(); }
+  $('reqBtn').addEventListener('click', openReq);
+  $('sideReqBtn').addEventListener('click', openReq);
+  $('reqClose').addEventListener('click', function () { $('reqModal').hidden = true; });
+  $('reqModal').addEventListener('click', function (e) { if (e.target === $('reqModal')) $('reqModal').hidden = true; });
+  $('reqCopy').addEventListener('click', function () {
+    if (navigator.clipboard) navigator.clipboard.writeText('jaykim@samboeng.co.kr').then(function () { $('reqCopy').textContent = '복사됨'; setTimeout(function () { $('reqCopy').textContent = '복사'; }, 1500); });
+  });
+  $('reqForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = $('reqMsg').value.trim(); if (!msg) return;
+    var sender = ($('reqSender').value || '익명').trim(), kind = $('reqType').value;
+    $('reqSend').disabled = true; $('reqSend').textContent = '전송 중...';
+    fetch('https://formsubmit.co/ajax/jaykim@samboeng.co.kr', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ _subject: '[구조부 데일리 브리핑] ' + kind + ' (' + sender + ')', 작성자: sender, 분류: kind, 내용: msg, _template: 'table' })
+    }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function () {
+      $('reqStatus').className = 'req-status ok'; $('reqStatus').textContent = '전송되었습니다. 감사합니다!'; $('reqMsg').value = '';
+    }).catch(function () {
+      $('reqStatus').className = 'req-status err'; $('reqStatus').textContent = '전송 실패 — 아래 메일 앱 열기를 이용해 주세요.';
+    }).finally(function () { $('reqSend').disabled = false; $('reqSend').textContent = '메일로 보내기'; });
+  });
 
-  function loadMarket() {
-    var list = [], names = {};
-    function add(x) { if (x && x.name && !names[x.name]) { names[x.name] = 1; list.push(x); } }
-    getJson('./data/market.json?t=' + Date.now()).then(function (j) { (j.items || []).forEach(add); }).catch(function () {})
-      .then(function () {
-        return getJson('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH').then(function (arr) {
-          arr.forEach(function (c) {
-            add({ name: c.market === 'KRW-BTC' ? '비트코인' : '이더리움', value: fmt(c.trade_price) + '원', change: c.signed_change_rate * 100 });
-          });
-        }).catch(function () {});
-      })
-      .then(function () {
-        if (names['원/달러']) return;
-        var p = fxCache ? Promise.resolve(fxCache) : getJson('https://open.er-api.com/v6/latest/USD').then(function (j) { fxCache = j; return j; });
-        return p.then(function (j) { if (j && j.rates && j.rates.KRW) add({ name: '원/달러', value: fmt(j.rates.KRW, 1) + '원' }); }).catch(function () {});
-      })
-      .then(function () {
-        if (!list.length) { $('#market').hidden = true; return; }
-        $('#marketIn').innerHTML = list.map(function (x) {
-          var c = '';
-          if (typeof x.change === 'number' && isFinite(x.change)) {
-            var up = x.change > 0, dn = x.change < 0;
-            c = '<span class="mk-c ' + (up ? 'up' : dn ? 'down' : '') + '">' + (up ? '+' : '') + x.change.toFixed(2) + '%</span>';
-          }
-          return '<div class="mk"><span class="mk-n">' + esc(x.name) + '</span><span class="mk-v">' + esc(x.value) + '</span>' + c + '</div>';
-        }).join('');
-        $('#market').hidden = false;
-      });
-  }
-  loadMarket();
-  setInterval(function () { if (!document.hidden) loadMarket(); }, 60000);
-
-  /* ───────── 방문자 카운터 (세션당 1회 집계: 오늘 / 누적) ───────── */
+  /* ───────── 방문자 카운터 ───────── */
   (function () {
-    var todayKey = 'visits-' + kstToday();
-    var ns = 'kimjeonghun1-daily-briefing';
-    var already = false;
-    try { already = sessionStorage.getItem('briefing-counted') === todayKey; } catch (e) {}
-    var mode = already ? 'get' : 'hit';
+    var tk = 'visits-' + kstToday(), ns = 'kimjeonghun1-daily-briefing', done = false;
+    try { done = sessionStorage.getItem('briefing-counted') === tk; } catch (e) {}
+    var m = done ? 'get' : 'hit';
     Promise.all([
-      getJson('https://abacus.jasoncameron.dev/' + mode + '/' + ns + '/' + todayKey).catch(function () { return null; }),
-      getJson('https://abacus.jasoncameron.dev/' + mode + '/' + ns + '/visits').catch(function () { return null; })
+      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/' + tk).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch('https://abacus.jasoncameron.dev/' + m + '/' + ns + '/visits').then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (res) {
-      if (!already && (res[0] || res[1])) {
-        try { sessionStorage.setItem('briefing-counted', todayKey); } catch (e) {}
-      }
-      var td = res[0] && typeof res[0].value === 'number' ? res[0].value : null;
-      var tot = res[1] && typeof res[1].value === 'number' ? res[1].value : null;
-      var parts = [];
-      if (td !== null) parts.push('오늘 ' + fmt(td));
-      if (tot !== null) parts.push('누적 ' + fmt(tot));
-      if (parts.length) $('#visitStat').textContent = ' · 방문 ' + parts.join(' / ');
+      if (!done && (res[0] || res[1])) try { sessionStorage.setItem('briefing-counted', tk); } catch (e) {}
+      var p = [];
+      if (res[0] && typeof res[0].value === 'number') p.push('오늘 ' + fmt(res[0].value));
+      if (res[1] && typeof res[1].value === 'number') p.push('누적 ' + fmt(res[1].value));
+      if (p.length) $('visitStat').textContent = ' · 방문 ' + p.join(' / ');
     });
   })();
 
-  /* ───────── 휴가용 항공권·기차표 검색 ───────── */
-  (function () {
-    function addDays(n) {
-      var d = new Date(Date.now() + 9 * 3600000 + n * 86400000);
-      return d.toISOString().slice(0, 10);
-    }
-    var KOR_AIRPORT = {
-      '서울': 'SEL', '인천': 'ICN', '김포': 'GMP', '제주': 'CJU', '부산': 'PUS', '김해': 'PUS',
-      '대구': 'TAE', '청주': 'CJJ', '광주': 'KWJ', '여수': 'RSU', '울산': 'USN', '사천': 'HIN',
-      '진주': 'HIN', '양양': 'YNY', '군산': 'KUV', '무안': 'MWX', '포항': 'KPO', '원주': 'WJU',
-      '도쿄': 'TYO', '나리타': 'NRT', '하네다': 'HND', '오사카': 'KIX', '간사이': 'KIX',
-      '후쿠오카': 'FUK', '삿포로': 'CTS', '오키나와': 'OKA', '나고야': 'NGO',
-      '타이베이': 'TPE', '대만': 'TPE', '가오슝': 'KHH', '홍콩': 'HKG', '마카오': 'MFM',
-      '다낭': 'DAD', '나트랑': 'CXR', '하노이': 'HAN', '호치민': 'SGN', '푸꾸옥': 'PQC',
-      '방콕': 'BKK', '치앙마이': 'CNX', '푸켓': 'HKT', '싱가포르': 'SIN', '코타키나발루': 'BKI',
-      '세부': 'CEB', '보홀': 'TAG', '마닐라': 'MNL', '발리': 'DPS', '괌': 'GUM', '사이판': 'SPN',
-      '하와이': 'HNL', '호놀룰루': 'HNL', '시드니': 'SYD', '파리': 'CDG', '런던': 'LHR',
-      '로마': 'FCO', '프라하': 'PRG', '뉴욕': 'JFK', '로스앤젤레스': 'LAX', '샌프란시스코': 'SFO'
-    };
-    function codeOf(v, fallback) {
-      var raw = String(v || '').trim();
-      var m = raw.toUpperCase().match(/[A-Z]{3}/);
-      if (m) return m[0];
-      var keys = Object.keys(KOR_AIRPORT);
-      for (var i = 0; i < keys.length; i++) {
-        if (raw.indexOf(keys[i]) !== -1) return KOR_AIRPORT[keys[i]];
-      }
-      return fallback;
-    }
-    $('#fDep').value = addDays(1);
-    $('#fRet').value = addDays(4);
-
-    function setVacOpen(open) {
-      $('#vacBar').hidden = !open;
-      $('#vacBtn').setAttribute('aria-pressed', String(open));
-      $('#vacBtn').setAttribute('aria-expanded', String(open));
-      if (open && window.scrollY > 120) window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    $('#vacBtn').addEventListener('click', function () { setVacOpen($('#vacBar').hidden); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#vacBar').hidden) setVacOpen(false); });
-
-    $('#vacModeSeg').addEventListener('click', function (e) {
-      var b = e.target.closest('[data-vac]'); if (!b) return;
-      var mode = b.dataset.vac;
-      document.querySelectorAll('#vacModeSeg [data-vac]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.vac === mode)); });
-      $('#vacFlightForm').hidden = mode !== 'flight';
-      $('#vacGroundForm').hidden = mode !== 'ground';
-    });
-
-    $('#fTrip').addEventListener('change', function (e) { $('#fRetWrap').hidden = e.target.value !== 'round'; });
-    $('#fSwap').addEventListener('click', function () { var a = $('#fFrom').value; $('#fFrom').value = $('#fTo').value; $('#fTo').value = a; });
-
-    function fParams() {
-      var trip = $('#fTrip').value;
-      var from = codeOf($('#fFrom').value, 'SEL');
-      var to = codeOf($('#fTo').value, 'CJU');
-      var dep = $('#fDep').value || addDays(1);
-      var ret = $('#fRet').value || addDays(4);
-      var pax = $('#fPax').value || '1';
-      return { trip: trip, from: from, to: to, dep: dep, ret: ret, pax: pax };
-    }
-    var DOMESTIC_CODES = { SEL: 1, ICN: 1, GMP: 1, CJU: 1, PUS: 1, TAE: 1, CJJ: 1, KWJ: 1, RSU: 1, USN: 1, HIN: 1, YNY: 1, KUV: 1, MWX: 1 };
-
-    $('#fGoSky').addEventListener('click', function () {
-      var p = fParams();
-      var d1 = p.dep.replace(/-/g, '').slice(2);
-      var d2 = p.trip === 'round' ? '/' + p.ret.replace(/-/g, '').slice(2) : '';
-      window.open('https://www.skyscanner.co.kr/transport/flights/' + p.from.toLowerCase() + '/' + p.to.toLowerCase() + '/' + d1 + d2 + '/?adults=' + p.pax, '_blank', 'noopener');
-    });
-    $('#fGoNaver').addEventListener('click', function () {
-      var p = fParams();
-      var dom = DOMESTIC_CODES[p.from] && DOMESTIC_CODES[p.to];
-      var d1 = p.dep.replace(/-/g, ''), d2 = p.ret.replace(/-/g, '');
-      var base = 'https://flight.naver.com/flights/' + (dom ? 'domestic' : 'international') + '/';
-      var leg = p.from + '-' + p.to + '-' + d1 + (p.trip === 'round' ? '/' + p.to + '-' + p.from + '-' + d2 : '');
-      window.open(base + leg + '?adult=' + p.pax + '&fareType=' + (dom ? 'YC' : 'Y'), '_blank', 'noopener');
-    });
-    $('#fGoGoogle').addEventListener('click', function () {
-      var p = fParams();
-      var q = 'Flights from ' + p.from + ' to ' + p.to + ' on ' + p.dep + (p.trip === 'round' ? ' through ' + p.ret : '');
-      window.open('https://www.google.com/travel/flights?hl=ko&curr=KRW&q=' + encodeURIComponent(q), '_blank', 'noopener');
-    });
-  })();
-
-  /* ───────── 문의사항 모달 & 메일 발송 ───────── */
-  (function () {
-    var modal = document.createElement('div');
-    modal.className = 'req-backdrop';
-    modal.id = 'reqModal';
-    modal.hidden = true;
-    modal.innerHTML =
-      '<div class="req-modal" role="dialog" aria-modal="true" aria-labelledby="reqTitle">' +
-        '<div class="req-hd"><h2 id="reqTitle">문의사항 보내기</h2><button type="button" class="ctl" id="reqClose" style="width:32px;height:32px;padding:0;justify-content:center" aria-label="닫기">' + icon('x') + '</button></div>' +
-        '<form id="reqForm">' +
-          '<div class="req-bd">' +
-            '<div class="req-to"><span>수신: 구조부 김정훈 과장 (<span class="mono">jaykim@samboeng.co.kr</span>)</span><button type="button" class="req-copy" id="reqCopy">주소 복사</button></div>' +
-            '<div class="vac-field"><label for="reqSender">작성자 / 소속 (선택)</label><input class="vac-input" id="reqSender" type="text" placeholder="예: 홍길동 / 구조부" /></div>' +
-            '<div class="vac-field"><label for="reqType">분류</label><select class="vac-input" id="reqType"><option value="정보/탭 추가 요청">정보/탭 추가 요청</option><option value="오류·기사 제외 요청">오류·기사 제외 요청</option><option value="기타 문의">기타 문의</option></select></div>' +
-            '<div class="vac-field"><label for="reqMsg">문의 내용</label><textarea id="reqMsg" required placeholder="추가하고 싶은 탭, 키워드, 언론사 또는 수정 요청 사항을 입력해 주세요."></textarea></div>' +
-            '<div class="req-status" id="reqStatus"></div>' +
-          '</div>' +
-          '<div class="req-ft">' +
-            '<a class="ctl" id="reqMailto" href="mailto:jaykim@samboeng.co.kr?subject=%5B%EA%B5%AC%EC%A1%B0%EB%B6%80%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B8%8C%EB%A6%AC%ED%95%91%5D%20%EB%AC%B8%EC%9D%98%EC%82%AC%ED%95%AD">메일 앱으로 열기</a>' +
-            '<button type="submit" class="ctl vac-go" id="reqSend">메일로 보내기</button>' +
-          '</div>' +
-        '</form>' +
-      '</div>';
-    document.body.appendChild(modal);
-
-    function closeReq() { modal.hidden = true; }
-    $('#reqBtn').addEventListener('click', function () {
-      $('#reqStatus').textContent = '';
-      $('#reqStatus').className = 'req-status';
-      modal.hidden = false;
-      $('#reqMsg').focus();
-    });
-    $('#reqClose').addEventListener('click', closeReq);
-    modal.addEventListener('click', function (e) { if (e.target === modal) closeReq(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeReq(); });
-
-    $('#reqCopy').addEventListener('click', function () {
-      var btn = this;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText('jaykim@samboeng.co.kr').then(function () {
-          btn.textContent = '복사됨'; setTimeout(function () { btn.textContent = '주소 복사'; }, 1500);
-        });
-      }
-    });
-
-    $('#reqForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var msg = $('#reqMsg').value.trim();
-      if (!msg) return;
-      var sender = ($('#reqSender').value || '익명').trim();
-      var kind = $('#reqType').value;
-      var status = $('#reqStatus');
-      var sendBtn = $('#reqSend');
-      sendBtn.disabled = true;
-      sendBtn.textContent = '전송 중...';
-      status.className = 'req-status';
-      status.textContent = '메일을 전송하고 있습니다...';
-
-      fetch('https://formsubmit.co/ajax/jaykim@samboeng.co.kr', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: '[구조부 데일리 브리핑] ' + kind + ' (' + sender + ')',
-          작성자: sender,
-          분류: kind,
-          내용: msg,
-          _template: 'table'
-        })
-      }).then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      }).then(function () {
-        status.className = 'req-status ok';
-        status.textContent = '전송되었습니다. 감사합니다!';
-        $('#reqMsg').value = '';
-        setTimeout(closeReq, 1400);
-      }).catch(function () {
-        status.className = 'req-status err';
-        status.textContent = '자동 전송에 실패했습니다. 아래 "메일 앱으로 열기" 또는 주소 복사를 이용해 주세요.';
-      }).finally(function () {
-        sendBtn.disabled = false;
-        sendBtn.textContent = '메일로 보내기';
-      });
-    });
-  })();
+  /* 초기 해시 탭 적용 */
+  var h = location.hash.replace(/^#/, '').split('/')[0];
+  if (h) setTab(h);
 })();
 </script>
 </body>
