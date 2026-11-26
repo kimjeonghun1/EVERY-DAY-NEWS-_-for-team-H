@@ -131,6 +131,10 @@
 <main class="m-wrap">
   <!-- 1. 홈 / 브리핑 (_3 시안) -->
   <section class="m-page" id="mp-home">
+    <div style="margin-bottom:8px;padding:7px 11px;border-radius:8px;background:var(--warn-soft);border:1px solid rgba(180,83,9,0.22);display:flex;align-items:center;gap:7px;font-size:12.5px">
+      <span class="m-badge" style="background:var(--warn);color:#fff;flex:none">📢 공지</span>
+      <b style="color:var(--ink)">김민서 나스닥한테 물림</b>
+    </div>
     <div class="m-grid3">
       <div class="m-kpi center"><div class="m-kpi-l">브리핑 일자</div><div class="m-kpi-v" id="mhDate">—</div></div>
       <div class="m-kpi center"><div class="m-kpi-l">수집 뉴스</div><div class="m-kpi-v" style="color:var(--up)" id="mhNews">—</div></div>
@@ -543,6 +547,19 @@
         if (seen['원/달러']) return;
         return fetch('https://open.er-api.com/v6/latest/USD').then(function (r) { return r.json(); }).then(function (j) { if (j && j.rates && j.rates.KRW) add({ name: '원/달러', value: fmt(j.rates.KRW, 1) + '원' }); }).catch(function () {});
       }).then(function () {
+        var fxItem = list.find(function (x) { return x.name === '원/달러'; });
+        var fxRate = fxItem ? parseFloat(String(fxItem.value || '').replace(/[^0-9.]/g, '')) : 0;
+        if (fxRate > 800) {
+          list.forEach(function (x) {
+            if (x.name && x.name.indexOf('금') === 0 && String(x.value || '').indexOf('$') >= 0) {
+              var usdOz = parseFloat(String(x.value).replace(/[^0-9.]/g, ''));
+              if (isFinite(usdOz) && usdOz > 0) {
+                x.name = '금(원/돈)';
+                x.value = fmt(Math.round((usdOz * fxRate / 31.1034768) * 3.75)) + '원';
+              }
+            }
+          });
+        }
         var html = list.slice(0, 6).map(function (x) {
           var b = typeof x.change === 'number' && isFinite(x.change)
             ? '<span class="m-badge ' + (x.change > 0 ? 'up' : 'down') + '">' + (x.change > 0 ? '+' : '') + x.change.toFixed(2) + '%</span>' : '';
