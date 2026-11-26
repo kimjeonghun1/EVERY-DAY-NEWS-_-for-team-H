@@ -372,7 +372,7 @@
         <div class="wx-panel" id="wxPanel" hidden></div>
       </div>
       <button class="ctl" id="themeBtn" type="button" title="라이트/다크 전환"></button>
-      <button class="ctl" id="reqBtn" type="button" title="구조부 김정훈 과장에게 문의"><span class="icw" data-ic="mail"></span><span>문의사항</span></button>
+      <button class="ctl" id="reqBtn" type="button" title="문의 및 개선 요청"><span class="icw" data-ic="mail"></span><span>문의사항</span></button>
       <a class="ctl" href="./m.html" title="모바일 전용 화면으로 이동"><span class="icw" data-ic="phone"></span><span>모바일</span></a>
     </div>
   </div>
@@ -546,15 +546,6 @@
             <button class="ctl" type="button" data-go-tab="culture" style="height:26px;font-size:11.5px">TOP 50 →</button>
           </div>
           <div id="homeMusicMini"></div>
-        </div>
-
-        <!-- 우측 5: 담당자 안내 -->
-        <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
-          <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
-            <div>담당자: <b style="color:var(--ink)">구조부 김정훈 과장</b> (<span class="mono">jaykim@samboeng.co.kr</span>)</div>
-            <button type="button" class="ctl primary" id="sideReqBtn" style="justify-content:center">문의·추가 요청 보내기</button>
-          </div>
         </div>
       </aside>
     </div>
@@ -968,9 +959,8 @@
     </div>
     <form id="reqForm">
       <div class="modal-bd">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--sub);background:var(--subtle);padding:8px 10px;border-radius:7px">
-          <span>수신: 구조부 김정훈 과장 (<span class="mono">jaykim@samboeng.co.kr</span>)</span>
-          <button type="button" class="ctl" id="reqCopy" style="height:24px;font-size:11px;padding:0 8px">복사</button>
+        <div style="font-size:12px;color:var(--sub);background:var(--subtle);padding:8px 10px;border-radius:7px">
+          추가하고 싶은 기능이나 오류 제보를 남겨주시면 운영팀으로 전달됩니다.
         </div>
         <div class="field"><label for="reqSender">작성자 / 소속 (선택)</label><input class="inp" id="reqSender" placeholder="예: 홍길동 / 구조부" /></div>
         <div class="field"><label for="reqType">분류</label><select class="inp" id="reqType"><option value="정보/탭 추가 요청">정보/탭 추가 요청</option><option value="오류·기사 제외 요청">오류·기사 제외 요청</option><option value="기타 문의">기타 문의</option></select></div>
@@ -978,8 +968,7 @@
         <div class="req-status" id="reqStatus"></div>
       </div>
       <div class="modal-ft">
-        <a class="ctl" href="mailto:jaykim@samboeng.co.kr?subject=%5B%EA%B5%AC%EC%A1%B0%EB%B6%80%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B8%8C%EB%A6%AC%ED%95%91%5D%20%EB%AC%B8%EC%9D%98%EC%82%AC%ED%95%AD">메일 앱 열기</a>
-        <button type="submit" class="ctl primary" id="reqSend">메일로 보내기</button>
+        <button type="submit" class="ctl primary" id="reqSend">문의 보내기</button>
       </div>
     </form>
   </div>
@@ -987,7 +976,7 @@
 
 <footer class="ftr">
   <div class="ftr-in">
-    <span><b>구조부 일일 업무·정보 통합 포털 (Team-H)</b> · 운영담당: 구조부 김정훈 과장</span>
+    <span><b>구조부 일일 업무·정보 통합 포털 (Team-H)</b></span>
     <span class="mono">DATA: n8n News · G2B OpenAPI · Market/Upbit · Open-Meteo · TradingView</span>
   </div>
 </footer>
@@ -1940,28 +1929,24 @@
   document.addEventListener('click', function (e) { if (!e.target.closest('.wx')) $('wxPanel').hidden = true; });
   loadWx(wxCity);
 
-  /* ───────── 문의사항 모달 (FormSubmit) ───────── */
+  /* ───────── 문의사항 모달 (수신자 비노출 AJAX 전송) ───────── */
   function openReq() { $('reqStatus').textContent = ''; $('reqStatus').className = 'req-status'; $('reqModal').hidden = false; $('reqMsg').focus(); }
   $('reqBtn').addEventListener('click', openReq);
-  $('sideReqBtn').addEventListener('click', openReq);
   $('reqClose').addEventListener('click', function () { $('reqModal').hidden = true; });
   $('reqModal').addEventListener('click', function (e) { if (e.target === $('reqModal')) $('reqModal').hidden = true; });
-  $('reqCopy').addEventListener('click', function () {
-    if (navigator.clipboard) navigator.clipboard.writeText('jaykim@samboeng.co.kr').then(function () { $('reqCopy').textContent = '복사됨'; setTimeout(function () { $('reqCopy').textContent = '복사'; }, 1500); });
-  });
   $('reqForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var msg = $('reqMsg').value.trim(); if (!msg) return;
     var sender = ($('reqSender').value || '익명').trim(), kind = $('reqType').value;
     $('reqSend').disabled = true; $('reqSend').textContent = '전송 중...';
-    fetch('https://formsubmit.co/ajax/jaykim@samboeng.co.kr', {
+    fetch('https://formsubmit.co/ajax/' + atob('amF5a2ltQHNhbWJvZW5nLmNvLmty'), {
       method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ _subject: '[구조부 데일리 브리핑] ' + kind + ' (' + sender + ')', 작성자: sender, 분류: kind, 내용: msg, _template: 'table' })
     }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function () {
       $('reqStatus').className = 'req-status ok'; $('reqStatus').textContent = '전송되었습니다. 감사합니다!'; $('reqMsg').value = '';
     }).catch(function () {
-      $('reqStatus').className = 'req-status err'; $('reqStatus').textContent = '전송 실패 — 아래 메일 앱 열기를 이용해 주세요.';
-    }).finally(function () { $('reqSend').disabled = false; $('reqSend').textContent = '메일로 보내기'; });
+      $('reqStatus').className = 'req-status err'; $('reqStatus').textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+    }).finally(function () { $('reqSend').disabled = false; $('reqSend').textContent = '문의 보내기'; });
   });
 
   /* ───────── 방문자 카운터 ───────── */
