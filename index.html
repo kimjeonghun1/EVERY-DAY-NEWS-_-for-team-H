@@ -47,10 +47,10 @@
     --line: #e2e8f0;
     --line-2: #cbd5e1;
 
-    --primary: #00477f;
-    --primary-hover: #003561;
-    --primary-soft: #e8f1fb;
-    --primary-ink: #00477f;
+    --primary: #0f2b48;
+    --primary-hover: #163a5f;
+    --primary-soft: #e8f0f8;
+    --primary-ink: #1f5f9e;
     --up: #dc2626;
     --up-soft: #fee2e2;
     --down: #1d4ed8;
@@ -178,19 +178,49 @@
   .card-hd h2, .card-hd h3 { font-size: 14.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
   .card-hd .bar { width: 4px; height: 15px; border-radius: 2px; background: var(--primary); display: inline-block; }
   .card-bd { padding: 14px 16px; }
-  .grid-main { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 18px; align-items: start; }
+  .grid-main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
   .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 
-  /* 금융 지표 카드 6열 */
-  .mk-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
-  .mk-card { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px; }
-  .mk-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--sub); font-weight: 600; }
-  .mk-sym { font-family: var(--mono); font-size: 10.5px; color: var(--mute); font-weight: 500; }
-  .mk-val { font-family: var(--mono); font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
-  .mk-chg { font-family: var(--mono); font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 4px; width: fit-content; }
+  /* 금융 지표 카드: 컴팩트 가로 6분할 1줄 슬림 바 */
+  .mk-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+  .mk-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; display: flex; flex-direction: column; gap: 3px; }
+  .mk-top { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--sub); font-weight: 600; }
+  .mk-sym { font-family: var(--mono); font-size: 10px; color: var(--mute); font-weight: 500; }
+  .mk-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: 1px; }
+  .mk-val { font-family: var(--mono); font-size: 14.5px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+  .mk-chg { font-family: var(--mono); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; padding: 1px 5px; border-radius: 4px; width: fit-content; white-space: nowrap; }
   .mk-chg.up { background: var(--up-soft); color: var(--up); }
   .mk-chg.down { background: var(--down-soft); color: var(--down); }
   .mk-chg.flat { background: var(--subtle); color: var(--mute); }
+
+  /* 홈 대시보드: 분야별 2열 카드 그리드 & 3단계 정돈 타이포 */
+  .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .cat-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; }
+  .cat-box-hd { padding: 11px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .cat-box-hd h3 { font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
+  .cat-box-hd .bar { width: 3.5px; height: 14px; border-radius: 2px; background: var(--primary); display: inline-block; }
+  .cat-box-hd .more-btn { font-size: 12px; font-weight: 600; color: var(--primary-ink); padding: 2px 6px; border-radius: 5px; }
+  .cat-box-hd .more-btn:hover { background: var(--primary-soft); }
+  .skim-item { display: block; padding: 12px 16px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background-color 120ms; }
+  .skim-item:last-child { border-bottom: 0; }
+  .skim-item:hover { background: var(--subtle); }
+  .skim-item.read .skim-t { color: var(--mute); font-weight: 500; }
+  .skim-t { font-size: 14px; font-weight: 600; line-height: 1.45; color: var(--ink); word-break: keep-all; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .skim-item:hover .skim-t { color: var(--primary-ink); }
+  .skim-s { margin-top: 4px; font-size: 12.5px; line-height: 1.45; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .skim-m { margin-top: 5px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--mute); }
+  .skim-m .dot::before { content: "·"; margin-right: 8px; }
+
+  /* 종합 뉴스 좌측 세로 카테고리 메뉴 */
+  .news-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
+  .news-side { position: sticky; top: 112px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px; max-height: calc(100vh - 130px); overflow-y: auto; }
+  .ns-grp { margin-top: 12px; }
+  .ns-grp:first-child { margin-top: 0; }
+  .ns-gt { padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--mute); text-transform: uppercase; letter-spacing: 0.02em; }
+  .ns-btn { width: 100%; height: 32px; padding: 0 10px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 500; color: var(--sub); text-align: left; }
+  .ns-btn:hover { background: var(--subtle); color: var(--ink); }
+  .ns-btn[aria-current="true"] { background: var(--primary); color: #fff; font-weight: 600; }
+  .ns-btn .n { font-family: var(--mono); font-size: 11px; opacity: 0.8; }
 
   /* 필터 칩 */
   .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--subtle); }
@@ -299,11 +329,14 @@
 
   /* 반응형 */
   @media (max-width: 1280px) {
-    .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-main { grid-template-columns: minmax(0, 1fr) 340px; }
+    .grid-main { grid-template-columns: minmax(0, 1fr) 330px; }
+    .news-shell { grid-template-columns: 200px minmax(0, 1fr); }
+    .news-shell > aside { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   }
   @media (max-width: 1024px) {
-    .grid-main { grid-template-columns: 1fr; }
+    .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-main, .cat-grid, .news-shell { grid-template-columns: 1fr; }
+    .news-side { position: static; max-height: none; }
     .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bid-kv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
@@ -372,24 +405,16 @@
     <div class="mk-grid" id="homeMarketGrid"></div>
     <div class="grid-main">
       <div class="stack">
-        <div class="card">
+        <!-- 검색 중일 때만 표시되는 검색 결과 카드 -->
+        <div class="card" id="homeSearchCard" hidden>
           <div class="card-hd">
-            <h2><span class="bar"></span>주요 브리핑 &amp; 뉴스 피드 <span class="badge" id="homeCount">0건</span></h2>
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <select class="ctl" id="homeGroupSel" aria-label="대분류 선택"></select>
-              <select class="ctl" id="homePubSel" aria-label="언론사 선택"></select>
-            </div>
+            <h2><span class="bar"></span>통합 검색 결과 <span class="badge" id="homeSearchCount">0건</span></h2>
+            <button type="button" class="ctl" id="homeSearchReset" style="height:26px;font-size:11.5px">검색 초기화</button>
           </div>
-          <div class="chips" id="homeCatChips"></div>
-          <div id="homeFeedList"></div>
-          <div class="feed-foot">
-            <span id="homePageInfo">—</span>
-            <div style="display:flex;gap:6px">
-              <button class="ctl" id="homePrev" type="button">이전</button>
-              <button class="ctl" id="homeNext" type="button">다음</button>
-            </div>
-          </div>
+          <div id="homeSearchList"></div>
         </div>
+        <!-- 평상시: 분야별 2열 카드 그리드 (가독성 최우선) -->
+        <div class="cat-grid" id="homeCatGrid"></div>
       </div>
 
       <aside class="stack">
@@ -430,16 +455,7 @@
           </div>
         </div>
 
-        <!-- 우측 2: 마감 임박 발주 TOP 5 -->
-        <div class="card">
-          <div class="card-hd">
-            <h3><span class="bar"></span>발주 속보 요약</h3>
-            <button class="ctl" type="button" data-go-tab="procurement" style="height:26px;font-size:11.5px">발주 전체 →</button>
-          </div>
-          <div id="homeBidMini"></div>
-        </div>
-
-        <!-- 우측 3: 실시간 음원 차트 TOP 5 -->
+        <!-- 우측 2: 실시간 음원 차트 TOP 5 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>실시간 음원 차트 TOP 5</h3>
@@ -448,13 +464,13 @@
           <div id="homeMusicMini"></div>
         </div>
 
-        <!-- 우측 4: 프로야구 최신 소식 -->
+        <!-- 우측 3: 발주 속보 요약 -->
         <div class="card">
           <div class="card-hd">
-            <h3><span class="bar"></span>프로야구 최신 소식</h3>
-            <button class="ctl" type="button" data-go-tab="kbo" style="height:26px;font-size:11.5px">KBO 탭 →</button>
+            <h3><span class="bar"></span>발주 속보 요약</h3>
+            <button class="ctl" type="button" data-go-tab="procurement" style="height:26px;font-size:11.5px">발주 전체 →</button>
           </div>
-          <div id="homeKboMini"></div>
+          <div id="homeBidMini"></div>
         </div>
 
         <!-- 우측 4: 담당자 안내 -->
@@ -462,7 +478,6 @@
           <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
             <div>담당자: <b style="color:var(--ink)">구조부 김정훈 과장</b> (<span class="mono">jaykim@samboeng.co.kr</span>)</div>
-            <div>추가하고 싶은 키워드·언론사·기능이 있으면 언제든 문의해 주세요.</div>
             <button type="button" class="ctl primary" id="sideReqBtn" style="justify-content:center">문의·추가 요청 보내기</button>
           </div>
         </div>
@@ -470,9 +485,9 @@
     </div>
   </section>
 
-  <!-- ================= 1-B. 종합 뉴스 (전용 탭) ================= -->
+  <!-- ================= 1-B. 종합 뉴스 (좌측 목차 + 분야별 헤드라인) ================= -->
   <section class="page" id="page-news" hidden>
-    <div id="newsTicker" style="margin-bottom:14px;padding:10px 14px;border-radius:9px;background:var(--up-soft);color:var(--up);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
+    <div id="newsTicker" style="margin-bottom:14px;padding:9px 14px;border-radius:9px;background:var(--up-soft);color:var(--up);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
       <span id="newsTickerText">● 속보 불러오는 중...</span>
       <div style="display:flex;gap:6px">
         <button type="button" class="ctl" id="ttsNewsBtn" style="height:28px;font-size:12px">▶ 출근길 음성 브리핑</button>
@@ -480,9 +495,11 @@
       </div>
     </div>
 
-    <div class="grid-main">
+    <div class="news-shell">
+      <nav class="news-side" id="newsSideNav" aria-label="뉴스 카테고리 목차"></nav>
+
       <div class="stack">
-        <div class="card">
+        <div class="card" id="newsTopCard">
           <div class="card-hd">
             <h2><span class="bar"></span>분야별 대표 헤드라인 브리핑</h2>
             <span class="badge">각 분야별 1선</span>
@@ -492,17 +509,8 @@
 
         <div class="card">
           <div class="card-hd">
-            <h2><span class="bar"></span>분야별 종합 뉴스 <span class="badge" id="newsTabCount">0건</span></h2>
+            <h2 id="newsTabHeading"><span class="bar"></span>전체 종합 뉴스 <span class="badge" id="newsTabCount">0건</span></h2>
             <select class="ctl" id="newsTabPubSel" aria-label="언론사 선택"></select>
-          </div>
-          <div class="chips" id="newsTabChips">
-            <button class="chip" data-ngrp="전체" aria-pressed="true">전체 속보</button>
-            <button class="chip" data-ngrp="삼보기술단" aria-pressed="false">삼보기술단</button>
-            <button class="chip" data-ngrp="국내 엔지니어링" aria-pressed="false">토목·건설·인프라</button>
-            <button class="chip" data-ngrp="해외 토목" aria-pressed="false">해외 토목</button>
-            <button class="chip" data-ngrp="AI · 신기술" aria-pressed="false">AI · 신기술</button>
-            <button class="chip" data-ngrp="시사 · 경제" aria-pressed="false">경제·시사</button>
-            <button class="chip" data-ngrp="투자 · 금융" aria-pressed="false">투자·금융</button>
           </div>
           <div id="newsTabList"></div>
           <div class="feed-foot">
@@ -522,7 +530,7 @@
         </div>
         <div class="card">
           <div class="card-hd">
-            <h3><span class="bar"></span>사내 회람 스크랩 보관함</h3>
+            <h3><span class="bar"></span>사내 회람 스크랩</h3>
             <div style="display:flex;gap:6px;align-items:center">
               <span class="badge" id="scrapCount">0건</span>
               <button type="button" class="ctl" id="copyScrapBtn" style="height:24px;font-size:11px;padding:0 8px">복사</button>
@@ -993,7 +1001,7 @@
 
   var newsItems = [];
   var homeState = { group: '전체', cat: 'ALL', pub: 'ALL', page: 1, pageSize: 15 };
-  var newsTabState = { group: '전체', pub: 'ALL', page: 1, pageSize: 12 };
+  var newsTabState = { group: '전체', cat: 'ALL', pub: 'ALL', page: 1, pageSize: 15 };
   var kboTeam = 'ALL';
   var scrapMap = new Map();
   try { JSON.parse(localStorage.getItem('briefing-scraps') || '[]').forEach(function (s) { if (s && s.url) scrapMap.set(s.url, s); }); } catch (e) {}
@@ -1024,79 +1032,100 @@
     };
   }
 
+  var HOME_CARDS = [
+    { key: '삼보기술단', title: '삼보기술단', cats: ['삼보기술단'], matchWord: '삼보기술단' },
+    { key: '국내 엔지니어링', title: '국내 엔지니어링', cats: ['국내 입찰·용역', '엔지니어링 뉴스', '협회 및 유관기관', '기술사-토목구조'] },
+    { key: '해외 토목', title: '해외 토목사업', cats: ['해외 토목사업', '해외토목-베트남', '해외토목-방글라데시'] },
+    { key: '시사 · 경제', title: '오늘의 헤드라인 · 시사', cats: ['오늘의 뉴스 헤드라인', '국내정치', '해외정치', '국내사회'] },
+    { key: 'AI · 신기술', title: 'AI · 신기술', cats: ['AI 트렌드', 'GitHub 핫한 AI', 'HuggingFace 논문·앱', 'AI 활용·신기술 뉴스'] },
+    { key: '투자 · 금융', title: '거시경제 · 투자', cats: ['국내경제', '해외경제', '국내주식', '해외주식', '코인'] }
+  ];
+
   function renderNewsSelectors() {
-    $('homeGroupSel').innerHTML = GROUPS.map(function (g) {
-      return '<option value="' + esc(g.name) + '"' + (homeState.group === g.name ? ' selected' : '') + '>' + esc(g.name) + '</option>';
-    }).join('');
-    var pubs = {};
-    newsItems.forEach(function (x) { if (x.publisher) pubs[x.publisher] = (pubs[x.publisher] || 0) + 1; });
-    var plist = Object.keys(pubs).sort(function (a, b) { return pubs[b] - pubs[a]; });
-    $('homePubSel').innerHTML = '<option value="ALL">언론사 전체</option>' + plist.map(function (p) {
-      return '<option value="' + esc(p) + '"' + (homeState.pub === p ? ' selected' : '') + '>' + esc(p) + ' (' + pubs[p] + ')</option>';
-    }).join('');
-    var grp = GROUPS.find(function (g) { return g.name === homeState.group; }) || GROUPS[0];
-    var cats = grp.cats.length ? grp.cats : Array.from(new Set(newsItems.map(function (x) { return x.category; }))).filter(Boolean);
-    var html = '<button class="chip" data-hcat="ALL" aria-pressed="' + String(homeState.cat === 'ALL') + '">전체 <span class="cnt">' + fmt(filterHomeNews('ALL').length) + '</span></button>';
-    cats.forEach(function (c) {
-      var n = newsItems.filter(function (x) { return x.category === c; }).length;
-      if (!n && homeState.group === '전체') return;
-      html += '<button class="chip" data-hcat="' + esc(c) + '" aria-pressed="' + String(homeState.cat === c) + '">' + esc(catLabel(c)) + ' <span class="cnt">' + n + '</span></button>';
+    /* 종합 뉴스 좌측 세로 카테고리 목차 렌더링 */
+    var sideHtml = '<button type="button" class="ns-btn" data-ncat="ALL" aria-current="' + String(newsTabState.group === '전체' && newsTabState.cat === 'ALL') + '"><span>전체 브리핑</span><span class="n">' + fmt(newsItems.length) + '</span></button>';
+    GROUPS.slice(1).forEach(function (g) {
+      sideHtml += '<div class="ns-grp"><div class="ns-gt">' + esc(g.name) + '</div>';
+      g.cats.forEach(function (c) {
+        var cnt = newsItems.filter(function (x) {
+          if (c === '삼보기술단') return x.category === '삼보기술단' || [x.title, x.summary].join(' ').indexOf('삼보기술단') >= 0;
+          return x.category === c;
+        }).length;
+        var active = newsTabState.cat === c;
+        sideHtml += '<button type="button" class="ns-btn" data-ncat="' + esc(c) + '" aria-current="' + String(active) + '"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(catLabel(c)) + '</span><span class="n">' + cnt + '</span></button>';
+      });
+      sideHtml += '</div>';
     });
-    $('homeCatChips').innerHTML = html;
+    $('newsSideNav').innerHTML = sideHtml;
   }
 
-  function filterHomeNews(overrideCat) {
-    var grp = GROUPS.find(function (g) { return g.name === homeState.group; }) || GROUPS[0];
-    var targetCat = overrideCat || homeState.cat;
-    return newsItems.filter(function (x) {
-      if (grp.cats.length && grp.cats.indexOf(x.category) < 0) return false;
-      if (targetCat !== 'ALL' && x.category !== targetCat) return false;
-      if (homeState.pub !== 'ALL' && x.publisher !== homeState.pub) return false;
-      if (globalQuery) {
-        var hay = [x.title, x.summary, x.publisher, x.category, x.originalTitle].join(' ').toLowerCase();
-        if (hay.indexOf(globalQuery) < 0) return false;
-      }
-      return true;
-    });
+  function skimItemHtml(x) {
+    var url = safeUrl(x.link || x.url);
+    var isRead = url && readSet.has(url);
+    var dt = (x.pubDate || '').slice(5, 16);
+    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">' +
+      '<div class="skim-t">' + esc(x.title) + '</div>' +
+      (x.summary ? '<div class="skim-s">' + esc(x.summary) + '</div>' : '') +
+      '<div class="skim-m"><span>' + esc(x.publisher || catLabel(x.category)) + '</span>' + (dt ? '<span class="dot mono">' + esc(dt) + '</span>' : '') + '</div></a>';
   }
 
   function newsRowHtml(x) {
     var url = safeUrl(x.link || x.url);
     var isRead = url && readSet.has(url);
     return '<article class="feed-item' + (isRead ? ' read' : '') + '">' +
-      '<div><div class="feed-meta"><span class="badge">' + esc(catLabel(x.category)) + '</span><span>' + esc(x.publisher || '출처 미표기') + '</span><span class="mono">' + esc((x.pubDate || x.date || '').slice(0, 16)) + '</span></div>' +
+      '<div><div class="feed-meta"><span class="badge">' + esc(catLabel(x.category)) + '</span><span>' + esc(x.publisher || '') + '</span><span class="mono">' + esc((x.pubDate || '').slice(0, 16)) + '</span></div>' +
       (url ? '<a class="feed-title" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">' + esc(x.title) + '</a>' : '<div class="feed-title">' + esc(x.title) + '</div>') +
       (x.summary ? '<p class="feed-sum">' + esc(x.summary) + '</p>' : '') +
       (x.originalTitle ? '<p class="feed-orig">' + esc(x.originalTitle) + '</p>' : '') +
       '</div>' +
-      (url ? '<div style="display:flex;gap:6px;align-items:center"><button type="button" class="star-btn" data-scrap="' + esc(url) + '" aria-pressed="' + String(scrapMap.has(url)) + '" title="사내 회람 스크랩">' + icon('star') + '</button><a class="ctl" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">원문 ↗</a></div>' : '') +
+      (url ? '<button type="button" class="star-btn" data-scrap="' + esc(url) + '" aria-pressed="' + String(scrapMap.has(url)) + '" title="사내 회람 스크랩">' + icon('star') + '</button>' : '') +
       '</article>';
   }
 
   function renderHomeFeed() {
-    var rows = filterHomeNews();
-    $('homeCount').textContent = fmt(rows.length) + '건';
-    var pages = Math.max(1, Math.ceil(rows.length / homeState.pageSize));
-    homeState.page = Math.max(1, Math.min(homeState.page, pages));
-    var start = (homeState.page - 1) * homeState.pageSize;
-    var slice = rows.slice(start, start + homeState.pageSize);
-    $('homeFeedList').innerHTML = slice.length ? slice.map(newsRowHtml).join('') : '<div style="padding:40px;text-align:center;color:var(--mute)">조건에 맞는 기사가 없습니다.</div>';
-    $('homePageInfo').textContent = rows.length ? (fmt(start + 1) + '–' + fmt(start + slice.length) + ' / ' + fmt(rows.length) + '건 (' + homeState.page + ' / ' + pages + ' 페이지)') : '0건';
-    $('homePrev').disabled = homeState.page <= 1;
-    $('homeNext').disabled = homeState.page >= pages;
+    if (globalQuery) {
+      var hits = newsItems.filter(function (x) {
+        return [x.title, x.summary, x.publisher, x.category, x.originalTitle].join(' ').toLowerCase().indexOf(globalQuery) >= 0;
+      });
+      $('homeSearchCard').hidden = false;
+      $('homeCatGrid').hidden = true;
+      $('homeSearchCount').textContent = fmt(hits.length) + '건';
+      $('homeSearchList').innerHTML = hits.length ? hits.slice(0, 30).map(newsRowHtml).join('') : '<div style="padding:36px;text-align:center;color:var(--mute)">검색 결과가 없습니다.</div>';
+      return;
+    }
+    $('homeSearchCard').hidden = true;
+    $('homeCatGrid').hidden = false;
+    $('homeCatGrid').innerHTML = HOME_CARDS.map(function (card) {
+      var list = newsItems.filter(function (x) {
+        if (card.matchWord) return x.category === card.matchWord || [x.title, x.summary].join(' ').indexOf(card.matchWord) >= 0;
+        return card.cats.indexOf(x.category) >= 0;
+      });
+      var top4 = list.slice(0, 4);
+      return '<section class="cat-box"><div class="cat-box-hd"><h3><span class="bar"></span>' + esc(card.title) + ' <span class="mono" style="font-size:11.5px;color:var(--mute);font-weight:500">' + fmt(list.length) + '</span></h3>' +
+        '<button type="button" class="more-btn" data-jump-group="' + esc(card.key) + '">더보기 →</button></div>' +
+        (top4.length ? top4.map(skimItemHtml).join('') : '<div style="padding:24px 16px;text-align:center;color:var(--mute);font-size:12.5px">오늘 수집된 기사가 없습니다.</div>') +
+        '</section>';
+    }).join('');
   }
 
-  $('homeGroupSel').addEventListener('change', function (e) { homeState.group = e.target.value; homeState.cat = 'ALL'; homeState.page = 1; renderNewsSelectors(); renderHomeFeed(); });
-  $('homePubSel').addEventListener('change', function (e) { homeState.pub = e.target.value; homeState.page = 1; renderHomeFeed(); });
-  $('homeCatChips').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-hcat]'); if (!b) return;
-    homeState.cat = b.dataset.hcat; homeState.page = 1; renderNewsSelectors(); renderHomeFeed();
+  $('homeSearchReset').addEventListener('click', function () {
+    $('globalQ').value = ''; $('globalClr').hidden = true; globalQuery = '';
+    renderHomeFeed(); renderNewsTab(); renderBids(); renderKboFeed();
   });
-  $('homePrev').addEventListener('click', function () { if (homeState.page > 1) { homeState.page--; renderHomeFeed(); } });
-  $('homeNext').addEventListener('click', function () { homeState.page++; renderHomeFeed(); });
+  $('homeCatGrid').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-jump-group]'); if (!b) return;
+    newsTabState.group = b.dataset.jumpGroup; newsTabState.cat = 'ALL'; newsTabState.page = 1;
+    setTab('news'); renderNewsSelectors(); renderNewsTab();
+  });
+  $('newsSideNav').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ncat]'); if (!b) return;
+    var c = b.dataset.ncat;
+    newsTabState.group = '전체'; newsTabState.cat = c; newsTabState.page = 1;
+    renderNewsSelectors(); renderNewsTab();
+  });
   document.addEventListener('click', function (e) {
     var a = e.target.closest('[data-read-url]');
-    if (a) { markRead(a.dataset.readUrl); var row = a.closest('.feed-item'); if (row) row.classList.add('read'); }
+    if (a) { markRead(a.dataset.readUrl); var row = a.closest('.feed-item,.skim-item'); if (row) row.classList.add('read'); }
     var sc = e.target.closest('[data-scrap]');
     if (sc) {
       var u = sc.dataset.scrap;
@@ -1174,14 +1203,20 @@
 
     var grp = GROUPS.find(function (g) { return g.name === newsTabState.group; }) || GROUPS[0];
     var rows = newsItems.filter(function (x) {
-      if (newsTabState.group === '삼보기술단') {
+      if (newsTabState.cat !== 'ALL') {
+        if (newsTabState.cat === '삼보기술단') {
+          if (x.category !== '삼보기술단' && [x.title, x.summary].join(' ').indexOf('삼보기술단') < 0) return false;
+        } else if (x.category !== newsTabState.cat) return false;
+      } else if (newsTabState.group === '삼보기술단') {
         if (x.category !== '삼보기술단' && [x.title, x.summary].join(' ').indexOf('삼보기술단') < 0) return false;
       } else if (grp.cats.length && grp.cats.indexOf(x.category) < 0) return false;
       if (newsTabState.pub !== 'ALL' && x.publisher !== newsTabState.pub) return false;
       if (globalQuery && [x.title, x.summary, x.publisher, x.category].join(' ').toLowerCase().indexOf(globalQuery) < 0) return false;
       return true;
     });
-    $('newsTabCount').textContent = fmt(rows.length) + '건';
+    var headingTitle = newsTabState.cat !== 'ALL' ? catLabel(newsTabState.cat) : (newsTabState.group !== '전체' ? newsTabState.group : '전체 종합 뉴스');
+    $('newsTabHeading').innerHTML = '<span class="bar"></span>' + esc(headingTitle) + ' <span class="badge" id="newsTabCount">' + fmt(rows.length) + '건</span>';
+    $('newsTopCard').hidden = (newsTabState.cat !== 'ALL' || newsTabState.group !== '전체');
     var pages = Math.max(1, Math.ceil(rows.length / newsTabState.pageSize));
     newsTabState.page = Math.max(1, Math.min(newsTabState.page, pages));
     var st = (newsTabState.page - 1) * newsTabState.pageSize;
@@ -1192,12 +1227,6 @@
     $('newsTabNext').disabled = newsTabState.page >= pages;
     renderScrapBox();
   }
-  $('newsTabChips').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-ngrp]'); if (!b) return;
-    newsTabState.group = b.dataset.ngrp; newsTabState.page = 1;
-    document.querySelectorAll('#newsTabChips .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-    renderNewsTab();
-  });
   $('newsTabPubSel').addEventListener('change', function (e) { newsTabState.pub = e.target.value; newsTabState.page = 1; renderNewsTab(); });
   $('newsTabPrev').addEventListener('click', function () { if (newsTabState.page > 1) { newsTabState.page--; renderNewsTab(); } });
   $('newsTabNext').addEventListener('click', function () { newsTabState.page++; renderNewsTab(); });
@@ -1246,11 +1275,6 @@
     });
     $('kboCount').textContent = fmt(filtered.length) + '건';
     $('kboFeedList').innerHTML = filtered.length ? filtered.map(newsRowHtml).join('') : '<div style="padding:40px;text-align:center;color:var(--mute)">해당 구단의 수집된 프로야구 뉴스가 없습니다.</div>';
-    $('homeKboMini').innerHTML = allKbo.slice(0, 4).map(function (x) {
-      var u = safeUrl(x.link || x.url);
-      return '<div style="padding:10px 14px;border-bottom:1px solid var(--line)"><span class="badge" style="margin-bottom:4px">' + esc(catLabel(x.category)) + '</span>' +
-        (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="display:block;font-size:13px;font-weight:600;text-decoration:none;line-height:1.35">' + esc(x.title) + '</a>' : '') + '</div>';
-    }).join('') || '<div style="padding:18px;text-align:center;color:var(--mute);font-size:12.5px">수집된 프로야구 소식이 없습니다.</div>';
     $('kboStatsBox').innerHTML = teams.map(function (t) {
       var c = allKbo.filter(function (x) { return x.category === t; }).length;
       return '<div style="display:flex;justify-content:space-between;font-size:13px"><span>' + esc(catLabel(t)) + '</span><b class="mono">' + c + '건</b></div>';
@@ -1274,7 +1298,7 @@
       $('stripDate').textContent = (dateKey === 'latest' ? kstToday() : dateKey) + ' 브리핑';
       renderNewsSelectors(); renderHomeFeed(); renderNewsTab(); renderMarketNews(); renderKboFeed();
     }).catch(function () {
-      $('homeFeedList').innerHTML = '<div style="padding:36px;text-align:center;color:var(--mute)">뉴스 데이터를 불러오지 못했습니다.</div>';
+      $('homeCatGrid').innerHTML = '<div style="grid-column:1/-1;padding:36px;text-align:center;color:var(--mute)">뉴스 데이터를 불러오지 못했습니다.</div>';
     });
   }
   $('dateSel').addEventListener('change', function (e) { loadNews(e.target.value); });
@@ -1310,7 +1334,7 @@
           var cls = x.change > 0 ? 'up' : x.change < 0 ? 'down' : 'flat';
           chg = '<span class="mk-chg ' + cls + '">' + (x.change > 0 ? '▲ +' : x.change < 0 ? '▼ ' : '') + x.change.toFixed(2) + '%</span>';
         } else chg = '<span class="mk-chg flat">실시간</span>';
-        return '<div class="mk-card"><div class="mk-top"><span>' + esc(x.name) + '</span><span class="mk-sym">' + esc(x.symbol || '') + '</span></div><div class="mk-val">' + esc(x.value) + '</div>' + chg + '</div>';
+        return '<div class="mk-card"><div class="mk-top"><span>' + esc(x.name) + '</span><span class="mk-sym">' + esc(x.symbol || '') + '</span></div><div class="mk-row"><span class="mk-val">' + esc(x.value) + '</span>' + chg + '</div></div>';
       }).join('');
       $('homeMarketGrid').innerHTML = cards;
       $('marketTopGrid').innerHTML = cards;
