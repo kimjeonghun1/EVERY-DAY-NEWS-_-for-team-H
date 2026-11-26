@@ -1080,13 +1080,16 @@
 
   function newsRowHtml(x) {
     var url = safeUrl(x.link || x.url);
+    var img = safeUrl(x.image);
     var isRead = url && readSet.has(url);
     return '<article class="feed-item' + (isRead ? ' read' : '') + '">' +
-      '<div><div class="feed-meta"><span class="badge">' + esc(catLabel(x.category)) + '</span><span>' + esc(x.publisher || '') + '</span><span class="mono">' + esc((x.pubDate || '').slice(0, 16)) + '</span></div>' +
+      '<div style="display:flex;gap:14px;align-items:flex-start;min-width:0">' +
+      (img ? '<a href="' + esc(url || '#') + '" target="_blank" rel="noopener" style="flex:none"><img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.parentElement.remove()" style="width:116px;height:76px;border-radius:7px;object-fit:cover;border:1px solid var(--line);display:block" /></a>' : '') +
+      '<div style="min-width:0;flex:1"><div class="feed-meta"><span class="badge">' + esc(catLabel(x.category)) + '</span><span>' + esc(x.publisher || '') + '</span><span class="mono">' + esc((x.pubDate || '').slice(0, 16)) + '</span></div>' +
       (url ? '<a class="feed-title" href="' + esc(url) + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '">' + esc(x.title) + '</a>' : '<div class="feed-title">' + esc(x.title) + '</div>') +
       (x.summary ? '<p class="feed-sum">' + esc(x.summary) + '</p>' : '') +
       (x.originalTitle ? '<p class="feed-orig">' + esc(x.originalTitle) + '</p>' : '') +
-      '</div>' +
+      '</div></div>' +
       (url ? '<button type="button" class="star-btn" data-scrap="' + esc(url) + '" aria-pressed="' + String(scrapMap.has(url)) + '" title="사내 회람 스크랩">' + icon('star') + '</button>' : '') +
       '</article>';
   }

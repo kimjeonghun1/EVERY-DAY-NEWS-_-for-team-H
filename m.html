@@ -377,16 +377,16 @@
       return true;
     }).slice(0, 40);
     $('mNewsList').innerHTML = list.map(function (x) {
-      var u = safeUrl(x.link);
-      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div><div class="m-ititle">' + esc(x.title) + '</div>' + (x.summary ? '<div class="m-isum">' + esc(x.summary) + '</div>' : '') + '</a>';
+      var u = safeUrl(x.link), img = safeUrl(x.image);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:10px;align-items:center"' : '') + '><div><div class="m-meta"><span class="m-badge">' + esc(x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div><div class="m-ititle">' + esc(x.title) + '</div>' + (x.summary ? '<div class="m-isum">' + esc(x.summary) + '</div>' : '') + '</div>' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:74px;height:54px;border-radius:6px;object-fit:cover" />' : '') + '</a>';
     }).join('') || '<div style="padding:30px;text-align:center;color:var(--mute)">기사가 없습니다.</div>';
   }
   function renderKbo() {
     var teams = ['프로야구 한화 소식','KIA 타이거즈','LG 트윈스','두산 베어스'];
     var list = news.filter(function (x) { return teams.indexOf(x.category) >= 0 && (kboTeam === 'ALL' || x.category === kboTeam); }).slice(0, 30);
     $('mKboList').innerHTML = list.map(function (x) {
-      var u = safeUrl(x.link);
-      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"><div class="m-meta"><span class="m-badge">' + esc(x.category === '프로야구 한화 소식' ? '한화 이글스' : x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div><div class="m-ititle">' + esc(x.title) + '</div></a>';
+      var u = safeUrl(x.link), img = safeUrl(x.image);
+      return '<a class="m-item" href="' + esc(u || '#') + '" target="_blank" rel="noopener"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:10px;align-items:center"' : '') + '><div><div class="m-meta"><span class="m-badge">' + esc(x.category === '프로야구 한화 소식' ? '한화 이글스' : x.category) + '</span><span>' + esc(x.publisher || '') + '</span></div><div class="m-ititle">' + esc(x.title) + '</div></div>' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:74px;height:54px;border-radius:6px;object-fit:cover" />' : '') + '</a>';
     }).join('') || '<div style="padding:30px;text-align:center;color:var(--mute)">수집된 야구 소식이 없습니다.</div>';
   }
   fetch('./data/latest.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (j) {
