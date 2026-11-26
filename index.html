@@ -179,8 +179,7 @@
   .card-hd .bar { width: 4px; height: 15px; border-radius: 2px; background: var(--primary); display: inline-block; }
   .card-bd { padding: 14px 16px; }
   .grid-main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
-  .home-shell { display: grid; grid-template-columns: 295px minmax(0, 1fr) 340px; gap: 18px; align-items: start; }
-  .home-left { position: sticky; top: 112px; }
+  .home-shell { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 18px; align-items: start; }
   .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 
   /* 금융 지표 카드: 컴팩트 가로 6분할 1줄 슬림 바 */
@@ -195,23 +194,23 @@
   .mk-chg.down { background: var(--down-soft); color: var(--down); }
   .mk-chg.flat { background: var(--subtle); color: var(--mute); }
 
-  /* 홈 대시보드: 분야별 2열 카드 그리드 & 3단계 정돈 타이포 */
-  .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  /* 홈 대시보드: 분야별 3열 컴팩트 카드 그리드 */
+  .cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .cat-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; }
-  .cat-box-hd { padding: 11px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .cat-box-hd h3 { font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
-  .cat-box-hd .bar { width: 3.5px; height: 14px; border-radius: 2px; background: var(--primary); display: inline-block; }
-  .cat-box-hd .more-btn { font-size: 12px; font-weight: 600; color: var(--primary-ink); padding: 2px 6px; border-radius: 5px; }
+  .cat-box-hd { padding: 9px 12px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .cat-box-hd h3 { font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+  .cat-box-hd .bar { width: 3px; height: 13px; border-radius: 2px; background: var(--primary); display: inline-block; }
+  .cat-box-hd .more-btn { font-size: 11.5px; font-weight: 600; color: var(--primary-ink); padding: 2px 6px; border-radius: 5px; }
   .cat-box-hd .more-btn:hover { background: var(--primary-soft); }
-  .skim-item { display: block; padding: 12px 16px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background-color 120ms; }
+  .skim-item { display: block; padding: 8px 12px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background-color 120ms; }
   .skim-item:last-child { border-bottom: 0; }
   .skim-item:hover { background: var(--subtle); }
   .skim-item.read .skim-t { color: var(--mute); font-weight: 500; }
-  .skim-t { font-size: 14px; font-weight: 600; line-height: 1.45; color: var(--ink); word-break: keep-all; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .skim-t { font-size: 12.8px; font-weight: 600; line-height: 1.38; color: var(--ink); word-break: keep-all; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .skim-item:hover .skim-t { color: var(--primary-ink); }
-  .skim-s { margin-top: 4px; font-size: 12.5px; line-height: 1.45; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .skim-m { margin-top: 5px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--mute); }
-  .skim-m .dot::before { content: "·"; margin-right: 8px; }
+  .skim-s { margin-top: 2px; font-size: 11.5px; line-height: 1.38; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .skim-m { margin-top: 3px; display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--mute); }
+  .skim-m .dot::before { content: "·"; margin-right: 6px; }
 
   /* 종합 뉴스 좌측 세로 카테고리 메뉴 */
   .news-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
@@ -330,19 +329,18 @@
   .ftr-in { max-width: var(--maxw); margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--mute); }
 
   /* 반응형 */
-  @media (max-width: 1440px) {
-    .home-shell { grid-template-columns: minmax(0, 1fr) 330px; }
-    .home-left { position: static; order: 3; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 1480px) {
+    .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 1280px) {
     .grid-main { grid-template-columns: minmax(0, 1fr) 330px; }
+    .home-shell { grid-template-columns: 320px minmax(0, 1fr); }
     .news-shell { grid-template-columns: 200px minmax(0, 1fr); }
     .news-shell > aside { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   }
   @media (max-width: 1024px) {
     .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .grid-main, .home-shell, .cat-grid, .news-shell { grid-template-columns: 1fr; }
-    .home-left { grid-template-columns: 1fr; }
     .news-side { position: static; max-height: none; }
     .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bid-kv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -411,8 +409,9 @@
   <section class="page" id="page-home">
     <div class="mk-grid" id="homeMarketGrid"></div>
     <div class="home-shell">
-      <!-- 좌측 사이드바: 점심·저녁 뽑기 / 로또 6/45 / 최저가 쇼핑 -->
-      <aside class="stack home-left">
+      <!-- 좌측 사이드바: 유틸·생활·교통·음원·발주 전체 통합 -->
+      <aside class="stack">
+        <!-- 좌측 1: 오늘 뭐 먹지? -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>오늘 뭐 먹지?</h3>
@@ -437,6 +436,7 @@
           </div>
         </div>
 
+        <!-- 좌측 2: 로또 6/45 생성기 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>로또 6/45 생성기</h3>
@@ -448,6 +448,7 @@
           </div>
         </div>
 
+        <!-- 좌측 3: 최저가 쇼핑 검색 -->
         <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>최저가 쇼핑 검색</h3><span class="badge">낮은가격순</span></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px">
@@ -463,23 +464,8 @@
             </div>
           </div>
         </div>
-      </aside>
 
-      <div class="stack">
-        <!-- 검색 중일 때만 표시되는 검색 결과 카드 -->
-        <div class="card" id="homeSearchCard" hidden>
-          <div class="card-hd">
-            <h2><span class="bar"></span>통합 검색 결과 <span class="badge" id="homeSearchCount">0건</span></h2>
-            <button type="button" class="ctl" id="homeSearchReset" style="height:26px;font-size:11.5px">검색 초기화</button>
-          </div>
-          <div id="homeSearchList"></div>
-        </div>
-        <!-- 평상시: 분야별 2열 카드 그리드 (가독성 최우선) -->
-        <div class="cat-grid" id="homeCatGrid"></div>
-      </div>
-
-      <aside class="stack">
-        <!-- 우측 1: 항공·교통 원스톱 간편 예매 -->
+        <!-- 좌측 4: 항공·교통 원스톱 간편 예매 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>항공·교통 원스톱 예매</h3>
@@ -516,7 +502,7 @@
           </div>
         </div>
 
-        <!-- 우측 2: 실시간 음원 차트 TOP 5 -->
+        <!-- 좌측 5: 실시간 음원 차트 TOP 5 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>실시간 음원 차트 TOP 5</h3>
@@ -525,7 +511,7 @@
           <div id="homeMusicMini"></div>
         </div>
 
-        <!-- 우측 3: 발주 속보 요약 -->
+        <!-- 좌측 6: 발주 속보 요약 -->
         <div class="card">
           <div class="card-hd">
             <h3><span class="bar"></span>발주 속보 요약</h3>
@@ -534,7 +520,7 @@
           <div id="homeBidMini"></div>
         </div>
 
-        <!-- 우측 4: 담당자 안내 -->
+        <!-- 좌측 7: 담당자 안내 -->
         <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>구조부 브리핑 운영 안내</h3></div>
           <div class="card-bd" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--sub)">
@@ -543,6 +529,20 @@
           </div>
         </div>
       </aside>
+
+      <!-- 우측 메인: 분야별 종합 뉴스 그리드 -->
+      <div class="stack">
+        <!-- 검색 중일 때만 표시되는 검색 결과 카드 -->
+        <div class="card" id="homeSearchCard" hidden>
+          <div class="card-hd">
+            <h2><span class="bar"></span>통합 검색 결과 <span class="badge" id="homeSearchCount">0건</span></h2>
+            <button type="button" class="ctl" id="homeSearchReset" style="height:26px;font-size:11.5px">검색 초기화</button>
+          </div>
+          <div id="homeSearchList"></div>
+        </div>
+        <!-- 평상시: 분야별 2열 카드 그리드 (가독성 최우선) -->
+        <div class="cat-grid" id="homeCatGrid"></div>
+      </div>
     </div>
   </section>
 
@@ -1132,11 +1132,11 @@
     var img = safeUrl(x.image);
     var isRead = url && readSet.has(url);
     var dt = (x.pubDate || '').slice(5, 16);
-    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 76px;gap:12px;align-items:center"' : '') + '>' +
+    return '<a class="skim-item' + (isRead ? ' read' : '') + '" href="' + esc(url || '#') + '" target="_blank" rel="noopener" data-read-url="' + esc(url) + '"' + (img ? ' style="display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:9px;align-items:center"' : '') + '>' +
       '<div style="min-width:0"><div class="skim-t">' + esc(x.title) + '</div>' +
       (x.summary ? '<div class="skim-s">' + esc(x.summary) + '</div>' : '') +
       '<div class="skim-m"><span>' + esc(x.publisher || catLabel(x.category)) + '</span>' + (dt ? '<span class="dot mono">' + esc(dt) + '</span>' : '') + '</div></div>' +
-      (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:76px;height:54px;border-radius:6px;object-fit:cover;border:1px solid var(--line)" />' : '') +
+      (img ? '<img src="' + esc(img) + '" alt="" loading="lazy" onerror="this.remove()" style="width:58px;height:42px;border-radius:5px;object-fit:cover;border:1px solid var(--line)" />' : '') +
       '</a>';
   }
 
@@ -1174,10 +1174,10 @@
         if (card.matchWord) return x.category === card.matchWord || [x.title, x.summary].join(' ').indexOf(card.matchWord) >= 0;
         return card.cats.indexOf(x.category) >= 0;
       });
-      var top4 = list.slice(0, 4);
+      var top3 = list.slice(0, 3);
       return '<section class="cat-box"><div class="cat-box-hd"><h3><span class="bar"></span>' + esc(card.title) + ' <span class="mono" style="font-size:11.5px;color:var(--mute);font-weight:500">' + fmt(list.length) + '</span></h3>' +
         '<button type="button" class="more-btn" data-jump-group="' + esc(card.key) + '">더보기 →</button></div>' +
-        (top4.length ? top4.map(skimItemHtml).join('') : '<div style="padding:24px 16px;text-align:center;color:var(--mute);font-size:12.5px">오늘 수집된 기사가 없습니다.</div>') +
+        (top3.length ? top3.map(skimItemHtml).join('') : '<div style="padding:20px 12px;text-align:center;color:var(--mute);font-size:12px">오늘 수집된 기사가 없습니다.</div>') +
         '</section>';
     }).join('');
   }
