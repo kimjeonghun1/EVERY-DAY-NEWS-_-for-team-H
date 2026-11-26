@@ -2,38 +2,267 @@
   "items": [
     {
       "name": "금(USD/oz)",
-      "value": "$3,606.5",
-      "change": 2.0
+      "symbol": "GC=F",
+      "value": "$3,592.6",
+      "change": 1.61,
+      "group": "index",
+      "source": "글로벌 지표"
     },
     {
       "name": "코스피",
-      "value": "4,768.67",
-      "change": 1.51
+      "symbol": "^KS11",
+      "value": "4,711.21",
+      "change": 0.29,
+      "group": "index",
+      "source": "글로벌 지표"
     },
     {
       "name": "코스닥",
-      "value": "665.80",
-      "change": 2.33
+      "symbol": "^KQ11",
+      "value": "655.71",
+      "change": 0.78,
+      "group": "index",
+      "source": "글로벌 지표"
     },
     {
       "name": "나스닥",
+      "symbol": "^IXIC",
       "value": "23,585.80",
-      "change": -0.62
+      "change": -0.62,
+      "group": "index",
+      "source": "글로벌 지표"
     },
     {
       "name": "S&P500",
+      "symbol": "^GSPC",
       "value": "7,182.78",
-      "change": -0.25
+      "change": -0.25,
+      "group": "index",
+      "source": "글로벌 지표"
     },
     {
       "name": "닛케이225",
-      "value": "57,876.34",
-      "change": 1.52
+      "symbol": "^N225",
+      "value": "57,499.16",
+      "change": 0.86,
+      "group": "index",
+      "source": "글로벌 지표"
+    },
+    {
+      "name": "다우존스",
+      "symbol": "^DJI",
+      "value": "50,182.9",
+      "change": 0.33,
+      "group": "index",
+      "source": "글로벌 지표"
     },
     {
       "name": "원/달러",
-      "value": "1,341.8원",
-      "change": -0.06
+      "symbol": "KRW=X",
+      "value": "1,343.4원",
+      "change": 0.06,
+      "group": "index",
+      "source": "글로벌 지표"
+    },
+    {
+      "name": "WTI유",
+      "symbol": "CL=F",
+      "value": "$83.92",
+      "change": 0.29,
+      "group": "index",
+      "source": "글로벌 지표"
+    },
+    {
+      "name": "삼성전자",
+      "symbol": "005930",
+      "value": "171,300원",
+      "change": 0.35,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "SK하이닉스",
+      "symbol": "000660",
+      "value": "1,053,000원",
+      "change": 2.23,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "LG엔솔",
+      "symbol": "373220",
+      "value": "302,000원",
+      "change": -2.11,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "삼성바이오",
+      "symbol": "207940",
+      "value": "1,337,000원",
+      "change": -1.91,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "현대차",
+      "symbol": "005380",
+      "value": "259,000원",
+      "change": -3.9,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "기아",
+      "symbol": "000270",
+      "value": "93,700원",
+      "change": -2.4,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "NAVER",
+      "symbol": "035420",
+      "value": "160,200원",
+      "change": 0.75,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "카카오",
+      "symbol": "035720",
+      "value": "30,200원",
+      "change": -2.58,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "KB금융",
+      "symbol": "105560",
+      "value": "145,300원",
+      "change": -1.89,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "현대건설",
+      "symbol": "000720",
+      "value": "67,000원",
+      "change": 0.75,
+      "group": "kr",
+      "source": "KRX/Yahoo"
+    },
+    {
+      "name": "엔비디아",
+      "symbol": "NVDA",
+      "value": "$149.30",
+      "change": -3.91,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "애플",
+      "symbol": "AAPL",
+      "value": "$355.58",
+      "change": 0.43,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "MS",
+      "symbol": "MSFT",
+      "value": "$489.93",
+      "change": -1.25,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "구글",
+      "symbol": "GOOGL",
+      "value": "$273.10",
+      "change": -2.13,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "아마존",
+      "symbol": "AMZN",
+      "value": "$244.43",
+      "change": -3.12,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "메타",
+      "symbol": "META",
+      "value": "$609.89",
+      "change": 3.4,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "테슬라",
+      "symbol": "TSLA",
+      "value": "$380.14",
+      "change": -1.18,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "브로드컴",
+      "symbol": "AVGO",
+      "value": "$300.86",
+      "change": -0.07,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "넷플릭스",
+      "symbol": "NFLX",
+      "value": "$59.41",
+      "change": 0.92,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "AMD",
+      "symbol": "AMD",
+      "value": "$406.03",
+      "change": -1.75,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "팔란티어",
+      "symbol": "PLTR",
+      "value": "$163.59",
+      "change": 1.5,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "코스트코",
+      "symbol": "COST",
+      "value": "$1,086.81",
+      "change": -0.45,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "ASML",
+      "symbol": "ASML",
+      "value": "$1,303.08",
+      "change": -2.47,
+      "group": "us",
+      "source": "NASDAQ"
+    },
+    {
+      "name": "인텔",
+      "symbol": "INTC",
+      "value": "$54.47",
+      "change": -0.6,
+      "group": "us",
+      "source": "NASDAQ"
     }
   ]
 }

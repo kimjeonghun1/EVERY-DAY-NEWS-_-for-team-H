@@ -186,14 +186,15 @@
   .urgent-item:hover { background: var(--primary-soft); }
   .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 
-  /* 금융 지표 카드: 컴팩트 가로 6분할 1줄 슬림 바 */
-  .mk-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
-  .mk-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; display: flex; flex-direction: column; gap: 3px; }
-  .mk-top { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--sub); font-weight: 600; }
-  .mk-sym { font-family: var(--mono); font-size: 10px; color: var(--mute); font-weight: 500; }
-  .mk-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: 1px; }
-  .mk-val { font-family: var(--mono); font-size: 14.5px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
-  .mk-chg { font-family: var(--mono); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; padding: 1px 5px; border-radius: 4px; width: fit-content; white-space: nowrap; }
+  /* 금융 지표 카드: 초슬림 12열 × 3행 (36개) */
+  .mk-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+  .mk-card { background: var(--panel); border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .mk-top { display: flex; justify-content: space-between; align-items: center; gap: 4px; font-size: 10.5px; color: var(--sub); font-weight: 600; }
+  .mk-top span:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mk-sym { font-family: var(--mono); font-size: 9px; color: var(--mute); font-weight: 500; display: none; }
+  .mk-row { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 1px; }
+  .mk-val { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: -0.03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .mk-chg { font-family: var(--mono); font-size: 9.5px; font-weight: 700; display: inline-flex; align-items: center; padding: 0 4px; border-radius: 3px; width: fit-content; white-space: nowrap; }
   .mk-chg.up { background: var(--up-soft); color: var(--up); }
   .mk-chg.down { background: var(--down-soft); color: var(--down); }
   .mk-chg.flat { background: var(--subtle); color: var(--mute); }
@@ -333,13 +334,17 @@
   .ftr-in { max-width: var(--maxw); margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--mute); }
 
   /* 반응형 */
+  @media (max-width: 1440px) {
+    .mk-grid { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  }
   @media (max-width: 1280px) {
+    .mk-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
     .grid-main, .home-shell { grid-template-columns: minmax(0, 1fr) 330px; }
     .news-shell { grid-template-columns: 200px minmax(0, 1fr); }
     .news-shell > aside { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   }
   @media (max-width: 1024px) {
-    .mk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mk-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .grid-main, .home-shell, .cat-grid, .news-shell, .urgent-items { grid-template-columns: 1fr; }
     .news-side { position: static; max-height: none; }
     .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1460,13 +1465,17 @@
         if (j && j.rates && j.rates.KRW) add({ name: '원/달러', symbol: 'USD/KRW', value: fmt(j.rates.KRW, 1) + '원', source: 'ExchangeRate' });
       }).catch(function () {});
     }).then(function () {
-      var cards = list.slice(0, 6).map(function (x) {
+      var idxItems = list.filter(function (x) { return x.group !== 'kr' && x.group !== 'us'; });
+      var krItems = list.filter(function (x) { return x.group === 'kr'; });
+      var usItems = list.filter(function (x) { return x.group === 'us'; });
+      var ordered = idxItems.slice(0, 12).concat(krItems.slice(0, 10), usItems.slice(0, 14));
+      var cards = ordered.map(function (x) {
         var chg = '';
         if (typeof x.change === 'number' && isFinite(x.change)) {
           var cls = x.change > 0 ? 'up' : x.change < 0 ? 'down' : 'flat';
-          chg = '<span class="mk-chg ' + cls + '">' + (x.change > 0 ? '▲ +' : x.change < 0 ? '▼ ' : '') + x.change.toFixed(2) + '%</span>';
+          chg = '<span class="mk-chg ' + cls + '">' + (x.change > 0 ? '▲+' : x.change < 0 ? '▼' : '') + x.change.toFixed(2) + '%</span>';
         } else chg = '<span class="mk-chg flat">실시간</span>';
-        return '<div class="mk-card"><div class="mk-top"><span>' + esc(x.name) + '</span><span class="mk-sym">' + esc(x.symbol || '') + '</span></div><div class="mk-row"><span class="mk-val">' + esc(x.value) + '</span>' + chg + '</div></div>';
+        return '<div class="mk-card" title="' + esc(x.name + ' (' + (x.symbol || '') + ')') + '"><div class="mk-top"><span>' + esc(x.name) + '</span></div><div class="mk-row"><span class="mk-val">' + esc(x.value) + '</span>' + chg + '</div></div>';
       }).join('');
       $('homeMarketGrid').innerHTML = cards;
       $('marketTopGrid').innerHTML = cards;
