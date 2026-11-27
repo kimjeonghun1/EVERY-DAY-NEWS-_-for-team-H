@@ -3,8 +3,8 @@
     {
       "name": "금(USD/oz)",
       "symbol": "GC=F",
-      "value": "$3,595.0",
-      "change": 1.67,
+      "value": "$3,592.8",
+      "change": 1.61,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -59,16 +59,16 @@
     {
       "name": "원/달러",
       "symbol": "KRW=X",
-      "value": "1,343.7원",
-      "change": 0.08,
+      "value": "1,345.6원",
+      "change": 0.19,
       "group": "index",
       "source": "글로벌 지표"
     },
     {
       "name": "WTI유",
       "symbol": "CL=F",
-      "value": "$84.92",
-      "change": 1.48,
+      "value": "$84.98",
+      "change": 1.55,
       "group": "index",
       "source": "글로벌 지표"
     },
