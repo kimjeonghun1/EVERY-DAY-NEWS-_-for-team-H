@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-27T09:33:16+09:00",
+  "updatedAt": "2026-11-27T13:43:08+09:00",
   "musicSource": "Apple Music 대한민국 TOP 50",
-  "musicUpdated": "Fri, 27 Nov 2026 00:33:31 +0000",
+  "musicUpdated": "Fri, 27 Nov 2026 04:43:24 +0000",
   "music": [
     {
       "rank": 1,
@@ -205,22 +205,22 @@
     },
     {
       "rank": 21,
-      "title": "Magnetic",
-      "artist": "아일릿",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3e/49/1e/3e491e43-4961-21ab-2abe-37fb1c0feb40/196922879227_Cover.jpg/100x100bb.jpg",
-      "releaseDate": "2024-03-25",
-      "url": "https://music.apple.com/kr/album/magnetic/1734500886?i=1734500896",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%95%84%EC%9D%BC%EB%A6%BF%20Magnetic",
-      "genre": "K-Pop"
-    },
-    {
-      "rank": 22,
       "title": "외사랑 (feat. 최유리)",
       "artist": "진영",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/47/15/30/47153017-00a5-5979-0f4a-9d69c1f77514/cover_KM0024614_1.jpg/100x100bb.jpg",
       "releaseDate": "2026-05-13",
       "url": "https://music.apple.com/kr/album/%EC%99%B8%EC%82%AC%EB%9E%91-feat-%EC%B5%9C%EC%9C%A0%EB%A6%AC/6766741783?i=6766741789",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%A7%84%EC%98%81%20%EC%99%B8%EC%82%AC%EB%9E%91%20%28feat.%20%EC%B5%9C%EC%9C%A0%EB%A6%AC%29",
+      "genre": "K-Pop"
+    },
+    {
+      "rank": 22,
+      "title": "Magnetic",
+      "artist": "아일릿",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3e/49/1e/3e491e43-4961-21ab-2abe-37fb1c0feb40/196922879227_Cover.jpg/100x100bb.jpg",
+      "releaseDate": "2024-03-25",
+      "url": "https://music.apple.com/kr/album/magnetic/1734500886?i=1734500896",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=%EC%95%84%EC%9D%BC%EB%A6%BF%20Magnetic",
       "genre": "K-Pop"
     },
     {
@@ -265,16 +265,6 @@
     },
     {
       "rank": 27,
-      "title": "CRASH",
-      "artist": "ALLDAY PROJECT",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/6c/4e/ca6c4e31-23b8-4ce9-da0a-ecb0581074c7/8800388635953_cover.png/100x100bb.jpg",
-      "releaseDate": "2026-09-28",
-      "url": "https://music.apple.com/kr/album/crash/6813395912?i=6813395915",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=ALLDAY%20PROJECT%20CRASH",
-      "genre": "댄스"
-    },
-    {
-      "rank": 28,
       "title": "사랑한 만큼",
       "artist": "팀",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/a1/20/25/a120258f-237f-1e41-f0df-995487a0ecf4/8809856761217.jpg/100x100bb.jpg",
@@ -282,6 +272,16 @@
       "url": "https://music.apple.com/kr/album/%EC%82%AC%EB%9E%91%ED%95%9C-%EB%A7%8C%ED%81%BC/1608281009?i=1608281417",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%8C%80%20%EC%82%AC%EB%9E%91%ED%95%9C%20%EB%A7%8C%ED%81%BC",
       "genre": "K-Pop"
+    },
+    {
+      "rank": 28,
+      "title": "CRASH",
+      "artist": "ALLDAY PROJECT",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/6c/4e/ca6c4e31-23b8-4ce9-da0a-ecb0581074c7/8800388635953_cover.png/100x100bb.jpg",
+      "releaseDate": "2026-09-28",
+      "url": "https://music.apple.com/kr/album/crash/6813395912?i=6813395915",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=ALLDAY%20PROJECT%20CRASH",
+      "genre": "댄스"
     },
     {
       "rank": 29,
@@ -395,16 +395,6 @@
     },
     {
       "rank": 40,
-      "title": "Last Christmas (Single Version)",
-      "artist": "Wham!",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/eb/4a/f9/eb4af984-fc68-56ab-7b89-1d070c04e1dd/5099765318524.jpg/100x100bb.jpg",
-      "releaseDate": "1984-12-01",
-      "url": "https://music.apple.com/kr/album/last-christmas-single-version/202117886?i=202117984",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=Wham%21%20Last%20Christmas%20%28Single%20Version%29",
-      "genre": "홀리데이"
-    },
-    {
-      "rank": 41,
       "title": "Heroine",
       "artist": "백 넘버",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5d/d1/f0/5dd1f0aa-4b50-e6b1-73b1-fb740989afba/00602577303906.rgb.jpg/100x100bb.jpg",
@@ -414,17 +404,7 @@
       "genre": "음악"
     },
     {
-      "rank": 42,
-      "title": "And July (feat. DEAN & dj friz)",
-      "artist": "헤이즈",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/9e/ba/a69ebae6-e47c-ec13-c670-4f8a1ffa6584/8809484116656_Cover.jpg/100x100bb.jpg",
-      "releaseDate": "2016-07-18",
-      "url": "https://music.apple.com/kr/album/and-july-feat-dean-dj-friz/1569920323?i=1569920439",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%97%A4%EC%9D%B4%EC%A6%88%20And%20July%20%28feat.%20DEAN%20%26%20dj%20friz%29",
-      "genre": "K-Pop"
-    },
-    {
-      "rank": 43,
+      "rank": 41,
       "title": "사랑하게 될 거야",
       "artist": "한로로",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c2/ef/87/c2ef8779-f3bb-5a1c-ef6f-c27185e62446/8809936067307.jpg/100x100bb.jpg",
@@ -432,6 +412,26 @@
       "url": "https://music.apple.com/kr/album/%EC%82%AC%EB%9E%91%ED%95%98%EA%B2%8C-%EB%90%A0-%EA%B1%B0%EC%95%BC/1703196819?i=1703196825",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%95%9C%EB%A1%9C%EB%A1%9C%20%EC%82%AC%EB%9E%91%ED%95%98%EA%B2%8C%20%EB%90%A0%20%EA%B1%B0%EC%95%BC",
       "genre": "록"
+    },
+    {
+      "rank": 42,
+      "title": "Last Christmas (Single Version)",
+      "artist": "Wham!",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/eb/4a/f9/eb4af984-fc68-56ab-7b89-1d070c04e1dd/5099765318524.jpg/100x100bb.jpg",
+      "releaseDate": "1984-12-01",
+      "url": "https://music.apple.com/kr/album/last-christmas-single-version/202117886?i=202117984",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=Wham%21%20Last%20Christmas%20%28Single%20Version%29",
+      "genre": "홀리데이"
+    },
+    {
+      "rank": 43,
+      "title": "And July (feat. DEAN & dj friz)",
+      "artist": "헤이즈",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/9e/ba/a69ebae6-e47c-ec13-c670-4f8a1ffa6584/8809484116656_Cover.jpg/100x100bb.jpg",
+      "releaseDate": "2016-07-18",
+      "url": "https://music.apple.com/kr/album/and-july-feat-dean-dj-friz/1569920323?i=1569920439",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%97%A4%EC%9D%B4%EC%A6%88%20And%20July%20%28feat.%20DEAN%20%26%20dj%20friz%29",
+      "genre": "K-Pop"
     },
     {
       "rank": 44,
@@ -455,16 +455,6 @@
     },
     {
       "rank": 46,
-      "title": "Santa Tell Me",
-      "artist": "Ariana Grande",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/60/c8/2b/60c82b22-cd58-cdcd-5b51-6fad7a8b7055/14UMGIM55455.rgb.jpg/100x100bb.jpg",
-      "releaseDate": "2013-12-13",
-      "url": "https://music.apple.com/kr/album/santa-tell-me/1444319981?i=1444319982",
-      "youtubeUrl": "https://www.youtube.com/results?search_query=Ariana%20Grande%20Santa%20Tell%20Me",
-      "genre": "홀리데이"
-    },
-    {
-      "rank": 47,
       "title": "EVERYTHING",
       "artist": "검정치마",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/be/ce/5c/bece5cff-2caf-6d8a-9c21-3035537d2a4d/Album_cover_1400X1400.jpg/100x100bb.jpg",
@@ -474,7 +464,7 @@
       "genre": "음악"
     },
     {
-      "rank": 48,
+      "rank": 47,
       "title": "0+0",
       "artist": "한로로",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c8/a4/c6/c8a4c64f-89b3-9ef2-473f-4ad423a03c5b/887928030421.jpg/100x100bb.jpg",
@@ -482,6 +472,16 @@
       "url": "https://music.apple.com/kr/album/0-0/1828393588?i=1828393595",
       "youtubeUrl": "https://www.youtube.com/results?search_query=%ED%95%9C%EB%A1%9C%EB%A1%9C%200%2B0",
       "genre": "록"
+    },
+    {
+      "rank": 48,
+      "title": "Santa Tell Me",
+      "artist": "Ariana Grande",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/60/c8/2b/60c82b22-cd58-cdcd-5b51-6fad7a8b7055/14UMGIM55455.rgb.jpg/100x100bb.jpg",
+      "releaseDate": "2013-12-13",
+      "url": "https://music.apple.com/kr/album/santa-tell-me/1444319981?i=1444319982",
+      "youtubeUrl": "https://www.youtube.com/results?search_query=Ariana%20Grande%20Santa%20Tell%20Me",
+      "genre": "홀리데이"
     },
     {
       "rank": 49,
