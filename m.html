@@ -705,31 +705,37 @@
   }
   $('mLottoBtn').addEventListener('click', mLotto); mLotto();
 
-  /* 모바일 방문자 카운터 (visitorbadge.io 고속 API) */
+  /* 모바일 방문자 카운터 (KST 자정 초기화 + 누적 62명 합산) */
   (function () {
     var td = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
-    var sk = 'briefing-vb-' + td;
+    var sk = 'briefing-vb-kst-' + td, BASE_TOTAL = 62;
     function showMVisits(today, total) {
       if ($('mVisitToday')) $('mVisitToday').textContent = fmt(today);
       if ($('mVisitTotal')) $('mVisitTotal').textContent = fmt(total);
     }
+    function parseBadge(svg) {
+      var m = String(svg || '').match(/<title>[^:]*:\s*([\d,]+)<\/title>/i);
+      return m ? Number(m[1].replace(/,/g, '')) : null;
+    }
     try {
       var cached = JSON.parse(sessionStorage.getItem(sk) || 'null');
       if (cached && typeof cached.today === 'number' && typeof cached.total === 'number') { showMVisits(cached.today, cached.total); return; }
-      var last = JSON.parse(localStorage.getItem('briefing-vb-last') || 'null');
-      if (last && typeof last.today === 'number' && typeof last.total === 'number') showMVisits(last.today, last.total);
+      var last = JSON.parse(localStorage.getItem('briefing-vb-kst-last') || 'null');
+      if (last && typeof last.total === 'number') showMVisits(last.day === td ? last.today : 0, last.total);
     } catch (e) {}
-    fetch('https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fkimjeonghun1.github.io%2FEVERY-DAY-NEWS-_-for-team-H%2F&label=visit', { cache: 'no-store' })
-      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
-      .then(function (svg) {
-        var m = svg.match(/(\d[\d,]*)\s*\/\s*(\d[\d,]*)/);
-        if (!m) return;
-        var today = Number(m[1].replace(/,/g, '')), total = Number(m[2].replace(/,/g, ''));
-        if (!isFinite(today) || !isFinite(total)) return;
-        showMVisits(today, total);
-        var val = JSON.stringify({ today: today, total: total });
-        try { sessionStorage.setItem(sk, val); localStorage.setItem('briefing-vb-last', val); } catch (e) {}
-      }).catch(function () {});
+    var basePath = encodeURIComponent('https://kimjeonghun1.github.io/EVERY-DAY-NEWS-_-for-team-H/');
+    var dayPath = encodeURIComponent('https://kimjeonghun1.github.io/EVERY-DAY-NEWS-_-for-team-H/day-' + td);
+    Promise.all([
+      fetch('https://api.visitorbadge.io/api/visitors?path=' + dayPath + '&label=today', { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : ''; }).catch(function () { return ''; }),
+      fetch('https://api.visitorbadge.io/api/visitors?path=' + basePath + '&label=total', { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : ''; }).catch(function () { return ''; })
+    ]).then(function (svgs) {
+      var t = parseBadge(svgs[0]), tot = parseBadge(svgs[1]);
+      if (t === null && tot === null) return;
+      var todayVal = t !== null ? t : 1, totalVal = tot !== null ? (tot + BASE_TOTAL) : BASE_TOTAL;
+      showMVisits(todayVal, totalVal);
+      var val = JSON.stringify({ day: td, today: todayVal, total: totalVal });
+      try { sessionStorage.setItem(sk, val); localStorage.setItem('briefing-vb-kst-last', val); } catch (e) {}
+    });
   })();
 
   var h = location.hash.replace(/^#/, '').split('/')[0];
