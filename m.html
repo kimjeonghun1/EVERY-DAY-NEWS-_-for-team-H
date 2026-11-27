@@ -406,9 +406,14 @@
   function setTab(t) {
     var ok = ['home','news','market','procurement','travel','kbo','culture'];
     if (ok.indexOf(t) < 0) t = 'home';
+    var changed = t !== curTab;
     curTab = t;
     document.querySelectorAll('#mNav .m-tab').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.mtab === t)); });
     ok.forEach(function (k) { $('mp-' + k).hidden = k !== t; });
+    if (changed) {
+      if ($('mNewsQ') && ($('mNewsQ').value || nQ)) { $('mNewsQ').value = ''; nQ = ''; if (typeof renderNews === 'function') renderNews(); }
+      if ($('mBidQ') && ($('mBidQ').value || bQ)) { $('mBidQ').value = ''; bQ = ''; if (typeof renderBids === 'function') renderBids(); }
+    }
     try { history.replaceState(null, '', '#' + t); } catch (e) {}
     if (t === 'market' && !tvReady) { tvReady = true; renderMTv(curSym); }
     window.scrollTo({ top: 0 });

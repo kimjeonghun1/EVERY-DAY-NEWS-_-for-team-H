@@ -1062,11 +1062,19 @@
   function setTab(tab) {
     var valid = ['home', 'news', 'market', 'procurement', 'travel', 'kbo', 'culture'];
     if (valid.indexOf(tab) < 0) tab = 'home';
+    var changed = tab !== activeTab;
     activeTab = tab;
     document.querySelectorAll('#mainTabs .tab-btn').forEach(function (b) {
       b.setAttribute('aria-selected', String(b.dataset.tab === tab));
     });
     valid.forEach(function (t) { $('page-' + t).hidden = t !== tab; });
+    if (changed && ($('globalQ').value || globalQuery)) {
+      $('globalQ').value = ''; $('globalClr').hidden = true; globalQuery = '';
+      if (typeof renderHomeFeed === 'function') renderHomeFeed();
+      if (typeof renderNewsTab === 'function') renderNewsTab();
+      if (typeof renderBids === 'function') renderBids();
+      if (typeof renderKboFeed === 'function') renderKboFeed();
+    }
     try { history.replaceState(null, '', '#' + tab); } catch (e) {}
     if (tab === 'market' && !tvLoaded) { tvLoaded = true; renderTvChart(currentTvSym); renderTvCal(); }
     window.scrollTo({ top: 0 });
