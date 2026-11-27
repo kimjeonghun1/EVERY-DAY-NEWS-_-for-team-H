@@ -1466,6 +1466,12 @@
     renderKboFeed();
   });
 
+  function fmtDateKey(k) {
+    var m = String(k || '').match(/^(\d{4}-\d{2}-\d{2})-(am|pm|eve)$/);
+    if (!m) return String(k || '');
+    var slot = m[2] === 'am' ? '오전 (09시)' : m[2] === 'pm' ? '오후 (13시)' : '저녁 (17시)';
+    return m[1] + ' ' + slot;
+  }
   function loadNews(dateKey) {
     var url = './data/' + (dateKey === 'latest' ? 'latest' : dateKey) + '.json?t=' + Date.now();
     fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
@@ -1474,7 +1480,7 @@
       $('statNews').textContent = fmt(newsItems.length);
       var upd = (j && (j.updatedAt || j.generated_at || j.date)) || kstToday();
       $('updatedAt').textContent = '갱신 ' + String(upd).slice(0, 16).replace('T', ' ');
-      $('stripDate').textContent = (dateKey === 'latest' ? kstToday() : dateKey) + ' 브리핑';
+      $('stripDate').textContent = (dateKey === 'latest' ? kstToday() : fmtDateKey(dateKey)) + ' 브리핑';
       renderNewsSelectors(); renderHomeFeed(); renderNewsTab(); renderMarketNews(); renderKboFeed();
     }).catch(function () {
       $('homeCatGrid').innerHTML = '<div style="grid-column:1/-1;padding:36px;text-align:center;color:var(--mute)">뉴스 데이터를 불러오지 못했습니다.</div>';
@@ -1483,8 +1489,8 @@
   $('dateSel').addEventListener('change', function (e) { loadNews(e.target.value); });
   fetch('./data/dates.json?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : []; }).then(function (dates) {
     if (Array.isArray(dates) && dates.length) {
-      $('dateSel').innerHTML = '<option value="latest">최신 (' + esc(String(dates[0]).slice(5)) + ')</option>' +
-        dates.map(function (d) { return '<option value="' + esc(d) + '">' + esc(d) + '</option>'; }).join('');
+      $('dateSel').innerHTML = '<option value="latest">최신 (' + esc(fmtDateKey(dates[0]).slice(5)) + ')</option>' +
+        dates.map(function (d) { return '<option value="' + esc(d) + '">' + esc(fmtDateKey(d)) + '</option>'; }).join('');
     }
   }).catch(function () {}).then(function () { loadNews('latest'); });
 
