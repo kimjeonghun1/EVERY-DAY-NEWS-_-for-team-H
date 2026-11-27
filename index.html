@@ -164,10 +164,15 @@
   .pill b { color: var(--ink); font-family: var(--mono); }
   .pill.accent { padding: 2px 9px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-ink); font-weight: 600; }
   .gsearch { margin-left: auto; position: relative; width: 320px; max-width: 100%; }
-  .gsearch input { width: 100%; height: 32px; padding: 0 32px 0 32px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 7px; font-size: 13px; }
-  .gsearch input:focus { border-color: var(--primary); outline: none; }
-  .gsearch .icw { position: absolute; left: 10px; top: 8px; color: var(--mute); pointer-events: none; }
-  .gsearch .clr { position: absolute; right: 6px; top: 5px; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; color: var(--mute); }
+  .gsearch input { width: 100%; height: 32px; padding: 0 32px 0 32px; background: #0f2b48; color: #f8fafc; border: 1px solid #1e3a5f; border-radius: 7px; font-size: 13px; }
+  .gsearch input::placeholder { color: #cbd5e1; }
+  .gsearch input:focus { border-color: #38bdf8; outline: none; box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25); }
+  .gsearch .icw { position: absolute; left: 10px; top: 8px; color: #cbd5e1; pointer-events: none; }
+  .gsearch .clr { position: absolute; right: 6px; top: 5px; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; color: #cbd5e1; }
+  html[data-theme="dark"] .gsearch input { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
+  html[data-theme="dark"] .gsearch input::placeholder { color: #64748b; }
+  html[data-theme="dark"] .gsearch input:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.28); }
+  html[data-theme="dark"] .gsearch .icw, html[data-theme="dark"] .gsearch .clr { color: #475569; }
   .gsearch .clr[hidden] { display: none; }
 
   /* ───────── 공통 컨테이너 & 카드 ───────── */
