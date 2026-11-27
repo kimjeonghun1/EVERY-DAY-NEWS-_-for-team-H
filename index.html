@@ -692,7 +692,8 @@
           <button class="chip" data-bscope="education" aria-pressed="false">교육청</button>
           <button class="chip" data-bscope="unclassified" aria-pressed="false">기관 분류대기</button>
         </div>
-        <div style="padding:12px 16px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px" id="bidFilterBar">
+        <div style="padding:12px 16px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px" id="bidFilterBar">
+          <select class="ctl" id="bidRegion"><option value="all">지역 전체</option></select>
           <select class="ctl" id="bidStage"><option value="all">진행단계 전체</option></select>
           <select class="ctl" id="bidField"><option value="all">전문분야 전체</option></select>
           <select class="ctl" id="bidStatus">
@@ -721,8 +722,18 @@
 
       <aside class="stack">
         <div class="card">
-          <div class="card-hd"><h3><span class="bar"></span>발주처별 공고 현황 및 통계</h3><span class="badge">실시간 집계</span></div>
-          <div class="card-bd" id="bidBuyerStats" style="display:flex;flex-direction:column;gap:8px;font-size:12.5px"></div>
+          <div class="card-hd">
+            <h3><span class="bar"></span>지역별 발주 집계</h3>
+            <button type="button" class="ctl" id="bidRegionReset" hidden style="height:24px;font-size:11px;padding:0 8px">지역 해제</button>
+          </div>
+          <div class="card-bd" id="bidRegionStats" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:12px"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd">
+            <h3><span class="bar"></span>기관별 발주 집계 TOP 10</h3>
+            <button type="button" class="ctl" id="bidBuyerReset" hidden style="height:24px;font-size:11px;padding:0 8px">기관 해제</button>
+          </div>
+          <div class="card-bd" id="bidBuyerStats" style="display:flex;flex-direction:column;gap:7px;font-size:12px"></div>
         </div>
         <div class="card">
           <div class="card-hd"><h3><span class="bar"></span>마감 임박 공고 TOP 5</h3><span class="badge up">D-7 이내</span></div>
@@ -1599,7 +1610,23 @@
   var GROUPS_BID = { local: '지자체', public: '공공·중앙기관', education: '교육청', unclassified: '분류대기' };
   var bidFavs = new Set();
   try { JSON.parse(localStorage.getItem('procurement-favorites') || '[]').forEach(function (x) { bidFavs.add(x); }); } catch (e) {}
-  var bidState = { data: null, scope: 'all', stage: 'all', field: 'all', status: 'all', sort: 'deadline', favOnly: false, page: 1, pageSize: 20, expanded: new Set() };
+  var bidState = { data: null, scope: 'all', region: 'all', buyer: 'all', stage: 'all', field: 'all', status: 'all', sort: 'deadline', favOnly: false, page: 1, pageSize: 20, expanded: new Set() };
+  var REGION_RULES = [
+    ['서울', /서울/], ['경기', /경기도|경기\b|수원시|성남시|용인시|고양시|화성시|부천시|안산시|안양시|남양주시|평택시|파주시|시흥시|김포시|광주시|광명시|군포시|오산시|이천시|안성시|의정부시|하남시|양주시|구리시|포천시|의왕시|여주시|동두천시|과천시|양평군|가평군|연천군/],
+    ['인천', /인천/], ['강원', /강원/], ['충북', /충청북도|충북/], ['충남', /충청남도|충남/],
+    ['대전', /대전/], ['세종', /세종/], ['전북', /전북|전라북도/], ['전남', /전라남도|전남/],
+    ['광주', /광주광역시|광주교육/], ['경북', /경상북도|경북/], ['경남', /경상남도|경남/],
+    ['대구', /대구/], ['울산', /울산/], ['부산', /부산/], ['제주', /제주/]
+  ];
+  function inferBidRegion(i) {
+    if (i._region) return i._region;
+    var txt = String(i.region || '') + ' ' + String(i.buyer_name || '');
+    for (var k = 0; k < REGION_RULES.length; k++) {
+      if (REGION_RULES[k][1].test(txt)) { i._region = REGION_RULES[k][0]; return i._region; }
+    }
+    i._region = '중앙·전국';
+    return i._region;
+  }
 
   function parseKst(v) {
     if (typeof v !== 'string' || !v.trim()) return null;
@@ -1626,11 +1653,13 @@
     var diff = Math.ceil((dl - Date.now()) / 86400000);
     return { key: 'open', label: diff <= 0 ? '오늘 마감' : 'D-' + diff, days: diff };
   }
-  function filterBids() {
+  function filterBids(opts) {
     if (!bidState.data) return [];
-    var now = Date.now();
+    opts = opts || {};
     var rows = (bidState.data.items || []).filter(function (i) {
       if (bidState.scope !== 'all' && i.buyer_group !== bidState.scope) return false;
+      if (!opts.ignoreRegion && bidState.region !== 'all' && inferBidRegion(i) !== bidState.region) return false;
+      if (!opts.ignoreBuyer && bidState.buyer !== 'all' && (i.buyer_name || '기타 기관') !== bidState.buyer) return false;
       if (bidState.stage !== 'all' && i.stage !== bidState.stage) return false;
       if (bidState.field !== 'all' && (i.fields || []).indexOf(bidState.field) < 0) return false;
       if (bidState.favOnly && !bidFavs.has(i.id)) return false;
@@ -1639,7 +1668,7 @@
       if (bidState.status === 'open' && st.key !== 'open') return false;
       if (bidState.status === 'closed' && st.key !== 'closed') return false;
       if (globalQuery) {
-        var hay = [i.title, i.buyer_name, i.notice_no, (i.fields || []).join(' '), (i.work_types || []).join(' ')].join(' ').toLowerCase();
+        var hay = [i.title, i.buyer_name, inferBidRegion(i), i.notice_no, (i.fields || []).join(' '), (i.work_types || []).join(' ')].join(' ').toLowerCase();
         if (hay.indexOf(globalQuery) < 0) return false;
       }
       return true;
@@ -1661,6 +1690,10 @@
     var items = d.items || [];
     $('statBids').textContent = fmt(items.length);
     var fields = Array.from(new Set(items.reduce(function (a, i) { return a.concat(i.fields || []); }, []))).sort();
+    var allRegions = ['서울','경기','인천','강원','충북','충남','대전','세종','전북','전남','광주','경북','경남','대구','울산','부산','제주','중앙·전국'];
+    $('bidRegion').innerHTML = '<option value="all">지역 전체</option>' + allRegions.map(function (r) {
+      return '<option value="' + esc(r) + '"' + (bidState.region === r ? ' selected' : '') + '>' + esc(r) + '</option>';
+    }).join('');
     $('bidStage').innerHTML = '<option value="all">진행단계 전체</option>' + Object.keys(STAGES).map(function (k) {
       return '<option value="' + k + '"' + (bidState.stage === k ? ' selected' : '') + '>' + STAGES[k] + '</option>';
     }).join('');
@@ -1709,7 +1742,7 @@
         '<div class="bid-actions"><div class="bid-tags">' + (i.fields || []).concat(i.work_types || []).map(function (t) { return '<span class="bid-tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
         '<div style="display:flex;gap:6px"><button type="button" class="ctl" data-bdet="' + esc(i.id) + '">' + (exp ? '상세 접기' : '상세 보기') + '</button>' +
         (url ? '<a class="ctl primary" href="' + esc(url) + '" target="_blank" rel="noopener">나라장터 원문 ↗</a>' : '') + '</div></div>' +
-        '<dl class="bid-detail"' + (exp ? '' : ' hidden') + '><dt>기관 구분</dt><dd>' + esc(GROUPS_BID[i.buyer_group] || '분류대기') + ' · ' + esc(i.region || '소재지 미확인') + '</dd>' +
+        '<dl class="bid-detail"' + (exp ? '' : ' hidden') + '><dt>기관·지역</dt><dd>' + esc(GROUPS_BID[i.buyer_group] || '분류대기') + ' · ' + esc(inferBidRegion(i)) + '</dd>' +
         '<dt>공고 배정예산</dt><dd class="mono">' + esc(fmtWon(i.budget_krw)) + '</dd>' +
         '<dt>참가자격</dt><dd>' + esc(i.qualification || '원문 및 첨부파일 확인 필요') + '</dd>' +
         '<dt>출처</dt><dd>' + esc(i.source_name || '나라장터') + '</dd></dl></div>';
@@ -1735,13 +1768,32 @@
       }).join('') || '<div style="font-size:12px;color:var(--mute);padding:4px 8px">수집된 발주 공고가 없습니다.</div>';
     }
 
-    /* 발주처별 통계 & 마감임박 TOP 5 */
+    /* 지역별 집계 (클릭 시 해당 지역 필터링) */
+    var baseForRegion = filterBids({ ignoreRegion: true });
+    var byRegion = {};
+    baseForRegion.forEach(function (i) { var r = inferBidRegion(i); byRegion[r] = (byRegion[r] || 0) + 1; });
+    var sortedRegions = Object.keys(byRegion).sort(function (a, b) { return byRegion[b] - byRegion[a]; });
+    $('bidRegionReset').hidden = bidState.region === 'all';
+    $('bidRegionStats').innerHTML = sortedRegions.map(function (r) {
+      var cnt = byRegion[r], pct = baseForRegion.length ? Math.round((cnt / baseForRegion.length) * 100) : 0;
+      var active = bidState.region === r;
+      return '<button type="button" data-pick-region="' + esc(r) + '" style="text-align:left;padding:6px 8px;border-radius:7px;border:1px solid ' + (active ? 'var(--primary)' : 'var(--line)') + ';background:' + (active ? 'var(--primary-soft)' : 'var(--subtle)') + ';display:flex;flex-direction:column;gap:3px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:4px"><b style="color:' + (active ? 'var(--primary-ink)' : 'var(--ink)') + '">' + esc(r) + '</b><span class="mono" style="font-size:11px;color:var(--primary-ink);font-weight:700">' + fmt(cnt) + '건</span></div>' +
+        '<div style="height:4px;border-radius:999px;background:var(--panel);overflow:hidden"><div style="height:100%;width:' + Math.max(pct, 2) + '%;background:var(--primary)"></div></div></button>';
+    }).join('') || '<div style="grid-column:1/-1;color:var(--mute)">집계 데이터 없음</div>';
+
+    /* 기관별 집계 TOP 10 (클릭 시 해당 기관 필터링) */
+    var baseForBuyer = filterBids({ ignoreBuyer: true });
     var byBuyer = {};
-    items.forEach(function (i) { var k = i.buyer_name || '기타 기관'; byBuyer[k] = (byBuyer[k] || 0) + 1; });
-    var topBuyers = Object.keys(byBuyer).sort(function (a, b) { return byBuyer[b] - byBuyer[a]; }).slice(0, 6);
+    baseForBuyer.forEach(function (i) { var k = i.buyer_name || '기타 기관'; byBuyer[k] = (byBuyer[k] || 0) + 1; });
+    var topBuyers = Object.keys(byBuyer).sort(function (a, b) { return byBuyer[b] - byBuyer[a]; }).slice(0, 10);
+    $('bidBuyerReset').hidden = bidState.buyer === 'all';
     $('bidBuyerStats').innerHTML = topBuyers.map(function (b) {
-      var pct = items.length ? Math.round((byBuyer[b] / items.length) * 100) : 0;
-      return '<div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(b) + '</span><b class="mono">' + byBuyer[b] + '건 (' + pct + '%)</b></div><div style="height:5px;border-radius:999px;background:var(--subtle);overflow:hidden"><div style="height:100%;width:' + pct + '%;background:var(--primary)"></div></div></div>';
+      var cnt = byBuyer[b], pct = baseForBuyer.length ? Math.round((cnt / baseForBuyer.length) * 100) : 0;
+      var active = bidState.buyer === b;
+      return '<button type="button" data-pick-buyer="' + esc(b) + '" style="width:100%;text-align:left;padding:5px 7px;border-radius:7px;border:1px solid ' + (active ? 'var(--primary)' : 'transparent') + ';background:' + (active ? 'var(--primary-soft)' : 'transparent') + '">' +
+        '<div style="display:flex;justify-content:space-between;gap:6px;margin-bottom:3px"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:' + (active ? '700' : '500') + '">' + esc(b) + '</span><b class="mono" style="flex:none;color:var(--primary-ink)">' + fmt(cnt) + '건 (' + pct + '%)</b></div>' +
+        '<div style="height:4px;border-radius:999px;background:var(--subtle);overflow:hidden"><div style="height:100%;width:' + Math.max(pct, 2) + '%;background:var(--primary)"></div></div></button>';
     }).join('') || '<div style="color:var(--mute)">집계 데이터 없음</div>';
 
     var urgent = items.filter(function (i) { var s = bidStatusOf(i); return s.key === 'open' && s.days <= 7; })
@@ -1779,12 +1831,24 @@
     document.querySelectorAll('#bidScopeChips .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
     renderBids();
   });
-  ['bidStage', 'bidField', 'bidStatus', 'bidSort'].forEach(function (id) {
+  ['bidRegion', 'bidStage', 'bidField', 'bidStatus', 'bidSort'].forEach(function (id) {
     $(id).addEventListener('change', function (e) {
-      var k = id === 'bidStage' ? 'stage' : id === 'bidField' ? 'field' : id === 'bidStatus' ? 'status' : 'sort';
+      var k = id === 'bidRegion' ? 'region' : id === 'bidStage' ? 'stage' : id === 'bidField' ? 'field' : id === 'bidStatus' ? 'status' : 'sort';
       bidState[k] = e.target.value; bidState.page = 1; renderBids();
     });
   });
+  $('bidRegionStats').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pick-region]'); if (!b) return;
+    bidState.region = bidState.region === b.dataset.pickRegion ? 'all' : b.dataset.pickRegion;
+    bidState.page = 1; renderBids();
+  });
+  $('bidRegionReset').addEventListener('click', function () { bidState.region = 'all'; bidState.page = 1; renderBids(); });
+  $('bidBuyerStats').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pick-buyer]'); if (!b) return;
+    bidState.buyer = bidState.buyer === b.dataset.pickBuyer ? 'all' : b.dataset.pickBuyer;
+    bidState.page = 1; renderBids();
+  });
+  $('bidBuyerReset').addEventListener('click', function () { bidState.buyer = 'all'; bidState.page = 1; renderBids(); });
   $('bidFavOnly').addEventListener('change', function (e) { bidState.favOnly = e.target.checked; bidState.page = 1; renderBids(); });
   $('bidPrev').addEventListener('click', function () { if (bidState.page > 1) { bidState.page--; renderBids(); } });
   $('bidNext').addEventListener('click', function () { bidState.page++; renderBids(); });
