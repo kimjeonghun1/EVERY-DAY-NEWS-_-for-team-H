@@ -3,24 +3,24 @@
     {
       "name": "금(USD/oz)",
       "symbol": "GC=F",
-      "value": "$3,592.8",
-      "change": 1.61,
+      "value": "$3,660.9",
+      "change": 3.54,
       "group": "index",
       "source": "글로벌 지표"
     },
     {
       "name": "코스피",
       "symbol": "^KS11",
-      "value": "4,711.21",
-      "change": -5.89,
+      "value": "4,896.39",
+      "change": 3.93,
       "group": "index",
       "source": "글로벌 지표"
     },
     {
       "name": "코스닥",
       "symbol": "^KQ11",
-      "value": "655.71",
-      "change": -1.53,
+      "value": "699.18",
+      "change": 6.63,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -43,8 +43,8 @@
     {
       "name": "닛케이225",
       "symbol": "^N225",
-      "value": "57,499.16",
-      "change": -1.95,
+      "value": "58,569.33",
+      "change": 1.86,
       "group": "index",
       "source": "글로벌 지표"
     },
@@ -59,96 +59,96 @@
     {
       "name": "원/달러",
       "symbol": "KRW=X",
-      "value": "1,345.6원",
-      "change": 0.19,
+      "value": "1,340.3원",
+      "change": -0.2,
       "group": "index",
       "source": "글로벌 지표"
     },
     {
       "name": "WTI유",
       "symbol": "CL=F",
-      "value": "$84.98",
-      "change": 1.55,
+      "value": "$85.79",
+      "change": 2.52,
       "group": "index",
       "source": "글로벌 지표"
     },
     {
       "name": "삼성전자",
       "symbol": "005930",
-      "value": "171,300원",
-      "change": 0.35,
+      "value": "178,800원",
+      "change": 4.38,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "SK하이닉스",
       "symbol": "000660",
-      "value": "1,053,000원",
-      "change": 2.23,
+      "value": "1,103,000원",
+      "change": 4.75,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "LG엔솔",
       "symbol": "373220",
-      "value": "302,000원",
-      "change": -2.11,
+      "value": "314,000원",
+      "change": 3.97,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "삼성바이오",
       "symbol": "207940",
-      "value": "1,337,000원",
-      "change": -1.91,
+      "value": "1,353,000원",
+      "change": 1.2,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "현대차",
       "symbol": "005380",
-      "value": "259,000원",
-      "change": -3.9,
+      "value": "268,000원",
+      "change": 3.47,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "기아",
       "symbol": "000270",
-      "value": "93,700원",
-      "change": -2.4,
+      "value": "95,200원",
+      "change": 1.6,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "NAVER",
       "symbol": "035420",
-      "value": "160,200원",
-      "change": 0.75,
+      "value": "163,300원",
+      "change": 1.94,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "카카오",
       "symbol": "035720",
-      "value": "30,200원",
-      "change": -2.58,
+      "value": "31,100원",
+      "change": 2.98,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "KB금융",
       "symbol": "105560",
-      "value": "145,300원",
-      "change": -1.89,
+      "value": "144,600원",
+      "change": -0.48,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
     {
       "name": "현대건설",
       "symbol": "000720",
-      "value": "67,000원",
-      "change": 0.75,
+      "value": "71,600원",
+      "change": 6.87,
       "group": "kr",
       "source": "KRX/Yahoo"
     },
